@@ -8,8 +8,17 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 
+// Import Tailwind
 import "stylesheets/application";
+
+// Import dropdown set
+import { initNavbarDropdown } from "../plugins/navbar_dropdown";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+document.addEventListener("turbolinks:load", () => {
+  console.log("test");
+  initNavbarDropdown();
+});

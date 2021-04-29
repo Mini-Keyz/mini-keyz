@@ -1,5 +1,7 @@
 <nav>
   <div class="flex justify-between items-center py-1 shadow-md">
+
+    <!-- LEFT SIDE / ICON + TEXT -->
     <div class="flex justify-between items-center px-2">
       <%= link_to "/" do %>
         <%= image_tag "icon-squared-transparent.png", style: "width: 40px;" %>
@@ -9,6 +11,20 @@
         <p class="text-xs text-gray-500">La rentabilité immobilière en ligne</p>
       </div>
     </div>
-    <i class="fas fa-bars mx-4" style="font-size: 24px;"></i>
+
+    <!-- RIGHT SIDE / DROP DOWN MENU -->
+    <i class="fas fa-bars mx-4" style="font-size: 24px; cursor: pointer;" id="navbar-dropdown"></i>
+    
   </div>
 </nav>
+
+<div class="absolute right-0 bg-white mx-2 hidden" id="navbar-dropdown-items-list">
+  <div class="flex flex-col">
+    <% if user_signed_in? %>
+      <%= link_to "Mes simulations", root_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
+      <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
+    <% else %>
+      <%= link_to "Se connecter", new_user_session_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
+    <% end %>
+  </div>
+</div>
