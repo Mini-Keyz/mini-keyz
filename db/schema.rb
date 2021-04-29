@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_094440) do
+ActiveRecord::Schema.define(version: 2021_04_29_164304) do
+
+# Could not dump table "simulations" because of following StandardError
+#   Unknown type 'strings' for column 'fiscal_status'
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
