@@ -1,4 +1,21 @@
 class SimulationsController < ApplicationController
+  before_action :set_simulation, only: %i[show update destroy]
+
+  def index
+    @simulations = Simulation.all
+  end
+
+  def show; end
+
+  def update
+    @simulation.attributes = simulation_params
+
+    if @simulation.save
+      redirect_to simulation_path(@simulation)
+    else
+      render :show
+    end
+  end
 
   def new
     @simulation = Simulation.new
@@ -15,7 +32,17 @@ class SimulationsController < ApplicationController
     end
   end
 
+  def destroy
+    @simulation.destroy
+
+    redirect_to simulations_path
+  end
+
   private
+
+  def set_simulation
+    @simulation = Simulation.find(params[:id])
+  end
 
   def simulation_params
     params

@@ -10,6 +10,6 @@ Rails.application.routes.draw do
 
   authenticated :user do
     resources :users, only: [:show]
-    resources :simulations, only: %i[index show create update destroy]
+    resources :simulations, only: %i[index show new create update destroy]
   end
 end
