@@ -2,7 +2,7 @@ class SimulationsController < ApplicationController
   before_action :set_simulation, only: %i[show update destroy]
 
   def index
-    @simulations = Simulation.all
+    @simulations = current_user.simulations
   end
 
   def show; end
@@ -25,7 +25,7 @@ class SimulationsController < ApplicationController
     @simulation = Simulation.new(simulation_params)
     @simulation.user = current_user if current_user
 
-    if @simulation.after_save
+    if @simulation.save
       redirect_to simulation_path(@simulation)
     else
       render :new
