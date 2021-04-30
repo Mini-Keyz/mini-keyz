@@ -6,5 +6,10 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
 
-  resources :users, only: [:show]
+  resources :simulations, only: %i[show create]
+
+  authenticated :user do
+    resources :users, only: [:show]
+    resources :simulations, only: %i[index show create update destroy]
+  end
 end
