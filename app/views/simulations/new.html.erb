@@ -1,15 +1,60 @@
 <div class="container mx-auto px-4">
 
-  <h1>Hello New simulation</h1>
+  <!-- Switching simulation types -->
+  <div class="flex justify-end mr-4 mt-4 text-sm">
+    <div class="flex items-center bg-green-200 text-gray-700 px-2 py-1">
+      <i class="fas fa-check mr-2" style="font-size: 12px;"></i>
+      <p class="">Instantanée</p>
+    </div>
+    <p class="bg-gray-700 text-white px-2 py-1">Détaillée</p>
+  </div>
+
+  <!-- Advertising text -->
+  <div class="mt-8">
+    <h1 class="text-xl font-bold leading-tight">Cette annonce vue en ligne est-elle un bon investissement locatif ?</h1>
+    <h3 class="text-base leading-tight mt-2">Nous vous donnons la réponse en 60 secondes. Top chrono !</h3>
+  </div>
 
   <%= form_for(@simulation) do |f| %>
-  <div class="grid grid-cols-1 gap-4">
-    <div>
-      <%= f.label :house_city %>
-      <%= f.text_field :house_city %>
+  <div class="grid grid-cols-1 gap-4 mt-8">
+    <!-- 1/ Bien immobilier -->
+    <div class="bg-green-100">
+      <div class="flex">
+        <i class="fas fa-home mx-1" style="font-size: 24px;"></i>
+        <h2 class="text-lg font-bold">Bien immobilier</h2>
+      </div>
+      <!-- Ville -->
+      <div class="flex flex-col">
+        <%= f.label :house_city, "Ville" %>
+        <%= f.text_field :house_city, placeholder: "Paris" %>
+      </div>
+      <!-- Prix d'achat -->
+      <div class="flex flex-col">
+        <%= f.label :house_price_bought, "Prix d'achat" %>
+        <%= f.text_field :house_price_bought, placeholder: "200000€" %>
+      </div>
+      <!-- Budget travaux -->
+      <div class="flex flex-col">
+        <%= f.label :house_first_works, "Budget travaux" %>
+        <p>Prix du bien + Frais d’agence</p>
+        <%= f.text_field :house_first_works, placeholder: "15000€" %>
+      </div>
+      <!-- Charges annuelles totales -->
+      <div class="flex flex-col">
+        <%= f.label :house_annual_charges, "Charges annuelles totales" %>
+        <p>En moyenne 80% sont récupérées sur le locataire</p>
+        <%= f.text_field :house_annual_charges, placeholder: "1200€" %>
+      </div>
+      <!-- Taxe foncière -->
+      <div class="flex flex-col">
+        <%= f.label :house_property_tax, "Taxe foncière" %>
+        <p>En moyenne 1 mois de loyer</p>
+        <%= f.text_field :house_property_tax, placeholder: "800€" %>
+      </div>
     </div>
+    <!-- 5/ Calculer ma rentabilité -->
     <div>
-      <%= f.submit %>
+      <%= f.submit 'Calculer ma rentabilité', class: "text-xl font-bold text-white btn-blue" %>
     </div>
   </div>
   <% end %>
