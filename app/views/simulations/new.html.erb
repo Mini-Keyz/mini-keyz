@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm">
 
   <!-- Switching simulation types -->
   <div class="flex justify-end mr-4 mt-4 text-sm">
@@ -15,7 +15,7 @@
     <h3 class="text-base leading-tight mt-2">Nous vous donnons la réponse en 60 secondes. Top chrono !</h3>
   </div>
 
-  <%= form_for(@simulation) do |f| %>
+  <%= simple_form_for @simulation do |f| %>
   <div class="grid grid-cols-1 gap-4 mt-8">
     <!-- 1/ Bien immobilier -->
     <div class="bg-green-100">
@@ -25,6 +25,7 @@
       </div>
       <!-- Ville -->
       <div class="flex flex-col">
+        <!-- <%= f.input :house_city, label: "Ville", placeholder: "Paris" %> -->
         <%= f.label :house_city, "Ville" %>
         <%= f.text_field :house_city, placeholder: "Paris" %>
       </div>
@@ -58,7 +59,6 @@
     </div>
   </div>
   <% end %>
-
 
 
 </div>
