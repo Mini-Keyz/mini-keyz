@@ -17,40 +17,47 @@
 
   <%= form_for @simulation do |f| %>
   <div class="grid grid-cols-1 gap-4 mt-8">
+
     <!-- 1/ Bien immobilier -->
     <div class="bg-green-100 w-full px-4">
       <div class="flex border-b-2 border-black mt-4">
         <i class="fas fa-home mx-1" style="font-size: 24px;"></i>
         <h2 class="text-xl font-bold">Bien immobilier</h2>
       </div>
+
       <!-- Ville -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_city, "Ville", class: "font-bold text-lg pb-1" %>
         <%= f.text_field :house_city, placeholder: "Paris", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
       </div>
+
       <!-- Prix d'achat -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_price_bought, "Prix d'achat", class: "font-bold" %>
         <%= f.text_field :house_price_bought, placeholder: "200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
       </div>
+
       <!-- Budget travaux -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_first_works, "Budget travaux", class: "font-bold" %>
         <p>Prix du bien + Frais d’agence</p>
         <%= f.text_field :house_first_works, placeholder: "15 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
       </div>
+
       <!-- Charges annuelles totales -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_annual_charges, "Charges annuelles totales", class: "font-bold" %>
         <p>En moyenne 80% sont récupérées sur le locataire</p>
         <%= f.text_field :house_annual_charges, placeholder: "1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
       </div>
+
       <!-- Taxe foncière -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_property_tax, "Taxe foncière", class: "font-bold" %>
         <p>En moyenne 1 mois de loyer</p>
         <%= f.text_field :house_property_tax, placeholder: "800€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
       </div>
+      
     </div>
     <!-- 5/ Calculer ma rentabilité -->
     <div>

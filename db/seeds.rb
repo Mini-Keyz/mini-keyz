@@ -35,11 +35,13 @@ testit1 = User.new({
                      email: 'testit1@ok.com',
                      password: '123456'
                    })
+testit1.save
 
 testit2 = User.new({
                      email: 'testit2@ok.com',
                      password: '123456'
                    })
+testit2.save
 
 ## - # - ###########################################################################
 # Simulation
