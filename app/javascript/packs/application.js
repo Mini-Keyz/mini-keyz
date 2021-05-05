@@ -13,6 +13,7 @@ import "stylesheets/application";
 
 // Import dropdown set
 import { initNavbarDropdown } from "../plugins/navbar_dropdown";
+import { stylizeCheckbox } from "../plugins/form_checkbox";
 
 Rails.start();
 Turbolinks.start();
@@ -21,4 +22,29 @@ ActiveStorage.start();
 document.addEventListener("turbolinks:load", () => {
   console.log("test");
   initNavbarDropdown();
+  stylizeCheckbox({
+    parentInputFieldId: "checkbox-delegated-maintenance",
+    classToApplyNotChecked: [
+      "flex",
+      "justify-center",
+      "items-center",
+      "bg-white",
+      "rounded",
+      "border-2",
+      "border-blue-200",
+    ],
+    classToApplyChecked: [
+      "flex",
+      "justify-center",
+      "items-center",
+      "bg-blue-200",
+      "rounded",
+      "border-2",
+      "border-blue-200",
+      "outline-none",
+      "ring-1",
+      "ring-blue-400",
+      "border-transparent",
+    ],
+  });
 });

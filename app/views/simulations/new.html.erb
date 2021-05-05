@@ -12,56 +12,106 @@
   <!-- Advertising text -->
   <div class="mt-8">
     <h1 class="text-xl font-bold leading-tight">Cette annonce vue en ligne est-elle un bon investissement locatif ?</h1>
-    <h3 class="text-base leading-tight mt-2">Nous vous donnons la réponse en 60 secondes. Top chrono !</h3>
+    <h3 class="text-base leading-tight mt-4">Nous vous donnons la réponse en 60 secondes. Top chrono !</h3>
   </div>
-
+  
+  <!-- FORM -->
   <%= form_for @simulation do |f| %>
-  <div class="grid grid-cols-1 gap-4 mt-8">
+  <div class="grid grid-cols-1 mt-8">
+
+    <% if @simulation.errors.any? %>
+      <% @simulation.errors.full_messages.each do |message|%>
+        <h3><%= message %></h3>
+      <%end%>
+    <%end%>
 
     <!-- 1/ Bien immobilier -->
-    <div class="bg-green-100 w-full px-4">
-      <div class="flex border-b-2 border-black mt-4">
+    <div class="bg-green-100 bg-opacity-50 w-full px-4 py-6">
+      <div class="flex border-b-2 border-black">
         <i class="fas fa-home mx-1" style="font-size: 24px;"></i>
         <h2 class="text-xl font-bold">Bien immobilier</h2>
       </div>
 
       <!-- Ville -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_city, "Ville", class: "font-bold text-lg pb-1" %>
-        <%= f.text_field :house_city, placeholder: "Paris", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <%= f.label :house_city, "Ville", class: "font-bold" %>
+        <%= f.text_field :house_city, placeholder: " Paris", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_city %>   -->
       </div>
 
       <!-- Prix d'achat -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_price_bought, "Prix d'achat", class: "font-bold" %>
-        <%= f.text_field :house_price_bought, placeholder: "200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
+        <p class="text-xs text-gray-500">Prix du bien + Frais d’agence</p>
+        <%= f.number_field :house_price_bought, placeholder: " 200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_price_bought %>   -->
       </div>
 
       <!-- Budget travaux -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_first_works, "Budget travaux", class: "font-bold" %>
-        <p>Prix du bien + Frais d’agence</p>
-        <%= f.text_field :house_first_works, placeholder: "15 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
+        <p class="text-xs text-gray-500">(optionnel)</p>
+        <%= f.number_field :house_first_works, placeholder: " 15 000€ TTC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_first_works %>   -->
       </div>
 
       <!-- Charges annuelles totales -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_annual_charges, "Charges annuelles totales", class: "font-bold" %>
-        <p>En moyenne 80% sont récupérées sur le locataire</p>
-        <%= f.text_field :house_annual_charges, placeholder: "1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
+        <p class="text-xs text-gray-500">En moyenne 80% sont récupérées sur le locataire</p>
+        <%= f.number_field :house_annual_charges, placeholder: " 1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_annual_charges %>   -->
       </div>
 
       <!-- Taxe foncière -->
       <div class="flex flex-col mt-3">
         <%= f.label :house_property_tax, "Taxe foncière", class: "font-bold" %>
-        <p>En moyenne 1 mois de loyer</p>
-        <%= f.text_field :house_property_tax, placeholder: "800€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200" %>
+        <p class="text-xs text-gray-500">En moyenne 1 mois de loyer</p>
+        <%= f.number_field :house_property_tax, placeholder: " 800€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_property_tax %>   -->
       </div>
-      
+
     </div>
+
+    <!-- 2/ Mise en location -->
+    <div class="bg-blue-100 bg-opacity-50 w-full px-4 py-6">
+      <div class="flex items-center border-b-2 border-black">
+        <i class="fas fa-key mx-1" style="font-size: 20px;"></i>
+        <h2 class="text-xl font-bold">Mise en location</h2>
+      </div>
+
+      <!-- Loyer mensuel -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :house_rent_per_month, "Loyer mensuel", class: "font-bold" %>
+        <p class="text-xs text-gray-500">Hors charges</p>
+        <%= f.number_field :house_rent_per_month, placeholder: " 800€ HC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_rent_per_month %>   -->
+      </div>
+
+      <!-- Gestion en agence ? -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :house_delegated_maintenance, "Gestion en agence ?", class: "font-bold" %>
+        <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
+        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="checkbox-delegated-maintenance">
+          <%= f.collection_radio_buttons(
+            :house_delegated_maintenance, [[true, 'Oui'] ,[false, 'Non']], 
+            :first, 
+            :last,
+          ) do |b| %>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-blue-200" style="width: 92px; height: 40px;">
+              <%= b.radio_button class: "hidden", checked: false %>
+              <%= b.label class:"w-full h-full font-bold text-center py-1" %>
+            </div>
+          <% end %>
+        </div>
+        <!-- <%= errors_for @simulation, :house_delegated_maintenance %>   -->
+      </div>
+
+    </div>
+
     <!-- 5/ Calculer ma rentabilité -->
     <div>
-      <%= f.submit 'Calculer ma rentabilité', class: "text-xl font-bold text-white btn-blue" %>
+      <%= f.submit 'Calculer ma rentabilité', class: "text-xl font-bold" %>
     </div>
   </div>
   <% end %>

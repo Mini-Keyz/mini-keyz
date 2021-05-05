@@ -49,24 +49,36 @@ puts '[2/2] - Seeding the Simulation DB...'
 
 simulation1 = Simulation.new({
                                house_city: 'Paris I',
+                               house_price_bought: '200000',
+                               house_annual_charges: '2000',
+                               house_property_tax: '5000',
                                user: testit1
                              })
 simulation1.save
 
 simulation2 = Simulation.new({
                                house_city: 'Paris II',
+                               house_price_bought: '300000',
+                               house_annual_charges: '3000',
+                               house_property_tax: '6000',
                                user: testit1
                              })
 simulation2.save
 
 simulation3 = Simulation.new({
                                house_city: 'Paris X',
+                               house_price_bought: '400000',
+                               house_annual_charges: '4000',
+                               house_property_tax: '7000',
                                user: testit2
                              })
 simulation3.save
 
 simulation4 = Simulation.new({
                                house_city: 'Paris XI',
+                               house_price_bought: '500000',
+                               house_annual_charges: '5000',
+                               house_property_tax: '8000',
                                user: testit2
                              })
 simulation4.save
