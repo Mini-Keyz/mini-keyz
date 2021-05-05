@@ -54,6 +54,8 @@ simulation1 = Simulation.new({
                                house_property_tax: 5_000,
                                house_rent_per_month: 800,
                                house_delegated_maintenance_value: 0.08,
+                               credit_amount: 200_000,
+                               credit_duration: 20,
                                user: testit1
                              })
 simulation1.save
@@ -65,6 +67,8 @@ simulation2 = Simulation.new({
                                house_property_tax: '6000',
                                house_rent_per_month: '900',
                                house_delegated_maintenance_value: 0.08,
+                               credit_amount: 300_000,
+                               credit_duration: 25,
                                user: testit1
                              })
 simulation2.save
@@ -76,6 +80,8 @@ simulation3 = Simulation.new({
                                house_property_tax: '7000',
                                house_rent_per_month: '700',
                                house_delegated_maintenance_value: 0,
+                               credit_amount: 450_000,
+                               credit_duration: 15,
                                user: testit2
                              })
 simulation3.save
@@ -87,6 +93,8 @@ simulation4 = Simulation.new({
                                house_property_tax: '8000',
                                house_rent_per_month: '1200',
                                house_delegated_maintenance_value: 0,
+                               credit_amount: 600_000,
+                               credit_duration: 10,
                                user: testit2
                              })
 simulation4.save

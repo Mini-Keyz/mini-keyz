@@ -27,8 +27,8 @@
 
     <!-- 1/ Bien immobilier -->
     <div class="bg-green-100 bg-opacity-50 w-full px-4 py-6">
-      <div class="flex border-b-2 border-black">
-        <i class="fas fa-home mx-1" style="font-size: 24px;"></i>
+      <div class="flex items-center border-b-2 border-black">
+        <i class="fas fa-home mx-1" style="font-size: 20px;"></i>
         <h2 class="text-xl font-bold">Bien immobilier</h2>
       </div>
 
@@ -76,7 +76,7 @@
     <!-- 2/ Mise en location -->
     <div class="bg-blue-100 bg-opacity-50 w-full px-4 py-6">
       <div class="flex items-center border-b-2 border-black">
-        <i class="fas fa-key mx-1" style="font-size: 20px;"></i>
+        <i class="fas fa-key mx-1" style="font-size: 16px;"></i>
         <h2 class="text-xl font-bold">Mise en location</h2>
       </div>
 
@@ -92,7 +92,7 @@
       <div class="flex flex-col mt-3">
         <%= f.label :house_delegated_maintenance_value, "Gestion en agence ?", class: "font-bold" %>
         <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
-        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="checkbox-delegated-maintenance">
+        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-delegated-maintenance">
           <div class="flex justify-center items-center bg-white rounded border-2 border-blue-200" style="width: 92px; height: 40px;">
             <%= f.radio_button :house_delegated_maintenance_value, 0.08, class: "hidden" %>
             <%= f.label :house_delegated_maintenance_value, "Oui", value: 0.08, class:"w-full h-full font-bold text-center py-1" %>
@@ -109,12 +109,153 @@
 
     </div>
 
-    <!-- 5/ Calculer ma rentabilité -->
-    <div>
-      <%= f.submit 'Calculer ma rentabilité', class: "text-xl font-bold" %>
+    <!-- 3/ Emprunt bancaire -->
+    <div class="bg-red-100 bg-opacity-50 w-full px-4 py-6">
+      <div class="flex items-center border-b-2 border-black">
+        <i class="fas fa-piggy-bank mx-1" style="font-size: 20px;"></i>
+        <h2 class="text-xl font-bold">Emprunt bancaire</h2>
+      </div>
+
+      <!-- Montant emprunté -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :credit_amount, "Montant emprunté", class: "font-bold" %>
+        <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
+        <%= f.number_field :credit_amount, placeholder: " 240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :credit_amount %>   -->
+      </div>
+
+      <!-- Durée -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :credit_duration, "Durée", class: "font-bold" %>
+        <p class="text-xs text-gray-500">En années</p>
+        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-credit-duration">
+          <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+            <%= f.radio_button :credit_duration, 5, class: "hidden" %>
+            <%= f.label :credit_duration, "5", value: 5, class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+            <%= f.radio_button :credit_duration, 10, class: "hidden"%>
+            <%= f.label :credit_duration, "10", value: 10, class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+            <%= f.radio_button :credit_duration, 15, class: "hidden"%>
+            <%= f.label :credit_duration, "15", value: 15, class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+            <%= f.radio_button :credit_duration, 20, class: "hidden"%>
+            <%= f.label :credit_duration, "20", value: 20, class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+            <%= f.radio_button :credit_duration, 25, class: "hidden"%>
+            <%= f.label :credit_duration, "25", value: 25, class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+
+          <!-- <%= errors_for @simulation, :credit_duration %>   -->
+        </div>
+
+      </div>
+
     </div>
+
+    <!-- 4/ Imposition -->
+    <div class="bg-yellow-100 bg-opacity-50 w-full px-4 py-6">
+      <div class="flex items-center border-b-2 border-black">
+        <i class="fas fa-gavel mx-1" style="font-size: 16px;"></i>
+        <h2 class="text-xl font-bold">Imposition</h2>
+      </div>
+
+      <!-- Statut fiscal -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :fiscal_status, "Statut fiscal", class: "font-bold" %>
+        <p class="text-xs text-gray-500">Actuellement 5 disponibles</p>
+        <div class="flex items-center justify-between flex-wrap gap-1" id="radio-fiscal-status">
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_status, "Vide", class: "hidden" %>
+            <%= f.label :fiscal_status, "Vide", value: "Vide", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_status, "LMNP", class: "hidden"%>
+            <%= f.label :fiscal_status, "LMNP", value: "LMNP", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_status, "LMP", class: "hidden"%>
+            <%= f.label :fiscal_status, "LMP", value: "LMP", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_status, "Pinel", class: "hidden"%>
+            <%= f.label :fiscal_status, "Pinel", value: "Pinel", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_status, "DeNormandie", class: "hidden"%>
+            <%= f.label :fiscal_status, "DeNormandie", value: "DeNormandie", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+
+          <!-- <%= errors_for @simulation, :fiscal_status %>   -->
+        </div>
+
+      </div>
+
+      <!-- Régime fiscal -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :fiscal_regimen, "Régime fiscal", class: "font-bold" %>
+        <p class="text-xs text-gray-500">Le mode de déduction choisit pour vos charges</p>
+        <div class="flex items-center justify-between flex-wrap gap-2" style="height: 40px;" id="radio-fiscal-regimen">
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_regimen, "Réel", class: "hidden" %>
+            <%= f.label :fiscal_regimen, "Réel / BIC", value: "Réel", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+          <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200" style="height: 40px;">
+            <%= f.radio_button :fiscal_regimen, "Forfait", class: "hidden"%>
+            <%= f.label :fiscal_regimen, "Forfait / Micro-BIC", value: "Forfait", class:"w-full h-full font-bold text-center py-1" %>
+          </div>
+
+          <!-- <%= errors_for @simulation, :fiscal_regimen %>   -->
+        </div>
+
+      </div>
+
+      <!-- Revenus annuels nets du foyer -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :fiscal_revenues_p1, "Revenus annuels nets du foyer", class: "font-bold" %>
+        <div class="flex justify-between items-center flex-wrap gap-1">
+          <div class="flex flex-col">
+            <p class="text-xs text-gray-500">Vos revenus</p>
+            <%= f.number_field :fiscal_revenues_p1, placeholder: " 60 000€ nets/an", style: "width: 124px; height: 40px;", class: "rounded border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent" %>
+            <!-- <%= errors_for @simulation, :fiscal_revenues_p1 %>   -->
+          </div>
+          <div>
+            <p class="font-bold text-xl px-2">+</p>
+          </div>
+          <div class="flex flex-col">
+            <p class="text-xs text-gray-500">Si couple, conjoint</p>
+            <%= f.number_field :fiscal_revenues_p2, placeholder: " 60 000€ nets/an", style: "width: 124px; height: 40px;", class: "rounded border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent" %>
+            <!-- <%= errors_for @simulation, :fiscal_revenues_p1 %>   -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Nombre de parts fiscales du foyer -->
+      <div class="flex flex-col mt-3">
+        <%= f.label :fiscal_nb_parts, "Nombre de parts fiscales du foyer", class: "font-bold" %>
+        <p class="text-xs text-gray-500">Couple marié = 2 parts ; 1er enfant = 0.5 part ; 2ème enfant = 0.5 part ; 3ème et plus enfants = 1 part par enfant</p>
+        <%= f.range_field :fiscal_nb_parts, in: 1..8, step: 0.25%>
+      </div>
+
+    </div>
+
+    <!-- 5/ Calculer ma rentabilité -->
+    <div class="flex justify-center mt-3">
+      <%= f.submit 'Calculer ma rentabilité', style: "width: 124px;", class: "text-lg font-bold text-white bg-black p-2" %>
+    </div>
+    
+
   </div>
+
   <% end %>
+
+  <div class="flex justify-center mt-7">
+    <p>Fake footer for the sake of development</p>
+  </div>
 
 
 </div>

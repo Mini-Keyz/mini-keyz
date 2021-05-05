@@ -11,9 +11,12 @@ import "channels";
 // Import Tailwind
 import "stylesheets/application";
 
-// Import dropdown set
+// Import plugins
 import { initNavbarDropdown } from "../plugins/navbar_dropdown";
-import { stylizeCheckbox } from "../plugins/form_checkbox";
+import { stylizeRadio } from "../plugins/form_radio";
+
+// Import plugins variables
+import * as radioStyle from "../plugins_variables/radio_style";
 
 Rails.start();
 Turbolinks.start();
@@ -21,30 +24,26 @@ ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
   console.log("test");
+  console.log(radioStyle.radio_blue.classToApplyChecked);
   initNavbarDropdown();
-  stylizeCheckbox({
-    parentInputFieldId: "checkbox-delegated-maintenance",
-    classToApplyNotChecked: [
-      "flex",
-      "justify-center",
-      "items-center",
-      "bg-white",
-      "rounded",
-      "border-2",
-      "border-blue-200",
-    ],
-    classToApplyChecked: [
-      "flex",
-      "justify-center",
-      "items-center",
-      "bg-blue-200",
-      "rounded",
-      "border-2",
-      "border-blue-200",
-      "outline-none",
-      "ring-1",
-      "ring-blue-400",
-      "border-transparent",
-    ],
+  stylizeRadio({
+    parentInputFieldId: "radio-delegated-maintenance",
+    classToApplyNotChecked: radioStyle.radio_blue.classToApplyNotChecked,
+    classToApplyChecked: radioStyle.radio_blue.classToApplyChecked,
+  });
+  stylizeRadio({
+    parentInputFieldId: "radio-credit-duration",
+    classToApplyNotChecked: radioStyle.radio_red.classToApplyNotChecked,
+    classToApplyChecked: radioStyle.radio_red.classToApplyChecked,
+  });
+  stylizeRadio({
+    parentInputFieldId: "radio-fiscal-status",
+    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
+    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
+  });
+  stylizeRadio({
+    parentInputFieldId: "radio-fiscal-regimen",
+    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
+    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
 });

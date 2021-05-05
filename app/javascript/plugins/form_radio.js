@@ -1,4 +1,4 @@
-const stylizeCheckbox = (arg) => {
+const stylizeRadio = (arg) => {
   const parentInputField = document.getElementById(arg.parentInputFieldId);
 
   if (parentInputField) {
@@ -34,4 +34,4 @@ const stylizeCheckbox = (arg) => {
   }
 };
 
-export { stylizeCheckbox };
+export { stylizeRadio };

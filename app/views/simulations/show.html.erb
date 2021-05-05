@@ -10,5 +10,14 @@
   <p class="text-bold">Mise en location</p>
   <%= @simulation.house_rent_per_month %>
   <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %>
+  <p class="text-bold">Crédit bancaire</p>
+  <%= @simulation.credit_amount %>
+  <%= @simulation.credit_duration %>
+  <p class="text-bold">Imposition</p>
+  <%= @simulation.fiscal_status %>
+  <%= @simulation.fiscal_regimen %>
+  <%= @simulation.fiscal_revenues_p1 %>
+  <%= @simulation.fiscal_revenues_p2 %>
+  <%= @simulation.fiscal_nb_parts %>
 
 </div>
