@@ -9,6 +9,6 @@
   <%= @simulation.house_property_tax %>
   <p class="text-bold">Mise en location</p>
   <%= @simulation.house_rent_per_month %>
-  <%= @simulation.house_delegated_maintenance %>
+  <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %>
 
 </div>

@@ -90,20 +90,30 @@
 
       <!-- Gestion en agence ? -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_delegated_maintenance, "Gestion en agence ?", class: "font-bold" %>
-        <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
-        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="checkbox-delegated-maintenance">
+        <!-- <%= f.label :house_delegated_maintenance, "Gestion en agence ?", class: "font-bold" %> -->
+        <!-- <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p> -->
+        <div class="field">
+          <%= f.label :house_delegated_maintenance_value, "Gestion en agence ?", class: "font-bold" %>
+          <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
+          <%= f.radio_button :house_delegated_maintenance_value, 0.08 %>
+          <%= f.label :house_delegated_maintenance_value, "Yes", value: 0.08 %>
+          <%= f.radio_button :house_delegated_maintenance_value, 0 %>
+          <%= f.label :house_delegated_maintenance_value, "No", value: 0 %>
+        </div>
+
+        <!-- <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="checkbox-delegated-maintenance">
           <%= f.collection_radio_buttons(
             :house_delegated_maintenance, [[true, 'Oui'] ,[false, 'Non']], 
             :first, 
             :last,
+            include_hidden: false,
           ) do |b| %>
             <div class="flex justify-center items-center bg-white rounded border-2 border-blue-200" style="width: 92px; height: 40px;">
               <%= b.radio_button class: "hidden", checked: false %>
               <%= b.label class:"w-full h-full font-bold text-center py-1" %>
             </div>
           <% end %>
-        </div>
+        </div> -->
         <!-- <%= errors_for @simulation, :house_delegated_maintenance %>   -->
       </div>
 
