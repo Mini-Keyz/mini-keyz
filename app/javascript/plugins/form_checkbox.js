@@ -10,8 +10,10 @@ const stylizeCheckbox = (arg) => {
         // child is the clickable box for the user (ie the wrapping div for input + label )
         // event.preventDefault();
         const inputElement = child.children[0];
+        console.log(inputElement);
 
         inputElement.checked = !inputElement.checked;
+        console.log(inputElement.checked);
       });
     });
 
