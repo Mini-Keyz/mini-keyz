@@ -54,7 +54,7 @@ class SimulationsController < ApplicationController
         :house_annual_charges,
         :house_property_tax,
         :house_rent_per_month,
-        :house_delegated_maintenance,
+        :house_delegated_maintenance_value,
         :credit_amount,
         :credit_duration,
         :fiscal_status,

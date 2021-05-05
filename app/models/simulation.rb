@@ -6,5 +6,5 @@ class Simulation < ApplicationRecord
   validates :house_annual_charges, presence: true, numericality: { only_integer: true }
   validates :house_property_tax, presence: true, numericality: { only_integer: true }
   validates :house_rent_per_month, presence: true, numericality: { only_integer: true }
-  validates :house_delegated_maintenance, presence: true
+  validates :house_delegated_maintenance_value, presence: true
 end
