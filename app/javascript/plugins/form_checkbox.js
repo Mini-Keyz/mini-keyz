@@ -10,20 +10,13 @@ const stylizeCheckbox = (arg) => {
         // child is the clickable box for the user (ie the wrapping div for input + label )
         event.preventDefault();
         const inputElement = child.children[0];
-        console.log(inputElement);
 
         inputElement.checked = !inputElement.checked;
-        console.log(inputElement.checked);
       });
     });
 
     // Toggle style on box on click
     parentInputField.addEventListener("click", (event) => {
-      const labelElement = event.target;
-      const inputElement = event.target.previousElementSibling; // As user click is on the label, previousElementSibling gets us the input html element
-      console.log(event.target.previousElementSibling);
-      console.log(event.target.previousElementSibling.checked);
-
       childrenArray.forEach((child) => {
         if (child.localName === "div") {
           const inputElement = child.children[0];
