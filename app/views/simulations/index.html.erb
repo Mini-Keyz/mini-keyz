@@ -1,5 +1,14 @@
-<h1>Hello Index</h1>
+<div class="container mx-auto px-4 md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm">
 
-<% @simulations.each do |simulation| %>
-  <%= link_to "#{simulation.house_city}", simulation_path(simulation) %>
-<% end %>
+  <!-- Switching simulation types -->
+  <div class="flex justify-end mr-4 mt-4 text-sm">
+    <%= link_to "Faire une simulation", new_simulation_path, class: "bg-gray-700 text-white px-2 py-1" %>
+  </div>
+
+  <h1>Hello Index</h1>
+
+  <% @simulations.each do |simulation| %>
+    <%= link_to "#{simulation.house_city}", simulation_path(simulation) %>
+  <% end %>
+
+</div>
