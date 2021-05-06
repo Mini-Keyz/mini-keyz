@@ -17,12 +17,15 @@
   </div>
 
   <% @simulations.each do |simulation| %>
-    <div class="flex w-full">
-      <%= link_to simulation_path(simulation) do %>
+    <div class="flex w-full border border-gray-200 rounded mt-2">
+      <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
         <p>
-          <span><%= simulation.house_price_bought %></span> sur <%= simulation.house_city %><% if simulation.house_first_works > 0 %>, +<%= simulation.house_first_works %>€ de travaux<% end %>
+          <span class="font-bold text-xl"><%= simulation.house_price_bought %>€</span> sur <%= simulation.house_city %><% if simulation.house_first_works > 0 %>, +<%= simulation.house_first_works %>€ de travaux<% end %>
         </p>
-        <p>XX,X% de rentabilité nette</p>
+        <p>
+          <span class="font-bold">XX,X%</span>
+          de rentabilité nette
+        </p>
         <p>Il y a x</p>
       <% end %>
     </div>
