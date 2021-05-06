@@ -1,14 +1,31 @@
 <div class="container mx-auto px-4 md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm">
 
-  <!-- Switching simulation types -->
+  <!-- New simulation button -->
   <div class="flex justify-end mr-4 mt-4 text-sm">
-    <%= link_to "Faire une simulation", new_simulation_path, class: "bg-gray-700 text-white px-2 py-1" %>
+    <%= link_to "Faire une simulation", new_simulation_path, class: "bg-gray-700 text-white px-2 py-1 rounded cursor-pointer" %>
   </div>
 
-  <h1>Hello Index</h1>
+  <!-- Introduction text -->
+  <div class="mt-8">
+    <h3 class="text-base leading-tight mt-4">Vous pouvez à tout moment revenir et modifier vos précédentes simulations en cliquant dessus.
+    </h3>
+  </div>
+
+  <!-- Mes simulations -->
+  <div class="mt-8">
+    <h1 class="text-xl font-bold leading-tight">Mes simulations :</h1>
+  </div>
 
   <% @simulations.each do |simulation| %>
-    <%= link_to "#{simulation.house_city}", simulation_path(simulation) %>
+    <div class="flex w-full">
+      <%= link_to simulation_path(simulation) do %>
+        <p>
+          <span><%= simulation.house_price_bought %></span> sur <%= simulation.house_city %><% if simulation.house_first_works > 0 %>, +<%= simulation.house_first_works %>€ de travaux<% end %>
+        </p>
+        <p>XX,X% de rentabilité nette</p>
+        <p>Il y a x</p>
+      <% end %>
+    </div>
   <% end %>
 
 </div>
