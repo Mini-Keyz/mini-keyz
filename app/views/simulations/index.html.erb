@@ -26,7 +26,7 @@
           <span class="font-bold">XX,X%</span>
           de rentabilité nette
         </p>
-        <p>Il y a x</p>
+        <p>Il y a <%= TimeDifference.between(simulation.created_at, Date.today).humanize %></p>
       <% end %>
     </div>
   <% end %>
