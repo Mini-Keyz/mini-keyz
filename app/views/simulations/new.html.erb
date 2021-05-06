@@ -244,12 +244,15 @@
     </div>
 
     <!-- 5/ Calculer ma rentabilité -->
-    <div class="flex justify-center mt-3">
+    <div class="grid grid-cols-3 mt-3">
+      <div></div>
       <div style="width: 124px;">
         <%= f.submit 'Calculer ma rentabilité', class: "text-lg font-bold text-white rounded bg-gray-800 p-2 whitespace-normal" %>
       </div>
+      <div class="flex items-end">
+        <i class="fas fa-fan mx-4 text-gray-800" style="font-size: 24px;"></i>
+      </div>
     </div>
-    <i class="fas fa-fan mx-1" style="font-size: 16px;"></i>
     
 
   </div>
