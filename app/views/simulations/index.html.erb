@@ -17,7 +17,7 @@
   </div>
 
   <% @simulations.each do |simulation| %>
-    <div class="flex w-full border border-gray-200 rounded mt-2">
+    <div class="flex w-full bg-green-100 bg-opacity-30 hover:bg-opacity-80 border border-gray-200 rounded mt-2">
       <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
         <p>
           <span class="font-bold text-xl"><%= simulation.house_price_bought %>€</span> sur <%= simulation.house_city %><% if simulation.house_first_works > 0 %>, +<%= simulation.house_first_works %>€ de travaux<% end %>
