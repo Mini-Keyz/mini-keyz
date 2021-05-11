@@ -2,7 +2,7 @@
 
   <!-- New simulation button -->
   <div class="flex justify-end mr-4 mt-4 text-sm">
-    <%= link_to "Faire une simulation", new_simulation_path, class: "bg-gray-700 text-white px-2 py-1 rounded cursor-pointer" %>
+    <%= link_to "Faire une simulation", new_simulation_path, class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
   </div>
 
   <!-- Introduction text -->
@@ -17,7 +17,7 @@
   </div>
 
   <% @simulations.each do |simulation| %>
-    <div class="flex w-full bg-green-100 bg-opacity-30 hover:bg-opacity-80 border border-gray-200 rounded mt-2">
+    <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:shadow-md">
       <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
         <p>
           <span class="font-bold text-xl"><%= simulation.house_price_bought %>€</span> sur <%= simulation.house_city %><% if simulation.house_first_works > 0 %>, +<%= simulation.house_first_works %>€ de travaux<% end %>
@@ -26,7 +26,7 @@
           <span class="font-bold">XX,X%</span>
           de rentabilité nette
         </p>
-        <p>Il y a <%= TimeDifference.between(simulation.created_at, Date.today).humanize %></p>
+        <p>Il y a <%= simulation.created_for %></p>
       <% end %>
     </div>
   <% end %>

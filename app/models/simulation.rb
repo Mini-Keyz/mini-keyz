@@ -14,4 +14,32 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true }
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
+
+  def created_for
+    returned_string = TimeDifference.between(created_at, Date.today).humanize
+    find_words_only = /\b[^\d\W]+\b/
+    returned_string_in_french = returned_string.gsub(find_words_only, time_in_french)
+  end
+
+  private
+
+  def time_in_french
+    {
+      'Year' => 'année',
+      'Years' => 'années',
+      'Month' => 'mois',
+      'Months' => 'mois',
+      'Weeks' => 'semaines',
+      'Week' => 'semaine',
+      'Days' => 'jours',
+      'Day' => 'jour',
+      'Hours' => 'heures',
+      'Hour' => 'heure',
+      'Minutes' => 'minutes',
+      'Minute' => 'minute',
+      'Seconds' => 'secondes',
+      'Second' => 'seconde',
+      'and' => 'et'
+    }
+  end
 end
