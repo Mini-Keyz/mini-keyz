@@ -1,5 +1,12 @@
 <div class="container mx-auto px-4 md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm">
 
+  <!-- Back to index button for users -->
+  <% if current_user %>
+    <div class="flex justify-start mt-4 text-sm">
+      <%= link_to "Retour aux simulations", simulations_path, class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
+    </div>
+  <% end %>
+
   <!-- Save button for not user -->
   <% unless current_user %>
     <div class="flex justify-end mr-4 mt-4 text-sm">
@@ -7,13 +14,62 @@
     </div>
   <% end %>
 
+  <!-- Title -->
+  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works > 0 %>, +<%= @simulation.house_first_works %>€ de travaux<% end %></h1>
+  <h2>Réalisée le <%= @simulation.created_at %></h2>
+
+
   <!-- Introduction text -->
-  <div class="mt-8 p-2 bg-green-200 flex items-center">
-    <span class="text-4xl font-bold mr-1">8</span>
-    <span class="mr-4">/10</span>
-    <p class="font-bold">Ce projet est un très bon investissement !</p>
+  <div class="mt-8 p-2 bg-green-100 flex items-center">
+    <p class="text-xs">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux. 
+      Vous pouvez les personnaliser plus bas.</p>
   </div>
   
+  <!-- Profitabilities -->
+  <div class="mt-8">
+    <h2 class="font-bold" id="profitabilities-rows">Rentabilités :</h2>
+    
+    <!-- Gross profitability -->
+    <div data-profitability="gross">
+      <div class="grid grid-cols-3" style="min-height: 36px;">
+        <div class="flex justify-start items-center border">
+          <p>+ 11.1%</p>
+        </div>
+        <div class="flex justify-start items-center col-span-2 border">
+          <p>Rentabilité brute</p>
+        </div>
+      </div>
+      <p>Random html to be injected</p>
+    </div>
+
+
+    <!-- Net profitability -->
+    <div data-profitability="net">
+      <div class="grid grid-cols-3" style="min-height: 36px;">
+        <div class="flex justify-start items-center border">
+          <p>+ 7.2%</p>
+        </div>
+        <div class="flex justify-start items-center col-span-2 border">
+          <p>Rentabilité nette</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Net after taxes profitability -->
+    <div data-profitability="netaftertaxes">
+      <div class="grid grid-cols-3" style="min-height: 36px;">
+        <div class="flex justify-start items-center border">
+          <p>+ 4.5%</p>
+        </div>
+        <div class="flex justify-start items-center col-span-2 border">
+          <p>Rentabilité nette après impôts</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
   <!-- Dans les faits -->
   <div class="mt-8">
     <h2 class="font-bold">Dans les faits :</h2>
