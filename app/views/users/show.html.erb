@@ -1,1 +1,6 @@
-<%= @user.email %>
+<div class="container mx-auto px-4 md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm">
+  <%= @user.email %>
+
+  <%= link_to "Modifier mon mot de passe", edit_user_registration_path %>
+  <%= link_to "Supprimer mon compte", edit_user_registration_path %>
+</div>
