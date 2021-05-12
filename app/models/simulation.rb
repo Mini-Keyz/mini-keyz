@@ -15,6 +15,11 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
+  def initialize(hash)
+    super
+    @house_notarial_fees = house_notarial_fees.nil? ? 0.08 : house_notarial_fees
+  end
+
   def created_for
     returned_string = TimeDifference.between(created_at, Date.today).humanize
     find_words_only = /\b[^\d\W]+\b/
