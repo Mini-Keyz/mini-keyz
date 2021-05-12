@@ -15,12 +15,16 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
-  # after_create :set_defaults
-  # attribute :house_notarial_fees, :float, default: 0.08
-
   def initialize(args)
     super
-    self.house_notarial_fees = 0.08 unless self.house_notarial_fees
+    self.house_notarial_fees = 0.08 unless house_notarial_fees
+  end
+
+  def gross_profitability
+    house_rent_per_year = house_rent_per_month * 12
+    global_buying_operation_cost = house_price_bought * (1 + house_notarial_fees) + house_first_works
+
+    house_rent_per_year / global_buying_operation_cost * 100
   end
 
   def created_for
@@ -30,10 +34,6 @@ class Simulation < ApplicationRecord
   end
 
   private
-
-  # def set_defaults
-  #   self.house_notarial_fees = 0.08 if self.house_notarial_fees.nil?
-  # end
 
   def time_in_french
     {
