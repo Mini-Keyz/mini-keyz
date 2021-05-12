@@ -14,6 +14,7 @@ import "stylesheets/application";
 // Import plugins
 import { initNavbarDropdown } from "../plugins/navbar_dropdown";
 import { stylizeRadio } from "../plugins/form_radio";
+import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
 
 // Import plugins variables
 import * as radioStyle from "../plugins_variables/radio_style";
@@ -23,7 +24,6 @@ Turbolinks.start();
 ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-  console.log("test");
   console.log(radioStyle.radio_blue.classToApplyChecked);
   initNavbarDropdown();
   stylizeRadio({
@@ -46,4 +46,5 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
+  initProfitabilityDropdowns();
 });
