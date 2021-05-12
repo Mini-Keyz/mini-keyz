@@ -15,9 +15,12 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
-  def initialize(hash)
+  # after_create :set_defaults
+  # attribute :house_notarial_fees, :float, default: 0.08
+
+  def initialize(args)
     super
-    @house_notarial_fees = house_notarial_fees.nil? ? 0.08 : house_notarial_fees
+    self.house_notarial_fees = 0.08 unless self.house_notarial_fees
   end
 
   def created_for
@@ -27,6 +30,10 @@ class Simulation < ApplicationRecord
   end
 
   private
+
+  # def set_defaults
+  #   self.house_notarial_fees = 0.08 if self.house_notarial_fees.nil?
+  # end
 
   def time_in_french
     {
