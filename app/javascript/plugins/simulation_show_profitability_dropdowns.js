@@ -10,7 +10,7 @@ const initProfitabilityDropdowns = () => {
       (child) => child.dataset.profitability == "gross"
     );
     grossProfitabilityElement.addEventListener("click", () => {
-      console.log("clicked");
+      console.log("clicked²");
       const dropdownGrossProfitability = document.getElementById(
         "dropdown-gross-profitability"
       );
