@@ -15,6 +15,18 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
+  def initialize(args)
+    super
+    self.house_notarial_fees = 0.08 unless house_notarial_fees
+  end
+
+  def gross_profitability
+    house_rent_per_year = house_rent_per_month * 12
+    global_buying_operation_cost = house_price_bought * (1 + house_notarial_fees) + house_first_works
+
+    house_rent_per_year / global_buying_operation_cost * 100
+  end
+
   def created_for
     returned_string = TimeDifference.between(created_at, Date.today).humanize
     find_words_only = /\b[^\d\W]+\b/

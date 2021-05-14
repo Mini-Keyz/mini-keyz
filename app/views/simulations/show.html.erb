@@ -24,6 +24,8 @@
     <p class="text-xs">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux. 
       Vous pouvez les personnaliser plus bas.</p>
   </div>
+
+  <p>Test</p>
   
   <!-- Profitabilities -->
   <div class="mt-8" id="profitabilities-rows">
@@ -33,7 +35,15 @@
     <div data-profitability="gross">
       <div class="grid grid-cols-3" style="min-height: 36px;">
         <div class="flex justify-start items-center border">
-          <p>+ 11.1%</p>
+          <p>
+            <% if @simulation.gross_profitability > 0 %>
+              + <%= sprintf("%20.1f", @simulation.gross_profitability) %>%
+            <% elsif @simulation.gross_profitability < 0 %>
+              - <%= sprintf("%20.1f", @simulation.gross_profitability) %>%
+            <% elsif @simulation.gross_profitability == 0 %>
+              <%= sprintf("%20.1f", @simulation.gross_profitability) %>%
+            <% end %>
+          </p>
         </div>
         <div class="flex justify-start items-center col-span-2 border">
           <p>Rentabilité brute</p>
@@ -92,5 +102,21 @@
     <%= @simulation.fiscal_revenues_p2 %>
     <%= @simulation.fiscal_nb_parts %>
   </div>
+
+  <!-- Modify a param -->
+  <p>Modifier mes données de simulation :</p>
+  <%= form_for @simulation, remote: true do |f| %>
+    <%= f.label :house_city, "Ville" %>
+    <%= f.text_field :house_city %>
+
+    <%= f.label :house_price_bought, "Prix d'achat" %>
+    <%= f.text_field :house_price_bought %>
+
+    <%= f.label :house_notarial_fees, "Frais de notaire" %>
+    <%= f.number_field :house_notarial_fees, step: :any %>
+
+
+    <%= f.submit "Affiner ma simulation", disable_with: 'Affiner ma simulationing...' %>
+  <% end %>
 
 </div>
