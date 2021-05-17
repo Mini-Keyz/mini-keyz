@@ -95,8 +95,15 @@
     <p class="text-bold">Crédit bancaire</p>
     <%= @simulation.credit_amount %>
     <%= @simulation.credit_duration %>
-    <%= @simulation.credit_repayment_per_month %>
+    <%= @simulation.credit_mensuality %>
+    <%= @simulation.credit_interest_cost_for_month(1) %>
+    <%= @simulation.credit_principal_repayment_for_month(1) %>
+    <%= @simulation.credit_cumulative_principal_paid_for_month(1) %>
+    <%= @simulation.credit_remaining_principal_to_pay_for_month(1) %>
     <%= @simulation.credit_insurance_total_cost %>
+    <%= @simulation.credit_interest_cost_for_month(61) %>
+    <%= @simulation.credit_principal_repayment_for_month(61) %>
+    <%= @simulation.credit_cumulative_principal_paid_for_month(61) %>
     <p class="text-bold">Imposition</p>
     <%= @simulation.fiscal_status %>
     <%= @simulation.fiscal_regimen %>

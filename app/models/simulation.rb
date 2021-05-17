@@ -20,7 +20,7 @@ class Simulation < ApplicationRecord
   def initialize(args)
     super
     self.house_notarial_fees = 0.08 unless house_notarial_fees
-    self.credit_rate = 0.01 unless credit_rate
+    self.credit_interest_rate = 0.01 unless credit_interest_rate
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
   end
 
@@ -42,18 +42,29 @@ class Simulation < ApplicationRecord
     credit_duration * 12
   end
 
-  def credit_rate_per_month
-    credit_rate / 12
+  def credit_interest_rate_per_month
+    credit_interest_rate / 12
   end
 
-  def credit_repayment_per_month
-    -pmt(credit_rate_per_month, credit_duration_in_months, credit_amount)
+  def credit_mensuality
+    - pmt(credit_interest_rate_per_month, credit_duration_in_months, credit_amount)
   end
 
-  def credit_interest_cost_per_month
-    ee
+  def credit_interest_cost_for_month(payment_period)
+    - ipmt(credit_interest_rate_per_month, payment_period, credit_duration_in_months, credit_amount)
   end
 
+  def credit_principal_repayment_for_month(payment_period)
+    - ppmt(credit_interest_rate_per_month, payment_period, credit_duration_in_months, credit_amount)
+  end
+
+  def credit_cumulative_principal_paid_for_month(payment_period)
+    - cumprinc(credit_interest_rate_per_month, credit_duration_in_months, credit_amount, 1, payment_period)
+  end
+
+  def credit_remaining_principal_to_pay_for_month(payment_period)
+    credit_amount - credit_cumulative_principal_paid_for_month(payment_period)
+  end
 
   # Credit insurance
 
