@@ -14,18 +14,16 @@
     </div>
   <% end %>
 
-  <!-- Title -->
-  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works > 0 %>, +<%= @simulation.house_first_works %>€ de travaux<% end %></h1>
-  <h2>Réalisée le <%= @simulation.created_at %></h2>
-
-
   <!-- Introduction text -->
   <div class="mt-8 p-2 bg-green-100 flex items-center">
-    <p class="text-xs">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux. 
+    <p class="">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux. 
       Vous pouvez les personnaliser plus bas.</p>
   </div>
 
-  <p>Test</p>
+  
+  <!-- Title -->
+  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works > 0 %>, +<%= @simulation.house_first_works %>€ de travaux<% end %></h1>
+  <h2>Réalisée le <%= @simulation.created_at %></h2>
   
   <!-- Profitabilities -->
   <div class="mt-8" id="profitabilities-rows">
@@ -33,7 +31,7 @@
     
     <!-- Gross profitability -->
     <div data-profitability="gross">
-      <div class="grid grid-cols-3" style="min-height: 36px;">
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
         <div class="flex justify-start items-center border">
           <p>
             <% if @simulation.gross_profitability > 0 %>
@@ -49,13 +47,14 @@
           <p>Rentabilité brute</p>
         </div>
       </div>
-      <p>Random html to be injected</p>
+      <p class="text-xs">Formule : (Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
+      <p class="text-xs">Calcul : (<%= @simulation.house_rent_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees %> + <%= @simulation.house_first_works %>)) * 100 </p>
     </div>
 
 
     <!-- Net profitability -->
     <div data-profitability="net">
-      <div class="grid grid-cols-3" style="min-height: 36px;">
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
         <div class="flex justify-start items-center border">
           <p>+ 7.2%</p>
         </div>
@@ -67,7 +66,7 @@
 
     <!-- Net after taxes profitability -->
     <div data-profitability="netaftertaxes">
-      <div class="grid grid-cols-3" style="min-height: 36px;">
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
         <div class="flex justify-start items-center border">
           <p>+ 4.5%</p>
         </div>
@@ -112,8 +111,6 @@
     <%= @simulation.fiscal_nb_parts %>
 
   </div>
-
-  <p>Creates a commit in GitHub *2 </p>
 
   <!-- Modify a param -->
   <p>Modifier mes données de simulation :</p>
