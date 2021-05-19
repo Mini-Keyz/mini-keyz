@@ -10,47 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_517_134_244) do
+ActiveRecord::Schema.define(version: 2021_05_19_135442) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'simulations', force: :cascade do |t|
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'house_city'
-    t.integer 'house_price_bought'
-    t.integer 'house_first_works'
-    t.integer 'house_annual_charges'
-    t.integer 'house_property_tax'
-    t.integer 'house_rent_per_month'
-    t.boolean 'house_delegated_maintenance'
-    t.integer 'credit_amount'
-    t.integer 'credit_duration'
-    t.string 'fiscal_status'
-    t.integer 'fiscal_status_duration'
-    t.string 'fiscal_regimen'
-    t.integer 'fiscal_revenues_p1'
-    t.integer 'fiscal_revenues_p2'
-    t.float 'fiscal_nb_parts'
-    t.bigint 'user_id'
-    t.float 'house_delegated_maintenance_value'
-    t.float 'house_notarial_fees'
-    t.float 'credit_interest_rate'
-    t.float 'credit_insurance_rate'
-    t.index ['user_id'], name: 'index_simulations_on_user_id'
+  create_table "simulations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "house_city"
+    t.integer "house_price_bought"
+    t.integer "house_first_works"
+    t.integer "house_annual_charges"
+    t.integer "house_property_tax"
+    t.integer "house_rent_per_month"
+    t.boolean "house_delegated_maintenance"
+    t.integer "credit_amount"
+    t.integer "credit_duration"
+    t.string "fiscal_status"
+    t.integer "fiscal_status_duration"
+    t.string "fiscal_regimen"
+    t.integer "fiscal_revenues_p1"
+    t.integer "fiscal_revenues_p2"
+    t.float "fiscal_nb_parts"
+    t.bigint "user_id"
+    t.float "house_delegated_maintenance_value"
+    t.float "house_notarial_fees"
+    t.float "credit_interest_rate"
+    t.float "credit_insurance_rate"
+    t.float "house_tenant_charges"
+    t.float "house_insurance_pno_annual_cost"
+    t.float "house_insurance_gli_annual_cost"
+    t.index ["user_id"], name: "index_simulations_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key 'simulations', 'users'
+  add_foreign_key "simulations", "users"
 end
