@@ -4,7 +4,7 @@ module.exports = {
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.js",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "media", // or 'false' or 'media' or 'class'
   theme: {
     extend: {},
   },
