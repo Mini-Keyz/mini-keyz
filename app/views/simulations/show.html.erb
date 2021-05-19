@@ -70,6 +70,8 @@
           <p>Rentabilité nette</p>
         </div>
       </div>
+      <p class="text-xs">Formule : ((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
+      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_annual_charges - @simulation.house_tenant_charges %> - <%= @simulation.house_property_tax %> - <%= @simulation.house_insurance_pno_annual_cost %> - <%= @simulation.house_insurance_gli_annual_cost * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
     </div>
 
     <!-- Net after taxes profitability -->
@@ -99,6 +101,7 @@
       <p>house_annual_charges = <%= @simulation.house_annual_charges %></p>
       <p>house_tenant_charges = <%= @simulation.house_tenant_charges %></p>
       <p>house_property_tax = <%= @simulation.house_property_tax %></p>
+      <p>house_delegated_maintenance_value = <%= @simulation.house_delegated_maintenance_value %></p>
       <p>house_insurance_pno_annual_cost = <%= @simulation.house_insurance_pno_annual_cost %></p>
       <p>house_insurance_gli_annual_cost = <%= @simulation.house_insurance_gli_annual_cost %></p>
       <p>house_insurance_gli_cost_per_month = <%= @simulation.house_insurance_gli_cost_per_month %></p>

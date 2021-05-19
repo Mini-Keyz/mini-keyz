@@ -35,10 +35,11 @@ class Simulation < ApplicationRecord
   end
 
   def net_profitability
-    quotient = house_rent_per_year - ((house_annual_charges - house_tenant_charges) + house_property_tax + house_insurance_pno_annual_cost + house_insurance_gli_annual_cost * house_rent_per_year)
+    revenues = house_rent_per_year
+    expenses = (house_annual_charges - house_tenant_charges) + house_property_tax + house_insurance_pno_annual_cost + house_insurance_gli_annual_cost * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
-    quotient / divisor * 100
+    (revenues - expenses) / divisor * 100
   end
 
   def global_buying_operation_cost

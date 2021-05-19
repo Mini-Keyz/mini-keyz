@@ -57,7 +57,7 @@ simulation1 = Simulation.new({
                                house_insurance_pno_annual_cost: 100,
                                house_insurance_gli_annual_cost: 0.035,
                                house_rent_per_month: 800,
-                               house_delegated_maintenance_value: 0.08,
+                               house_delegated_maintenance_value: 0.0,
                                credit_amount: 200_000,
                                credit_duration: 20,
                                credit_interest_rate: 0.01,
