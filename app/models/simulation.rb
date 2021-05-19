@@ -25,7 +25,6 @@ class Simulation < ApplicationRecord
   end
 
   def gross_profitability
-    house_rent_per_year = house_rent_per_month * 12
     global_buying_operation_cost = house_price_bought * (1 + house_notarial_fees) + house_first_works
 
     house_rent_per_year / global_buying_operation_cost * 100
@@ -35,6 +34,12 @@ class Simulation < ApplicationRecord
     returned_string = TimeDifference.between(created_at, Date.today).humanize
     find_words_only = /\b[^\d\W]+\b/
     returned_string_in_french = returned_string.gsub(find_words_only, time_in_french)
+  end
+
+  # House
+
+  def house_rent_per_year
+    house_rent_per_month * 12
   end
 
   # Credit cost
