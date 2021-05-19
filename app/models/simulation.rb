@@ -20,14 +20,27 @@ class Simulation < ApplicationRecord
   def initialize(args)
     super
     self.house_notarial_fees = 0.08 unless house_notarial_fees
+    self.house_tenant_charges = house_annual_charges * 0.8 unless house_tenant_charges
     self.credit_interest_rate = 0.01 unless credit_interest_rate
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
   end
 
   def gross_profitability
-    global_buying_operation_cost = house_price_bought * (1 + house_notarial_fees) + house_first_works
+    quotient = house_rent_per_year
+    divisor = global_buying_operation_cost
 
-    house_rent_per_year / global_buying_operation_cost * 100
+    quotient / divisor * 100
+  end
+
+  def net_profitability
+    quotient = house_rent_per_year - (house_tenant_charges + house_property_tax)
+    divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
+
+    quotient / divisor * 100
+  end
+
+  def global_buying_operation_cost
+    house_price_bought * (1 + house_notarial_fees) + house_first_works
   end
 
   def created_for
@@ -65,6 +78,14 @@ class Simulation < ApplicationRecord
 
   def credit_cumulative_principal_paid_for_month(payment_period)
     - cumprinc(credit_interest_rate_per_month, credit_duration_in_months, credit_amount, 1, payment_period)
+  end
+
+  def credit_cumulative_interests_paid_for_month(payment_period)
+    - cumipmt(credit_interest_rate_per_month, credit_duration_in_months, credit_amount, 1, payment_period)
+  end
+
+  def credit_interest_total_cost
+    credit_cumulative_interests_paid_for_month(credit_duration_in_months)
   end
 
   def credit_remaining_principal_to_pay_for_month(payment_period)

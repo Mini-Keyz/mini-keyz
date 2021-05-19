@@ -56,7 +56,15 @@
     <div data-profitability="net">
       <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
         <div class="flex justify-start items-center border">
-          <p>+ 7.2%</p>
+          <p>
+            <% if @simulation.net_profitability > 0 %>
+              + <%= sprintf("%20.1f", @simulation.net_profitability) %>%
+            <% elsif @simulation.net_profitability < 0 %>
+              - <%= sprintf("%20.1f", @simulation.net_profitability) %>%
+            <% elsif @simulation.net_profitability == 0 %>
+              <%= sprintf("%20.1f", @simulation.net_profitability) %>%
+            <% end %>
+          </p>
         </div>
         <div class="flex justify-start items-center col-span-2 border">
           <p>Rentabilité nette</p>
@@ -82,34 +90,51 @@
   <!-- Dans les faits -->
   <div class="mt-8">
     <h2 class="font-bold">Dans les faits :</h2>
-    <p class="text-bold">Bien immobilier</p>
-    <%= @simulation.house_city %>
-    <%= @simulation.house_price_bought %>
-    <%= @simulation.house_first_works %>
-    <%= @simulation.house_annual_charges %>
-    <%= @simulation.house_property_tax %>
-    <p class="text-bold">Mise en location</p>
-    <%= @simulation.house_rent_per_month %>
-    <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %>
-    <p class="text-bold">Crédit bancaire</p>
-    <%= @simulation.credit_amount %>
-    <%= @simulation.credit_duration %>
-    <%= @simulation.credit_mensuality %>
-    <%= @simulation.credit_interest_cost_for_month(1) %>
-    <%= @simulation.credit_principal_repayment_for_month(1) %>
-    <%= @simulation.credit_cumulative_principal_paid_for_month(1) %>
-    <%= @simulation.credit_remaining_principal_to_pay_for_month(1) %>
-    <%= @simulation.credit_insurance_total_cost %>
-    <%= @simulation.credit_interest_cost_for_month(61) %>
-    <%= @simulation.credit_principal_repayment_for_month(61) %>
-    <%= @simulation.credit_cumulative_principal_paid_for_month(61) %>
-    <p class="text-bold">Imposition</p>
-    <%= @simulation.fiscal_status %>
-    <%= @simulation.fiscal_regimen %>
-    <%= @simulation.fiscal_revenues_p1 %>
-    <%= @simulation.fiscal_revenues_p2 %>
-    <%= @simulation.fiscal_nb_parts %>
 
+    <p class="font-bold">Bien immobilier</p>
+    <div class="flex flex-col mb-4">
+      <p>City = <%= @simulation.house_city %></p>
+      <p>house_price_bought = <%= @simulation.house_price_bought %></p>
+      <p>house_first_works = <%= @simulation.house_first_works %></p>
+      <p>house_annual_charges = <%= @simulation.house_annual_charges %></p>
+      <p>house_tenant_charges = <%= @simulation.house_tenant_charges %></p>
+      <p>house_property_tax = <%= @simulation.house_property_tax %></p>
+    </div> 
+
+    <p class="font-bold">Mise en location</p>
+    <div class="flex flex-col mb-4">
+      <p>house_rent_per_month = <%= @simulation.house_rent_per_month %></p>
+      <p>house_delegated_maintenance_value = <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %></p>
+    </div>
+    
+    <p class="font-bold">Crédit bancaire</p>
+    <div class="flex flex-col mb-4">
+      <p>credit_amount = <%= @simulation.credit_amount %></p>
+      <p>credit_duration = <%= @simulation.credit_duration %></p>
+      <p>credit_mensuality (PMT) = <%= @simulation.credit_mensuality %></p>
+    </div>
+  
+    <p class="font-bold">Test for month = 12</p>
+    <div class="flex flex-col mb-4">
+      <p>IPMT 12 = <%= @simulation.credit_interest_cost_for_month(12) %> OK</p>
+      <p>PPMT 12 = <%= @simulation.credit_principal_repayment_for_month(12) %> OK</p>
+      <p>CUMPRINC 12 = <%= @simulation.credit_cumulative_principal_paid_for_month(12) %> OK</p>
+      <p>Credit amount - CUMPRINC 12 = <%= @simulation.credit_remaining_principal_to_pay_for_month(12) %> OK</p>
+      <p>CUMIPMT 12 = <%= @simulation.credit_cumulative_interests_paid_for_month(12) %></p>
+    </div>
+    <p class="font-bold">Total credit costs</p>
+    <div class="flex flex-col mb-4">
+      <p>Total interest cost = <%= @simulation.credit_interest_total_cost %></p>
+      <p>Total insurance cost  = <%= @simulation.credit_insurance_total_cost %></p>
+    </div>
+    <p class="font-bold">Imposition</p>
+    <div class="flex flex-col mb-4">
+      <p>fiscal_status = <%= @simulation.fiscal_status %></p>
+      <p>fiscal_regimen = <%= @simulation.fiscal_regimen %></p>
+      <p>fiscal_revenues_p1 = <%= @simulation.fiscal_revenues_p1 %></p>
+      <p>fiscal_revenues_p2 = <%= @simulation.fiscal_revenues_p2 %></p>
+      <p>fiscal_nb_parts = <%= @simulation.fiscal_nb_parts %></p>
+    </div>
   </div>
 
   <!-- Modify a param -->
