@@ -21,6 +21,7 @@
 <div class="absolute right-0 bg-white mx-2 hidden" id="navbar-dropdown-items-list">
   <div class="flex flex-col">
     <% if user_signed_in? %>
+      <%= link_to "Faire une simulation", new_simulation_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
       <%= link_to "Mes simulations", simulations_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
       <%= link_to "Mon compte", user_path(current_user), style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
       <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
