@@ -24,6 +24,7 @@ class Simulation < ApplicationRecord
     self.credit_interest_rate = 0.01 unless credit_interest_rate
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
     self.house_insurance_pno_annual_cost = 100 unless house_insurance_pno_annual_cost
+    self.house_insurance_gli_annual_cost = 0.035 unless house_insurance_gli_annual_cost
   end
 
   def gross_profitability
@@ -34,7 +35,7 @@ class Simulation < ApplicationRecord
   end
 
   def net_profitability
-    quotient = house_rent_per_year - ((house_annual_charges - house_tenant_charges) + house_property_tax)
+    quotient = house_rent_per_year - ((house_annual_charges - house_tenant_charges) + house_property_tax + house_insurance_pno_annual_cost + house_insurance_gli_annual_cost * house_rent_per_year)
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     quotient / divisor * 100
@@ -48,6 +49,12 @@ class Simulation < ApplicationRecord
     returned_string = TimeDifference.between(created_at, Date.today).humanize
     find_words_only = /\b[^\d\W]+\b/
     returned_string_in_french = returned_string.gsub(find_words_only, time_in_french)
+  end
+
+  # Insurance
+
+  def house_insurance_gli_cost_per_month
+    house_insurance_gli_annual_cost * house_rent_per_month
   end
 
   # House
