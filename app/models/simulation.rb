@@ -23,6 +23,7 @@ class Simulation < ApplicationRecord
     self.house_tenant_charges = house_annual_charges * 0.8 unless house_tenant_charges
     self.credit_interest_rate = 0.01 unless credit_interest_rate
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
+    self.house_insurance_pno_annual_cost = 100 unless house_insurance_pno_annual_cost
   end
 
   def gross_profitability
@@ -33,7 +34,7 @@ class Simulation < ApplicationRecord
   end
 
   def net_profitability
-    quotient = house_rent_per_year - (house_tenant_charges + house_property_tax)
+    quotient = house_rent_per_year - ((house_annual_charges - house_tenant_charges) + house_property_tax)
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     quotient / divisor * 100
