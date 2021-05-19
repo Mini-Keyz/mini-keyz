@@ -1,5 +1,6 @@
 class Simulation < ApplicationRecord
   belongs_to :user
+
   validates :house_city, presence: true
   validates :house_price_bought, presence: true, numericality: { only_integer: true }
   validates :house_first_works, numericality: { only_integer: true }
@@ -15,16 +16,26 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
+  after_create :house_tenant_charges_euros_yearly
+
   include(CreditFormulas)
+
+  HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
 
   def initialize(args)
     super
     self.house_notarial_fees = 0.08 unless house_notarial_fees
-    self.house_tenant_charges = house_annual_charges * 0.8 unless house_tenant_charges
+    unless house_tenant_charges_percentage
+      self.house_tenant_charges_percentage = HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE
+    end
     self.credit_interest_rate = 0.01 unless credit_interest_rate
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
     self.house_insurance_pno_annual_cost = 100 unless house_insurance_pno_annual_cost
     self.house_insurance_gli_annual_cost = 0.035 unless house_insurance_gli_annual_cost
+  end
+
+  def house_tenant_charges_euros_yearly
+    house_tenant_charges_percentage * house_rent_per_year
   end
 
   def gross_profitability
@@ -36,7 +47,7 @@ class Simulation < ApplicationRecord
 
   def net_profitability
     revenues = house_rent_per_year
-    expenses = (house_annual_charges - house_tenant_charges) + house_property_tax + house_insurance_pno_annual_cost + house_insurance_gli_annual_cost * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
+    expenses = (house_annual_charges - house_tenant_charges_euros_yearly) + house_property_tax + house_insurance_pno_annual_cost + house_insurance_gli_annual_cost * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     (revenues - expenses) / divisor * 100
