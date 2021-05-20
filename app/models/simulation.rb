@@ -21,6 +21,7 @@ class Simulation < ApplicationRecord
   include(CreditFormulas)
 
   HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
+  CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE = 0.01
 
   def initialize(args)
     super
@@ -28,7 +29,7 @@ class Simulation < ApplicationRecord
     unless house_tenant_charges_percentage
       self.house_tenant_charges_percentage = HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE
     end
-    self.credit_interest_rate = 0.01 unless credit_interest_rate
+    self.credit_interest_rate = CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE unless credit_interest_rate
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
     self.house_insurance_pno_annual_cost = 100 unless house_insurance_pno_annual_cost
     self.house_insurance_gli_annual_cost = 0.035 unless house_insurance_gli_annual_cost
