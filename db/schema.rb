@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_055939) do
+ActiveRecord::Schema.define(version: 2021_05_20_062244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 2021_05_20_055939) do
     t.bigint "user_id"
     t.float "house_delegated_maintenance_value"
     t.float "house_notarial_fees_percentage"
-    t.float "credit_loan_interest_percentage_yearly"
-    t.float "credit_insurance_rate"
+    t.float "credit_loan_interest_percentage_per_year"
+    t.float "credit_loan_insurance_percentage_per_year"
     t.float "house_tenant_charges_percentage"
-    t.float "house_insurance_pno_annual_cost"
-    t.float "house_insurance_gli_annual_cost"
+    t.float "house_insurance_pno_amount_per_year"
+    t.float "house_insurance_gli_percentage"
     t.index ["user_id"], name: "index_simulations_on_user_id"
   end
 

@@ -48,7 +48,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : (Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-      <p class="text-xs">Calcul : (<%= @simulation.house_rent_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees %> + <%= @simulation.house_first_works %>)) * 100 </p>
+      <p class="text-xs">Calcul : (<%= @simulation.house_rent_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works %>)) * 100 </p>
     </div>
 
 
@@ -71,7 +71,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : ((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_annual_charges - @simulation.house_tenant_charges_euros_yearly %> - <%= @simulation.house_property_tax %> - <%= @simulation.house_insurance_pno_annual_cost %> - <%= @simulation.house_insurance_gli_annual_cost * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
+      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_annual_charges - @simulation.house_tenant_charges_euros_yearly %> - <%= @simulation.house_property_tax %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
     </div>
 
     <!-- Net after taxes profitability -->
@@ -102,8 +102,8 @@
       <p>house_tenant_charges_euros_yearly = <%= @simulation.house_tenant_charges_euros_yearly %></p>
       <p>house_property_tax = <%= @simulation.house_property_tax %></p>
       <p>house_delegated_maintenance_value = <%= @simulation.house_delegated_maintenance_value %></p>
-      <p>house_insurance_pno_annual_cost = <%= @simulation.house_insurance_pno_annual_cost %></p>
-      <p>house_insurance_gli_annual_cost = <%= @simulation.house_insurance_gli_annual_cost %></p>
+      <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
+      <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>
       <p>house_insurance_gli_cost_per_month = <%= @simulation.house_insurance_gli_cost_per_month %></p>
     </div> 
 
@@ -152,8 +152,8 @@
     <%= f.label :house_price_bought, "Prix d'achat" %>
     <%= f.text_field :house_price_bought %>
 
-    <%= f.label :house_notarial_fees, "Frais de notaire" %>
-    <%= f.number_field :house_notarial_fees, step: :any %>
+    <%= f.label :house_notarial_fees_percentage, "Frais de notaire" %>
+    <%= f.number_field :house_notarial_fees_percentage, step: :any %>
 
 
     <%= f.submit "Affiner ma simulation", disable_with: 'Affiner ma simulationing...' %>

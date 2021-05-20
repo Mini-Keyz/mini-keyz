@@ -22,7 +22,10 @@ class Simulation < ApplicationRecord
 
   HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08
   HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
+  HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR = 100
+  HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE = 0.035
   CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR = 0.01
+  CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR = 0.003
 
   def initialize(args)
     super
@@ -33,9 +36,13 @@ class Simulation < ApplicationRecord
     unless credit_loan_interest_percentage_per_year
       self.credit_loan_interest_percentage_per_year = CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR
     end
-    self.credit_insurance_rate = 0.003 unless credit_insurance_rate
-    self.house_insurance_pno_annual_cost = 100 unless house_insurance_pno_annual_cost
-    self.house_insurance_gli_annual_cost = 0.035 unless house_insurance_gli_annual_cost
+    unless credit_loan_insurance_percentage_per_year
+      self.credit_loan_insurance_percentage_per_year = CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR
+    end
+    unless house_insurance_pno_amount_per_year
+      self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
+    end
+    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
   def house_tenant_charges_euros_yearly
@@ -51,7 +58,7 @@ class Simulation < ApplicationRecord
 
   def net_profitability
     revenues = house_rent_per_year
-    expenses = (house_annual_charges - house_tenant_charges_euros_yearly) + house_property_tax + house_insurance_pno_annual_cost + house_insurance_gli_annual_cost * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
+    expenses = (house_annual_charges - house_tenant_charges_euros_yearly) + house_property_tax + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     (revenues - expenses) / divisor * 100
@@ -70,7 +77,7 @@ class Simulation < ApplicationRecord
   # Insurance
 
   def house_insurance_gli_cost_per_month
-    house_insurance_gli_annual_cost * house_rent_per_month
+    house_insurance_gli_percentage * house_rent_per_month
   end
 
   # House
@@ -119,7 +126,7 @@ class Simulation < ApplicationRecord
   # Credit insurance
 
   def credit_insurance_rate_per_month
-    credit_insurance_rate / 12
+    credit_loan_insurance_percentage_per_year / 12
   end
 
   def credit_insurance_cost_per_month
