@@ -20,16 +20,19 @@ class Simulation < ApplicationRecord
 
   include(CreditFormulas)
 
+  HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08
   HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
-  CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE = 0.01
+  CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR = 0.01
 
   def initialize(args)
     super
-    self.house_notarial_fees = 0.08 unless house_notarial_fees
+    self.house_notarial_fees_percentage = HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE unless house_notarial_fees_percentage
     unless house_tenant_charges_percentage
       self.house_tenant_charges_percentage = HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE
     end
-    self.credit_interest_rate = CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE unless credit_interest_rate
+    unless credit_loan_interest_percentage_per_year
+      self.credit_loan_interest_percentage_per_year = CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR
+    end
     self.credit_insurance_rate = 0.003 unless credit_insurance_rate
     self.house_insurance_pno_annual_cost = 100 unless house_insurance_pno_annual_cost
     self.house_insurance_gli_annual_cost = 0.035 unless house_insurance_gli_annual_cost
@@ -55,7 +58,7 @@ class Simulation < ApplicationRecord
   end
 
   def global_buying_operation_cost
-    house_price_bought * (1 + house_notarial_fees) + house_first_works
+    house_price_bought * (1 + house_notarial_fees_percentage) + house_first_works
   end
 
   def created_for
@@ -82,7 +85,7 @@ class Simulation < ApplicationRecord
   end
 
   def credit_interest_rate_per_month
-    credit_interest_rate / 12
+    credit_loan_interest_percentage_per_year / 12
   end
 
   def credit_mensuality
