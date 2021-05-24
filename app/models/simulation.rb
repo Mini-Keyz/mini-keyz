@@ -104,7 +104,7 @@ class Simulation < ApplicationRecord
     credit_loan_interest_percentage_per_year / 12
   end
 
-  def credit_loan_mensuality
+  def credit_loan_payment_per_month
     - pmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount)
   end
 
