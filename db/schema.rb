@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_24_082212) do
+ActiveRecord::Schema.define(version: 2021_05_24_082710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_082212) do
     t.integer "house_price_bought"
     t.integer "house_first_works"
     t.integer "house_total_charges_amount_per_year"
-    t.integer "house_property_tax"
+    t.integer "house_property_tax_amount_per_year"
     t.integer "house_rent_per_month"
     t.boolean "house_delegated_maintenance"
     t.integer "credit_amount"

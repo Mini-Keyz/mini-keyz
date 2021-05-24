@@ -71,7 +71,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : ((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_total_charges_amount_per_year - @simulation.house_tenant_charges_amount_per_year %> - <%= @simulation.house_property_tax %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
+      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_total_charges_amount_per_year - @simulation.house_tenant_charges_amount_per_year %> - <%= @simulation.house_property_tax_amount_per_year %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
     </div>
 
     <!-- Net after taxes profitability -->
@@ -100,7 +100,7 @@
       <p>house_first_works = <%= @simulation.house_first_works %></p>
       <p>house_total_charges_amount_per_year = <%= @simulation.house_total_charges_amount_per_year %></p>
       <p>house_tenant_charges_amount_per_year = <%= @simulation.house_tenant_charges_amount_per_year %></p>
-      <p>house_property_tax = <%= @simulation.house_property_tax %></p>
+      <p>house_property_tax_amount_per_year = <%= @simulation.house_property_tax_amount_per_year %></p>
       <p>house_delegated_maintenance_value = <%= @simulation.house_delegated_maintenance_value %></p>
       <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
       <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>

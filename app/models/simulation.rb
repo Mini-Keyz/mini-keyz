@@ -5,7 +5,7 @@ class Simulation < ApplicationRecord
   validates :house_price_bought, presence: true, numericality: { only_integer: true }
   validates :house_first_works, numericality: { only_integer: true }
   validates :house_total_charges_amount_per_year, presence: true, numericality: { only_integer: true }
-  validates :house_property_tax, presence: true, numericality: { only_integer: true }
+  validates :house_property_tax_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_rent_per_month, presence: true, numericality: { only_integer: true }
   validates :house_delegated_maintenance_value, presence: true
   validates :credit_amount, presence: true, numericality: { only_integer: true }
@@ -58,7 +58,7 @@ class Simulation < ApplicationRecord
 
   def net_profitability
     revenues = house_rent_per_year
-    expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
+    expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     (revenues - expenses) / divisor * 100
