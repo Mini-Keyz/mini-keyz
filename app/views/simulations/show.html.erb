@@ -48,7 +48,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : (Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-      <p class="text-xs">Calcul : (<%= @simulation.house_rent_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works %>)) * 100 </p>
+      <p class="text-xs">Calcul : (<%= @simulation.house_rent_amount_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works %>)) * 100 </p>
     </div>
 
 
@@ -71,7 +71,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : ((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_total_charges_amount_per_year - @simulation.house_tenant_charges_amount_per_year %> - <%= @simulation.house_property_tax_amount_per_year %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
+      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_amount_per_year %> - <%= @simulation.house_total_charges_amount_per_year - @simulation.house_tenant_charges_amount_per_year %> - <%= @simulation.house_property_tax_amount_per_year %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_amount_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
     </div>
 
     <!-- Net after taxes profitability -->
@@ -109,7 +109,7 @@
 
     <p class="font-bold">Mise en location</p>
     <div class="flex flex-col mb-4">
-      <p>house_rent_per_month = <%= @simulation.house_rent_per_month %></p>
+      <p>house_rent_amount_per_month = <%= @simulation.house_rent_amount_per_month %></p>
       <p>house_delegated_maintenance_value = <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %></p>
     </div>
     

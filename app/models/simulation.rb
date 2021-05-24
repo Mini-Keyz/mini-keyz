@@ -6,7 +6,7 @@ class Simulation < ApplicationRecord
   validates :house_first_works, numericality: { only_integer: true }
   validates :house_total_charges_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_property_tax_amount_per_year, presence: true, numericality: { only_integer: true }
-  validates :house_rent_per_month, presence: true, numericality: { only_integer: true }
+  validates :house_rent_amount_per_month, presence: true, numericality: { only_integer: true }
   validates :house_delegated_maintenance_value, presence: true
   validates :credit_amount, presence: true, numericality: { only_integer: true }
   validates :credit_duration, presence: true, numericality: { only_integer: true }
@@ -46,19 +46,19 @@ class Simulation < ApplicationRecord
   end
 
   def house_tenant_charges_amount_per_year
-    house_tenant_charges_percentage * house_rent_per_year
+    house_tenant_charges_percentage * house_rent_amount_per_year
   end
 
   def gross_profitability
-    quotient = house_rent_per_year
+    quotient = house_rent_amount_per_year
     divisor = global_buying_operation_cost
 
     quotient / divisor * 100
   end
 
   def net_profitability
-    revenues = house_rent_per_year
-    expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
+    revenues = house_rent_amount_per_year
+    expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_amount_per_year + house_rent_amount_per_year * house_delegated_maintenance_value
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     (revenues - expenses) / divisor * 100
@@ -77,13 +77,13 @@ class Simulation < ApplicationRecord
   # Insurance
 
   def house_insurance_gli_cost_per_month
-    house_insurance_gli_percentage * house_rent_per_month
+    house_insurance_gli_percentage * house_rent_amount_per_month
   end
 
   # House
 
-  def house_rent_per_year
-    house_rent_per_month * 12
+  def house_rent_amount_per_year
+    house_rent_amount_per_month * 12
   end
 
   # Credit cost
