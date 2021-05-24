@@ -45,8 +45,13 @@ class Simulation < ApplicationRecord
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
+  # ⚠ Remember to put conditional if tenant charges amount is specified
   def house_tenant_charges_amount_per_year
     house_tenant_charges_percentage * house_rent_amount_per_year
+  end
+
+  def house_landlord_charges_amount_per_year
+    house_total_charges_amount_per_year - house_tenant_charges_amount_per_year
   end
 
   def gross_profitability
@@ -58,7 +63,7 @@ class Simulation < ApplicationRecord
 
   def net_profitability
     revenues = house_rent_amount_per_year
-    expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_amount_per_year + house_rent_amount_per_year * house_property_management_cost_percentage
+    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_rent_amount_per_year * house_property_management_cost_percentage
     divisor = global_buying_operation_cost + credit_loan_interest_total_cost + credit_loan_insurance_total_cost
 
     (revenues - expenses) / divisor * 100
@@ -76,8 +81,12 @@ class Simulation < ApplicationRecord
 
   # Insurance
 
-  def house_insurance_gli_cost_per_month
+  def house_insurance_gli_amount_per_month
     house_insurance_gli_percentage * house_rent_amount_per_month
+  end
+
+  def house_insurance_gli_amount_per_year
+    house_insurance_gli_percentage * house_rent_amount_per_year
   end
 
   # House
