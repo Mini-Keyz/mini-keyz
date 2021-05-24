@@ -136,16 +136,16 @@ class Simulation < ApplicationRecord
 
   # Credit_loan insurance
 
-  def credit_loan_insurance_rate_per_month
+  def credit_loan_insurance_percentage_per_month
     credit_loan_insurance_percentage_per_year / 12
   end
 
-  def credit_loan_insurance_cost_per_month
-    credit_loan_insurance_rate_per_month * credit_loan_amount
+  def credit_loan_insurance_amount_per_month
+    credit_loan_insurance_percentage_per_month * credit_loan_amount
   end
 
-  def credit_loan_insurance_total_cost
-    credit_loan_insurance_cost_per_month * credit_loan_duration_in_months
+  def credit_loan_insurance_total_amount
+    credit_loan_insurance_amount_per_month * credit_loan_duration_in_months
   end
 
   private
