@@ -22,7 +22,7 @@
 
   
   <!-- Title -->
-  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works > 0 %>, +<%= @simulation.house_first_works %>€ de travaux<% end %></h1>
+  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought_amount %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works_amount > 0 %>, +<%= @simulation.house_first_works_amount %>€ de travaux<% end %></h1>
   <h2>Réalisée le <%= @simulation.created_at %></h2>
   
   <!-- Profitabilities -->
@@ -48,7 +48,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : (Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-      <p class="text-xs">Calcul : (<%= @simulation.house_rent_amount_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works %>)) * 100 </p>
+      <p class="text-xs">Calcul : (<%= @simulation.house_rent_amount_per_year %> / (<%= @simulation.house_price_bought_amount %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works_amount %>)) * 100 </p>
     </div>
 
 
@@ -96,15 +96,15 @@
     <p class="font-bold">Bien immobilier</p>
     <div class="flex flex-col mb-4">
       <p>City = <%= @simulation.house_city %></p>
-      <p>house_price_bought = <%= @simulation.house_price_bought %></p>
-      <p>house_first_works = <%= @simulation.house_first_works %></p>
+      <p>house_price_bought_amount = <%= @simulation.house_price_bought_amount %></p>
+      <p>house_first_works_amount = <%= @simulation.house_first_works_amount %></p>
       <p>house_total_charges_amount_per_year = <%= @simulation.house_total_charges_amount_per_year %></p>
       <p>house_tenant_charges_amount_per_year = <%= @simulation.house_tenant_charges_amount_per_year %></p>
       <p>house_property_tax_amount_per_year = <%= @simulation.house_property_tax_amount_per_year %></p>
       <p>house_property_management_cost_percentage = <%= @simulation.house_property_management_cost_percentage %></p>
       <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
       <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>
-      <p>house_insurance_gli_cost_per_month = <%= @simulation.house_insurance_gli_cost_per_month %></p>
+      <p>house_insurance_gli_amount_per_month = <%= @simulation.house_insurance_gli_amount_per_month %></p>
     </div> 
 
     <p class="font-bold">Mise en location</p>
@@ -149,8 +149,8 @@
     <%= f.label :house_city, "Ville" %>
     <%= f.text_field :house_city %>
 
-    <%= f.label :house_price_bought, "Prix d'achat" %>
-    <%= f.text_field :house_price_bought %>
+    <%= f.label :house_price_bought_amount, "Prix d'achat" %>
+    <%= f.text_field :house_price_bought_amount %>
 
     <%= f.label :house_notarial_fees_percentage, "Frais de notaire" %>
     <%= f.number_field :house_notarial_fees_percentage, step: :any %>

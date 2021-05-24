@@ -49,8 +49,8 @@ class SimulationsController < ApplicationController
       .require(:simulation)
       .permit(
         :house_city,
-        :house_price_bought,
-        :house_first_works,
+        :house_price_bought_amount,
+        :house_first_works_amount,
         :house_total_charges_amount_per_year,
         :house_property_tax_amount_per_year,
         :house_rent_amount_per_month,

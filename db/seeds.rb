@@ -49,8 +49,8 @@ puts '[2/2] - Seeding the Simulation DB...'
 
 simulation1 = Simulation.new({
                                house_city: 'Paris I',
-                               house_price_bought: 200_000,
-                               house_first_works: 10_000,
+                               house_price_bought_amount: 200_000,
+                               house_first_works_amount: 10_000,
                                house_total_charges_amount_per_year: 2_000,
                                house_tenant_charges_percentage: 0.8,
                                house_property_tax_amount_per_year: 5_000,
@@ -73,8 +73,8 @@ simulation1.save
 
 simulation2 = Simulation.new({
                                house_city: 'Paris II',
-                               house_price_bought: 300_000,
-                               house_first_works: 10_000,
+                               house_price_bought_amount: 300_000,
+                               house_first_works_amount: 10_000,
                                house_total_charges_amount_per_year: 2_000,
                                house_tenant_charges_percentage: 0.8,
                                house_property_tax_amount_per_year: 5_000,
@@ -97,8 +97,8 @@ simulation2.save
 
 simulation3 = Simulation.new({
                                house_city: 'Paris X',
-                               house_price_bought: 500_000,
-                               house_first_works: 10_000,
+                               house_price_bought_amount: 500_000,
+                               house_first_works_amount: 10_000,
                                house_total_charges_amount_per_year: 2_000,
                                house_tenant_charges_percentage: 0.8,
                                house_property_tax_amount_per_year: 5_000,
@@ -121,8 +121,8 @@ simulation3.save
 
 simulation4 = Simulation.new({
                                house_city: 'Paris XI',
-                               house_price_bought: 600_000,
-                               house_first_works: 10_000,
+                               house_price_bought_amount: 600_000,
+                               house_first_works_amount: 10_000,
                                house_total_charges_amount_per_year: 2_000,
                                house_tenant_charges_percentage: 0.8,
                                house_property_tax_amount_per_year: 5_000,

@@ -41,18 +41,18 @@
 
       <!-- Prix d'achat -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_price_bought, "Prix d'achat", class: "font-bold" %>
+        <%= f.label :house_price_bought_amount, "Prix d'achat", class: "font-bold" %>
         <p class="text-xs text-gray-500">Prix du bien + Frais d’agence</p>
-        <%= f.number_field :house_price_bought, placeholder: " 200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_price_bought %>   -->
+        <%= f.number_field :house_price_bought_amount, placeholder: " 200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_price_bought_amount %>   -->
       </div>
 
       <!-- Budget travaux -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_first_works, "Budget travaux", class: "font-bold" %>
+        <%= f.label :house_first_works_amount, "Budget travaux", class: "font-bold" %>
         <p class="text-xs text-gray-500">(optionnel)</p>
-        <%= f.number_field :house_first_works, placeholder: " 15 000€ TTC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_first_works %>   -->
+        <%= f.number_field :house_first_works_amount, placeholder: " 15 000€ TTC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_first_works_amount %>   -->
       </div>
 
       <!-- Charges annuelles totales -->

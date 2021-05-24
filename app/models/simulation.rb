@@ -2,8 +2,8 @@ class Simulation < ApplicationRecord
   belongs_to :user
 
   validates :house_city, presence: true
-  validates :house_price_bought, presence: true, numericality: { only_integer: true }
-  validates :house_first_works, numericality: { only_integer: true }
+  validates :house_price_bought_amount, presence: true, numericality: { only_integer: true }
+  validates :house_first_works_amount, numericality: { only_integer: true }
   validates :house_total_charges_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_property_tax_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_rent_amount_per_month, presence: true, numericality: { only_integer: true }
@@ -70,7 +70,7 @@ class Simulation < ApplicationRecord
   end
 
   def global_buying_operation_cost
-    house_price_bought * (1 + house_notarial_fees_percentage) + house_first_works
+    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
   end
 
   def created_for
