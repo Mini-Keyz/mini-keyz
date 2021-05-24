@@ -8,8 +8,8 @@ class Simulation < ApplicationRecord
   validates :house_property_tax_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_rent_amount_per_month, presence: true, numericality: { only_integer: true }
   validates :house_property_management_cost_percentage, presence: true
-  validates :credit_amount, presence: true, numericality: { only_integer: true }
-  validates :credit_duration, presence: true, numericality: { only_integer: true }
+  validates :credit_loan_amount, presence: true, numericality: { only_integer: true }
+  validates :credit_loan_duration, presence: true, numericality: { only_integer: true }
   validates :fiscal_status, presence: true
   validates :fiscal_regimen, presence: true
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true }
@@ -59,7 +59,7 @@ class Simulation < ApplicationRecord
   def net_profitability
     revenues = house_rent_amount_per_year
     expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_amount_per_year + house_rent_amount_per_year * house_property_management_cost_percentage
-    divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
+    divisor = global_buying_operation_cost + credit_loan_interest_total_cost + credit_loan_insurance_total_cost
 
     (revenues - expenses) / divisor * 100
   end
@@ -87,54 +87,56 @@ class Simulation < ApplicationRecord
   end
 
   # Credit cost
-  def credit_duration_in_months
-    credit_duration * 12
+  def credit_loan_duration_in_months
+    credit_loan_duration * 12
   end
 
-  def credit_interest_rate_per_month
+  def credit_loan_interest_rate_per_month
     credit_loan_interest_percentage_per_year / 12
   end
 
-  def credit_mensuality
-    - pmt(credit_interest_rate_per_month, credit_duration_in_months, credit_amount)
+  def credit_loan_mensuality
+    - pmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount)
   end
 
-  def credit_interest_cost_for_month(payment_period)
-    - ipmt(credit_interest_rate_per_month, payment_period, credit_duration_in_months, credit_amount)
+  def credit_loan_interest_cost_for_month(payment_period)
+    - ipmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)
   end
 
-  def credit_principal_repayment_for_month(payment_period)
-    - ppmt(credit_interest_rate_per_month, payment_period, credit_duration_in_months, credit_amount)
+  def credit_loan_principal_repayment_for_month(payment_period)
+    - ppmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)
   end
 
-  def credit_cumulative_principal_paid_for_month(payment_period)
-    - cumprinc(credit_interest_rate_per_month, credit_duration_in_months, credit_amount, 1, payment_period)
+  def credit_loan_cumulative_principal_paid_for_month(payment_period)
+    - cumprinc(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
+               payment_period)
   end
 
-  def credit_cumulative_interests_paid_for_month(payment_period)
-    - cumipmt(credit_interest_rate_per_month, credit_duration_in_months, credit_amount, 1, payment_period)
+  def credit_loan_cumulative_interests_paid_for_month(payment_period)
+    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
+              payment_period)
   end
 
-  def credit_interest_total_cost
-    credit_cumulative_interests_paid_for_month(credit_duration_in_months)
+  def credit_loan_interest_total_cost
+    credit_loan_cumulative_interests_paid_for_month(credit_loan_duration_in_months)
   end
 
-  def credit_remaining_principal_to_pay_for_month(payment_period)
-    credit_amount - credit_cumulative_principal_paid_for_month(payment_period)
+  def credit_loan_remaining_principal_to_pay_for_month(payment_period)
+    credit_loan_amount - credit_loan_cumulative_principal_paid_for_month(payment_period)
   end
 
-  # Credit insurance
+  # Credit_loan insurance
 
-  def credit_insurance_rate_per_month
+  def credit_loan_insurance_rate_per_month
     credit_loan_insurance_percentage_per_year / 12
   end
 
-  def credit_insurance_cost_per_month
-    credit_insurance_rate_per_month * credit_amount
+  def credit_loan_insurance_cost_per_month
+    credit_loan_insurance_rate_per_month * credit_loan_amount
   end
 
-  def credit_insurance_total_cost
-    credit_insurance_cost_per_month * credit_duration_in_months
+  def credit_loan_insurance_total_cost
+    credit_loan_insurance_cost_per_month * credit_loan_duration_in_months
   end
 
   private

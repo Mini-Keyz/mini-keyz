@@ -118,39 +118,39 @@
 
       <!-- Montant emprunté -->
       <div class="flex flex-col mt-3">
-        <%= f.label :credit_amount, "Montant emprunté", class: "font-bold" %>
+        <%= f.label :credit_loan_amount, "Montant emprunté", class: "font-bold" %>
         <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
-        <%= f.number_field :credit_amount, placeholder: " 240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent" %>
+        <%= f.number_field :credit_loan_amount, placeholder: " 240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent" %>
         <!-- <%= errors_for @simulation, :credit_amount %>   -->
       </div>
 
       <!-- Durée -->
       <div class="flex flex-col mt-3">
-        <%= f.label :credit_duration, "Durée", class: "font-bold" %>
+        <%= f.label :credit_loan_duration, "Durée", class: "font-bold" %>
         <p class="text-xs text-gray-500">En années</p>
-        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-credit-duration">
+        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-credit-loan-duration">
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 5, class: "hidden" %>
-            <%= f.label :credit_duration, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 5, class: "hidden" %>
+            <%= f.label :credit_loan_duration, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 10, class: "hidden"%>
-            <%= f.label :credit_duration, "10", value: 10, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 10, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "10", value: 10, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 15, class: "hidden"%>
-            <%= f.label :credit_duration, "15", value: 15, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 15, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "15", value: 15, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 20, class: "hidden"%>
-            <%= f.label :credit_duration, "20", value: 20, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 20, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "20", value: 20, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 25, class: "hidden"%>
-            <%= f.label :credit_duration, "25", value: 25, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 25, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "25", value: 25, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
 
-          <!-- <%= errors_for @simulation, :credit_duration %>   -->
+          <!-- <%= errors_for @simulation, :credit_loan_duration %>   -->
         </div>
 
       </div>

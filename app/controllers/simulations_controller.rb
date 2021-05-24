@@ -55,15 +55,14 @@ class SimulationsController < ApplicationController
         :house_property_tax_amount_per_year,
         :house_rent_amount_per_month,
         :house_property_management_cost_percentage,
-        :credit_amount,
-        :credit_duration,
+        :credit_loan_amount,
+        :credit_loan_duration,
         :fiscal_status,
         :fiscal_status_duration,
         :fiscal_regimen,
         :fiscal_revenues_p1,
         :fiscal_revenues_p2,
-        :fiscal_nb_parts,
-        :house_notarial_fees_percentage
+        :fiscal_nb_parts
       )
   end
 end

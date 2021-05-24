@@ -32,7 +32,7 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyChecked: radioStyle.radio_blue.classToApplyChecked,
   });
   stylizeRadio({
-    parentInputFieldId: "radio-credit-duration",
+    parentInputFieldId: "radio-credit-loan-duration",
     classToApplyNotChecked: radioStyle.radio_red.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_red.classToApplyChecked,
   });
