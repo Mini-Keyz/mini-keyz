@@ -101,7 +101,7 @@
       <p>house_total_charges_amount_per_year = <%= @simulation.house_total_charges_amount_per_year %></p>
       <p>house_tenant_charges_amount_per_year = <%= @simulation.house_tenant_charges_amount_per_year %></p>
       <p>house_property_tax_amount_per_year = <%= @simulation.house_property_tax_amount_per_year %></p>
-      <p>house_delegated_maintenance_value = <%= @simulation.house_delegated_maintenance_value %></p>
+      <p>house_property_management_cost_percentage = <%= @simulation.house_property_management_cost_percentage %></p>
       <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
       <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>
       <p>house_insurance_gli_cost_per_month = <%= @simulation.house_insurance_gli_cost_per_month %></p>
@@ -110,7 +110,7 @@
     <p class="font-bold">Mise en location</p>
     <div class="flex flex-col mb-4">
       <p>house_rent_amount_per_month = <%= @simulation.house_rent_amount_per_month %></p>
-      <p>house_delegated_maintenance_value = <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %></p>
+      <p>house_property_management_cost_percentage = <%= number_with_precision @simulation.house_property_management_cost_percentage, precision: 3 %></p>
     </div>
     
     <p class="font-bold">Crédit bancaire</p>
