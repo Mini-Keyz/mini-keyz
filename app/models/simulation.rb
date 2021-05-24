@@ -4,7 +4,7 @@ class Simulation < ApplicationRecord
   validates :house_city, presence: true
   validates :house_price_bought, presence: true, numericality: { only_integer: true }
   validates :house_first_works, numericality: { only_integer: true }
-  validates :house_annual_charges, presence: true, numericality: { only_integer: true }
+  validates :house_total_charges_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_property_tax, presence: true, numericality: { only_integer: true }
   validates :house_rent_per_month, presence: true, numericality: { only_integer: true }
   validates :house_delegated_maintenance_value, presence: true
@@ -16,7 +16,7 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
-  after_create :house_tenant_charges_euros_yearly
+  after_create :house_tenant_charges_amount_per_year
 
   include(CreditFormulas)
 
@@ -45,7 +45,7 @@ class Simulation < ApplicationRecord
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
-  def house_tenant_charges_euros_yearly
+  def house_tenant_charges_amount_per_year
     house_tenant_charges_percentage * house_rent_per_year
   end
 
@@ -58,7 +58,7 @@ class Simulation < ApplicationRecord
 
   def net_profitability
     revenues = house_rent_per_year
-    expenses = (house_annual_charges - house_tenant_charges_euros_yearly) + house_property_tax + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
+    expenses = (house_total_charges_amount_per_year - house_tenant_charges_amount_per_year) + house_property_tax + house_insurance_pno_amount_per_year + house_insurance_gli_percentage * house_rent_per_year + house_rent_per_year * house_delegated_maintenance_value
     divisor = global_buying_operation_cost + credit_interest_total_cost + credit_insurance_total_cost
 
     (revenues - expenses) / divisor * 100

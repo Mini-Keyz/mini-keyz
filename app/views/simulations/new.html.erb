@@ -57,10 +57,10 @@
 
       <!-- Charges annuelles totales -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_annual_charges, "Charges annuelles totales", class: "font-bold" %>
+        <%= f.label :house_total_charges_amount_per_year, "Charges annuelles totales", class: "font-bold" %>
         <p class="text-xs text-gray-500">En moyenne 80% sont récupérées sur le locataire</p>
-        <%= f.number_field :house_annual_charges, placeholder: " 1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_annual_charges %>   -->
+        <%= f.number_field :house_total_charges_amount_per_year, placeholder: " 1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_total_charges_amount_per_year %>   -->
       </div>
 
       <!-- Taxe foncière -->
