@@ -3,7 +3,7 @@ class Simulation < ApplicationRecord
 
   validates :house_city, presence: true
   validates :house_price_bought_amount, presence: true, numericality: { only_integer: true }
-  validates :house_first_works_amount, numericality: { only_integer: true }
+  validates :house_first_works_amount, allow_blank: true, numericality: { only_integer: true }
   validates :house_total_charges_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_property_tax_amount_per_year, presence: true, numericality: { only_integer: true }
   validates :house_rent_amount_per_month, presence: true, numericality: { only_integer: true }
@@ -13,7 +13,7 @@ class Simulation < ApplicationRecord
   validates :fiscal_status, presence: true
   validates :fiscal_regimen, presence: true
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true }
-  validates :fiscal_revenues_p2, numericality: { only_integer: true }
+  validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
   after_create :house_tenant_charges_amount_per_year
