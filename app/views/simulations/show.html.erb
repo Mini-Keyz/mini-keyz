@@ -26,12 +26,12 @@
   <h2>Réalisée le <%= @simulation.created_at %></h2>
   
   <!-- Profitabilities -->
-  <div class="mt-8" id="profitabilities-rows">
+  <div class="mt-8">
     <h2 class="font-bold">Rentabilités :</h2>
     
-    <!-- Gross profitability -->
-    <div data-profitability="gross">
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
+    <div id="profitabilities-rows">
+      <!-- Gross profitability -->
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="gross">
         <div class="flex justify-start items-center border">
           <p>
             <% if @simulation.gross_profitability > 0 %>
@@ -48,12 +48,10 @@
         </div>
       </div>
       <p class="text-xs my-4"><span class="font-bold">Formule : </span>(Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-    </div>
-
-
-    <!-- Net profitability -->
-    <div data-profitability="net">
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
+  
+  
+      <!-- Net profitability -->
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="net">
         <div class="flex justify-start items-center border">
           <p>
             <% if @simulation.net_profitability > 0 %>
@@ -70,11 +68,10 @@
         </div>
       </div>
       <p class="text-xs my-4"><span class="font-bold">Formule : </span>((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-    </div>
-
-    <!-- Net after taxes profitability -->
-    <div data-profitability="netaftertaxes">
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
+  
+  
+      <!-- Net after taxes profitability -->
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="netaftertaxes">
         <div class="flex justify-start items-center border">
           <p>+ 4.5%</p>
         </div>
@@ -83,6 +80,7 @@
         </div>
       </div>
     </div>
+
 
   </div>
 

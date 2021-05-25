@@ -2,35 +2,21 @@ const initProfitabilityDropdowns = () => {
   const profitabilityRows = document.getElementById("profitabilities-rows");
 
   if (profitabilityRows) {
-    const childrenArray = Array.from(profitabilityRows.children);
+    console.log(profitabilityRows);
+    console.log(profitabilityRows.children);
 
-    const grossProfitabilityDropdownHTML = "e";
+    const profitabilityRowsElements = Array.from(
+      profitabilityRows.children
+    ).filter((child) => child.dataset.profitability);
 
-    const grossProfitabilityElement = childrenArray.filter(
-      (child) => child.dataset.profitability == "gross"
+    console.log(profitabilityRowsElements);
+
+    profitabilityRowsElements.forEach((profitabilityRowElement) =>
+      profitabilityRowElement.addEventListener("click", (event) => {
+        console.log("clicked²");
+        console.log(event.currentTarget);
+      })
     );
-    grossProfitabilityElement.addEventListener("click", () => {
-      console.log("clicked²");
-      const dropdownGrossProfitability = document.getElementById(
-        "dropdown-gross-profitability"
-      );
-      if (dropdownGrossProfitability) {
-        dropdownGrossProfitability.remove();
-      } else {
-        grossProfitabilityElement.insertAdjacentHTML(
-          "beforeend",
-          grossProfitabilityDropdownHTML
-        );
-      }
-    });
-
-    // const profitabilityRowsElements = childrenArray.filter(
-    //   (child) => child.dataset.profitability
-    // );
-    // console.log(profitabilityRowsElements);
-    // profitabilityRowsElements.forEach((element) =>
-    //   element.addEventListener("click", () => {})
-    // );
   }
 };
 
