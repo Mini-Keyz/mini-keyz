@@ -20,7 +20,7 @@
     <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:shadow-md">
       <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
         <p>
-          <span class="font-bold text-xl"><%= simulation.house_price_bought %>€</span> sur <%= simulation.house_city %><% if simulation.house_first_works > 0 %>, +<%= simulation.house_first_works %>€ de travaux<% end %>
+          <span class="font-bold text-xl"><%= simulation.house_price_bought_amount %>€</span> sur <%= simulation.house_city %><% if simulation.house_first_works_amount > 0 %>, +<%= simulation.house_first_works_amount %>€ de travaux<% end %>
         </p>
         <p>
           <span class="font-bold">XX,X%</span>

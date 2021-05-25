@@ -22,7 +22,7 @@
 
   
   <!-- Title -->
-  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works > 0 %>, +<%= @simulation.house_first_works %>€ de travaux<% end %></h1>
+  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought_amount %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works_amount > 0 %>, +<%= @simulation.house_first_works_amount %>€ de travaux<% end %></h1>
   <h2>Réalisée le <%= @simulation.created_at %></h2>
   
   <!-- Profitabilities -->
@@ -48,7 +48,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : (Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-      <p class="text-xs">Calcul : (<%= @simulation.house_rent_per_year %> / (<%= @simulation.house_price_bought %> + <%= @simulation.house_notarial_fees %> + <%= @simulation.house_first_works %>)) * 100 </p>
+      <p class="text-xs">Calcul : (<%= @simulation.house_rent_amount_per_year %> / (<%= @simulation.house_price_bought_amount %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works_amount %>)) * 100 </p>
     </div>
 
 
@@ -71,7 +71,7 @@
         </div>
       </div>
       <p class="text-xs">Formule : ((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_per_year %> - <%= @simulation.house_annual_charges - @simulation.house_tenant_charges_euros_yearly %> - <%= @simulation.house_property_tax %> - <%= @simulation.house_insurance_pno_annual_cost %> - <%= @simulation.house_insurance_gli_annual_cost * @simulation.house_rent_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
+      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_amount_per_year %> - <%= @simulation.house_total_charges_amount_per_year - @simulation.house_tenant_charges_amount_per_year %> - <%= @simulation.house_property_tax_amount_per_year %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_amount_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
     </div>
 
     <!-- Net after taxes profitability -->
@@ -96,42 +96,42 @@
     <p class="font-bold">Bien immobilier</p>
     <div class="flex flex-col mb-4">
       <p>City = <%= @simulation.house_city %></p>
-      <p>house_price_bought = <%= @simulation.house_price_bought %></p>
-      <p>house_first_works = <%= @simulation.house_first_works %></p>
-      <p>house_annual_charges = <%= @simulation.house_annual_charges %></p>
-      <p>house_tenant_charges_euros_yearly = <%= @simulation.house_tenant_charges_euros_yearly %></p>
-      <p>house_property_tax = <%= @simulation.house_property_tax %></p>
-      <p>house_delegated_maintenance_value = <%= @simulation.house_delegated_maintenance_value %></p>
-      <p>house_insurance_pno_annual_cost = <%= @simulation.house_insurance_pno_annual_cost %></p>
-      <p>house_insurance_gli_annual_cost = <%= @simulation.house_insurance_gli_annual_cost %></p>
-      <p>house_insurance_gli_cost_per_month = <%= @simulation.house_insurance_gli_cost_per_month %></p>
+      <p>house_price_bought_amount = <%= @simulation.house_price_bought_amount %></p>
+      <p>house_first_works_amount = <%= @simulation.house_first_works_amount %></p>
+      <p>house_total_charges_amount_per_year = <%= @simulation.house_total_charges_amount_per_year %></p>
+      <p>house_tenant_charges_amount_per_year = <%= @simulation.house_tenant_charges_amount_per_year %></p>
+      <p>house_property_tax_amount_per_year = <%= @simulation.house_property_tax_amount_per_year %></p>
+      <p>house_property_management_cost_percentage = <%= @simulation.house_property_management_cost_percentage %></p>
+      <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
+      <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>
+      <p>house_insurance_gli_amount_per_month = <%= @simulation.house_insurance_gli_amount_per_month %></p>
     </div> 
 
     <p class="font-bold">Mise en location</p>
     <div class="flex flex-col mb-4">
-      <p>house_rent_per_month = <%= @simulation.house_rent_per_month %></p>
-      <p>house_delegated_maintenance_value = <%= number_with_precision @simulation.house_delegated_maintenance_value, precision: 3 %></p>
+      <p>house_rent_amount_per_month = <%= @simulation.house_rent_amount_per_month %></p>
+      <p>house_property_management_cost_percentage = <%= number_with_precision @simulation.house_property_management_cost_percentage, precision: 3 %></p>
     </div>
     
     <p class="font-bold">Crédit bancaire</p>
     <div class="flex flex-col mb-4">
-      <p>credit_amount = <%= @simulation.credit_amount %></p>
-      <p>credit_duration = <%= @simulation.credit_duration %></p>
-      <p>credit_mensuality (PMT) = <%= @simulation.credit_mensuality %></p>
+      <p>credit_loan_amount = <%= @simulation.credit_loan_amount %></p>
+      <p>credit_loan_duration = <%= @simulation.credit_loan_duration %></p>
+      <p>credit_loan_payment_per_month (PMT) = <%= @simulation.credit_loan_payment_amount_per_month %></p>
     </div>
   
     <p class="font-bold">Test for month = 12</p>
     <div class="flex flex-col mb-4">
-      <p>IPMT 12 = <%= @simulation.credit_interest_cost_for_month(12) %> OK</p>
-      <p>PPMT 12 = <%= @simulation.credit_principal_repayment_for_month(12) %> OK</p>
-      <p>CUMPRINC 12 = <%= @simulation.credit_cumulative_principal_paid_for_month(12) %> OK</p>
-      <p>Credit amount - CUMPRINC 12 = <%= @simulation.credit_remaining_principal_to_pay_for_month(12) %> OK</p>
-      <p>CUMIPMT 12 = <%= @simulation.credit_cumulative_interests_paid_for_month(12) %></p>
+      <p>IPMT 12 = <%= @simulation.credit_loan_interest_cost_for_month(12) %> OK</p>
+      <p>PPMT 12 = <%= @simulation.credit_loan_principal_repayment_for_month(12) %> OK</p>
+      <p>CUMPRINC 12 = <%= @simulation.credit_loan_cumulative_principal_paid_for_month(12) %> OK</p>
+      <p>Credit_loan amount - CUMPRINC 12 = <%= @simulation.credit_loan_remaining_principal_to_pay_for_month(12) %> OK</p>
+      <p>CUMIPMT 12 = <%= @simulation.credit_loan_cumulative_interests_paid_for_month(12) %></p>
     </div>
     <p class="font-bold">Total credit costs</p>
     <div class="flex flex-col mb-4">
-      <p>Total interest cost = <%= @simulation.credit_interest_total_cost %></p>
-      <p>Total insurance cost  = <%= @simulation.credit_insurance_total_cost %></p>
+      <p>Total interest cost = <%= @simulation.credit_loan_interest_total_amount %></p>
+      <p>Total insurance cost  = <%= @simulation.credit_loan_insurance_total_amount %></p>
     </div>
     <p class="font-bold">Imposition</p>
     <div class="flex flex-col mb-4">
@@ -149,11 +149,11 @@
     <%= f.label :house_city, "Ville" %>
     <%= f.text_field :house_city %>
 
-    <%= f.label :house_price_bought, "Prix d'achat" %>
-    <%= f.text_field :house_price_bought %>
+    <%= f.label :house_price_bought_amount, "Prix d'achat" %>
+    <%= f.text_field :house_price_bought_amount %>
 
-    <%= f.label :house_notarial_fees, "Frais de notaire" %>
-    <%= f.number_field :house_notarial_fees, step: :any %>
+    <%= f.label :house_notarial_fees_percentage, "Frais de notaire" %>
+    <%= f.number_field :house_notarial_fees_percentage, step: :any %>
 
 
     <%= f.submit "Affiner ma simulation", disable_with: 'Affiner ma simulationing...' %>

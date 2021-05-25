@@ -41,34 +41,34 @@
 
       <!-- Prix d'achat -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_price_bought, "Prix d'achat", class: "font-bold" %>
+        <%= f.label :house_price_bought_amount, "Prix d'achat", class: "font-bold" %>
         <p class="text-xs text-gray-500">Prix du bien + Frais d’agence</p>
-        <%= f.number_field :house_price_bought, placeholder: " 200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_price_bought %>   -->
+        <%= f.number_field :house_price_bought_amount, placeholder: " 200 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_price_bought_amount %>   -->
       </div>
 
       <!-- Budget travaux -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_first_works, "Budget travaux", class: "font-bold" %>
+        <%= f.label :house_first_works_amount, "Budget travaux", class: "font-bold" %>
         <p class="text-xs text-gray-500">(optionnel)</p>
-        <%= f.number_field :house_first_works, placeholder: " 15 000€ TTC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_first_works %>   -->
+        <%= f.number_field :house_first_works_amount, placeholder: " 15 000€ TTC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_first_works_amount %>   -->
       </div>
 
       <!-- Charges annuelles totales -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_annual_charges, "Charges annuelles totales", class: "font-bold" %>
+        <%= f.label :house_total_charges_amount_per_year, "Charges annuelles totales", class: "font-bold" %>
         <p class="text-xs text-gray-500">En moyenne 80% sont récupérées sur le locataire</p>
-        <%= f.number_field :house_annual_charges, placeholder: " 1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_annual_charges %>   -->
+        <%= f.number_field :house_total_charges_amount_per_year, placeholder: " 1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_total_charges_amount_per_year %>   -->
       </div>
 
       <!-- Taxe foncière -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_property_tax, "Taxe foncière", class: "font-bold" %>
+        <%= f.label :house_property_tax_amount_per_year, "Taxe foncière", class: "font-bold" %>
         <p class="text-xs text-gray-500">En moyenne 1 mois de loyer</p>
-        <%= f.number_field :house_property_tax, placeholder: " 800€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_property_tax %>   -->
+        <%= f.number_field :house_property_tax_amount_per_year, placeholder: " 800€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_property_tax_amount_per_year %>   -->
       </div>
 
     </div>
@@ -82,27 +82,27 @@
 
       <!-- Loyer mensuel -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_rent_per_month, "Loyer mensuel", class: "font-bold" %>
+        <%= f.label :house_rent_amount_per_month, "Loyer mensuel", class: "font-bold" %>
         <p class="text-xs text-gray-500">Hors charges</p>
-        <%= f.number_field :house_rent_per_month, placeholder: " 800€ HC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" %>
-        <!-- <%= errors_for @simulation, :house_rent_per_month %>   -->
+        <%= f.number_field :house_rent_amount_per_month, placeholder: " 800€ HC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" %>
+        <!-- <%= errors_for @simulation, :house_rent_amount_per_month %>   -->
       </div>
 
       <!-- Gestion en agence ? -->
       <div class="flex flex-col mt-3">
-        <%= f.label :house_delegated_maintenance_value, "Gestion en agence ?", class: "font-bold" %>
+        <%= f.label :house_property_management_cost_percentage, "Gestion en agence ?", class: "font-bold" %>
         <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
-        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-delegated-maintenance">
+        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-house-property-management-cost">
           <div class="flex justify-center items-center bg-white rounded border-2 border-blue-200" style="width: 92px; height: 40px;">
-            <%= f.radio_button :house_delegated_maintenance_value, 0.08, class: "hidden" %>
-            <%= f.label :house_delegated_maintenance_value, "Oui", value: 0.08, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :house_property_management_cost_percentage, 0.08, class: "hidden" %>
+            <%= f.label :house_property_management_cost_percentage, "Oui", value: 0.08, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-blue-200" style="width: 92px; height: 40px;">
-            <%= f.radio_button :house_delegated_maintenance_value, 0, class: "hidden"%>
-            <%= f.label :house_delegated_maintenance_value, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :house_property_management_cost_percentage, 0, class: "hidden"%>
+            <%= f.label :house_property_management_cost_percentage, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
 
-          <!-- <%= errors_for @simulation, :house_delegated_maintenance_value %>   -->
+          <!-- <%= errors_for @simulation, :house_property_management_cost_percentage %>   -->
         </div>
 
       </div>
@@ -118,39 +118,39 @@
 
       <!-- Montant emprunté -->
       <div class="flex flex-col mt-3">
-        <%= f.label :credit_amount, "Montant emprunté", class: "font-bold" %>
+        <%= f.label :credit_loan_amount, "Montant emprunté", class: "font-bold" %>
         <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
-        <%= f.number_field :credit_amount, placeholder: " 240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent" %>
+        <%= f.number_field :credit_loan_amount, placeholder: " 240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent" %>
         <!-- <%= errors_for @simulation, :credit_amount %>   -->
       </div>
 
       <!-- Durée -->
       <div class="flex flex-col mt-3">
-        <%= f.label :credit_duration, "Durée", class: "font-bold" %>
+        <%= f.label :credit_loan_duration, "Durée", class: "font-bold" %>
         <p class="text-xs text-gray-500">En années</p>
-        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-credit-duration">
+        <div class="flex items-center justify-between" style="width: 200px; height: 40px;" id="radio-credit-loan-duration">
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 5, class: "hidden" %>
-            <%= f.label :credit_duration, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 5, class: "hidden" %>
+            <%= f.label :credit_loan_duration, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 10, class: "hidden"%>
-            <%= f.label :credit_duration, "10", value: 10, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 10, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "10", value: 10, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 15, class: "hidden"%>
-            <%= f.label :credit_duration, "15", value: 15, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 15, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "15", value: 15, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 20, class: "hidden"%>
-            <%= f.label :credit_duration, "20", value: 20, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 20, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "20", value: 20, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
           <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
-            <%= f.radio_button :credit_duration, 25, class: "hidden"%>
-            <%= f.label :credit_duration, "25", value: 25, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            <%= f.radio_button :credit_loan_duration, 25, class: "hidden"%>
+            <%= f.label :credit_loan_duration, "25", value: 25, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
           </div>
 
-          <!-- <%= errors_for @simulation, :credit_duration %>   -->
+          <!-- <%= errors_for @simulation, :credit_loan_duration %>   -->
         </div>
 
       </div>

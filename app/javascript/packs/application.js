@@ -27,12 +27,12 @@ document.addEventListener("turbolinks:load", () => {
   console.log(radioStyle.radio_blue.classToApplyChecked);
   initNavbarDropdown();
   stylizeRadio({
-    parentInputFieldId: "radio-delegated-maintenance",
+    parentInputFieldId: "radio-house-property-management-cost",
     classToApplyNotChecked: radioStyle.radio_blue.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_blue.classToApplyChecked,
   });
   stylizeRadio({
-    parentInputFieldId: "radio-credit-duration",
+    parentInputFieldId: "radio-credit-loan-duration",
     classToApplyNotChecked: radioStyle.radio_red.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_red.classToApplyChecked,
   });

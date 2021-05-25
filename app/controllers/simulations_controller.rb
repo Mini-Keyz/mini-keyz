@@ -49,21 +49,20 @@ class SimulationsController < ApplicationController
       .require(:simulation)
       .permit(
         :house_city,
-        :house_price_bought,
-        :house_first_works,
-        :house_annual_charges,
-        :house_property_tax,
-        :house_rent_per_month,
-        :house_delegated_maintenance_value,
-        :credit_amount,
-        :credit_duration,
+        :house_price_bought_amount,
+        :house_first_works_amount,
+        :house_total_charges_amount_per_year,
+        :house_property_tax_amount_per_year,
+        :house_rent_amount_per_month,
+        :house_property_management_cost_percentage,
+        :credit_loan_amount,
+        :credit_loan_duration,
         :fiscal_status,
         :fiscal_status_duration,
         :fiscal_regimen,
         :fiscal_revenues_p1,
         :fiscal_revenues_p2,
-        :fiscal_nb_parts,
-        :house_notarial_fees
+        :fiscal_nb_parts
       )
   end
 end
