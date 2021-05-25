@@ -14,15 +14,15 @@ module SimulationsHelper
     "Assurance du crédit": 'credit_loan_insurance_total_amount'
   }.freeze
 
+  def convert_formula_element_to_corresponding_simulation_variable(formula_element)
+    FORMULA_ELEMENT_TO_CORRESPONDING_SIMULATION_VARIABLE[formula_element.to_sym]
+  end
+
   def errors_for(model, attribute)
     if model.errors[attribute].present?
       content_tag :span, class: 'error_explanation' do
         model.errors[attribute].join(', ')
       end
     end
-  end
-
-  def convert_formula_element_to_corresponding_simulation_variable(formula_element)
-    FORMULA_ELEMENT_TO_CORRESPONDING_SIMULATION_VARIABLE[formula_element.to_sym]
   end
 end

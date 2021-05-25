@@ -55,7 +55,7 @@ class Simulation < ApplicationRecord
   end
 
   def house_tenant_charges_amount_per_year
-    house_rent_amount_per_year * house_tenant_charges_percentage
+    house_total_charges_amount_per_year * house_tenant_charges_percentage
   end
 
   def house_landlord_charges_amount_per_year

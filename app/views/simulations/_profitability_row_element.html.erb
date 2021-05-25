@@ -48,8 +48,8 @@
           <% if i.even? %>
           <span class="relative inline-block border-b border-dotted border-gray-400 group">
             <%= formula_element %>
-            <span class='absolute z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
-              <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)) %>
+            <span class='absolute w-max z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
+              <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)).to_s(:currency, unit: "€", format:"%n %u", delimiter: " ", precision: 0) %>
             </span>
           </span>
           <% else %>
@@ -65,8 +65,8 @@
           <% if i.even? %>
           <span class="relative inline-block border-b border-dotted border-gray-400 group">
             <%= formula_element %>
-            <span class='absolute z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
-              <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)) %>
+            <span class='absolute w-max z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
+              <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)).to_s(:currency, unit: "€", format:"%n %u", delimiter: " ", precision: 0) %>
             </span>
           </span>
           <% else %>
