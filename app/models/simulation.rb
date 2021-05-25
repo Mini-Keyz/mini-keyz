@@ -69,6 +69,10 @@ class Simulation < ApplicationRecord
     (revenues - expenses) / divisor * 100
   end
 
+  def net_after_taxes_profitability
+    6.6
+  end
+
   def global_buying_operation_cost
     house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
   end

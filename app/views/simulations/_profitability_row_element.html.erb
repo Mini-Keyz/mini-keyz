@@ -1,0 +1,51 @@
+<% profitability = {
+    gross: {
+      name: "Rentabilité brute",
+      definition: "Gross tbd",
+      formula_quotient: "Loyer annuel HC",
+      formula_divisor: "Prix d'achat + Frais de notaire + Eventuels travaux"
+    }, 
+    net: {
+      name: "Rentabilité nette",
+      definition: "Net tbd",
+      formula_quotient: "Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)",
+      formula_divisor: "Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit"
+    }, 
+    net_after_taxes: {
+      name: "Rentabilité nette après impôts",
+      definition: "Net at tbd",
+      formula_quotient: "tbd",
+      formula_divisor: "tbd"
+    }
+  } %>
+
+<div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" 
+  <% if type == "gross" %> data-profitability-type="gross"
+  <% elsif type == "net" %> data-profitability-type="net" 
+  <% elsif type == "net_after_taxes" %> data-profitability-type="netaftertaxes" 
+  <% end %>>
+
+  <div class="flex justify-start items-center border">
+    <p>
+      <%= sprintf("%20.1f", simulation.send("#{type}_profitability")) %>%
+    </p>
+  </div>
+  <div class="flex justify-start items-center col-span-2 border">
+    <%= profitability[type.to_sym][:name] %>
+  </div>
+  <div class="absolute right-px top-1/2 transform -translate-y-2/4">
+    <i class="fas fa-caret-down mx-1"></i>
+  </div>
+</div>
+<div>
+  <p class="text-xs my-2"><%= profitability[type.to_sym][:definition] %></p>
+  <div class="flex items-center my-4">
+    <p class="text-xs font-bold flex-shrink-0 mr-4">Formule :</p>
+    <div class="flex flex-col items-center mr-4">
+      <p class="text-xs"><%= profitability[type.to_sym][:formula_quotient] %></p>
+      <div class="border-t-2 w-full my-1"></div>
+      <p class="text-xs"><%= profitability[type.to_sym][:formula_divisor] %></p>
+    </div>
+    <p class="text-xs flex-shrink-0">* 100</p>
+  </div>
+</div>
