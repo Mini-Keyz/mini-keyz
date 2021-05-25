@@ -3,30 +3,23 @@
       name: "Rentabilité brute",
       definition: "Gross tbd",
       formula_quotient: ["Loyer annuel HC"],
-      formula_divisor: ["Prix d'achat", "+", "Frais de notaire", "+", "Eventuels travaux"],
-      dataset: 'data-profitability-type="gross"'
+      formula_divisor: ["Prix d'achat", "+", "Frais de notaire", "+", "Eventuels travaux"]
     }, 
     net: {
       name: "Rentabilité nette",
       definition: "Net tbd",
       formula_quotient: ["Loyer annuel HC", "-", "Charges non récupérables", "-", "Taxe foncière", "-", "Assurance PNO", "-", "Frais de gestion(opt)"],
-      formula_divisor: ["Prix d'achat", "+", "Frais de notaire", "+", "Eventuels travaux", "+", "Intérêts du crédit", "+", "Assurance du crédit"],
-      dataset: 'data-profitability-type="net"'
+      formula_divisor: ["Prix d'achat", "+", "Frais de notaire", "+", "Eventuels travaux", "+", "Intérêts du crédit", "+", "Assurance du crédit"]
     }, 
     net_after_taxes: {
       name: "Rentabilité nette après impôts",
       definition: "Net at tbd",
       formula_quotient: ["tbd"],
-      formula_divisor: ["tbd"],
-      dataset: 'data-profitability-type="netaftertaxes"'
+      formula_divisor: ["tbd"]
     }
   } %>
 
-<div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" 
-  <% if type == "gross" %> data-profitability-type="gross"
-  <% elsif type == "net" %> data-profitability-type="net" 
-  <% elsif type == "net_after_taxes" %> data-profitability-type="netaftertaxes" 
-  <% end %>>
+<div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability-type="<%= type %>">
 
   <div class="flex justify-start items-center border">
     <p>
