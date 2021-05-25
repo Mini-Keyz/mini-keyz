@@ -16,8 +16,6 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true }
   validates :fiscal_nb_parts, presence: true
 
-  after_create :house_tenant_charges_amount_per_year
-
   include(CreditFormulas)
 
   HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08
