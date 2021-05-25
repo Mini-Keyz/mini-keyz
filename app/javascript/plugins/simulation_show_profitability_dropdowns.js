@@ -13,8 +13,9 @@ const initProfitabilityDropdowns = () => {
 
     profitabilityRowsElements.forEach((profitabilityRowElement) =>
       profitabilityRowElement.addEventListener("click", (event) => {
-        console.log("clicked²");
-        console.log(event.currentTarget);
+        const profitabilityTextExplanation =
+          event.currentTarget.nextElementSibling;
+        profitabilityTextExplanation.classList.toggle("hidden");
       })
     );
   }
