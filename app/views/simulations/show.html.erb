@@ -31,7 +31,7 @@
     
     <div id="profitabilities-rows">
       <!-- Gross profitability -->
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="gross">
+      <div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability="gross">
         <div class="flex justify-start items-center border">
           <p>
             <% if @simulation.gross_profitability > 0 %>
@@ -45,6 +45,9 @@
         </div>
         <div class="flex justify-start items-center col-span-2 border">
           <p>Rentabilité brute</p>
+        </div>
+        <div class="absolute right-px top-1/2 transform -translate-y-2/4">
+          <i class="fas fa-caret-down mx-1"></i>
         </div>
       </div>
       <p class="text-xs my-4"><span class="font-bold">Formule : </span>(Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
