@@ -24,7 +24,6 @@ Turbolinks.start();
 ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-  console.log(radioStyle.radio_blue.classToApplyChecked);
   initNavbarDropdown();
   stylizeRadio({
     parentInputFieldId: "radio-house-property-management-cost",
