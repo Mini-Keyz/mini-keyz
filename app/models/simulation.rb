@@ -45,9 +45,17 @@ class Simulation < ApplicationRecord
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
-  # ⚠ Remember to put conditional if tenant charges amount is specified
+  # Remember to put conditional if tenant charges amount is specified
+  def house_notarial_fees_amount
+    house_price_bought_amount * house_notarial_fees_percentage
+  end
+
+  def house_property_management_amount_per_year
+    house_rent_amount_per_year * house_property_management_cost_percentage
+  end
+
   def house_tenant_charges_amount_per_year
-    house_tenant_charges_percentage * house_rent_amount_per_year
+    house_total_charges_amount_per_year * house_tenant_charges_percentage
   end
 
   def house_landlord_charges_amount_per_year
@@ -67,6 +75,10 @@ class Simulation < ApplicationRecord
     divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount
 
     (revenues - expenses) / divisor * 100
+  end
+
+  def net_after_taxes_profitability
+    6.6
   end
 
   def global_buying_operation_cost

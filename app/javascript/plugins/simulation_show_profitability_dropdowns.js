@@ -7,7 +7,7 @@ const initProfitabilityDropdowns = () => {
 
     const profitabilityRowsElements = Array.from(
       profitabilityRows.children
-    ).filter((child) => child.dataset.profitability);
+    ).filter((child) => child.dataset.profitabilityType);
 
     console.log(profitabilityRowsElements);
 

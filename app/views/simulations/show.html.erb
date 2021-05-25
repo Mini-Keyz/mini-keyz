@@ -3,7 +3,7 @@
   <!-- Back to index button for users -->
   <% if current_user %>
     <div class="flex justify-start mt-4 text-sm">
-      <%= link_to "Retour aux simulations", simulations_path, class: "bg-opacity-0 text-gray-400 border border-1 border-gray-400 px-2 py-1 rounded cursor-pointer" %>
+      <%= link_to "Retour aux simulations", simulations_path, class: "bg-opacity-0 text-gray-600 border border-1 border-gray-600 px-2 py-1 rounded cursor-pointer" %>
     </div>
   <% end %>
 
@@ -30,60 +30,10 @@
     <h2 class="font-bold">Rentabilités :</h2>
     
     <div id="profitabilities-rows">
-      <!-- Gross profitability -->
-      <div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability="gross">
-        <div class="flex justify-start items-center border">
-          <p>
-            <% if @simulation.gross_profitability > 0 %>
-              + <%= sprintf("%20.1f", @simulation.gross_profitability) %>%
-            <% elsif @simulation.gross_profitability < 0 %>
-              - <%= sprintf("%20.1f", @simulation.gross_profitability) %>%
-            <% elsif @simulation.gross_profitability == 0 %>
-              <%= sprintf("%20.1f", @simulation.gross_profitability) %>%
-            <% end %>
-          </p>
-        </div>
-        <div class="flex justify-start items-center col-span-2 border">
-          <p>Rentabilité brute</p>
-        </div>
-        <div class="absolute right-px top-1/2 transform -translate-y-2/4">
-          <i class="fas fa-caret-down mx-1"></i>
-        </div>
-      </div>
-      <p class="text-xs my-4"><span class="font-bold">Formule : </span>(Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-  
-  
-      <!-- Net profitability -->
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="net">
-        <div class="flex justify-start items-center border">
-          <p>
-            <% if @simulation.net_profitability > 0 %>
-              + <%= sprintf("%20.1f", @simulation.net_profitability) %>%
-            <% elsif @simulation.net_profitability < 0 %>
-              - <%= sprintf("%20.1f", @simulation.net_profitability) %>%
-            <% elsif @simulation.net_profitability == 0 %>
-              <%= sprintf("%20.1f", @simulation.net_profitability) %>%
-            <% end %>
-          </p>
-        </div>
-        <div class="flex justify-start items-center col-span-2 border">
-          <p>Rentabilité nette</p>
-        </div>
-      </div>
-      <p class="text-xs my-4"><span class="font-bold">Formule : </span>((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-  
-  
-      <!-- Net after taxes profitability -->
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="netaftertaxes">
-        <div class="flex justify-start items-center border">
-          <p>+ 4.5%</p>
-        </div>
-        <div class="flex justify-start items-center col-span-2 border">
-          <p>Rentabilité nette après impôts</p>
-        </div>
-      </div>
+      <%= render 'profitability_row_element', simulation: @simulation, type: "gross" %>
+      <%= render 'profitability_row_element', simulation: @simulation, type: "net" %>
+      <%= render 'profitability_row_element', simulation: @simulation, type: "net_after_taxes" %>
     </div>
-
 
   </div>
 
