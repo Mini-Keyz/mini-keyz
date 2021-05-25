@@ -6,4 +6,12 @@ module SimulationsHelper
       end
     end
   end
+
+  def tooltip_formula(formula_array)
+    formula_array.map!.with_index { |element, i| i.even? ? tooltip(element) : element }.join(' ')
+  end
+
+  def tooltip(element)
+    "#{element} <b>tooltiped</b>"
+  end
 end
