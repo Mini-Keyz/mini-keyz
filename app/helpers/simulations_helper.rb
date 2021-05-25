@@ -12,6 +12,14 @@ module SimulationsHelper
   end
 
   def tooltip(element)
-    "#{element} <b>tooltiped</b>"
+    tooltip = 'relative inline-block border-b border-dotted border-gray-400 group'
+    tooltiptext = 'absolute z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'
+
+    "<span class='#{tooltip}'>
+      #{element}
+      <span class='#{tooltiptext}'>
+        Tooltip text
+      </span>
+    </span>"
   end
 end

@@ -19,6 +19,7 @@
     }
   } %>
 
+<!-- Plain rentability row -->
 <div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability-type="<%= type %>">
 
   <div class="flex justify-start items-center border">
@@ -29,11 +30,12 @@
   <div class="flex justify-start items-center col-span-2 border">
     <%= profitability[type.to_sym][:name] %>
   </div>
-  <div class="absolute right-px top-1/2 transform -translate-y-2/4">
+  <div class="absolute right-px top-1/2 transform -translate-y-1/2">
     <i class="fas fa-caret-down mx-1"></i>
   </div>
 </div>
 
+<!-- Expanded rentability row -->
 <div>
   <p class="text-xs my-2"><%= profitability[type.to_sym][:definition] %></p>
 
@@ -41,11 +43,11 @@
     <p class="text-xs font-bold flex-shrink-0 mr-4">Formule :</p>
     <div class="flex flex-col items-center mr-4">
       <p class="text-xs">
-        <%= tooltip_formula(profitability[type.to_sym][:formula_quotient]) %>
+        <%= tooltip_formula(profitability[type.to_sym][:formula_quotient]).html_safe %>
       </p>
       <div class="border-t-2 w-full my-1"></div>
       <p class="text-xs">
-        <%= tooltip_formula(profitability[type.to_sym][:formula_divisor]) %>
+        <%= tooltip_formula(profitability[type.to_sym][:formula_divisor]).html_safe %>
       </p>
     </div>
 
