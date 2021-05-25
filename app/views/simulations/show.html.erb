@@ -16,8 +16,8 @@
 
   <!-- Introduction text -->
   <div class="mt-8 p-2 bg-green-100 flex items-center">
-    <p class="">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux. 
-      Vous pouvez les personnaliser plus bas.</p>
+    <p class="">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux.
+      <br>Vous pouvez les personnaliser plus bas.</p>
   </div>
 
   
@@ -26,12 +26,12 @@
   <h2>Réalisée le <%= @simulation.created_at %></h2>
   
   <!-- Profitabilities -->
-  <div class="mt-8" id="profitabilities-rows">
+  <div class="mt-8">
     <h2 class="font-bold">Rentabilités :</h2>
     
-    <!-- Gross profitability -->
-    <div data-profitability="gross">
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
+    <div id="profitabilities-rows">
+      <!-- Gross profitability -->
+      <div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability="gross">
         <div class="flex justify-start items-center border">
           <p>
             <% if @simulation.gross_profitability > 0 %>
@@ -46,15 +46,15 @@
         <div class="flex justify-start items-center col-span-2 border">
           <p>Rentabilité brute</p>
         </div>
+        <div class="absolute right-px top-1/2 transform -translate-y-2/4">
+          <i class="fas fa-caret-down mx-1"></i>
+        </div>
       </div>
-      <p class="text-xs">Formule : (Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
-      <p class="text-xs">Calcul : (<%= @simulation.house_rent_amount_per_year %> / (<%= @simulation.house_price_bought_amount %> + <%= @simulation.house_notarial_fees_percentage %> + <%= @simulation.house_first_works_amount %>)) * 100 </p>
-    </div>
-
-
-    <!-- Net profitability -->
-    <div data-profitability="net">
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
+      <p class="text-xs my-4"><span class="font-bold">Formule : </span>(Loyer annuel HC / (Prix d'achat + Frais de notaire + Eventuels travaux)) * 100 </p>
+  
+  
+      <!-- Net profitability -->
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="net">
         <div class="flex justify-start items-center border">
           <p>
             <% if @simulation.net_profitability > 0 %>
@@ -70,13 +70,11 @@
           <p>Rentabilité nette</p>
         </div>
       </div>
-      <p class="text-xs">Formule : ((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
-      <p class="text-xs">Calcul : ((<%= @simulation.house_rent_amount_per_year %> - <%= @simulation.house_total_charges_amount_per_year - @simulation.house_tenant_charges_amount_per_year %> - <%= @simulation.house_property_tax_amount_per_year %> - <%= @simulation.house_insurance_pno_amount_per_year %> - <%= @simulation.house_insurance_gli_percentage * @simulation.house_rent_amount_per_year %> - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100</p>
-    </div>
-
-    <!-- Net after taxes profitability -->
-    <div data-profitability="netaftertaxes">
-      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;">
+      <p class="text-xs my-4"><span class="font-bold">Formule : </span>((Loyer annuel HC - Charges non récupérables - Taxe foncière - Assurance PNO - Assurance GLI - Frais de gestion(opt)) / (Prix d'achat + Frais de notaire + Eventuels travaux + Intérêts et assurance crédit)) * 100 </p>
+  
+  
+      <!-- Net after taxes profitability -->
+      <div class="grid grid-cols-3 cursor-pointer" style="min-height: 36px;" data-profitability="netaftertaxes">
         <div class="flex justify-start items-center border">
           <p>+ 4.5%</p>
         </div>
@@ -85,6 +83,7 @@
         </div>
       </div>
     </div>
+
 
   </div>
 
