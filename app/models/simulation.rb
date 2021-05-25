@@ -45,9 +45,17 @@ class Simulation < ApplicationRecord
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
-  # ⚠ Remember to put conditional if tenant charges amount is specified
+  # Remember to put conditional if tenant charges amount is specified
+  def house_notarial_fees_amount
+    house_price_bought_amount * house_notarial_fees_percentage
+  end
+
+  def house_property_management_amount_per_year
+    house_rent_amount_per_year * house_property_management_cost_percentage
+  end
+
   def house_tenant_charges_amount_per_year
-    house_tenant_charges_percentage * house_rent_amount_per_year
+    house_rent_amount_per_year * house_tenant_charges_percentage
   end
 
   def house_landlord_charges_amount_per_year
