@@ -64,7 +64,7 @@ class Simulation < ApplicationRecord
   def net_profitability
     revenues = house_rent_amount_per_year
     expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_rent_amount_per_year * house_property_management_cost_percentage
-    divisor = global_buying_operation_cost + credit_loan_interest_total_cost + credit_loan_insurance_total_cost
+    divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount
 
     (revenues - expenses) / divisor * 100
   end
@@ -126,7 +126,7 @@ class Simulation < ApplicationRecord
               payment_period)
   end
 
-  def credit_loan_interest_total_cost
+  def credit_loan_interest_total_amount
     credit_loan_cumulative_interests_paid_for_month(credit_loan_duration_in_months)
   end
 
