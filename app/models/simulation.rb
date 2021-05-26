@@ -17,6 +17,7 @@ class Simulation < ApplicationRecord
   validates :fiscal_nb_parts, presence: true
 
   include(CreditFormulas)
+  include(IncomeTaxesFormulas)
 
   HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08
   HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
