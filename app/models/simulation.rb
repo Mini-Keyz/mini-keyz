@@ -159,8 +159,6 @@ class Simulation < ApplicationRecord
     credit_loan_insurance_amount_per_month * credit_loan_duration_in_months
   end
 
-  private
-
   def time_in_french
     {
       'Year' => 'année',

@@ -12,8 +12,8 @@ module IncomeTaxesBaseFormulas
   }
   LUMP_SUMP_ALLOWANCE = 0.1
 
-  def calc_income_tax_without_property_income_amount_per_year(args = {})
-    taxable_amount = calc_taxable_amount(args[:fiscal_revenues_p1], args[:fiscal_revenues_p2], args[:fiscal_nb_parts])
+  def calc_income_tax_amount_per_year(args = {}, property_income = 0)
+    taxable_amount = calc_taxable_amount(args, property_income)
     current_year = Date.today.year
 
     aggregated_tax_amount = calc_aggregated_tax_amount(taxable_amount, current_year)
@@ -21,8 +21,8 @@ module IncomeTaxesBaseFormulas
     (aggregated_tax_amount * args[:fiscal_nb_parts]).floor
   end
 
-  def calc_taxable_amount(fiscal_revenues_p1, fiscal_revenues_p2, fiscal_nb_parts)
-    ((fiscal_revenues_p1 + fiscal_revenues_p2) * (1 - LUMP_SUMP_ALLOWANCE)) / fiscal_nb_parts
+  def calc_taxable_amount(args = {}, property_income = 0)
+    ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2] + property_income) * (1 - LUMP_SUMP_ALLOWANCE)) / args[:fiscal_nb_parts]
   end
 
   def calc_aggregated_tax_amount(taxable_amount, year)
