@@ -21,11 +21,11 @@ module IncomeTaxesBaseFormulas
     (aggregated_tax_amount * args[:fiscal_nb_parts]).floor
   end
 
-  def calc_taxable_amount(args = {}, property_income = 0)
+  def self.calc_taxable_amount(args = {}, property_income = 0)
     ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2] + property_income) * (1 - LUMP_SUMP_ALLOWANCE)) / args[:fiscal_nb_parts]
   end
 
-  def calc_aggregated_tax_amount(taxable_amount, year)
+  def self.calc_aggregated_tax_amount(taxable_amount, year)
     income_taxes_scale = INCOME_TAXES_SCALE["its#{year}".to_sym]
 
     income_taxes_scale.map do |scale|
