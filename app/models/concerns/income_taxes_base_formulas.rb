@@ -12,7 +12,7 @@ module IncomeTaxesBaseFormulas
   }
   LUMP_SUMP_ALLOWANCE = 0.1
 
-  def calc_income_tax_amount_per_year(args = {}, property_income = 0)
+  def self.calc_income_tax_amount_per_year(args = {}, property_income = 0)
     taxable_amount = calc_taxable_amount(args, property_income)
     current_year = Date.today.year
 

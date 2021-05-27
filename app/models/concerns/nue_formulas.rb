@@ -16,7 +16,7 @@ module NueFormulas
     end
   end
 
-  def calc_income_tax_income_amount_per_year(args = {})
+  def calc_income_tax_amount_per_year(args = {})
     property_income = calc_property_income(args)
     IncomeTaxesBaseFormulas.calc_income_tax_amount_per_year(args, property_income)
   end

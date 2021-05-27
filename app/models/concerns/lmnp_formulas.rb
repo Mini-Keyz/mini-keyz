@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module LMNPFormulas
+module LmnpFormulas
   include(IncomeTaxesBaseFormulas)
 
   def test3

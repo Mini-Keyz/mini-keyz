@@ -159,6 +159,21 @@ class Simulation < ApplicationRecord
     credit_loan_insurance_amount_per_month * credit_loan_duration_in_months
   end
 
+  # Taxes
+  def fiscal_income_tax_amount_per_year
+    calc_income_tax_incurred_by_property_income_amount_per_year({
+                                                                  fiscal_status: fiscal_status,
+                                                                  fiscal_regimen: fiscal_regimen,
+                                                                  fiscal_revenues_p1: fiscal_revenues_p1,
+                                                                  fiscal_revenues_p2: fiscal_revenues_p2,
+                                                                  fiscal_nb_parts: fiscal_nb_parts,
+                                                                  house_rent_amount_per_year: house_rent_amount_per_year,
+                                                                  house_first_works_amount: house_first_works_amount
+                                                                })
+  end
+
+  # Translations
+
   def time_in_french
     {
       'Year' => 'année',
