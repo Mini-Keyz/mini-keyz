@@ -7,9 +7,10 @@ module IncomeTaxesFormulas
       { taxable_amount: { start_scale: 10_085, end_scale: 25_710 }, tax: 0.11 },
       { taxable_amount: { start_scale: 25_711, end_scale: 73_516 }, tax: 0.3 },
       { taxable_amount: { start_scale: 73_517, end_scale: 158_122 }, tax: 0.41 },
-      { taxable_amount: { start_scale: 158_123, end_scale: BigDecimal('Infinity') }, tax: 0.4 }
+      { taxable_amount: { start_scale: 158_123, end_scale: BigDecimal('Infinity') }, tax: 0.45 }
     ]
   }
+  LUMP_SUMP_ALLOWANCE = 0.1
 
   def calc_income_tax_amount_per_year(args = {})
     taxable_amount = calc_taxable_amount(args[:fiscal_revenues_p1], args[:fiscal_revenues_p2], args[:fiscal_nb_parts])
@@ -21,7 +22,7 @@ module IncomeTaxesFormulas
   end
 
   def calc_taxable_amount(fiscal_revenues_p1, fiscal_revenues_p2, fiscal_nb_parts)
-    ((fiscal_revenues_p1 + fiscal_revenues_p2) * 0.9) / fiscal_nb_parts
+    ((fiscal_revenues_p1 + fiscal_revenues_p2) * (1 - LUMP_SUMP_ALLOWANCE)) / fiscal_nb_parts
   end
 
   def calc_aggregated_tax_amount(taxable_amount, year)
