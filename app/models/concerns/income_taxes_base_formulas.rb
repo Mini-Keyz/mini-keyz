@@ -38,4 +38,13 @@ module IncomeTaxesBaseFormulas
       end
     end.sum
   end
+
+  def self.calc_income_taxes_scale(args = {}, property_income = 0)
+    taxable_amount = calc_taxable_amount(args, property_income)
+    current_year = Date.today.year
+
+    income_taxes_scale = INCOME_TAXES_SCALE["its#{year}".to_sym]
+
+    income_taxes_scale.find { |scale| taxable_amount <= scale[:taxable_amount][:end_scale] }
+  end
 end
