@@ -17,6 +17,7 @@ class Simulation < ApplicationRecord
   validates :fiscal_nb_parts, presence: true
 
   include(CreditFormulas)
+  include(IncomeTaxesFormulas)
 
   HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08
   HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
@@ -158,7 +159,45 @@ class Simulation < ApplicationRecord
     credit_loan_insurance_amount_per_month * credit_loan_duration_in_months
   end
 
-  private
+  # Taxes
+
+  def fiscal_income_tax_incurred_by_property_income_amount_per_year
+    calc_income_tax_incurred_by_property_income_amount_per_year({
+                                                                  fiscal_status: fiscal_status,
+                                                                  fiscal_regimen: fiscal_regimen,
+                                                                  fiscal_revenues_p1: fiscal_revenues_p1,
+                                                                  fiscal_revenues_p2: fiscal_revenues_p2,
+                                                                  fiscal_nb_parts: fiscal_nb_parts,
+                                                                  house_rent_amount_per_year: house_rent_amount_per_year,
+                                                                  house_first_works_amount: house_first_works_amount
+                                                                })
+  end
+
+  def fiscal_income_tax_total_amount_per_year
+    calc_income_tax_total_amount_per_year({
+                                            fiscal_status: fiscal_status,
+                                            fiscal_regimen: fiscal_regimen,
+                                            fiscal_revenues_p1: fiscal_revenues_p1,
+                                            fiscal_revenues_p2: fiscal_revenues_p2,
+                                            fiscal_nb_parts: fiscal_nb_parts,
+                                            house_rent_amount_per_year: house_rent_amount_per_year,
+                                            house_first_works_amount: house_first_works_amount
+                                          })
+  end
+
+  def fiscal_income_tax_base_amount_per_year
+    calc_income_tax_base_amount_per_year({
+                                           fiscal_status: fiscal_status,
+                                           fiscal_regimen: fiscal_regimen,
+                                           fiscal_revenues_p1: fiscal_revenues_p1,
+                                           fiscal_revenues_p2: fiscal_revenues_p2,
+                                           fiscal_nb_parts: fiscal_nb_parts,
+                                           house_rent_amount_per_year: house_rent_amount_per_year,
+                                           house_first_works_amount: house_first_works_amount
+                                         })
+  end
+
+  # Translations
 
   def time_in_french
     {
