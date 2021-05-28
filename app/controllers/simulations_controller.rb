@@ -5,9 +5,7 @@ class SimulationsController < ApplicationController
     @simulations = current_user.simulations
   end
 
-  def show
-    raise
-  end
+  def show; end
 
   def update
     @simulation.attributes = simulation_params
