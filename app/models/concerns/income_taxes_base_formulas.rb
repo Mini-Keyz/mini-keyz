@@ -25,8 +25,8 @@ module IncomeTaxesBaseFormulas
     ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2] + property_income) * (1 - LUMP_SUMP_ALLOWANCE)) / args[:fiscal_nb_parts]
   end
 
-  def self.calc_aggregated_tax_amount(taxable_amount, year)
-    income_taxes_scale = INCOME_TAXES_SCALE["its#{year}".to_sym]
+  def self.calc_aggregated_tax_amount(taxable_amount, current_year)
+    income_taxes_scale = INCOME_TAXES_SCALE["its#{current_year}".to_sym]
 
     income_taxes_scale.map do |scale|
       if taxable_amount < scale[:taxable_amount][:start_scale]
@@ -43,7 +43,7 @@ module IncomeTaxesBaseFormulas
     taxable_amount = calc_taxable_amount(args, property_income)
     current_year = Date.today.year
 
-    income_taxes_scale = INCOME_TAXES_SCALE["its#{year}".to_sym]
+    income_taxes_scale = INCOME_TAXES_SCALE["its#{current_year}".to_sym]
 
     income_taxes_scale.find { |scale| taxable_amount <= scale[:taxable_amount][:end_scale] }
   end
