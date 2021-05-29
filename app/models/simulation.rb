@@ -127,22 +127,33 @@ class Simulation < ApplicationRecord
     - ppmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)
   end
 
-  def credit_loan_cumulative_principal_paid_for_month(payment_period)
+  def credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)
     - cumprinc(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
                payment_period)
   end
 
-  def credit_loan_cumulative_interests_paid_for_month(payment_period)
+  def credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)
     - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
               payment_period)
   end
 
+  def credit_loan_cumulative_interests_paid_for_year(payment_period)
+    start_per = (payment_period * 12) + 1
+    end_per = (payment_period + 1) * 12
+    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, start_per,
+              end_per)
+  end
+
+  def credit_loan_cumulative_interests_paid_for_year_two
+    credit_loan_cumulative_interests_paid_for_year(2)
+  end
+
   def credit_loan_interest_total_amount
-    credit_loan_cumulative_interests_paid_for_month(credit_loan_duration_in_months)
+    credit_loan_cumulative_interests_paid_since_beginning_for_month(credit_loan_duration_in_months)
   end
 
   def credit_loan_remaining_principal_to_pay_for_month(payment_period)
-    credit_loan_amount - credit_loan_cumulative_principal_paid_for_month(payment_period)
+    credit_loan_amount - credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)
   end
 
   # Credit_loan insurance
@@ -152,7 +163,11 @@ class Simulation < ApplicationRecord
   end
 
   def credit_loan_insurance_amount_per_month
-    credit_loan_insurance_percentage_per_month * credit_loan_amount
+    credit_loan_amount * credit_loan_insurance_percentage_per_month
+  end
+
+  def credit_loan_insurance_amount_per_year
+    credit_loan_amount * credit_loan_insurance_percentage_per_year
   end
 
   def credit_loan_insurance_total_amount
@@ -161,16 +176,17 @@ class Simulation < ApplicationRecord
 
   # Taxes
 
-  def fiscal_income_tax_incurred_by_property_income_amount_per_year
-    calc_income_tax_incurred_by_property_income_amount_per_year({
-                                                                  fiscal_status: fiscal_status,
-                                                                  fiscal_regimen: fiscal_regimen,
-                                                                  fiscal_revenues_p1: fiscal_revenues_p1,
-                                                                  fiscal_revenues_p2: fiscal_revenues_p2,
-                                                                  fiscal_nb_parts: fiscal_nb_parts,
-                                                                  house_rent_amount_per_year: house_rent_amount_per_year,
-                                                                  house_first_works_amount: house_first_works_amount
-                                                                })
+  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
+    calc_income_tax_incurred_by_taxable_property_income_amount_per_year({
+                                                                          fiscal_status: fiscal_status,
+                                                                          fiscal_regimen: fiscal_regimen,
+                                                                          fiscal_revenues_p1: fiscal_revenues_p1,
+                                                                          fiscal_revenues_p2: fiscal_revenues_p2,
+                                                                          fiscal_nb_parts: fiscal_nb_parts,
+                                                                          house_rent_amount_per_year: house_rent_amount_per_year,
+                                                                          house_first_works_amount: house_first_works_amount,
+                                                                          credit_loan_cumulative_interests_paid_for_year_two: credit_loan_cumulative_interests_paid_for_year_two
+                                                                        })
   end
 
   def fiscal_income_tax_total_amount_per_year

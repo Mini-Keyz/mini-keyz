@@ -12,6 +12,9 @@ module IncomeTaxesBaseFormulas
   }
   LUMP_SUMP_ALLOWANCE = 0.1
 
+  REAL_REGIMEN_DEDUCTIBLE_EXPENSES_FOR_YEAR_TWO = %i[house_landlord_charges_amount_per_year
+                                                     house_property_management_amount_per_year house_insurance_gli_amount_per_year house_insurance_pno_amount_per_year house_property_tax_amount_per_year credit_loan_cumulative_interests_paid_for_year_two credit_loan_insurance_amount_per_year].freeze
+
   def self.calc_income_tax_amount_per_year(args = {}, property_income = 0)
     taxable_amount = calc_taxable_amount(args, property_income)
     current_year = Date.today.year
