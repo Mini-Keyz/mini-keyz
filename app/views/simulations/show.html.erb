@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-  <!-- Introduction text -->
+  <!-- Introduction text --> 
   <div class="mt-8 p-2 bg-green-100 flex items-center">
     <p class="">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux.
       <br>Vous pouvez les personnaliser plus bas.</p>
@@ -75,9 +75,9 @@
     <div class="flex flex-col mb-4">
       <p>IPMT 12 = <%= @simulation.credit_loan_interest_cost_for_month(12) %> OK</p>
       <p>PPMT 12 = <%= @simulation.credit_loan_principal_repayment_for_month(12) %> OK</p>
-      <p>CUMPRINC 12 = <%= @simulation.credit_loan_cumulative_principal_paid_for_month(12) %> OK</p>
+      <p>CUMPRINC_since_beginning 12 = <%= @simulation.credit_loan_cumulative_principal_paid_since_beginning_for_month(12) %> OK</p>
       <p>Credit_loan amount - CUMPRINC 12 = <%= @simulation.credit_loan_remaining_principal_to_pay_for_month(12) %> OK</p>
-      <p>CUMIPMT 12 = <%= @simulation.credit_loan_cumulative_interests_paid_for_month(12) %></p>
+      <p>CUMIPMT_since_beginning 12 = <%= @simulation.credit_loan_cumulative_interests_paid_since_beginning_for_month(12) %></p>
     </div>
     <p class="font-bold">Total credit costs</p>
     <div class="flex flex-col mb-4">
