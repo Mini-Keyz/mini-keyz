@@ -1,5 +1,5 @@
 class Simulation < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :house_city, presence: true
   validates :house_price_bought_amount, presence: true, numericality: { only_integer: true }

@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :simulations, only: %i[index show new create update destroy]
     resources :users, only: [:show]
   end
+
+  resources :simulations, only: %i[show new create]
 end
