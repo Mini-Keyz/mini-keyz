@@ -61,6 +61,10 @@ class Simulation < ApplicationRecord
     house_total_charges_amount_per_year - house_tenant_charges_amount_per_year
   end
 
+  def global_buying_operation_cost
+    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
+  end
+
   def gross_profitability
     quotient = house_rent_amount_per_year
     divisor = global_buying_operation_cost
@@ -70,7 +74,7 @@ class Simulation < ApplicationRecord
 
   def net_profitability
     revenues = house_rent_amount_per_year
-    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_rent_amount_per_year * house_property_management_cost_percentage
+    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_property_management_amount_per_year
     divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount
 
     (revenues - expenses) / divisor * 100
@@ -78,10 +82,6 @@ class Simulation < ApplicationRecord
 
   def net_after_taxes_profitability
     6.6
-  end
-
-  def global_buying_operation_cost
-    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
   end
 
   def created_for
