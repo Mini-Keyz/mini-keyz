@@ -44,15 +44,16 @@ class Simulation < ApplicationRecord
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
+  #-----------------------------------------------------------------------#
+  # House related formulas
+
+  ## Notarial fees
   # Remember to put conditional if tenant charges amount is specified
   def house_notarial_fees_amount
     house_price_bought_amount * house_notarial_fees_percentage
   end
 
-  def house_property_management_amount_per_year
-    house_rent_amount_per_year * house_property_management_cost_percentage
-  end
-
+  ## Charges
   def house_tenant_charges_amount_per_year
     house_total_charges_amount_per_year * house_tenant_charges_percentage
   end
@@ -61,37 +62,17 @@ class Simulation < ApplicationRecord
     house_total_charges_amount_per_year - house_tenant_charges_amount_per_year
   end
 
-  def global_buying_operation_cost
-    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
+  ## Rent
+  def house_rent_amount_per_year
+    house_rent_amount_per_month * 12
   end
 
-  def gross_profitability
-    quotient = house_rent_amount_per_year
-    divisor = global_buying_operation_cost
-
-    quotient / divisor * 100
+  ## Property management
+  def house_property_management_amount_per_year
+    house_rent_amount_per_year * house_property_management_cost_percentage
   end
 
-  def net_profitability
-    revenues = house_rent_amount_per_year
-    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_property_management_amount_per_year
-    divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount
-
-    (revenues - expenses) / divisor * 100
-  end
-
-  def net_after_taxes_profitability
-    6.6
-  end
-
-  def created_for
-    returned_string = TimeDifference.between(created_at, Date.today).humanize
-    find_words_only = /\b[^\d\W]+\b/
-    returned_string_in_french = returned_string.gsub(find_words_only, time_in_french)
-  end
-
-  # Insurance
-
+  ## GLI
   def house_insurance_gli_amount_per_month
     house_insurance_gli_percentage * house_rent_amount_per_month
   end
@@ -100,41 +81,25 @@ class Simulation < ApplicationRecord
     house_insurance_gli_percentage * house_rent_amount_per_year
   end
 
-  # House
+  #-----------------------------------------------------------------------#
+  # Credit related formulas
 
-  def house_rent_amount_per_year
-    house_rent_amount_per_month * 12
-  end
-
-  # Credit cost
+  ## General
   def credit_loan_duration_in_months
     credit_loan_duration * 12
-  end
-
-  def credit_loan_interest_rate_per_month
-    credit_loan_interest_percentage_per_year / 12
   end
 
   def credit_loan_payment_amount_per_month
     - pmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount)
   end
 
+  ## Interests
+  def credit_loan_interest_rate_per_month
+    credit_loan_interest_percentage_per_year / 12
+  end
+
   def credit_loan_interest_cost_for_month(payment_period)
     - ipmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)
-  end
-
-  def credit_loan_principal_repayment_for_month(payment_period)
-    - ppmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)
-  end
-
-  def credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)
-    - cumprinc(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
-               payment_period)
-  end
-
-  def credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)
-    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
-              payment_period)
   end
 
   def credit_loan_cumulative_interests_paid_for_year(payment_period)
@@ -148,16 +113,30 @@ class Simulation < ApplicationRecord
     credit_loan_cumulative_interests_paid_for_year(2)
   end
 
+  def credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)
+    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
+              payment_period)
+  end
+
   def credit_loan_interest_total_amount
     credit_loan_cumulative_interests_paid_since_beginning_for_month(credit_loan_duration_in_months)
+  end
+
+  ## Principal
+  def credit_loan_principal_repayment_for_month(payment_period)
+    - ppmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)
+  end
+
+  def credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)
+    - cumprinc(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,
+               payment_period)
   end
 
   def credit_loan_remaining_principal_to_pay_for_month(payment_period)
     credit_loan_amount - credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)
   end
 
-  # Credit_loan insurance
-
+  ## Insurance
   def credit_loan_insurance_percentage_per_month
     credit_loan_insurance_percentage_per_year / 12
   end
@@ -174,7 +153,8 @@ class Simulation < ApplicationRecord
     credit_loan_insurance_amount_per_month * credit_loan_duration_in_months
   end
 
-  # Taxes
+  #-----------------------------------------------------------------------#
+  # Fiscal related formulas
 
   def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
     calc_income_tax_incurred_by_taxable_property_income_amount_per_year({
@@ -211,6 +191,41 @@ class Simulation < ApplicationRecord
                                            house_rent_amount_per_year: house_rent_amount_per_year,
                                            house_first_works_amount: house_first_works_amount
                                          })
+  end
+
+  #-----------------------------------------------------------------------#
+  # Profitability formulas
+
+  def gross_profitability
+    quotient = house_rent_amount_per_year
+    divisor = global_buying_operation_cost
+
+    quotient / divisor * 100
+  end
+
+  def net_profitability
+    revenues = house_rent_amount_per_year
+    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_property_management_amount_per_year
+    divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount
+
+    (revenues - expenses) / divisor * 100
+  end
+
+  def net_after_taxes_profitability
+    6.6
+  end
+
+  def global_buying_operation_cost
+    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
+  end
+
+  #-----------------------------------------------------------------------#
+  # Others (might be worth thinking move them away from model)
+
+  def created_for
+    returned_string = TimeDifference.between(created_at, Date.today).humanize
+    find_words_only = /\b[^\d\W]+\b/
+    returned_string_in_french = returned_string.gsub(find_words_only, time_in_french)
   end
 
   # Translations
