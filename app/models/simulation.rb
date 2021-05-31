@@ -2,18 +2,23 @@ class Simulation < ApplicationRecord
   belongs_to :user, optional: true
 
   validates :house_city, presence: true
-  validates :house_price_bought_amount, presence: true, numericality: { only_integer: true }
-  validates :house_first_works_amount, allow_blank: true, numericality: { only_integer: true }
-  validates :house_total_charges_amount_per_year, presence: true, numericality: { only_integer: true }
-  validates :house_property_tax_amount_per_year, presence: true, numericality: { only_integer: true }
-  validates :house_rent_amount_per_month, presence: true, numericality: { only_integer: true }
+  validates :house_price_bought_amount, presence: true,
+                                        numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :house_first_works_amount, allow_blank: true,
+                                       numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :house_total_charges_amount_per_year, presence: true,
+                                                  numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :house_property_tax_amount_per_year, presence: true,
+                                                 numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :house_rent_amount_per_month, presence: true,
+                                          numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :house_property_management_cost_percentage, presence: true
-  validates :credit_loan_amount, presence: true, numericality: { only_integer: true }
-  validates :credit_loan_duration, presence: true, numericality: { only_integer: true }
+  validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :fiscal_status, presence: true
   validates :fiscal_regimen, presence: true
-  validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true }
-  validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true }
+  validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
+  validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :fiscal_nb_parts, presence: true
 
   include(CreditFormulas)
