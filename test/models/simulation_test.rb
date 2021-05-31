@@ -40,6 +40,19 @@ class SimulationTest < ActiveSupport::TestCase
                      })
     end
 
+    describe '#house_city' do
+      it 'validates presence of' do
+        record = Simulation.new
+        record.house_city = '' # invalid state
+        record.validate
+        expect(record.errors[:house_city]).to include("can't be blank") # check for presence of error
+
+        record.house_city = 'Lyon' # valid state
+        record.validate
+        expect(record.errors[:house_city]).to_not include("can't be blank") # check for absence of error
+      end
+    end
+
     #-----------------------------------------------------------------------#
     # House related formulas
     describe 'House related formulas' do
