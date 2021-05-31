@@ -61,7 +61,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  end
 
   # Cleans the Ruby on Rails project tests database in between the test suite runs
   config.before(:suite) do
