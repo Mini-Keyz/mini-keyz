@@ -12,7 +12,7 @@ class Simulation < ApplicationRecord
                                                  numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :house_rent_amount_per_month, presence: true,
                                           numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_property_management_cost_percentage, presence: true
+  validates :house_property_management_cost_percentage, presence: true, numericality: true {greater_than_or_equal_to: 0 }
   validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :fiscal_status, presence: true

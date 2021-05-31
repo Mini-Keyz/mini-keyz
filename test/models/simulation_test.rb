@@ -95,7 +95,7 @@ class SimulationTest < ActiveSupport::TestCase
         end
       end
 
-      describe 'house_first_works_amount' do
+      describe '#house_first_works_amount' do
         it 'allows to be blank' do
           record = Simulation.new
           record.house_first_works_amount = '' # invalid state
@@ -132,6 +132,166 @@ class SimulationTest < ActiveSupport::TestCase
           record.house_first_works_amount = 10_000 # valid state
           record.validate
           expect(record.errors[:house_first_works_amount]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+        end
+      end
+
+      describe '#house_total_charges_amount_per_year' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.house_total_charges_amount_per_year = '' # invalid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être rempli(e)') # check for presence of error
+
+          record.house_total_charges_amount_per_year = 'Lyon' # valid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates only integer ' do
+          record = Simulation.new
+          record.house_total_charges_amount_per_year = 1.55 # invalid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être un nombre entier') # check for presence of error
+
+          record = Simulation.new
+          record.house_total_charges_amount_per_year = '1.55' # invalid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être un nombre entier') # check for presence of error
+
+          record.house_total_charges_amount_per_year = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to_not include('doit être un nombre entier') # check for absence of error
+        end
+
+        it 'validates only positive integer ' do
+          record = Simulation.new
+          record.house_total_charges_amount_per_year = -5 # invalid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+          record.house_total_charges_amount_per_year = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_total_charges_amount_per_year]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+        end
+      end
+
+      describe '#house_property_tax_amount_per_year' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.house_property_tax_amount_per_year = '' # invalid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être rempli(e)') # check for presence of error
+
+          record.house_property_tax_amount_per_year = 'Lyon' # valid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates only integer ' do
+          record = Simulation.new
+          record.house_property_tax_amount_per_year = 1.55 # invalid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être un nombre entier') # check for presence of error
+
+          record = Simulation.new
+          record.house_property_tax_amount_per_year = '1.55' # invalid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être un nombre entier') # check for presence of error
+
+          record.house_property_tax_amount_per_year = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to_not include('doit être un nombre entier') # check for absence of error
+        end
+
+        it 'validates only positive integer ' do
+          record = Simulation.new
+          record.house_property_tax_amount_per_year = -5 # invalid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+          record.house_property_tax_amount_per_year = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_property_tax_amount_per_year]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+        end
+      end
+
+      describe '#house_rent_amount_per_month' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.house_rent_amount_per_month = '' # invalid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to include('doit être rempli(e)') # check for presence of error
+
+          record.house_rent_amount_per_month = 'Lyon' # valid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates only integer ' do
+          record = Simulation.new
+          record.house_rent_amount_per_month = 1.55 # invalid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to include('doit être un nombre entier') # check for presence of error
+
+          record = Simulation.new
+          record.house_rent_amount_per_month = '1.55' # invalid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to include('doit être un nombre entier') # check for presence of error
+
+          record.house_rent_amount_per_month = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to_not include('doit être un nombre entier') # check for absence of error
+        end
+
+        it 'validates only positive integer ' do
+          record = Simulation.new
+          record.house_rent_amount_per_month = -5 # invalid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+          record.house_rent_amount_per_month = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_rent_amount_per_month]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+        end
+      end
+
+      describe '#house_property_management_cost_percentage' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.house_property_management_cost_percentage = '' # invalid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être rempli(e)') # check for presence of error
+
+          record.house_property_management_cost_percentage = 'Lyon' # valid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates numericality ' do
+          record = Simulation.new
+          record.house_property_management_cost_percentage = 1.55 # invalid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être un nombre entier') # check for presence of error
+
+          record = Simulation.new
+          record.house_property_management_cost_percentage = '1.55' # invalid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être un nombre entier') # check for presence of error
+
+          record.house_property_management_cost_percentage = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être un nombre entier') # check for absence of error
+        end
+
+        it 'validates only positive' do
+          record = Simulation.new
+          record.house_property_management_cost_percentage = -5 # invalid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+          record.house_property_management_cost_percentage = 100_000 # valid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
         end
       end
     end
