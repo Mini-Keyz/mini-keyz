@@ -43,6 +43,7 @@ group :development, :test do
 
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+
 end
 
 group :development do
@@ -65,6 +66,9 @@ end
 group :test do
   # Keeps our Ruby on Rails project's test database clean between test runs
   gem 'database_cleaner-active_record'
+
+  # Checks code coverage
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
