@@ -15,6 +15,7 @@ import "stylesheets/application";
 import { initNavbarDropdown } from "../plugins/navbar_dropdown";
 import { stylizeRadio } from "../plugins/form_radio";
 import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
+import { initNumberFieldThousandSeparator } from "../plugins/simulation_new_number_field_thousand_separator";
 
 // Import plugins variables
 import * as radioStyle from "../plugins_variables/radio_style";
@@ -46,4 +47,5 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
   initProfitabilityDropdowns();
+  initNumberFieldThousandSeparator();
 });

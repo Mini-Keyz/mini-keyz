@@ -20,10 +20,10 @@
     <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:shadow-md">
       <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
         <p>
-          <span class="font-bold text-xl"><%= simulation.house_price_bought_amount %>€</span> sur <%= simulation.house_city %><% if simulation.house_first_works_amount > 0 %>, +<%= simulation.house_first_works_amount %>€ de travaux<% end %>
+          <span class="font-bold text-xl"><%= simulation.house_price_bought_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %></span> sur <%= simulation.house_city %><% if simulation.house_first_works_amount > 0 %>, +<%= simulation.house_first_works_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %> de travaux<% end %>
         </p>
         <p>
-          <span class="font-bold">XX,X%</span>
+          <span class="font-bold"><%= sprintf("%20.1f", simulation.net_profitability) %>%</span>
           de rentabilité nette
         </p>
         <p>Il y a <%= simulation.created_for %></p>
