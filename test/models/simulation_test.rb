@@ -432,6 +432,126 @@ class SimulationTest < ActiveSupport::TestCase
       end
     end
 
+    describe '#fiscal_revenues_p1' do
+      it 'validates presence of' do
+        record = Simulation.new
+        record.fiscal_revenues_p1 = '' # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to include('doit être rempli(e)') # check for presence of error
+
+        record.fiscal_revenues_p1 = 55_000 # valid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to_not include('doit être rempli(e)') # check for absence of error
+      end
+
+      it 'validates only integer ' do
+        record = Simulation.new
+        record.fiscal_revenues_p1 = 1.55 # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to include('doit être un nombre entier') # check for presence of error
+
+        record = Simulation.new
+        record.fiscal_revenues_p1 = '1.55' # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to include('doit être un nombre entier') # check for presence of error
+
+        record.fiscal_revenues_p1 = 55_000 # valid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to_not include('doit être un nombre entier') # check for absence of error
+      end
+
+      it 'validates only positive integer ' do
+        record = Simulation.new
+        record.fiscal_revenues_p1 = -5 # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+        record.fiscal_revenues_p1 = 55_000 # valid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p1]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+      end
+    end
+
+    describe '#fiscal_revenues_p2' do
+      it 'allows to be blank' do
+        record = Simulation.new
+        record.fiscal_revenues_p2 = '' # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to_not include('doit être rempli(e)') # check for presence of error
+
+        record.fiscal_revenues_p2 = 55_000 # valid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to_not include('doit être rempli(e)') # check for absence of error
+      end
+
+      it 'validates only integer ' do
+        record = Simulation.new
+        record.fiscal_revenues_p2 = 1.55 # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to include('doit être un nombre entier') # check for presence of error
+
+        record = Simulation.new
+        record.fiscal_revenues_p2 = '1.55' # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to include('doit être un nombre entier') # check for presence of error
+
+        record.fiscal_revenues_p2 = 55_000 # valid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to_not include('doit être un nombre entier') # check for absence of error
+      end
+
+      it 'validates only positive integer ' do
+        record = Simulation.new
+        record.fiscal_revenues_p2 = -5 # invalid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+        record.fiscal_revenues_p2 = 55_000 # valid state
+        record.validate
+        expect(record.errors[:fiscal_revenues_p2]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+      end
+    end
+
+    describe '#fiscal_nb_parts' do
+      it 'validates presence of' do
+        record = Simulation.new
+        record.fiscal_nb_parts = '' # invalid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to include('doit être rempli(e)') # check for presence of error
+
+        record.fiscal_nb_parts = 3 # valid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to_not include('doit être rempli(e)') # check for absence of error
+      end
+
+      it 'validates only integer ' do
+        record = Simulation.new
+        record.fiscal_nb_parts = 1.55 # invalid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to include('doit être un nombre entier') # check for presence of error
+
+        record = Simulation.new
+        record.fiscal_nb_parts = '1.55' # invalid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to include('doit être un nombre entier') # check for presence of error
+
+        record.fiscal_nb_parts = 3 # valid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to_not include('doit être un nombre entier') # check for absence of error
+      end
+
+      it 'validates only positive integer ' do
+        record = Simulation.new
+        record.fiscal_nb_parts = -5 # invalid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+        record.fiscal_nb_parts = 3 # valid state
+        record.validate
+        expect(record.errors[:fiscal_nb_parts]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+      end
+    end
+
     #-----------------------------------------------------------------------#
     # House related formulas
     describe 'House related formulas' do
