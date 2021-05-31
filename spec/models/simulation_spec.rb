@@ -88,7 +88,6 @@ RSpec.describe Simulation, type: :model do
     describe '#house_property_management_cost_percentage' do
       it { should validate_presence_of(:house_property_management_cost_percentage) }
       it { should validate_numericality_of(:house_property_management_cost_percentage) }
-      it { should validate_inclusion_of(:house_property_management_cost_percentage).in_range(0..1) }
 
       it 'validates only between [0,1]' do
         record = Simulation.new
