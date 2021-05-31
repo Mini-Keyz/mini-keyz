@@ -62,7 +62,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_price_bought_amount]).to include('doit être rempli(e)') # check for presence of error
 
-          record.house_price_bought_amount = 'Lyon' # valid state
+          record.house_price_bought_amount = 100_000 # valid state
           record.validate
           expect(record.errors[:house_price_bought_amount]).to_not include('doit être rempli(e)') # check for absence of error
         end
@@ -142,7 +142,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être rempli(e)') # check for presence of error
 
-          record.house_total_charges_amount_per_year = 'Lyon' # valid state
+          record.house_total_charges_amount_per_year = 2_000 # valid state
           record.validate
           expect(record.errors[:house_total_charges_amount_per_year]).to_not include('doit être rempli(e)') # check for absence of error
         end
@@ -158,7 +158,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être un nombre entier') # check for presence of error
 
-          record.house_total_charges_amount_per_year = 100_000 # valid state
+          record.house_total_charges_amount_per_year = 2_000 # valid state
           record.validate
           expect(record.errors[:house_total_charges_amount_per_year]).to_not include('doit être un nombre entier') # check for absence of error
         end
@@ -169,7 +169,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_total_charges_amount_per_year]).to include('doit être supérieur ou égal à 0') # check for presence of error
 
-          record.house_total_charges_amount_per_year = 100_000 # valid state
+          record.house_total_charges_amount_per_year = 2_000 # valid state
           record.validate
           expect(record.errors[:house_total_charges_amount_per_year]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
         end
@@ -182,7 +182,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être rempli(e)') # check for presence of error
 
-          record.house_property_tax_amount_per_year = 'Lyon' # valid state
+          record.house_property_tax_amount_per_year = 500 # valid state
           record.validate
           expect(record.errors[:house_property_tax_amount_per_year]).to_not include('doit être rempli(e)') # check for absence of error
         end
@@ -198,7 +198,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être un nombre entier') # check for presence of error
 
-          record.house_property_tax_amount_per_year = 100_000 # valid state
+          record.house_property_tax_amount_per_year = 500 # valid state
           record.validate
           expect(record.errors[:house_property_tax_amount_per_year]).to_not include('doit être un nombre entier') # check for absence of error
         end
@@ -209,7 +209,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_property_tax_amount_per_year]).to include('doit être supérieur ou égal à 0') # check for presence of error
 
-          record.house_property_tax_amount_per_year = 100_000 # valid state
+          record.house_property_tax_amount_per_year = 500 # valid state
           record.validate
           expect(record.errors[:house_property_tax_amount_per_year]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
         end
@@ -222,7 +222,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_rent_amount_per_month]).to include('doit être rempli(e)') # check for presence of error
 
-          record.house_rent_amount_per_month = 'Lyon' # valid state
+          record.house_rent_amount_per_month = 500 # valid state
           record.validate
           expect(record.errors[:house_rent_amount_per_month]).to_not include('doit être rempli(e)') # check for absence of error
         end
@@ -238,7 +238,7 @@ class SimulationTest < ActiveSupport::TestCase
           record.validate
           expect(record.errors[:house_rent_amount_per_month]).to include('doit être un nombre entier') # check for presence of error
 
-          record.house_rent_amount_per_month = 100_000 # valid state
+          record.house_rent_amount_per_month = 500 # valid state
           record.validate
           expect(record.errors[:house_rent_amount_per_month]).to_not include('doit être un nombre entier') # check for absence of error
         end
@@ -269,29 +269,165 @@ class SimulationTest < ActiveSupport::TestCase
 
         it 'validates numericality ' do
           record = Simulation.new
-          record.house_property_management_cost_percentage = 1.55 # invalid state
+          record.house_property_management_cost_percentage = 'Test' # invalid state
           record.validate
-          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être un nombre entier') # check for presence of error
+          expect(record.errors[:house_property_management_cost_percentage]).to include("n'est pas un nombre") # check for presence of error
 
-          record = Simulation.new
-          record.house_property_management_cost_percentage = '1.55' # invalid state
+          record.house_property_management_cost_percentage = 0.08 # valid state
           record.validate
-          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être un nombre entier') # check for presence of error
-
-          record.house_property_management_cost_percentage = 100_000 # valid state
-          record.validate
-          expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être un nombre entier') # check for absence of error
+          expect(record.errors[:house_property_management_cost_percentage]).to_not include("n'est pas un nombre") # check for absence of error
         end
 
-        it 'validates only positive' do
+        it 'validates only between [0,1]' do
           record = Simulation.new
           record.house_property_management_cost_percentage = -5 # invalid state
           record.validate
           expect(record.errors[:house_property_management_cost_percentage]).to include('doit être supérieur ou égal à 0') # check for presence of error
 
-          record.house_property_management_cost_percentage = 100_000 # valid state
+          record = Simulation.new
+          record.house_property_management_cost_percentage = 2 # invalid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to include('doit être inférieur ou égal à 1') # check for presence of error
+
+          record.house_property_management_cost_percentage = 0.05 # valid state
           record.validate
           expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+
+          record.house_property_management_cost_percentage = 0 # valid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+
+          record.house_property_management_cost_percentage = 1 # valid state
+          record.validate
+          expect(record.errors[:house_property_management_cost_percentage]).to_not include('doit être inférieur ou égal à 1') # check for absence of error
+        end
+      end
+
+      describe '#credit_loan_amount' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.credit_loan_amount = '' # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to include('doit être rempli(e)') # check for presence of error
+
+          record.credit_loan_amount = 200_000 # valid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates only integer ' do
+          record = Simulation.new
+          record.credit_loan_amount = 1.55 # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to include('doit être un nombre entier') # check for presence of error
+
+          record = Simulation.new
+          record.credit_loan_amount = '1.55' # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to include('doit être un nombre entier') # check for presence of error
+
+          record.credit_loan_amount = 200_000 # valid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to_not include('doit être un nombre entier') # check for absence of error
+        end
+
+        it 'validates only positive integer ' do
+          record = Simulation.new
+          record.credit_loan_amount = -5 # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+          record.credit_loan_amount = 200_000 # valid state
+          record.validate
+          expect(record.errors[:credit_loan_amount]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+        end
+      end
+
+      describe '#credit_loan_duration' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.credit_loan_duration = '' # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to include('doit être rempli(e)') # check for presence of error
+
+          record.credit_loan_duration = 20 # valid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates only integer ' do
+          record = Simulation.new
+          record.credit_loan_duration = 1.55 # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to include('doit être un nombre entier') # check for presence of error
+
+          record = Simulation.new
+          record.credit_loan_duration = '1.55' # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to include('doit être un nombre entier') # check for presence of error
+
+          record.credit_loan_duration = 20 # valid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to_not include('doit être un nombre entier') # check for absence of error
+        end
+
+        it 'validates only positive integer ' do
+          record = Simulation.new
+          record.credit_loan_duration = -5 # invalid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to include('doit être supérieur ou égal à 0') # check for presence of error
+
+          record.credit_loan_duration = 20 # valid state
+          record.validate
+          expect(record.errors[:credit_loan_duration]).to_not include('doit être supérieur ou égal à 0') # check for absence of error
+        end
+      end
+
+      describe '#fiscal_status' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.fiscal_status = '' # invalid state
+          record.validate
+          expect(record.errors[:fiscal_status]).to include('doit être rempli(e)') # check for presence of error
+
+          record.fiscal_status = 'Vide' # valid state
+          record.validate
+          expect(record.errors[:fiscal_status]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates inclusion in fiscal status available ' do
+          record = Simulation.new
+          record.fiscal_status = 'Fiscal status not implemented' # invalid state
+          record.validate
+          expect(record.errors[:fiscal_status]).to include("n'est pas inclus(e) dans la liste") # check for presence of error
+
+          record.fiscal_status = 'Pinel' # valid state
+          record.validate
+          expect(record.errors[:fiscal_status]).to_not include("n'est pas inclus(e) dans la liste") # check for absence of error
+        end
+      end
+
+      describe '#fiscal_regimen' do
+        it 'validates presence of' do
+          record = Simulation.new
+          record.fiscal_regimen = '' # invalid state
+          record.validate
+          expect(record.errors[:fiscal_regimen]).to include('doit être rempli(e)') # check for presence of error
+
+          record.fiscal_regimen = 'Réel' # valid state
+          record.validate
+          expect(record.errors[:fiscal_regimen]).to_not include('doit être rempli(e)') # check for absence of error
+        end
+
+        it 'validates inclusion in fiscal regimen available ' do
+          record = Simulation.new
+          record.fiscal_regimen = 'Fiscal status not implemented' # invalid state
+          record.validate
+          expect(record.errors[:fiscal_regimen]).to include("n'est pas inclus(e) dans la liste") # check for presence of error
+
+          record.fiscal_regimen = 'Forfait' # valid state
+          record.validate
+          expect(record.errors[:fiscal_regimen]).to_not include("n'est pas inclus(e) dans la liste") # check for absence of error
         end
       end
     end

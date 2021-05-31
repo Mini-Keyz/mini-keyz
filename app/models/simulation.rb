@@ -12,11 +12,12 @@ class Simulation < ApplicationRecord
                                                  numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :house_rent_amount_per_month, presence: true,
                                           numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_property_management_cost_percentage, presence: true, numericality: true {greater_than_or_equal_to: 0 }
+  validates :house_property_management_cost_percentage, presence: true,
+                                                        numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
   validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :fiscal_status, presence: true
-  validates :fiscal_regimen, presence: true
+  validates :fiscal_status, presence: true, inclusion: { in: proc { FISCAL_STATUS_AVAILABLE } }
+  validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
   validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :fiscal_nb_parts, presence: true
@@ -30,6 +31,9 @@ class Simulation < ApplicationRecord
   HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE = 0.035
   CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR = 0.01
   CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR = 0.003
+
+  FISCAL_STATUS_AVAILABLE = %w[Vide LMNP LMP Pinel DeNormandie].freeze
+  FISCAL_REGIMEN_AVAILABLE = %w[Réel Forfait].freeze
 
   def initialize(args)
     super

@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-05-31T10:25:12+02:00">2021-05-31T10:25:12+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-05-31T12:45:23+02:00">2021-05-31T12:45:23+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  78.97%
+  79.12%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         41.93
+         42.77
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>271</b> relevant lines,
-    <span class="green"><b>214</b> lines covered</span> and
+    <b>273</b> relevant lines,
+    <span class="green"><b>216</b> lines covered</span> and
     <span class="red"><b>57</b> lines missed. </span>
     (<span class="red">
-  78.97%
+  79.12%
 </span>
 )
   </div>
@@ -138,12 +138,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#bbc5f95dbdb58bc323a2bb8b27e0b64c93683c25" class="src_link" title="app/models/simulation.rb">app/models/simulation.rb</a></td>
-            <td class="yellow strong cell--number t-file__coverage">82.24 %</td>
-            <td class="cell--number">257</td>
-            <td class="cell--number">107</td>
-            <td class="cell--number">88</td>
+            <td class="yellow strong cell--number t-file__coverage">82.57 %</td>
+            <td class="cell--number">261</td>
+            <td class="cell--number">109</td>
+            <td class="cell--number">90</td>
             <td class="cell--number">19</td>
-            <td class="cell--number">6.38</td>
+            <td class="cell--number">9.15</td>
             
           </tr>
         
@@ -2533,7 +2533,7 @@
     <h3>app/models/simulation.rb</h3>
     <h4>
       <span class="yellow">
-  82.24%
+  82.57%
 </span>
 
       lines covered
@@ -2542,8 +2542,8 @@
     
 
     <div class="t-line-summary">
-      <b>107</b> relevant lines.
-      <span class="green"><b>88</b> lines covered</span> and
+      <b>109</b> relevant lines.
+      <span class="green"><b>90</b> lines covered</span> and
       <span class="red"><b>19</b> lines missed.</span>
     </div>
 
@@ -2715,18 +2715,18 @@
 
             
 
-            <code class="ruby">  validates :house_property_management_cost_percentage, presence: true</code>
+            <code class="ruby">  validates :house_property_management_cost_percentage, presence: true,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="16">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="16">
+            
             
 
             
 
-            <code class="ruby">  validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }</code>
+            <code class="ruby">                                                        numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }</code>
           </li>
         </div>
       
@@ -2737,7 +2737,7 @@
 
             
 
-            <code class="ruby">  validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }</code>
+            <code class="ruby">  validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }</code>
           </li>
         </div>
       
@@ -2748,29 +2748,29 @@
 
             
 
-            <code class="ruby">  validates :fiscal_status, presence: true</code>
+            <code class="ruby">  validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="19">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="69" data-linenumber="19">
+            <span class="hits">69</span>
             
 
             
 
-            <code class="ruby">  validates :fiscal_regimen, presence: true</code>
+            <code class="ruby">  validates :fiscal_status, presence: true, inclusion: { in: proc { FISCAL_STATUS_AVAILABLE } }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="20">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="69" data-linenumber="20">
+            <span class="hits">69</span>
             
 
             
 
-            <code class="ruby">  validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }</code>
+            <code class="ruby">  validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }</code>
           </li>
         </div>
       
@@ -2781,7 +2781,7 @@
 
             
 
-            <code class="ruby">  validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }</code>
+            <code class="ruby">  validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }</code>
           </li>
         </div>
       
@@ -2792,29 +2792,29 @@
 
             
 
+            <code class="ruby">  validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="23">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">  validates :fiscal_nb_parts, presence: true</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="23">
+          <li class="never" data-hits="" data-linenumber="24">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="24">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  include(CreditFormulas)</code>
           </li>
         </div>
       
@@ -2825,29 +2825,29 @@
 
             
 
+            <code class="ruby">  include(CreditFormulas)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="26">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">  include(IncomeTaxesFormulas)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
+          <li class="never" data-hits="" data-linenumber="27">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="27">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08</code>
           </li>
         </div>
       
@@ -2858,7 +2858,7 @@
 
             
 
-            <code class="ruby">  HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8</code>
+            <code class="ruby">  HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08</code>
           </li>
         </div>
       
@@ -2869,7 +2869,7 @@
 
             
 
-            <code class="ruby">  HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR = 100</code>
+            <code class="ruby">  HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8</code>
           </li>
         </div>
       
@@ -2880,7 +2880,7 @@
 
             
 
-            <code class="ruby">  HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE = 0.035</code>
+            <code class="ruby">  HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR = 100</code>
           </li>
         </div>
       
@@ -2891,7 +2891,7 @@
 
             
 
-            <code class="ruby">  CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR = 0.01</code>
+            <code class="ruby">  HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE = 0.035</code>
           </li>
         </div>
       
@@ -2902,12 +2902,23 @@
 
             
 
+            <code class="ruby">  CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR = 0.01</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="33">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">  CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR = 0.003</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="33">
+          <li class="never" data-hits="" data-linenumber="34">
             
             
 
@@ -2918,7 +2929,40 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="34">
+          <li class="covered" data-hits="1" data-linenumber="35">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  FISCAL_STATUS_AVAILABLE = %w[Vide LMNP LMP Pinel DeNormandie].freeze</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="36">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  FISCAL_REGIMEN_AVAILABLE = %w[Réel Forfait].freeze</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="37">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="38">
             <span class="hits">1</span>
             
 
@@ -2929,8 +2973,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="35">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="39">
+            <span class="hits">65</span>
             
 
             
@@ -2940,8 +2984,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="36">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="40">
+            <span class="hits">65</span>
             
 
             
@@ -2951,8 +2995,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="37">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="41">
+            <span class="hits">65</span>
             
 
             
@@ -2962,8 +3006,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="38">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="42">
+            <span class="hits">65</span>
             
 
             
@@ -2973,7 +3017,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="39">
+          <li class="never" data-hits="" data-linenumber="43">
             
             
 
@@ -2984,8 +3028,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="40">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="44">
+            <span class="hits">65</span>
             
 
             
@@ -2995,8 +3039,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="41">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="45">
+            <span class="hits">65</span>
             
 
             
@@ -3006,7 +3050,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="46">
             
             
 
@@ -3017,8 +3061,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="43">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="47">
+            <span class="hits">65</span>
             
 
             
@@ -3028,8 +3072,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="44">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="48">
+            <span class="hits">65</span>
             
 
             
@@ -3039,7 +3083,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="45">
+          <li class="never" data-hits="" data-linenumber="49">
             
             
 
@@ -3050,8 +3094,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="46">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="50">
+            <span class="hits">65</span>
             
 
             
@@ -3061,57 +3105,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="49" data-linenumber="47">
-            <span class="hits">49</span>
+          <li class="covered" data-hits="65" data-linenumber="51">
+            <span class="hits">65</span>
             
 
             
 
             <code class="ruby">      self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="48">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="49" data-linenumber="49">
-            <span class="hits">49</span>
-            
-
-            
-
-            <code class="ruby">    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="50">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="51">
-            
-            
-
-            
-
-            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3122,18 +3122,18 @@
 
             
 
-            <code class="ruby">  #-----------------------------------------------------------------------#</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
-            
-            
-
+          <li class="covered" data-hits="65" data-linenumber="53">
+            <span class="hits">65</span>
             
 
-            <code class="ruby">  # House related formulas</code>
+            
+
+            <code class="ruby">    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage</code>
           </li>
         </div>
       
@@ -3144,7 +3144,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -3155,7 +3155,7 @@
 
             
 
-            <code class="ruby">  ## Notarial fees</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3166,29 +3166,29 @@
 
             
 
-            <code class="ruby">  # Remember to put conditional if tenant charges amount is specified</code>
+            <code class="ruby">  #-----------------------------------------------------------------------#</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="57">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="57">
+            
             
 
             
 
-            <code class="ruby">  def house_notarial_fees_amount</code>
+            <code class="ruby">  # House related formulas</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="58">
-            <span class="hits">2</span>
+          <li class="never" data-hits="" data-linenumber="58">
+            
             
 
             
 
-            <code class="ruby">    house_price_bought_amount * house_notarial_fees_percentage</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3199,7 +3199,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">  ## Notarial fees</code>
           </li>
         </div>
       
@@ -3210,45 +3210,34 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  # Remember to put conditional if tenant charges amount is specified</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="61">
-            
-            
-
-            
-
-            <code class="ruby">  ## Charges</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="62">
+          <li class="covered" data-hits="1" data-linenumber="61">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def house_tenant_charges_amount_per_year</code>
+            <code class="ruby">  def house_notarial_fees_amount</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="63">
-            <span class="hits">6</span>
+          <li class="covered" data-hits="2" data-linenumber="62">
+            <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">    house_total_charges_amount_per_year * house_tenant_charges_percentage</code>
+            <code class="ruby">    house_price_bought_amount * house_notarial_fees_percentage</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="64">
+          <li class="never" data-hits="" data-linenumber="63">
             
             
 
@@ -3259,7 +3248,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="65">
+          <li class="never" data-hits="" data-linenumber="64">
             
             
 
@@ -3270,24 +3259,35 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="65">
+            
+            
+
+            
+
+            <code class="ruby">  ## Charges</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="covered" data-hits="1" data-linenumber="66">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def house_landlord_charges_amount_per_year</code>
+            <code class="ruby">  def house_tenant_charges_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="67">
-            <span class="hits">2</span>
+          <li class="covered" data-hits="6" data-linenumber="67">
+            <span class="hits">6</span>
             
 
             
 
-            <code class="ruby">    house_total_charges_amount_per_year - house_tenant_charges_amount_per_year</code>
+            <code class="ruby">    house_total_charges_amount_per_year * house_tenant_charges_percentage</code>
           </li>
         </div>
       
@@ -3314,35 +3314,35 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="70">
-            
-            
-
-            
-
-            <code class="ruby">  ## Rent</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="71">
+          <li class="covered" data-hits="1" data-linenumber="70">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def house_rent_amount_per_year</code>
+            <code class="ruby">  def house_landlord_charges_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="14" data-linenumber="72">
-            <span class="hits">14</span>
+          <li class="covered" data-hits="2" data-linenumber="71">
+            <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">    house_rent_amount_per_month * 12</code>
+            <code class="ruby">    house_total_charges_amount_per_year - house_tenant_charges_amount_per_year</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="72">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -3353,7 +3353,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3364,40 +3364,40 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  ## Rent</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="75">
-            
-            
-
-            
-
-            <code class="ruby">  ## Property management</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="76">
+          <li class="covered" data-hits="1" data-linenumber="75">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def house_property_management_amount_per_year</code>
+            <code class="ruby">  def house_rent_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="77">
-            <span class="hits">4</span>
+          <li class="covered" data-hits="14" data-linenumber="76">
+            <span class="hits">14</span>
             
 
             
 
-            <code class="ruby">    house_rent_amount_per_year * house_property_management_cost_percentage</code>
+            <code class="ruby">    house_rent_amount_per_month * 12</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="77">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -3408,7 +3408,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3419,45 +3419,34 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  ## Property management</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="80">
-            
-            
-
-            
-
-            <code class="ruby">  ## GLI</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="81">
+          <li class="covered" data-hits="1" data-linenumber="80">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def house_insurance_gli_amount_per_month</code>
+            <code class="ruby">  def house_property_management_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="82">
-            
-            
-
+          <li class="covered" data-hits="4" data-linenumber="81">
+            <span class="hits">4</span>
             
 
-            <code class="ruby">    house_insurance_gli_percentage * house_rent_amount_per_month</code>
+            
+
+            <code class="ruby">    house_rent_amount_per_year * house_property_management_cost_percentage</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="83">
+          <li class="never" data-hits="" data-linenumber="82">
             
             
 
@@ -3468,7 +3457,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="84">
+          <li class="never" data-hits="" data-linenumber="83">
             
             
 
@@ -3479,24 +3468,35 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="84">
+            
+            
+
+            
+
+            <code class="ruby">  ## GLI</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="covered" data-hits="1" data-linenumber="85">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def house_insurance_gli_amount_per_year</code>
+            <code class="ruby">  def house_insurance_gli_amount_per_month</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="86">
-            <span class="hits">4</span>
+          <li class="missed" data-hits="0" data-linenumber="86">
+            
             
 
             
 
-            <code class="ruby">    house_insurance_gli_percentage * house_rent_amount_per_year</code>
+            <code class="ruby">    house_insurance_gli_percentage * house_rent_amount_per_month</code>
           </li>
         </div>
       
@@ -3523,24 +3523,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="89">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="89">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  #-----------------------------------------------------------------------#</code>
+            
+
+            <code class="ruby">  def house_insurance_gli_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="90">
-            
-            
-
+          <li class="covered" data-hits="4" data-linenumber="90">
+            <span class="hits">4</span>
             
 
-            <code class="ruby">  # Credit related formulas</code>
+            
+
+            <code class="ruby">    house_insurance_gli_percentage * house_rent_amount_per_year</code>
           </li>
         </div>
       
@@ -3551,7 +3551,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -3562,29 +3562,29 @@
 
             
 
-            <code class="ruby">  ## General</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="93">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="93">
+            
             
 
             
 
-            <code class="ruby">  def credit_loan_duration_in_months</code>
+            <code class="ruby">  #-----------------------------------------------------------------------#</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="12" data-linenumber="94">
-            <span class="hits">12</span>
+          <li class="never" data-hits="" data-linenumber="94">
+            
             
 
             
 
-            <code class="ruby">    credit_loan_duration * 12</code>
+            <code class="ruby">  # Credit related formulas</code>
           </li>
         </div>
       
@@ -3595,7 +3595,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3606,7 +3606,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  ## General</code>
           </li>
         </div>
       
@@ -3617,18 +3617,18 @@
 
             
 
-            <code class="ruby">  def credit_loan_payment_amount_per_month</code>
+            <code class="ruby">  def credit_loan_duration_in_months</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="98">
-            
-            
-
+          <li class="covered" data-hits="12" data-linenumber="98">
+            <span class="hits">12</span>
             
 
-            <code class="ruby">    - pmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount)</code>
+            
+
+            <code class="ruby">    credit_loan_duration * 12</code>
           </li>
         </div>
       
@@ -3655,40 +3655,29 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="101">
-            
-            
-
-            
-
-            <code class="ruby">  ## Interests</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="102">
+          <li class="covered" data-hits="1" data-linenumber="101">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_interest_rate_per_month</code>
+            <code class="ruby">  def credit_loan_payment_amount_per_month</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="103">
-            <span class="hits">4</span>
+          <li class="missed" data-hits="0" data-linenumber="102">
+            
             
 
             
 
-            <code class="ruby">    credit_loan_interest_percentage_per_year / 12</code>
+            <code class="ruby">    - pmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="104">
+          <li class="never" data-hits="" data-linenumber="103">
             
             
 
@@ -3699,7 +3688,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="105">
+          <li class="never" data-hits="" data-linenumber="104">
             
             
 
@@ -3710,24 +3699,35 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="105">
+            
+            
+
+            
+
+            <code class="ruby">  ## Interests</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="covered" data-hits="1" data-linenumber="106">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_interest_cost_for_month(payment_period)</code>
+            <code class="ruby">  def credit_loan_interest_rate_per_month</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="107">
-            
-            
-
+          <li class="covered" data-hits="4" data-linenumber="107">
+            <span class="hits">4</span>
             
 
-            <code class="ruby">    - ipmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)</code>
+            
+
+            <code class="ruby">    credit_loan_interest_percentage_per_year / 12</code>
           </li>
         </div>
       
@@ -3760,7 +3760,7 @@
 
             
 
-            <code class="ruby">  def credit_loan_cumulative_interests_paid_for_year(payment_period)</code>
+            <code class="ruby">  def credit_loan_interest_cost_for_month(payment_period)</code>
           </li>
         </div>
       
@@ -3771,45 +3771,12 @@
 
             
 
-            <code class="ruby">    start_per = (payment_period * 12) + 1</code>
+            <code class="ruby">    - ipmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="112">
-            
-            
-
-            
-
-            <code class="ruby">    end_per = (payment_period + 1) * 12</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="113">
-            
-            
-
-            
-
-            <code class="ruby">    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, start_per,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="114">
-            
-            
-
-            
-
-            <code class="ruby">              end_per)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="115">
+          <li class="never" data-hits="" data-linenumber="112">
             
             
 
@@ -3820,7 +3787,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="116">
+          <li class="never" data-hits="" data-linenumber="113">
             
             
 
@@ -3831,24 +3798,57 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="117">
+          <li class="covered" data-hits="1" data-linenumber="114">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_cumulative_interests_paid_for_year_two</code>
+            <code class="ruby">  def credit_loan_cumulative_interests_paid_for_year(payment_period)</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="118">
+          <li class="missed" data-hits="0" data-linenumber="115">
             
             
 
             
 
-            <code class="ruby">    credit_loan_cumulative_interests_paid_for_year(2)</code>
+            <code class="ruby">    start_per = (payment_period * 12) + 1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="116">
+            
+            
+
+            
+
+            <code class="ruby">    end_per = (payment_period + 1) * 12</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="117">
+            
+            
+
+            
+
+            <code class="ruby">    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, start_per,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="118">
+            
+            
+
+            
+
+            <code class="ruby">              end_per)</code>
           </li>
         </div>
       
@@ -3881,18 +3881,18 @@
 
             
 
-            <code class="ruby">  def credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)</code>
+            <code class="ruby">  def credit_loan_cumulative_interests_paid_for_year_two</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="122">
-            <span class="hits">4</span>
+          <li class="missed" data-hits="0" data-linenumber="122">
+            
             
 
             
 
-            <code class="ruby">    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,</code>
+            <code class="ruby">    credit_loan_cumulative_interests_paid_for_year(2)</code>
           </li>
         </div>
       
@@ -3903,7 +3903,7 @@
 
             
 
-            <code class="ruby">              payment_period)</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -3914,40 +3914,40 @@
 
             
 
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="125">
-            
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="126">
+          <li class="covered" data-hits="1" data-linenumber="125">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_interest_total_amount</code>
+            <code class="ruby">  def credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="127">
+          <li class="covered" data-hits="4" data-linenumber="126">
             <span class="hits">4</span>
             
 
             
 
-            <code class="ruby">    credit_loan_cumulative_interests_paid_since_beginning_for_month(credit_loan_duration_in_months)</code>
+            <code class="ruby">    - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="127">
+            
+            
+
+            
+
+            <code class="ruby">              payment_period)</code>
           </li>
         </div>
       
@@ -3974,35 +3974,35 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="130">
-            
-            
-
-            
-
-            <code class="ruby">  ## Principal</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="131">
+          <li class="covered" data-hits="1" data-linenumber="130">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_principal_repayment_for_month(payment_period)</code>
+            <code class="ruby">  def credit_loan_interest_total_amount</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="132">
+          <li class="covered" data-hits="4" data-linenumber="131">
+            <span class="hits">4</span>
+            
+
+            
+
+            <code class="ruby">    credit_loan_cumulative_interests_paid_since_beginning_for_month(credit_loan_duration_in_months)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="132">
             
             
 
             
 
-            <code class="ruby">    - ppmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -4013,7 +4013,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -4024,7 +4024,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  ## Principal</code>
           </li>
         </div>
       
@@ -4035,7 +4035,7 @@
 
             
 
-            <code class="ruby">  def credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)</code>
+            <code class="ruby">  def credit_loan_principal_repayment_for_month(payment_period)</code>
           </li>
         </div>
       
@@ -4046,7 +4046,7 @@
 
             
 
-            <code class="ruby">    - cumprinc(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,</code>
+            <code class="ruby">    - ppmt(credit_loan_interest_rate_per_month, payment_period, credit_loan_duration_in_months, credit_loan_amount)</code>
           </li>
         </div>
       
@@ -4057,7 +4057,7 @@
 
             
 
-            <code class="ruby">               payment_period)</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -4068,40 +4068,40 @@
 
             
 
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="139">
-            
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="140">
+          <li class="covered" data-hits="1" data-linenumber="139">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_remaining_principal_to_pay_for_month(payment_period)</code>
+            <code class="ruby">  def credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="141">
+          <li class="missed" data-hits="0" data-linenumber="140">
             
             
 
             
 
-            <code class="ruby">    credit_loan_amount - credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)</code>
+            <code class="ruby">    - cumprinc(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, 1,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="141">
+            
+            
+
+            
+
+            <code class="ruby">               payment_period)</code>
           </li>
         </div>
       
@@ -4128,40 +4128,29 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="144">
-            
-            
-
-            
-
-            <code class="ruby">  ## Insurance</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="145">
+          <li class="covered" data-hits="1" data-linenumber="144">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_insurance_percentage_per_month</code>
+            <code class="ruby">  def credit_loan_remaining_principal_to_pay_for_month(payment_period)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="146">
-            <span class="hits">4</span>
+          <li class="missed" data-hits="0" data-linenumber="145">
+            
             
 
             
 
-            <code class="ruby">    credit_loan_insurance_percentage_per_year / 12</code>
+            <code class="ruby">    credit_loan_amount - credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="147">
+          <li class="never" data-hits="" data-linenumber="146">
             
             
 
@@ -4172,7 +4161,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="148">
+          <li class="never" data-hits="" data-linenumber="147">
             
             
 
@@ -4183,13 +4172,24 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="148">
+            
+            
+
+            
+
+            <code class="ruby">  ## Insurance</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="covered" data-hits="1" data-linenumber="149">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def credit_loan_insurance_amount_per_month</code>
+            <code class="ruby">  def credit_loan_insurance_percentage_per_month</code>
           </li>
         </div>
       
@@ -4200,7 +4200,7 @@
 
             
 
-            <code class="ruby">    credit_loan_amount * credit_loan_insurance_percentage_per_month</code>
+            <code class="ruby">    credit_loan_insurance_percentage_per_year / 12</code>
           </li>
         </div>
       
@@ -4233,18 +4233,18 @@
 
             
 
-            <code class="ruby">  def credit_loan_insurance_amount_per_year</code>
+            <code class="ruby">  def credit_loan_insurance_amount_per_month</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="154">
-            
-            
-
+          <li class="covered" data-hits="4" data-linenumber="154">
+            <span class="hits">4</span>
             
 
-            <code class="ruby">    credit_loan_amount * credit_loan_insurance_percentage_per_year</code>
+            
+
+            <code class="ruby">    credit_loan_amount * credit_loan_insurance_percentage_per_month</code>
           </li>
         </div>
       
@@ -4277,18 +4277,18 @@
 
             
 
-            <code class="ruby">  def credit_loan_insurance_total_amount</code>
+            <code class="ruby">  def credit_loan_insurance_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="158">
-            <span class="hits">4</span>
+          <li class="missed" data-hits="0" data-linenumber="158">
+            
             
 
             
 
-            <code class="ruby">    credit_loan_insurance_amount_per_month * credit_loan_duration_in_months</code>
+            <code class="ruby">    credit_loan_amount * credit_loan_insurance_percentage_per_year</code>
           </li>
         </div>
       
@@ -4315,24 +4315,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="161">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="161">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  #-----------------------------------------------------------------------#</code>
+            
+
+            <code class="ruby">  def credit_loan_insurance_total_amount</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="162">
-            
-            
-
+          <li class="covered" data-hits="4" data-linenumber="162">
+            <span class="hits">4</span>
             
 
-            <code class="ruby">  # Fiscal related formulas</code>
+            
+
+            <code class="ruby">    credit_loan_insurance_amount_per_month * credit_loan_duration_in_months</code>
           </li>
         </div>
       
@@ -4343,144 +4343,12 @@
 
             
 
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="164">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="165">
-            
-            
-
-            
-
-            <code class="ruby">    calc_income_tax_incurred_by_taxable_property_income_amount_per_year({</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="166">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          fiscal_status: fiscal_status,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="167">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          fiscal_regimen: fiscal_regimen,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="168">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          fiscal_revenues_p1: fiscal_revenues_p1,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="169">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          fiscal_revenues_p2: fiscal_revenues_p2,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="170">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          fiscal_nb_parts: fiscal_nb_parts,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="171">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          house_rent_amount_per_year: house_rent_amount_per_year,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="172">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          house_first_works_amount: house_first_works_amount,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="173">
-            
-            
-
-            
-
-            <code class="ruby">                                                                          credit_loan_cumulative_interests_paid_for_year_two: credit_loan_cumulative_interests_paid_for_year_two</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="174">
-            
-            
-
-            
-
-            <code class="ruby">                                                                        })</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="175">
-            
-            
-
-            
-
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="176">
+          <li class="never" data-hits="" data-linenumber="164">
             
             
 
@@ -4491,271 +4359,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="177">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def fiscal_income_tax_total_amount_per_year</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="178">
-            
-            
-
-            
-
-            <code class="ruby">    calc_income_tax_total_amount_per_year({</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="179">
-            
-            
-
-            
-
-            <code class="ruby">                                            fiscal_status: fiscal_status,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="180">
-            
-            
-
-            
-
-            <code class="ruby">                                            fiscal_regimen: fiscal_regimen,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="181">
-            
-            
-
-            
-
-            <code class="ruby">                                            fiscal_revenues_p1: fiscal_revenues_p1,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="182">
-            
-            
-
-            
-
-            <code class="ruby">                                            fiscal_revenues_p2: fiscal_revenues_p2,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="183">
-            
-            
-
-            
-
-            <code class="ruby">                                            fiscal_nb_parts: fiscal_nb_parts,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="184">
-            
-            
-
-            
-
-            <code class="ruby">                                            house_rent_amount_per_year: house_rent_amount_per_year,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="185">
-            
-            
-
-            
-
-            <code class="ruby">                                            house_first_works_amount: house_first_works_amount</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="186">
-            
-            
-
-            
-
-            <code class="ruby">                                          })</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="187">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="188">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="189">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def fiscal_income_tax_base_amount_per_year</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="190">
-            
-            
-
-            
-
-            <code class="ruby">    calc_income_tax_base_amount_per_year({</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="191">
-            
-            
-
-            
-
-            <code class="ruby">                                           fiscal_status: fiscal_status,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="192">
-            
-            
-
-            
-
-            <code class="ruby">                                           fiscal_regimen: fiscal_regimen,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="193">
-            
-            
-
-            
-
-            <code class="ruby">                                           fiscal_revenues_p1: fiscal_revenues_p1,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="194">
-            
-            
-
-            
-
-            <code class="ruby">                                           fiscal_revenues_p2: fiscal_revenues_p2,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="195">
-            
-            
-
-            
-
-            <code class="ruby">                                           fiscal_nb_parts: fiscal_nb_parts,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="196">
-            
-            
-
-            
-
-            <code class="ruby">                                           house_rent_amount_per_year: house_rent_amount_per_year,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="197">
-            
-            
-
-            
-
-            <code class="ruby">                                           house_first_works_amount: house_first_works_amount</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="198">
-            
-            
-
-            
-
-            <code class="ruby">                                         })</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="199">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="200">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="201">
+          <li class="never" data-hits="" data-linenumber="165">
             
             
 
@@ -4766,18 +4370,18 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="202">
+          <li class="never" data-hits="" data-linenumber="166">
             
             
 
             
 
-            <code class="ruby">  # Profitability formulas</code>
+            <code class="ruby">  # Fiscal related formulas</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="203">
+          <li class="never" data-hits="" data-linenumber="167">
             
             
 
@@ -4788,35 +4392,431 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="204">
+          <li class="covered" data-hits="1" data-linenumber="168">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def gross_profitability</code>
+            <code class="ruby">  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="205">
-            <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="169">
+            
             
 
             
 
-            <code class="ruby">    quotient = house_rent_amount_per_year</code>
+            <code class="ruby">    calc_income_tax_incurred_by_taxable_property_income_amount_per_year({</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="206">
-            <span class="hits">2</span>
+          <li class="never" data-hits="" data-linenumber="170">
+            
             
 
             
 
-            <code class="ruby">    divisor = global_buying_operation_cost</code>
+            <code class="ruby">                                                                          fiscal_status: fiscal_status,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="171">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          fiscal_regimen: fiscal_regimen,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="172">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          fiscal_revenues_p1: fiscal_revenues_p1,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="173">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          fiscal_revenues_p2: fiscal_revenues_p2,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="174">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          fiscal_nb_parts: fiscal_nb_parts,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="175">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          house_rent_amount_per_year: house_rent_amount_per_year,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="176">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          house_first_works_amount: house_first_works_amount,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="177">
+            
+            
+
+            
+
+            <code class="ruby">                                                                          credit_loan_cumulative_interests_paid_for_year_two: credit_loan_cumulative_interests_paid_for_year_two</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="178">
+            
+            
+
+            
+
+            <code class="ruby">                                                                        })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="179">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="180">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="181">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def fiscal_income_tax_total_amount_per_year</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="182">
+            
+            
+
+            
+
+            <code class="ruby">    calc_income_tax_total_amount_per_year({</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="183">
+            
+            
+
+            
+
+            <code class="ruby">                                            fiscal_status: fiscal_status,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="184">
+            
+            
+
+            
+
+            <code class="ruby">                                            fiscal_regimen: fiscal_regimen,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="185">
+            
+            
+
+            
+
+            <code class="ruby">                                            fiscal_revenues_p1: fiscal_revenues_p1,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="186">
+            
+            
+
+            
+
+            <code class="ruby">                                            fiscal_revenues_p2: fiscal_revenues_p2,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="187">
+            
+            
+
+            
+
+            <code class="ruby">                                            fiscal_nb_parts: fiscal_nb_parts,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="188">
+            
+            
+
+            
+
+            <code class="ruby">                                            house_rent_amount_per_year: house_rent_amount_per_year,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="189">
+            
+            
+
+            
+
+            <code class="ruby">                                            house_first_works_amount: house_first_works_amount</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="190">
+            
+            
+
+            
+
+            <code class="ruby">                                          })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="191">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="192">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="193">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def fiscal_income_tax_base_amount_per_year</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="194">
+            
+            
+
+            
+
+            <code class="ruby">    calc_income_tax_base_amount_per_year({</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="195">
+            
+            
+
+            
+
+            <code class="ruby">                                           fiscal_status: fiscal_status,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="196">
+            
+            
+
+            
+
+            <code class="ruby">                                           fiscal_regimen: fiscal_regimen,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="197">
+            
+            
+
+            
+
+            <code class="ruby">                                           fiscal_revenues_p1: fiscal_revenues_p1,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="198">
+            
+            
+
+            
+
+            <code class="ruby">                                           fiscal_revenues_p2: fiscal_revenues_p2,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="199">
+            
+            
+
+            
+
+            <code class="ruby">                                           fiscal_nb_parts: fiscal_nb_parts,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="200">
+            
+            
+
+            
+
+            <code class="ruby">                                           house_rent_amount_per_year: house_rent_amount_per_year,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="201">
+            
+            
+
+            
+
+            <code class="ruby">                                           house_first_works_amount: house_first_works_amount</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="202">
+            
+            
+
+            
+
+            <code class="ruby">                                         })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="203">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="204">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="205">
+            
+            
+
+            
+
+            <code class="ruby">  #-----------------------------------------------------------------------#</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="206">
+            
+            
+
+            
+
+            <code class="ruby">  # Profitability formulas</code>
           </li>
         </div>
       
@@ -4832,46 +4832,46 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="208">
+          <li class="covered" data-hits="1" data-linenumber="208">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def gross_profitability</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="209">
             <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">    quotient / divisor * 100</code>
+            <code class="ruby">    quotient = house_rent_amount_per_year</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="209">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="210">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">    divisor = global_buying_operation_cost</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="210">
+          <li class="never" data-hits="" data-linenumber="211">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="211">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def net_profitability</code>
           </li>
         </div>
       
@@ -4882,56 +4882,12 @@
 
             
 
-            <code class="ruby">    revenues = house_rent_amount_per_year</code>
+            <code class="ruby">    quotient / divisor * 100</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="213">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_property_management_amount_per_year</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="214">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="215">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="216">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    (revenues - expenses) / divisor * 100</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="217">
+          <li class="never" data-hits="" data-linenumber="213">
             
             
 
@@ -4942,7 +4898,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="218">
+          <li class="never" data-hits="" data-linenumber="214">
             
             
 
@@ -4953,24 +4909,68 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="219">
+          <li class="covered" data-hits="1" data-linenumber="215">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  def net_after_taxes_profitability</code>
+            <code class="ruby">  def net_profitability</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="220">
+          <li class="covered" data-hits="2" data-linenumber="216">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    revenues = house_rent_amount_per_year</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="217">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_property_management_amount_per_year</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="218">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    divisor = global_buying_operation_cost + credit_loan_interest_total_amount + credit_loan_insurance_total_amount</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="219">
             
             
 
             
 
-            <code class="ruby">    6.6</code>
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="220">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    (revenues - expenses) / divisor * 100</code>
           </li>
         </div>
       
@@ -5003,18 +5003,18 @@
 
             
 
-            <code class="ruby">  def global_buying_operation_cost</code>
+            <code class="ruby">  def net_after_taxes_profitability</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="224">
-            <span class="hits">6</span>
+          <li class="missed" data-hits="0" data-linenumber="224">
+            
             
 
             
 
-            <code class="ruby">    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount</code>
+            <code class="ruby">    6.6</code>
           </li>
         </div>
       
@@ -5041,24 +5041,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="227">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="227">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  #-----------------------------------------------------------------------#</code>
+            
+
+            <code class="ruby">  def global_buying_operation_cost</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="228">
-            
-            
-
+          <li class="covered" data-hits="6" data-linenumber="228">
+            <span class="hits">6</span>
             
 
-            <code class="ruby">  # Others (might be worth thinking move them away from model)</code>
+            
+
+            <code class="ruby">    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount</code>
           </li>
         </div>
       
@@ -5069,12 +5069,56 @@
 
             
 
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="230">
+            
+            
+
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="230">
+          <li class="never" data-hits="" data-linenumber="231">
+            
+            
+
+            
+
+            <code class="ruby">  #-----------------------------------------------------------------------#</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="232">
+            
+            
+
+            
+
+            <code class="ruby">  # Others (might be worth thinking move them away from model)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="233">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="234">
             <span class="hits">1</span>
             
 
@@ -5085,7 +5129,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="231">
+          <li class="missed" data-hits="0" data-linenumber="235">
             
             
 
@@ -5096,7 +5140,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="232">
+          <li class="missed" data-hits="0" data-linenumber="236">
             
             
 
@@ -5107,7 +5151,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="233">
+          <li class="missed" data-hits="0" data-linenumber="237">
             
             
 
@@ -5118,57 +5162,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="234">
+          <li class="never" data-hits="" data-linenumber="238">
             
             
 
             
 
             <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="235">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="236">
-            
-            
-
-            
-
-            <code class="ruby">  # Translations</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="237">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="238">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def time_in_french</code>
           </li>
         </div>
       
@@ -5179,18 +5179,18 @@
 
             
 
-            <code class="ruby">    {</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="240">
+          <li class="never" data-hits="" data-linenumber="240">
             
             
 
             
 
-            <code class="ruby">      &#39;Year&#39; =&gt; &#39;année&#39;,</code>
+            <code class="ruby">  # Translations</code>
           </li>
         </div>
       
@@ -5201,18 +5201,18 @@
 
             
 
-            <code class="ruby">      &#39;Years&#39; =&gt; &#39;années&#39;,</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="242">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="242">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      &#39;Month&#39; =&gt; &#39;mois&#39;,</code>
+            
+
+            <code class="ruby">  def time_in_french</code>
           </li>
         </div>
       
@@ -5223,18 +5223,18 @@
 
             
 
-            <code class="ruby">      &#39;Months&#39; =&gt; &#39;mois&#39;,</code>
+            <code class="ruby">    {</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="244">
+          <li class="missed" data-hits="0" data-linenumber="244">
             
             
 
             
 
-            <code class="ruby">      &#39;Weeks&#39; =&gt; &#39;semaines&#39;,</code>
+            <code class="ruby">      &#39;Year&#39; =&gt; &#39;année&#39;,</code>
           </li>
         </div>
       
@@ -5245,7 +5245,7 @@
 
             
 
-            <code class="ruby">      &#39;Week&#39; =&gt; &#39;semaine&#39;,</code>
+            <code class="ruby">      &#39;Years&#39; =&gt; &#39;années&#39;,</code>
           </li>
         </div>
       
@@ -5256,7 +5256,7 @@
 
             
 
-            <code class="ruby">      &#39;Days&#39; =&gt; &#39;jours&#39;,</code>
+            <code class="ruby">      &#39;Month&#39; =&gt; &#39;mois&#39;,</code>
           </li>
         </div>
       
@@ -5267,7 +5267,7 @@
 
             
 
-            <code class="ruby">      &#39;Day&#39; =&gt; &#39;jour&#39;,</code>
+            <code class="ruby">      &#39;Months&#39; =&gt; &#39;mois&#39;,</code>
           </li>
         </div>
       
@@ -5278,7 +5278,7 @@
 
             
 
-            <code class="ruby">      &#39;Hours&#39; =&gt; &#39;heures&#39;,</code>
+            <code class="ruby">      &#39;Weeks&#39; =&gt; &#39;semaines&#39;,</code>
           </li>
         </div>
       
@@ -5289,7 +5289,7 @@
 
             
 
-            <code class="ruby">      &#39;Hour&#39; =&gt; &#39;heure&#39;,</code>
+            <code class="ruby">      &#39;Week&#39; =&gt; &#39;semaine&#39;,</code>
           </li>
         </div>
       
@@ -5300,7 +5300,7 @@
 
             
 
-            <code class="ruby">      &#39;Minutes&#39; =&gt; &#39;minutes&#39;,</code>
+            <code class="ruby">      &#39;Days&#39; =&gt; &#39;jours&#39;,</code>
           </li>
         </div>
       
@@ -5311,7 +5311,7 @@
 
             
 
-            <code class="ruby">      &#39;Minute&#39; =&gt; &#39;minute&#39;,</code>
+            <code class="ruby">      &#39;Day&#39; =&gt; &#39;jour&#39;,</code>
           </li>
         </div>
       
@@ -5322,7 +5322,7 @@
 
             
 
-            <code class="ruby">      &#39;Seconds&#39; =&gt; &#39;secondes&#39;,</code>
+            <code class="ruby">      &#39;Hours&#39; =&gt; &#39;heures&#39;,</code>
           </li>
         </div>
       
@@ -5333,7 +5333,7 @@
 
             
 
-            <code class="ruby">      &#39;Second&#39; =&gt; &#39;seconde&#39;,</code>
+            <code class="ruby">      &#39;Hour&#39; =&gt; &#39;heure&#39;,</code>
           </li>
         </div>
       
@@ -5344,7 +5344,7 @@
 
             
 
-            <code class="ruby">      &#39;and&#39; =&gt; &#39;et&#39;</code>
+            <code class="ruby">      &#39;Minutes&#39; =&gt; &#39;minutes&#39;,</code>
           </li>
         </div>
       
@@ -5355,7 +5355,7 @@
 
             
 
-            <code class="ruby">    }</code>
+            <code class="ruby">      &#39;Minute&#39; =&gt; &#39;minute&#39;,</code>
           </li>
         </div>
       
@@ -5366,12 +5366,56 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      &#39;Seconds&#39; =&gt; &#39;secondes&#39;,</code>
           </li>
         </div>
       
         <div>
           <li class="never" data-hits="" data-linenumber="257">
+            
+            
+
+            
+
+            <code class="ruby">      &#39;Second&#39; =&gt; &#39;seconde&#39;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="258">
+            
+            
+
+            
+
+            <code class="ruby">      &#39;and&#39; =&gt; &#39;et&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="259">
+            
+            
+
+            
+
+            <code class="ruby">    }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="260">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="261">
             
             
 
