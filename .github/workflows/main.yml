@@ -17,24 +17,50 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    # The name of the build
+    name: CI
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Services used
+    services:
+      postgres:
+        image: postgres:11.6
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Passes RSpec tests
-      - name: Test Simulation model
-        run: rspec test/models/simulation_test.rb
+      # Sets up our ruby env
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Install PG
+      - name: Install PostgreSQL
+        run: sudo apt-get -yqq install libpq-dev
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run bundle install
+        working-directory: ${{env.api-dir}}
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      
+      - name: Setup Database
+        working-directory: ${{env.api-dir}}
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
+        run: bin/rails db:create db:schema:load
+
+      - name: Build and test with RSpec
+        working-directory: ${{env.api-dir}}
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
+        run: bundle exec rspec spec
