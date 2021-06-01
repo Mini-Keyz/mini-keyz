@@ -1,10 +1,19 @@
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-8 xl:px-16 2xl:px-32">
 
-  <div class="bg-indigo-400 p-10 rounded-lg">
-    <h1 class="font-black text-6xl text-center">Tailwind 2.0!</h1>
-    <p>Cool!</p>
-  </div>
+  <section class="flex mt-16 xl:grid xl:grid-cols-7 xl:gap-4 xl:items-center">
+    <div class="flex flex-col items-start xl:col-start-1 xl:col-end-5">
+      <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl"><span class="font-extrabold">Faites le choix</span> d'investir dans le bon projet immobilier en ayant toutes les dépenses prises en compte</h1>
+      <h2 class="text-base mt-4">Calculez les rentabilités de votre projet d'investissement. Projetez les flux financiers des premières années d'exploitation. Choisissez le status fiscal le plus avantageux.</h2>
+      <%= link_to "Réaliser une simulation", new_simulation_path, class: "flex-grow-0 font-bold bg-green-frog rounded-lg px-4 py-2 mt-8 border-2 border-black" %>
+    </div>
+    <div class="hidden xl:inline-block xl:col-start-5 xl:col-end-8">
+      <%= image_tag "pages/dogecoin-unsplash.jpg", class: "rounded-lg m-auto" %>
+    </div>
+  </section>
 
-  <%= link_to "Faire une simulation", new_simulation_path %>
+  <section class="mt-16 bg-green-frog">
+    <p>Section 2</p>
+  </section>
+
 
 </div>
