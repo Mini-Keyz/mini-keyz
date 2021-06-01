@@ -1,4 +1,4 @@
-<div class="container mx-auto px-8 xl:px-16 2xl:px-32">
+<div class="mx-auto px-8 md:px-16 2xl:px-32">
 
   <!-- Hero -->
   <section class="flex mt-16 xl:grid xl:grid-cols-7 xl:gap-4 xl:items-center">
@@ -21,7 +21,7 @@
     <h2 class="pl-3 font-bold text-white text-3xl">Pourquoi adopter Mini-Keyz</h2>
   </div>
 
-  <div class="container mx-auto pb-16 px-8 xl:px-16 2xl:px-32">
+  <div class="mx-auto pb-16 px-8 md:px-16 2xl:px-32">
     <div class="flex justify-center flex-wrap">
       <div>
         <h3>Gratuit</h3>
@@ -36,36 +36,63 @@
 </section>
 
 <!-- Functionnalities -->
-<section class="flex flex-col items-center mt-16">
-  <h2>Un solution unique et clé en main pour avoir l'esprit tranquille</h2>
-  <div class="flex items-center">
-    <div>
-      <h3>Functionality 1 TITLE</h3>
-      <p>text</p>
+<div class="mx-auto px-8 md:px-16 2xl:px-32">
+  <section class="flex flex-col items-center mt-16">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center">xxx lorem ipsum xxx pour avoir l'esprit tranquille</h2>
+
+    <!-- Profitabilities -->
+    <div class="flex flex-1 flex-wrap-reverse md:flex-nowrap justify-between items-center w-full mt-16 bg-green-100 bg-opacity-30 rounded-lg">
+      <div class="p-8 sm:p-16">
+        <%= image_tag "pages/functionalities-evolution.jpg" %>
+      </div>
+      <div class="p-8 sm:p-16">
+        <p class=" text-sm sm:text-base font-bold uppercase text-green-700">rentabilités</p>
+        <h3 class="text-2xl sm:text-3xl font-semibold mt-4">Déterminez le meilleur investissement locatif</h3>
+        <p class="sm:text-xl mt-4">Calculez les rentabilités brute, nette, et nette d'impôts de vos différents projets d'investissement et choisissez le meilleur projet</p>
+        <div class="mt-4">
+          <%= link_to "En savoir plus", new_simulation_path, class: "underline font-semibold text-green-700" %>
+        </div>
+      </div>
     </div>
-    <div>img</div>
-  </div>
-  <div class="flex items-center">
-    <div>img</div>
-    <div>
-      <h3>Functionality 2 TITLE</h3>
-      <p>text</p>
+
+    <!-- Projections -->
+    <div class="flex flex-1 flex-wrap md:flex-nowrap justify-between items-center w-full mt-16 bg-green-100 bg-opacity-30 rounded-lg">
+      <div class="p-8 sm:p-16">
+        <p class=" text-sm sm:text-base font-bold uppercase text-green-700">évolution</p>
+        <h3 class="text-2xl sm:text-3xl font-semibold mt-4">Prévoyez les flux financiers des premières années d'exploitation</h3>
+        <p class="sm:text-xl mt-4">Projetez sur une année type les revenus et dépenses afin d'anticiper les rentrées et sorties d'argent importantes.</p>
+        <div class="mt-4">
+          <%= link_to "En savoir plus", new_simulation_path, class: "underline font-semibold text-green-700" %>
+        </div>
+      </div>
+      <div class="p-8 sm:p-16">
+        <%= image_tag "pages/functionalities-evolution.jpg" %>
+      </div>
     </div>
-  </div>
-  <div class="flex items-center">
-    <div>
-      <h3>Functionality 3 TITLE</h3>
-      <p>text</p>
+
+    <!-- Best fiscal status -->
+    <div class="flex flex-1 flex-wrap-reverse md:flex-nowrap justify-between items-center w-full mt-16 bg-green-100 bg-opacity-30 rounded-lg">
+      <div class="p-8 sm:p-16">
+        <%= image_tag "pages/functionalities-evolution.jpg" %>
+      </div>
+      <div class="p-8 sm:p-16">
+        <p class=" text-sm sm:text-base font-bold uppercase text-green-700">status fiscal</p>
+        <h3 class="text-2xl sm:text-3xl font-semibold mt-4">Choisissez le status fiscal le plus avantageux</h3>
+        <p class="sm:text-xl mt-4">Lorem ipsum</p>
+        <div class="mt-4">
+          <%= link_to "En savoir plus", new_simulation_path, class: "underline font-semibold text-green-700" %>
+        </div>
+      </div>
     </div>
-    <div>img</div>
-  </div>
-</section>
+
+  </section>
+</div>
 
 <!-- Reminder user can do a simulation -->
 <section class="flex flex-col items-center mt-16 bg-green-frog">
-  <div class="flex flex-col items-center py-16">
-    <h2>Choisissez de gagner du temps et du contrôle</h2>
-    <h3>Adoptez dès maintenant une solution efficace de gestion des dépenses.</h3>
+  <div class="flex flex-col items-center py-24">
+    <h2 class="text-2xl sm:text-3xl font-semibold">Choisissez de gagner du temps et du contrôle</h2>
+    <h3 class="mt-4">Adoptez dès maintenant une solution efficace de mesure de la rentabilité de vos investissements locatifs.</h3>
     <%= link_to "Réaliser une simulation", new_simulation_path, class: "font-bold bg-green-frog hover:bg-green-400 rounded-lg px-4 py-2 mt-8 border-2 border-black" %>
   </div>
 </section>
