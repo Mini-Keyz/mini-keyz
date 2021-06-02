@@ -1,13 +1,10 @@
 <!-- Notice -->
 <% if notice %>
   <div class="sticky bottom-12 flex justify-end mr-4 opacity-100" role="notice" id="flash">
-    <div style="width: 200px; height: 52px;" class="flex justify-between items-center px-2 font-semibold bg-blue-100 rounded-lg border-2 border-blue-400">
+    <div style="min-width: 200px; height: 52px;" class="flex justify-center items-center px-6 font-semibold bg-blue-100 rounded-lg border-2 border-blue-400">
       <div class="text-semibold">
         <%= notice %>
       </div>
-      <button type="button" class="close" data-dismiss="notice" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
   </div>
 <% end %>
