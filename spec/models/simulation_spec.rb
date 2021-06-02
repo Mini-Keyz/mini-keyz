@@ -344,12 +344,40 @@ RSpec.describe Simulation, type: :model do
       end
     end
 
+    describe '#credit_loan_cumulative_interests_paid_for_year_two' do
+      it 'returns the sum of interest costs for a the second year of the loan' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_interests_paid_for_year_two
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_interests_paid_for_year_two
+        expect(result_lyon).to be_within(0.01).of(5134.95)
+        expect(result_bordeaux).to be_within(0.01).of(933.63)
+      end
+    end
+
+    describe '#credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)' do
+      it 'returns the sum of interest costs paid since the beginning of the loan for a given month' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_interests_paid_since_beginning_for_month(150)
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_interests_paid_since_beginning_for_month(25)
+        expect(result_lyon).to be_within(0.01).of(48_645.22)
+        expect(result_bordeaux).to be_within(0.01).of(1988.59)
+      end
+    end
+
     describe '#credit_loan_interest_total_amount' do
       it 'returns the loan interest total cost' do
         result_lyon = simulation_lyon.credit_loan_interest_total_amount
         result_bordeaux = simulation_bordeaux.credit_loan_interest_total_amount
         expect(result_lyon).to be_within(0.01).of(57_060.48)
         expect(result_bordeaux).to be_within(0.01).of(10_374.63)
+      end
+    end
+
+    ## Principal
+    describe '#credit_loan_principal_repayment_for_month(payment_period)' do
+      it 'returns the loan principal repayment for a given month' do
+        result_lyon = simulation_lyon.credit_loan_principal_repayment_for_month(200)
+        result_bordeaux = simulation_bordeaux.credit_loan_principal_repayment_for_month(125)
+        expect(result_lyon).to be_within(0.01).of(2444.49)
+        expect(result_bordeaux).to be_within(0.01).of(417.54)
       end
     end
 
