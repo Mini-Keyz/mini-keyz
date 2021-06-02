@@ -6,8 +6,7 @@ const initFlashFadingOut = () => {
     let intervalID = 0;
 
     const fadeout = () => {
-      setInterval(hide, 150);
-      console.log("Executed");
+      setInterval(hide, 80);
     };
 
     const hide = () => {
