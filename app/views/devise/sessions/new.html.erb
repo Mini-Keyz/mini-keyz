@@ -8,9 +8,11 @@
       <h2 class="text-lg font-bold mt-8">Content de vous revoir !</h2>
       <p class="text-lg font-bold">Identifiez-vous :</p>
     
+      <!-- Form -->
       <div class="mt-6">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="relative">
+
             <!-- Email -->
             <div class="field flex justify-center">
               <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", style: "width: 260px; height: 52px;", class: "px-2 border-2 rounded-tl rounded-tr" %>
@@ -36,12 +38,14 @@
               </div>
             <% end %>
           </div>
-      
+          
+          <!-- Submit -->
           <div class="mt-6">
             <div class="actions flex justify-center">
-              <%= f.submit "Se connecter", style: "width: 260px; height: 52px;", class: "font-bold text-white bg-green-700" %>
+              <%= f.submit "Se connecter", style: "width: 260px; height: 52px;", class: "font-bold text-white rounded bg-green-700" %>
             </div>
           </div>
+
         <% end %>
       </div>
       
@@ -58,11 +62,11 @@
       <% end %>
   
       <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-        <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+        <%= link_to "Vous n'avez pas reçu les instructions de confirmation ?", new_confirmation_path(resource_name) %><br />
       <% end %>
   
       <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-        <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+        <%= link_to "Vous n'avez pas reçu les instructions de déblocage ?", new_unlock_path(resource_name) %><br />
       <% end %>
   
       <%- if devise_mapping.omniauthable? %>
