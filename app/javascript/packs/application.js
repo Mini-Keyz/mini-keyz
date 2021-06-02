@@ -8,13 +8,15 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 
-// Import Tailwind
+// Import dependencies
 import "stylesheets/application";
 
 // Import plugins
 import { initNavbarDropdown } from "../plugins/navbar_dropdown";
 import { stylizeRadio } from "../plugins/form_radio";
 import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
+import { initNumberFieldThousandSeparator } from "../plugins/simulation_new_number_field_thousand_separator";
+import { initFlashFadingOut } from "../plugins/flash_fading_out";
 
 // Import plugins variables
 import * as radioStyle from "../plugins_variables/radio_style";
@@ -46,4 +48,6 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
   initProfitabilityDropdowns();
+  // initNumberFieldThousandSeparator(); It seems like it is breaking down our radio buttons value which are then not sent
+  initFlashFadingOut();
 });

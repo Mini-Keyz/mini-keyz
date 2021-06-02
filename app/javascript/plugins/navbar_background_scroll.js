@@ -1,0 +1,3 @@
+const initNavbarBackgroundScroll = () => {};
+
+export { initNavbarBackgroundScroll };

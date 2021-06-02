@@ -1,0 +1,30 @@
+<!-- Notice -->
+<% if notice %>
+  <div class="sticky bottom-12 flex justify-end mr-4 opacity-100" role="notice" id="flash">
+    <div style="min-width: 200px; height: 52px;" class="flex justify-center items-center px-6 font-semibold bg-blue-100 rounded-lg border-2 border-blue-400">
+      <div class="text-semibold">
+        <%= notice %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Success -->
+<% if success %>
+  <div class="text-semi-bold" role="success">
+    <%= success %>
+    <button type="button" class="close" data-dismiss="success" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
+
+<!-- Alert -->
+<% if alert %>
+  <div class="text-semi-bold" role="alert">
+    <%= alert %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>

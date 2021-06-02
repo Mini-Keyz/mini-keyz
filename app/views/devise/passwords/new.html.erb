@@ -1,20 +1,62 @@
-<div class="container mx-auto px-4 md:max-w-screen-sm lg:max-w-screen-sm xl:max-w-screen-sm 2xl:max-w-screen-sm">
+<div class="mx-auto px-4">
 
-  <h2 class="mt-8">Mot de passe oublié ?</h2>
+  <div class="flex justify-center">
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <div style="width: 260px;" class="flex flex-col items-center">
+  
+      <!-- Titles -->
+      <h2 class="text-lg font-bold text-center mt-8">Réinitialiser votre mot de passe</h2>
+      <p class="text-center mt-2">Nous vous enverrons un email avec un lien pour réinitialiser votre mot de passe</p>
+  
+      <!-- Form -->
+      <div class="mt-6">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
-    <div class="field">
-      <%= f.label :email, "Email" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <!-- Error message -->
+          <%= render "devise/shared/error_messages", resource: resource %>
+      
+          <!-- Email -->
+          <div class="field flex justify-center">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", style: "width: 260px; height: 52px;", class: "px-2 border-2 rounded" %>
+          </div>
+      
+          <!-- Submit -->
+          <div class="mt-6">
+            <div class="actions">
+              <%= f.submit "Réinitialiser le mot de passe", style: "width: 260px; height: 52px;", class: "font-bold text-white bg-green-700 rounded cursor-pointer transition duration-150 hover:bg-green-800" %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    
+      <!-- <%= render "devise/shared/links" %> -->
+      <!-- Back -->
+      <%- if controller_name != 'sessions' %>
+        <%= link_to new_session_path(resource_name) do %>
+          <div class="flex items-center mt-6">
+            <i class="fas fa-arrow-left text-xs text-green-700"></i>
+            <p class="text-xs text-green-700 font-semibold underline px-1">Retour</p>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+        <%= link_to "Vous n'avez pas reçu les instructions de confirmation ?", new_confirmation_path(resource_name) %><br />
+      <% end %>
+
+      <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+        <%= link_to "Vous n'avez pas reçu les instructions de dévérouillage ?", new_unlock_path(resource_name) %><br />
+      <% end %>
+
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to "Se connecter avec #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <% end %>
+      <% end %>
+
     </div>
 
-    <div class="actions">
-      <%= f.submit "Envoyez moi un lien pour modifier mon mot de passe", class: "whitespace-normal cursor-pointer" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+  </div>
 
 </div>

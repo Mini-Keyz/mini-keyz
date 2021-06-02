@@ -232,7 +232,7 @@ class Simulation < ApplicationRecord
   # Others (might be worth thinking move them away from model)
 
   def created_for
-    returned_string = TimeDifference.between(created_at, Date.today).humanize
+    returned_string = TimeDifference.between(created_at, DateTime.now).humanize
     find_words_only = /\b[^\d\W]+\b/
     returned_string_in_french = returned_string.gsub(find_words_only, time_in_french)
   end

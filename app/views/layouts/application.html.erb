@@ -14,13 +14,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
   </head>
 
-  <body>
+  <body class="min-h-screen flex flex-col">
+
+    <!-- Navbar -->
     <%= render 'shared/navbar' %>
+
+    <!-- Content -->
     <%= yield %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="mt-auto">
+      <!-- Footer -->
+      <%= render 'shared/footer' %>
+    </div>
     
-    <%= render 'shared/footer' %>
+    <!-- Flashes -->
+    <%= render 'shared/flashes' %>
+
   </body>
 </html>
