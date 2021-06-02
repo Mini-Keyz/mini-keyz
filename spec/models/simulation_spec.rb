@@ -381,11 +381,54 @@ RSpec.describe Simulation, type: :model do
       end
     end
 
+    describe '#credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)' do
+      it 'returns the sum of loan principal repayments since the beginning of the loan for a given month' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_principal_paid_since_beginning_for_month(100)
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_principal_paid_since_beginning_for_month(180)
+        expect(result_lyon).to be_within(0.01).of(215_889.10)
+        expect(result_bordeaux).to be_within(0.01).of(73_095.76)
+      end
+    end
+
+    describe '#credit_loan_remaining_principal_to_pay_for_month(payment_period)' do
+      it 'returns the remaining loan principal to pay for a given month' do
+        result_lyon = simulation_lyon.credit_loan_remaining_principal_to_pay_for_month(100)
+        result_bordeaux = simulation_bordeaux.credit_loan_remaining_principal_to_pay_for_month(180)
+        expect(result_lyon).to be_within(0.01).of(334_110.9)
+        expect(result_bordeaux).to be_within(0.01).of(26_904.24)
+      end
+    end
+
     ## Insurance
     describe '#credit_loan_insurance_percentage_per_year' do
       it 'returns a default value of 0.30% per year' do
         result_lyon = simulation_lyon.credit_loan_insurance_percentage_per_year
         expect(result_lyon).to eq(0.003)
+      end
+    end
+
+    describe '#credit_loan_insurance_percentage_per_month' do
+      it 'returns the loan insurance percentage as a loan insurance percentage per month' do
+        result_lyon = simulation_lyon.credit_loan_insurance_percentage_per_month
+        expect(result_lyon).to eq(0.00025)
+      end
+    end
+
+    describe '#credit_loan_insurance_amount_per_month' do
+      it 'returns the loan insurance cost per month' do
+        result_lyon = simulation_lyon.credit_loan_insurance_amount_per_month
+        result_bordeaux = simulation_bordeaux.credit_loan_insurance_amount_per_month
+        expect(result_lyon).to be_within(0.01).of(137.5)
+        expect(result_bordeaux).to be_within(0.01).of(25)
+      end
+    end
+
+    describe '#credit_loan_insurance_amount_per_year' do
+      it 'returns the loan insurance cost per year' do
+        result_lyon = simulation_lyon.credit_loan_insurance_amount_per_year
+        result_bordeaux = simulation_bordeaux.credit_loan_insurance_amount_per_year
+        expect(result_lyon).to be_within(0.01).of(1650)
+        expect(result_bordeaux).to be_within(0.01).of(300)
       end
     end
 
@@ -398,6 +441,9 @@ RSpec.describe Simulation, type: :model do
       end
     end
   end
+
+  #-----------------------------------------------------------------------#
+  # Fiscal related formulas
 
   #-----------------------------------------------------------------------#
   # Profitability formulas
