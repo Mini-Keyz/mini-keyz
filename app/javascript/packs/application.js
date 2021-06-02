@@ -16,6 +16,7 @@ import { initNavbarDropdown } from "../plugins/navbar_dropdown";
 import { stylizeRadio } from "../plugins/form_radio";
 import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
 import { initNumberFieldThousandSeparator } from "../plugins/simulation_new_number_field_thousand_separator";
+import { initFlashFadingOut } from "../plugins/flash_fading_out";
 
 // Import plugins variables
 import * as radioStyle from "../plugins_variables/radio_style";
@@ -48,4 +49,5 @@ document.addEventListener("turbolinks:load", () => {
   });
   initProfitabilityDropdowns();
   initNumberFieldThousandSeparator();
+  initFlashFadingOut();
 });

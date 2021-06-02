@@ -1,11 +1,11 @@
 <div class="mx-auto px-8 md:px-16 2xl:px-32">
 
   <!-- Hero -->
-  <section class="flex mt-16 flex-wrap xl:flex-nowrap xl:grid xl:grid-cols-7 xl:gap-4 xl:items-center">
+  <section class="flex mt-28 flex-wrap xl:flex-nowrap xl:grid xl:grid-cols-7 xl:gap-4 xl:items-center">
     <div class="flex flex-col items-start xl:col-start-1 xl:col-end-5">
       <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl"><span class="font-extrabold">Faites le choix</span> d'investir dans le bon projet immobilier en ayant toutes les dépenses prises en compte</h1>
       <h2 class="text-base mt-4">Calculez les rentabilités de votre projet d'investissement. Projetez les flux financiers des premières années d'exploitation. Choisissez le status fiscal le plus avantageux.</h2>
-      <%= link_to "Réaliser une simulation", new_simulation_path, class: "flex-grow-0 font-bold bg-green-frog hover:bg-green-400 rounded-lg px-4 py-2 mt-8 border-2 border-black" %>
+      <%= link_to "Réaliser une simulation", new_simulation_path, class: "flex-grow-0 font-bold bg-green-frog hover:bg-green-500 rounded-lg px-4 py-2 mt-8 border-2 border-black transition duration-150" %>
     </div>
     <div class="mt-16 w-full flex justify-center xl:mt-0 xl:inline-block xl:col-start-5 xl:col-end-8">
       <%= image_tag "pages/dogecoin-unsplash.jpg", class: "rounded-lg m-auto" %>
@@ -48,7 +48,7 @@
       <div class="p-8 sm:p-16">
         <p class=" text-sm sm:text-base font-bold uppercase text-green-700">rentabilités</p>
         <h3 class="text-2xl sm:text-3xl font-semibold mt-4">Déterminez le meilleur investissement locatif</h3>
-        <p class="sm:text-xl mt-4">Calculez les rentabilités brute, nette, et nette d'impôts de vos différents projets d'investissement et choisissez le meilleur projet</p>
+        <p class="sm:text-lg mt-4">Calculez les rentabilités brute, nette, et nette d'impôts de vos différents projets d'investissement et choisissez le meilleur projet</p>
         <div class="mt-4">
           <%= link_to "En savoir plus", new_simulation_path, class: "underline font-semibold text-green-700" %>
         </div>
@@ -60,7 +60,7 @@
       <div class="p-8 sm:p-16">
         <p class=" text-sm sm:text-base font-bold uppercase text-green-700">évolution</p>
         <h3 class="text-2xl sm:text-3xl font-semibold mt-4">Prévoyez les flux financiers des premières années d'exploitation</h3>
-        <p class="sm:text-xl mt-4">Projetez sur une année type les revenus et dépenses afin d'anticiper les rentrées et sorties d'argent importantes.</p>
+        <p class="sm:text-lg mt-4">Projetez sur une année type les revenus et dépenses afin d'anticiper les rentrées et sorties d'argent importantes.</p>
         <div class="mt-4">
           <%= link_to "En savoir plus", new_simulation_path, class: "underline font-semibold text-green-700" %>
         </div>
@@ -78,7 +78,7 @@
       <div class="p-8 sm:p-16">
         <p class=" text-sm sm:text-base font-bold uppercase text-green-700">status fiscal</p>
         <h3 class="text-2xl sm:text-3xl font-semibold mt-4">Choisissez le status fiscal le plus avantageux</h3>
-        <p class="sm:text-xl mt-4">Lorem ipsum</p>
+        <p class="sm:text-lg mt-4">Lorem ipsum</p>
         <div class="mt-4">
           <%= link_to "En savoir plus", new_simulation_path, class: "underline font-semibold text-green-700" %>
         </div>
@@ -93,6 +93,6 @@
   <div class="flex flex-col items-center py-24">
     <h2 class="text-2xl sm:text-3xl font-semibold">Choisissez de gagner du temps et du contrôle</h2>
     <h3 class="mt-4">Adoptez dès maintenant une solution efficace de mesure de la rentabilité de vos investissements locatifs.</h3>
-    <%= link_to "Réaliser une simulation", new_simulation_path, class: "font-bold bg-green-frog hover:bg-green-400 rounded-lg px-4 py-2 mt-8 border-2 border-black" %>
+    <%= link_to "Réaliser une simulation", new_simulation_path, class: "font-bold bg-green-frog hover:bg-green-500 rounded-lg px-4 py-2 mt-8 border-2 border-black transition duration-150" %>
   </div>
 </section>
