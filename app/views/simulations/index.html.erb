@@ -2,7 +2,7 @@
 
   <!-- New simulation button -->
   <div class="flex justify-center mt-4 text-sm">
-    <%= link_to "Réaliser une simulation", new_simulation_path, class: "font-bold bg-green-frog hover:bg-green-400 rounded-lg px-4 py-2 mt-8 border-2 border-black" %>
+    <%= link_to "Réaliser une simulation", new_simulation_path, class: "font-bold bg-green-frog hover:bg-green-500 rounded-lg px-4 py-2 mt-8 border-2 border-black" %>
   </div>
 
   <!-- Introduction text -->
@@ -12,14 +12,14 @@
   </div>
 
   <!-- Mes simulations -->
-  <div class="bg-green-700 rounded mt-8 px-4 py-4">
+  <div class="bg-green-100 rounded mt-8 px-4 py-4">
     <div class="">
-      <h1 class="text-xl text-white font-bold leading-tight">Mes simulations :</h1>
+      <h1 class="text-xl font-bold leading-tight">Mes simulations :</h1>
     </div>
   
     <div class="mt-4">
       <% @simulations.each do |simulation| %>
-      <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:bg-green-100">
+      <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:bg-opacity-70">
         <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
           <p>
             <span class="font-bold text-xl"><%= simulation.house_price_bought_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %></span> sur <%= simulation.house_city %><% if simulation.house_first_works_amount > 0 %>, +<%= simulation.house_first_works_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %> de travaux<% end %>
