@@ -112,8 +112,9 @@ class Simulation < ApplicationRecord
   end
 
   def credit_loan_cumulative_interests_paid_for_year(payment_period)
-    start_per = (payment_period * 12) + 1
-    end_per = (payment_period + 1) * 12
+    # Years are not 0 based
+    start_per = ((payment_period - 1) * 12) + 1
+    end_per = payment_period * 12
     - cumipmt(credit_loan_interest_rate_per_month, credit_loan_duration_in_months, credit_loan_amount, start_per,
               end_per)
   end
