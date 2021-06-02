@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         "green-frog": "#7cd7ac",
       },
+      transitionProperty: {
+        visibility: "visibility",
+      },
     },
   },
   variants: {

@@ -15,12 +15,12 @@
 
             <!-- Email -->
             <div class="field flex justify-center">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", style: "width: 260px; height: 52px;", class: "px-2 border-2 rounded-tl rounded-tr" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", value: "testit1@ok.com",style: "width: 260px; height: 52px;", class: "px-2 border-2 rounded-tl rounded-tr" %>
             </div>
         
             <!-- Password -->
             <div class="field flex justify-center">
-              <%= f.password_field :password, autocomplete: "current-password", placeholder: "Mot de passe", style: "width: 260px; height: 52px;", class: "px-2 border-l-2 border-r-2 border-b-2 rounded-bl rounded-br" %>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder: "Mot de passe", value: "123456", style: "width: 260px; height: 52px;", class: "px-2 border-l-2 border-r-2 border-b-2 rounded-bl rounded-br" %>
             </div>
   
             <!-- Forgotten password? -->
@@ -66,7 +66,7 @@
       <% end %>
   
       <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-        <%= link_to "Vous n'avez pas reçu les instructions de déblocage ?", new_unlock_path(resource_name) %><br />
+        <%= link_to "Vous n'avez pas reçu les instructions de dévérouillage ?", new_unlock_path(resource_name) %><br />
       <% end %>
   
       <%- if devise_mapping.omniauthable? %>

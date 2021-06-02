@@ -1,0 +1,33 @@
+<!-- Notice -->
+<% if notice %>
+  <div class="sticky bottom-12 flex justify-end mr-4" role="notice">
+    <div style="width: 200px; height: 52px;" class="flex justify-between items-center px-2 bg-white rounded-lg border-2">
+      <div class="text-semibold">
+        <%= notice %>
+      </div>
+      <button type="button" class="close" data-dismiss="notice" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<!-- Success -->
+<% if success %>
+  <div class="text-semi-bold" role="success">
+    <%= success %>
+    <button type="button" class="close" data-dismiss="success" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
+
+<!-- Alert -->
+<% if alert %>
+  <div class="text-semi-bold" role="alert">
+    <%= alert %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
