@@ -16,7 +16,7 @@ module IncomeTaxesBaseFormulas
                                                      house_property_management_amount_per_year house_insurance_gli_amount_per_year house_insurance_pno_amount_per_year house_property_tax_amount_per_year credit_loan_cumulative_interests_paid_for_year_two credit_loan_insurance_amount_per_year].freeze
 
   def self.calc_income_tax_amount_per_year(args = {}, property_income = 0)
-    taxable_amount = calc_taxable_amount(args, property_income)
+    taxable_amount = calc_net_taxable_amount(args, property_income)
     current_year = Date.today.year
 
     aggregated_tax_amount = calc_aggregated_tax_amount(taxable_amount, current_year)
@@ -24,7 +24,7 @@ module IncomeTaxesBaseFormulas
     (aggregated_tax_amount * args[:fiscal_nb_parts]).floor
   end
 
-  def self.calc_taxable_amount(args = {}, property_income = 0)
+  def self.calc_net_taxable_amount(args = {}, property_income = 0)
     ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2] + property_income) * (1 - LUMP_SUMP_ALLOWANCE)) / args[:fiscal_nb_parts]
   end
 
@@ -43,7 +43,7 @@ module IncomeTaxesBaseFormulas
   end
 
   def self.calc_income_taxes_scale(args = {}, property_income = 0)
-    taxable_amount = calc_taxable_amount(args, property_income)
+    taxable_amount = calc_net_taxable_amount(args, property_income)
     current_year = Date.today.year
 
     income_taxes_scale = INCOME_TAXES_SCALE["its#{current_year}".to_sym]

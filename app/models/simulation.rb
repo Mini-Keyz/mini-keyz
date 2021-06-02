@@ -166,6 +166,16 @@ class Simulation < ApplicationRecord
   #-----------------------------------------------------------------------#
   # Fiscal related formulas
 
+  def fiscal_income_tax_base_amount_per_year
+    calc_income_tax_base_amount_per_year({
+                                           fiscal_status: fiscal_status,
+                                           fiscal_regimen: fiscal_regimen,
+                                           fiscal_revenues_p1: fiscal_revenues_p1,
+                                           fiscal_revenues_p2: fiscal_revenues_p2,
+                                           fiscal_nb_parts: fiscal_nb_parts
+                                         })
+  end
+
   def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
     calc_income_tax_incurred_by_taxable_property_income_amount_per_year({
                                                                           fiscal_status: fiscal_status,
@@ -191,20 +201,12 @@ class Simulation < ApplicationRecord
                                           })
   end
 
-  def fiscal_income_tax_base_amount_per_year
-    calc_income_tax_base_amount_per_year({
-                                           fiscal_status: fiscal_status,
-                                           fiscal_regimen: fiscal_regimen,
-                                           fiscal_revenues_p1: fiscal_revenues_p1,
-                                           fiscal_revenues_p2: fiscal_revenues_p2,
-                                           fiscal_nb_parts: fiscal_nb_parts,
-                                           house_rent_amount_per_year: house_rent_amount_per_year,
-                                           house_first_works_amount: house_first_works_amount
-                                         })
-  end
-
   #-----------------------------------------------------------------------#
   # Profitability formulas
+
+  def global_buying_operation_cost
+    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
+  end
 
   def gross_profitability
     quotient = house_rent_amount_per_year
@@ -223,10 +225,6 @@ class Simulation < ApplicationRecord
 
   def net_after_taxes_profitability
     6.6
-  end
-
-  def global_buying_operation_cost
-    house_price_bought_amount * (1 + house_notarial_fees_percentage) + house_first_works_amount
   end
 
   #-----------------------------------------------------------------------#

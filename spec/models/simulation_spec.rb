@@ -444,6 +444,16 @@ RSpec.describe Simulation, type: :model do
 
   #-----------------------------------------------------------------------#
   # Fiscal related formulas
+  describe 'Fiscal related formulas' do
+    describe '#fiscal_income_tax_base_amount_per_year' do
+      it 'returns the income tax that would be payed without the real estate investment' do
+        result_lyon = simulation_lyon.fiscal_income_tax_base_amount_per_year
+        result_bordeaux = simulation_bordeaux.fiscal_income_tax_base_amount_per_year
+        expect(result_lyon).to be_within(1).of(11_872)
+        expect(result_bordeaux).to be_within(1).of(894)
+      end
+    end
+  end
 
   #-----------------------------------------------------------------------#
   # Profitability formulas
