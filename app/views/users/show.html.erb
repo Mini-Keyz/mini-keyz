@@ -4,13 +4,20 @@
 
     <div style="width: 260px;" class="flex flex-col items-center">
 
-      <%= @user.email %>
+      <!-- Title -->
+      <h2 class="text-lg font-bold text-center mt-8">Mes informations</h2>
+      <div class="w-full flex justify-start mt-6">
+        <div>
+          <p class="font-semibold">Adresse email</p>
+          <%= @user.email %>
+        </div>
+      </div>
 
-      <%= link_to "Modifier mon mot de passe", edit_user_registration_path %>
-      <%= link_to "Supprimer mon compte", edit_user_registration_path %>
+      <%= link_to "Modifier mon mot de passe", edit_user_registration_path, style: "width: 260px; height: 28px;", class: "text-white text-center bg-gray-700 rounded cursor-pointer transition duration-150 hover:bg-gray-800 mt-4"  %>
+      <%= link_to "Supprimer mon compte", edit_user_registration_path, style: "width: 260px; height: 28px;", class: "text-white text-center bg-red-700 rounded cursor-pointer transition duration-150 hover:bg-red-800 mt-4"  %>
 
     </div>
 
   </div>
-  
+
 </div>
