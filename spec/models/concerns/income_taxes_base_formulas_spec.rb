@@ -45,12 +45,75 @@ RSpec.describe IncomeTaxesBaseFormulas do
   #   end
   # end
 
-  describe '#calc_net_taxable_amount' do
-    it 'returns the taxable amount (case when no property income)' do
-      result_lyon = IncomeTaxesBaseFormulas.calc_net_taxable_amount(simulation_lyon)
-      result_bordeaux = IncomeTaxesBaseFormulas.calc_net_taxable_amount(simulation_bordeaux)
-      expect(result_lyon).to be_within(1).for
-      expect(result_bordeaux).to be_within(1).for
+  describe '#calc_global_net_taxable_amount' do
+    context 'when it has no property income' do
+      it 'returns the net taxable amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_lyon)
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_bordeaux)
+        expect(result_lyon).to be_within(0.01).of(90_000)
+        expect(result_bordeaux).to be_within(0.01).of(54_000)
+      end
+    end
+
+    context 'when it has some property income' do
+      it 'returns the net taxable amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_lyon, 20_000)
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_bordeaux, 2_000)
+        expect(result_lyon).to be_within(0.01).of(110_000)
+        expect(result_bordeaux).to be_within(0.01).of(56_000)
+      end
+    end
+  end
+
+  describe '#calc_family_quotient_amount' do
+    context 'when it has no property income' do
+      it 'returns the family quotient amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_family_quotient_amount(90_000, simulation_lyon[:fiscal_nb_parts])
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_family_quotient_amount(54_000,
+                                                                              simulation_bordeaux[:fiscal_nb_parts])
+        expect(result_lyon).to be_within(0.01).of(30_000)
+        expect(result_bordeaux).to be_within(0.01).of(13_500)
+      end
+    end
+
+    context 'when it has some property income' do
+      it 'returns the family quotient amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_family_quotient_amount(110_000, simulation_lyon[:fiscal_nb_parts])
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_family_quotient_amount(56_000,
+                                                                              simulation_bordeaux[:fiscal_nb_parts])
+        expect(result_lyon).to be_within(0.01).of(36_666.67)
+        expect(result_bordeaux).to be_within(0.01).of(14_000)
+      end
+    end
+  end
+
+  describe '#calc_aggregated_tax_amount' do
+    it 'returns the aggregated tax amount' do
+      current_year = Date.today.year
+      result_lyon = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(30_000, current_year)
+      result_bordeaux = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(14_000, current_year)
+      expect(result_lyon).to be_within(0.01).of(3005.45)
+      expect(result_bordeaux).to be_within(0.01).of(430.65)
+    end
+  end
+
+  describe '#calc_income_taxes_scale' do
+    context 'when it has no property income' do
+      it 'returns the family quotient amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_income_taxes_scale(simulation_lyon)
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_income_taxes_scale(simulation_bordeaux)
+        expect(result_lyon).to eq({ family_quotient_amount: { start_scale: 25_711, end_scale: 73_516 }, tax: 0.3 })
+        expect(result_bordeaux).to eq({ family_quotient_amount: { start_scale: 10_085, end_scale: 25_710 }, tax: 0.11 })
+      end
+    end
+
+    context 'when it has some property income' do
+      it 'returns the family quotient amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_income_taxes_scale(simulation_lyon, 20_000)
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_income_taxes_scale(simulation_bordeaux, 2_000)
+        expect(result_lyon).to eq({ family_quotient_amount: { start_scale: 25_711, end_scale: 73_516 }, tax: 0.3 })
+        expect(result_bordeaux).to eq({ family_quotient_amount: { start_scale: 10_085, end_scale: 25_710 }, tax: 0.11 })
+      end
     end
   end
 end
