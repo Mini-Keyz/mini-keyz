@@ -39,11 +39,25 @@ RSpec.describe IncomeTaxesBaseFormulas do
                    })
   end
 
-  # describe "#calc_income_tax_amount_per_year" do
-  #   it "returns the income tax amont per year" do
-  #     result_lyon = IncomeTaxesBaseFormulas.calc_income_tax_amount_per_year()
-  #   end
-  # end
+  describe '#calc_income_tax_amount_per_year' do
+    context 'when it has no property income' do
+      it 'returns the net taxable amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_income_tax_amount_per_year(simulation_lyon)
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_income_tax_amount_per_year(simulation_bordeaux)
+        expect(result_lyon).to be_within(1).of(9016)
+        expect(result_bordeaux).to be_within(1).of(1502)
+      end
+    end
+
+    context 'when it has some property income' do
+      it 'returns the net taxable amount' do
+        result_lyon = IncomeTaxesBaseFormulas.calc_income_tax_amount_per_year(simulation_lyon, 20_000)
+        result_bordeaux = IncomeTaxesBaseFormulas.calc_income_tax_amount_per_year(simulation_bordeaux, 2_000)
+        expect(result_lyon).to be_within(1).of(15_016)
+        expect(result_bordeaux).to be_within(1).of(1722)
+      end
+    end
+  end
 
   describe '#calc_global_net_taxable_amount' do
     context 'when it has no property income' do
@@ -91,9 +105,13 @@ RSpec.describe IncomeTaxesBaseFormulas do
     it 'returns the aggregated tax amount' do
       current_year = Date.today.year
       result_lyon = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(30_000, current_year)
-      result_bordeaux = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(14_000, current_year)
+      result_bordeaux = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(13_500, current_year)
+      result_lyon_with_property_income = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(36_666.67, current_year)
+      result_bordeaux_with_property_income = IncomeTaxesBaseFormulas.calc_aggregated_tax_amount(14_000, current_year)
       expect(result_lyon).to be_within(0.01).of(3005.45)
-      expect(result_bordeaux).to be_within(0.01).of(430.65)
+      expect(result_bordeaux).to be_within(0.01).of(375.65)
+      expect(result_lyon_with_property_income).to be_within(0.01).of(5005.45)
+      expect(result_bordeaux_with_property_income).to be_within(0.01).of(430.65)
     end
   end
 

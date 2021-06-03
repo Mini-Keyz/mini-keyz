@@ -2,14 +2,20 @@
 
 module IncomeTaxesBaseFormulas
   INCOME_TAXES_SCALE = {
-    its2021: [
+    year2021: [
       { family_quotient_amount: { start_scale: 0, end_scale: 10_084 }, tax: 0 },
       { family_quotient_amount: { start_scale: 10_085, end_scale: 25_710 }, tax: 0.11 },
       { family_quotient_amount: { start_scale: 25_711, end_scale: 73_516 }, tax: 0.3 },
       { family_quotient_amount: { start_scale: 73_517, end_scale: 158_122 }, tax: 0.41 },
       { family_quotient_amount: { start_scale: 158_123, end_scale: BigDecimal('Infinity') }, tax: 0.45 }
     ]
-  }
+  }.freeze
+
+  FAMILY_QUOTIENT_CAPPING_AMOUNT = {
+    # Per half fiscal parts for children
+    year2021: 1570
+  }.freeze
+
   REVENUES_STANDARD_ALLOWANCE = 0.1
 
   REAL_REGIMEN_DEDUCTIBLE_EXPENSES_FOR_YEAR_TWO = %i[house_landlord_charges_amount_per_year
@@ -27,6 +33,18 @@ module IncomeTaxesBaseFormulas
     (aggregated_tax_amount * args[:fiscal_nb_parts]).floor
   end
 
+  def self.calc_income_taxes_scale(args = {}, net_taxable_property_income_amount = 0)
+    global_net_taxable_income_amount = calc_global_net_taxable_amount(args, net_taxable_property_income_amount)
+
+    family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount,
+                                                         args[:fiscal_nb_parts])
+    current_year = Date.today.year
+
+    income_taxes_scale = INCOME_TAXES_SCALE["year#{current_year}".to_sym]
+
+    income_taxes_scale.find { |scale| family_quotient_amount <= scale[:family_quotient_amount][:end_scale] }
+  end
+
   def self.calc_global_net_taxable_amount(args = {}, net_taxable_property_income_amount = 0)
     ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2]) * (1 - REVENUES_STANDARD_ALLOWANCE)) + net_taxable_property_income_amount
   end
@@ -36,7 +54,7 @@ module IncomeTaxesBaseFormulas
   end
 
   def self.calc_aggregated_tax_amount(family_quotient_amount, current_year)
-    income_taxes_scale = INCOME_TAXES_SCALE["its#{current_year}".to_sym]
+    income_taxes_scale = INCOME_TAXES_SCALE["year#{current_year}".to_sym]
 
     income_taxes_scale.map do |scale|
       if family_quotient_amount < scale[:family_quotient_amount][:start_scale]
@@ -47,17 +65,5 @@ module IncomeTaxesBaseFormulas
         (scale[:family_quotient_amount][:end_scale] - scale[:family_quotient_amount][:start_scale]) * scale[:tax]
       end
     end.sum
-  end
-
-  def self.calc_income_taxes_scale(args = {}, net_taxable_property_income_amount = 0)
-    global_net_taxable_income_amount = calc_global_net_taxable_amount(args, net_taxable_property_income_amount)
-
-    family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount,
-                                                         args[:fiscal_nb_parts])
-    current_year = Date.today.year
-
-    income_taxes_scale = INCOME_TAXES_SCALE["its#{current_year}".to_sym]
-
-    income_taxes_scale.find { |scale| family_quotient_amount <= scale[:family_quotient_amount][:end_scale] }
   end
 end
