@@ -171,10 +171,10 @@ class Simulation < ApplicationRecord
   # Fiscal related formulas
 
   def fiscal_marital_status
-    if fiscal_revenues_p2 >= 0
-      'Marié / Pacsé'
-    else
+    if fiscal_revenues_p2.nil?
       'Célibataire'
+    else
+      'Marié / Pacsé'
     end
   end
 

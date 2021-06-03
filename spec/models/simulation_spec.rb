@@ -39,6 +39,24 @@ RSpec.describe Simulation, type: :model do
                    })
   end
 
+  let(:simulation_strasbourg) do
+    Simulation.new({
+                     house_city: 'Bordeaux',
+                     house_price_bought_amount: 300_000,
+                     house_first_works_amount: 50_000,
+                     house_total_charges_amount_per_year: 2000,
+                     house_property_tax_amount_per_year: 1500,
+                     house_rent_amount_per_month: 1200,
+                     house_property_management_cost_percentage: 0.08,
+                     credit_loan_amount: 200_000,
+                     credit_loan_duration: 10,
+                     fiscal_status: 'LMNP',
+                     fiscal_regimen: 'Forfait',
+                     fiscal_revenues_p1: 50_000,
+                     fiscal_nb_parts: 1
+                   })
+  end
+
   #-----------------------------------------------------------------------#
   # Validations
   describe 'Validations' do
@@ -446,11 +464,16 @@ RSpec.describe Simulation, type: :model do
   # Fiscal related formulas
   describe 'Fiscal related formulas' do
     describe '#fiscal_marital_status' do
-      it 'returns "Marié / Pascé" if there is a revenues inputed for p2' do
+      it 'returns "Marié / Pacsé" if there is a revenues inputed for p2' do
         result_lyon = simulation_lyon.fiscal_marital_status
         result_bordeaux = simulation_bordeaux.fiscal_marital_status
         expect(result_lyon).to eq('Marié / Pacsé')
         expect(result_bordeaux).to eq('Marié / Pacsé')
+      end
+
+      it 'returns "Célibataire" if there is no revenues inputed for p2' do
+        result_strasbourg = simulation_strasbourg.fiscal_marital_status
+        expect(result_strasbourg).to eq('Célibataire')
       end
     end
 
