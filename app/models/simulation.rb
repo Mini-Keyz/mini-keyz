@@ -21,6 +21,8 @@ class Simulation < ApplicationRecord
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
   validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :fiscal_nb_dependent_children, presence: true,
+                                           numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   include(CreditFormulas)
   include(IncomeTaxesFormulas)

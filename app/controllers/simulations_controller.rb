@@ -62,7 +62,8 @@ class SimulationsController < ApplicationController
         :fiscal_regimen,
         :fiscal_revenues_p1,
         :fiscal_revenues_p2,
-        :fiscal_nb_parts
+        :fiscal_nb_parts,
+        :fiscal_nb_dependent_children
       )
   end
 end

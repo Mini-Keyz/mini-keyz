@@ -16,7 +16,8 @@ RSpec.describe Simulation, type: :model do
                      fiscal_regimen: 'Réel',
                      fiscal_revenues_p1: 75_000,
                      fiscal_revenues_p2: 25_000,
-                     fiscal_nb_parts: 3
+                     fiscal_nb_parts: 3,
+                     fiscal_nb_dependent_children: 2
                    })
   end
 
@@ -35,7 +36,8 @@ RSpec.describe Simulation, type: :model do
                      fiscal_regimen: 'Réel',
                      fiscal_revenues_p1: 25_000,
                      fiscal_revenues_p2: 35_000,
-                     fiscal_nb_parts: 4
+                     fiscal_nb_parts: 4,
+                     fiscal_nb_dependent_children: 3
                    })
   end
 
@@ -53,7 +55,8 @@ RSpec.describe Simulation, type: :model do
                      fiscal_status: 'LMNP',
                      fiscal_regimen: 'Forfait',
                      fiscal_revenues_p1: 50_000,
-                     fiscal_nb_parts: 1
+                     fiscal_nb_parts: 1,
+                     fiscal_nb_dependent_children: 0
                    })
   end
 
@@ -200,6 +203,12 @@ RSpec.describe Simulation, type: :model do
       it { should validate_presence_of(:fiscal_nb_parts) }
       it { should validate_numericality_of(:fiscal_nb_parts) }
       it { should validate_numericality_of(:fiscal_nb_parts).is_greater_than_or_equal_to(0) }
+    end
+
+    describe '#fiscal_nb_dependent_children' do
+      it { should validate_presence_of(:fiscal_nb_dependent_children) }
+      it { should validate_numericality_of(:fiscal_nb_dependent_children).only_integer }
+      it { should validate_numericality_of(:fiscal_nb_dependent_children).is_greater_than_or_equal_to(0) }
     end
   end
 
@@ -474,6 +483,15 @@ RSpec.describe Simulation, type: :model do
       it 'returns "Célibataire" if there is no revenues inputed for p2' do
         result_strasbourg = simulation_strasbourg.fiscal_marital_status
         expect(result_strasbourg).to eq('Célibataire')
+      end
+    end
+
+    describe '#fiscal_nb_dependent_children' do
+      it 'returns the income tax that would be payed without the real estate investment' do
+        result_lyon = simulation_lyon.fiscal_nb_dependent_children
+        result_bordeaux = simulation_bordeaux.fiscal_nb_dependent_children
+        expect(result_lyon).to eq(2)
+        expect(result_bordeaux).to eq(3)
       end
     end
 
