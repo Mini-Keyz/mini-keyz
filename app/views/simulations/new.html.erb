@@ -242,6 +242,45 @@
           <%= f.range_field :fiscal_nb_parts, in: 1..8, step: 0.25, class: "mt-1 cursor-pointer" %>
         </div>
 
+        <!-- Nombre d'enfants à charge -->
+        <div class="flex flex-col mt-4">
+          <%= f.label :fiscal_nb_dependent_children, "Nombre d'enfants à charge", class: "font-bold" %>
+          <p class="text-xs text-gray-500">Vos enfants mineurs ou majeurs (sous certaines conditions) rattachés à votre foyer fiscal</p>
+          <div class="flex items-center justify-start mt-1" id="radio-fiscal-nb-dependent-children">
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 0, class: "hidden" %>
+              <%= f.label :fiscal_nb_dependent_children, "0", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 1, class: "hidden" %>
+              <%= f.label :fiscal_nb_dependent_children, "1", value: 1, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 2, class: "hidden"%>
+              <%= f.label :fiscal_nb_dependent_children, "2", value: 2, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 3, class: "hidden"%>
+              <%= f.label :fiscal_nb_dependent_children, "3", value: 3, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 4, class: "hidden"%>
+              <%= f.label :fiscal_nb_dependent_children, "4", value: 4, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 5, class: "hidden"%>
+              <%= f.label :fiscal_nb_dependent_children, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px;">
+              <%= f.radio_button :fiscal_nb_dependent_children, 6, class: "hidden"%>
+              <%= f.label :fiscal_nb_dependent_children, "6", value: 6, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+
+            <!-- <%= errors_for @simulation, :fiscal_nb_dependent_children %>   -->
+          </div>
+
+        </div>
+
       </div>
 
       <!-- 5/ Calculer ma rentabilité -->
