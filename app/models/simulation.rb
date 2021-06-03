@@ -37,20 +37,24 @@ class Simulation < ApplicationRecord
 
   def initialize(args)
     super
+
+    # House related
     self.house_notarial_fees_percentage = HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE unless house_notarial_fees_percentage
     unless house_tenant_charges_percentage
       self.house_tenant_charges_percentage = HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE
     end
+    unless house_insurance_pno_amount_per_year
+      self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
+    end
+    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
+
+    # Credit related
     unless credit_loan_interest_percentage_per_year
       self.credit_loan_interest_percentage_per_year = CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR
     end
     unless credit_loan_insurance_percentage_per_year
       self.credit_loan_insurance_percentage_per_year = CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR
     end
-    unless house_insurance_pno_amount_per_year
-      self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
-    end
-    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
   #-----------------------------------------------------------------------#
@@ -165,6 +169,14 @@ class Simulation < ApplicationRecord
 
   #-----------------------------------------------------------------------#
   # Fiscal related formulas
+
+  def fiscal_marital_status
+    if fiscal_revenues_p2 >= 0
+      'Marié / Pacsé'
+    else
+      'Célibataire'
+    end
+  end
 
   def fiscal_income_tax_base_amount_per_year
     calc_income_tax_base_amount_per_year({

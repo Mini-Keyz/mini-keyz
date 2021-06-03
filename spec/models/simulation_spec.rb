@@ -445,6 +445,15 @@ RSpec.describe Simulation, type: :model do
   #-----------------------------------------------------------------------#
   # Fiscal related formulas
   describe 'Fiscal related formulas' do
+    describe '#fiscal_marital_status' do
+      it 'returns "Marié / Pascé" if there is a revenues inputed for p2' do
+        result_lyon = simulation_lyon.fiscal_marital_status
+        result_bordeaux = simulation_bordeaux.fiscal_marital_status
+        expect(result_lyon).to eq('Marié / Pacsé')
+        expect(result_bordeaux).to eq('Marié / Pacsé')
+      end
+    end
+
     describe '#fiscal_income_tax_base_amount_per_year' do
       it 'returns the income tax that would be payed without the real estate investment' do
         result_lyon = simulation_lyon.fiscal_income_tax_base_amount_per_year
