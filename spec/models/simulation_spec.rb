@@ -262,6 +262,15 @@ RSpec.describe Simulation, type: :model do
       end
     end
 
+    describe '#house_insurance_gli_amount_per_month' do
+      it 'returns the gli cost per month' do
+        result_lyon = simulation_lyon.house_insurance_gli_amount_per_month
+        result_bordeaux = simulation_bordeaux.house_insurance_gli_amount_per_month
+        expect(result_lyon).to be_within(0.1).of(87.5)
+        expect(result_bordeaux).to be_within(0.1).of(15.75)
+      end
+    end
+
     describe '#house_insurance_gli_amount_per_year' do
       it 'returns the gli cost per year' do
         result_lyon = simulation_lyon.house_insurance_gli_amount_per_year
@@ -271,6 +280,7 @@ RSpec.describe Simulation, type: :model do
       end
     end
 
+    ## PNO
     describe '#house_insurance_pno_amount_per_year' do
       it 'returns a default value of 100€ per year' do
         result_lyon = simulation_lyon.house_insurance_pno_amount_per_year
@@ -282,11 +292,73 @@ RSpec.describe Simulation, type: :model do
   #-----------------------------------------------------------------------#
   # Credit related formulas
   describe 'Credit related formulas' do
+    ## General
+    describe '#credit_loan_duration_in_months' do
+      it 'returns the duration of the loan in months' do
+        result_lyon = simulation_lyon.credit_loan_duration_in_months
+        result_bordeaux = simulation_bordeaux.credit_loan_duration_in_months
+        expect(result_lyon).to eq(240)
+        expect(result_bordeaux).to eq(240)
+      end
+    end
+
+    describe '#credit_loan_payment_amount_per_month' do
+      it 'returns the payment (principal + interets) made per month to the bank' do
+        result_lyon = simulation_lyon.credit_loan_payment_amount_per_month
+        result_bordeaux = simulation_bordeaux.credit_loan_payment_amount_per_month
+        expect(result_lyon).to be_within(0.01).of(2529.42)
+        expect(result_bordeaux).to be_within(0.01).of(459.89)
+      end
+    end
+
     ## Interests
     describe '#credit_loan_interest_percentage_per_year' do
       it 'returns a default value of 1% per year' do
         result_lyon = simulation_lyon.credit_loan_interest_percentage_per_year
         expect(result_lyon).to eq(0.01)
+      end
+    end
+
+    describe '#credit_loan_interest_rate_per_month' do
+      it 'returns the credit loan interest as a credit loan interest per month' do
+        result_lyon = simulation_lyon.credit_loan_interest_rate_per_month
+        expect(result_lyon).to be_within(0.00001).of(0.00083)
+      end
+    end
+
+    describe '#credit_loan_interest_cost_for_month(payment_period)' do
+      it 'returns the loan interest cost for a given month' do
+        result_lyon = simulation_lyon.credit_loan_interest_cost_for_month(121)
+        result_bordeaux = simulation_bordeaux.credit_loan_interest_cost_for_month(13)
+        expect(result_lyon).to be_within(0.01).of(240.61)
+        expect(result_bordeaux).to be_within(0.01).of(79.55)
+      end
+    end
+
+    describe '#credit_loan_cumulative_interests_paid_for_year(payment_period)' do
+      it 'returns the sum of interest costs for a given year (years are not 0 based!)' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_interests_paid_for_year(5)
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_interests_paid_for_year(20)
+        expect(result_lyon).to be_within(0.01).of(4367.27)
+        expect(result_bordeaux).to be_within(0.01).of(29.78)
+      end
+    end
+
+    describe '#credit_loan_cumulative_interests_paid_for_year_two' do
+      it 'returns the sum of interest costs for a the second year of the loan' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_interests_paid_for_year_two
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_interests_paid_for_year_two
+        expect(result_lyon).to be_within(0.01).of(5134.95)
+        expect(result_bordeaux).to be_within(0.01).of(933.63)
+      end
+    end
+
+    describe '#credit_loan_cumulative_interests_paid_since_beginning_for_month(payment_period)' do
+      it 'returns the sum of interest costs paid since the beginning of the loan for a given month' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_interests_paid_since_beginning_for_month(150)
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_interests_paid_since_beginning_for_month(25)
+        expect(result_lyon).to be_within(0.01).of(48_645.22)
+        expect(result_bordeaux).to be_within(0.01).of(1988.59)
       end
     end
 
@@ -299,11 +371,64 @@ RSpec.describe Simulation, type: :model do
       end
     end
 
+    ## Principal
+    describe '#credit_loan_principal_repayment_for_month(payment_period)' do
+      it 'returns the loan principal repayment for a given month' do
+        result_lyon = simulation_lyon.credit_loan_principal_repayment_for_month(200)
+        result_bordeaux = simulation_bordeaux.credit_loan_principal_repayment_for_month(125)
+        expect(result_lyon).to be_within(0.01).of(2444.49)
+        expect(result_bordeaux).to be_within(0.01).of(417.54)
+      end
+    end
+
+    describe '#credit_loan_cumulative_principal_paid_since_beginning_for_month(payment_period)' do
+      it 'returns the sum of loan principal repayments since the beginning of the loan for a given month' do
+        result_lyon = simulation_lyon.credit_loan_cumulative_principal_paid_since_beginning_for_month(100)
+        result_bordeaux = simulation_bordeaux.credit_loan_cumulative_principal_paid_since_beginning_for_month(180)
+        expect(result_lyon).to be_within(0.01).of(215_889.10)
+        expect(result_bordeaux).to be_within(0.01).of(73_095.76)
+      end
+    end
+
+    describe '#credit_loan_remaining_principal_to_pay_for_month(payment_period)' do
+      it 'returns the remaining loan principal to pay for a given month' do
+        result_lyon = simulation_lyon.credit_loan_remaining_principal_to_pay_for_month(100)
+        result_bordeaux = simulation_bordeaux.credit_loan_remaining_principal_to_pay_for_month(180)
+        expect(result_lyon).to be_within(0.01).of(334_110.9)
+        expect(result_bordeaux).to be_within(0.01).of(26_904.24)
+      end
+    end
+
     ## Insurance
     describe '#credit_loan_insurance_percentage_per_year' do
       it 'returns a default value of 0.30% per year' do
         result_lyon = simulation_lyon.credit_loan_insurance_percentage_per_year
         expect(result_lyon).to eq(0.003)
+      end
+    end
+
+    describe '#credit_loan_insurance_percentage_per_month' do
+      it 'returns the loan insurance percentage as a loan insurance percentage per month' do
+        result_lyon = simulation_lyon.credit_loan_insurance_percentage_per_month
+        expect(result_lyon).to eq(0.00025)
+      end
+    end
+
+    describe '#credit_loan_insurance_amount_per_month' do
+      it 'returns the loan insurance cost per month' do
+        result_lyon = simulation_lyon.credit_loan_insurance_amount_per_month
+        result_bordeaux = simulation_bordeaux.credit_loan_insurance_amount_per_month
+        expect(result_lyon).to be_within(0.01).of(137.5)
+        expect(result_bordeaux).to be_within(0.01).of(25)
+      end
+    end
+
+    describe '#credit_loan_insurance_amount_per_year' do
+      it 'returns the loan insurance cost per year' do
+        result_lyon = simulation_lyon.credit_loan_insurance_amount_per_year
+        result_bordeaux = simulation_bordeaux.credit_loan_insurance_amount_per_year
+        expect(result_lyon).to be_within(0.01).of(1650)
+        expect(result_bordeaux).to be_within(0.01).of(300)
       end
     end
 
@@ -313,6 +438,19 @@ RSpec.describe Simulation, type: :model do
         result_bordeaux = simulation_bordeaux.credit_loan_insurance_total_amount
         expect(result_lyon).to be_within(0.01).of(33_000)
         expect(result_bordeaux).to be_within(0.01).of(6_000)
+      end
+    end
+  end
+
+  #-----------------------------------------------------------------------#
+  # Fiscal related formulas
+  describe 'Fiscal related formulas' do
+    describe '#fiscal_income_tax_base_amount_per_year' do
+      it 'returns the income tax that would be payed without the real estate investment' do
+        result_lyon = simulation_lyon.fiscal_income_tax_base_amount_per_year
+        result_bordeaux = simulation_bordeaux.fiscal_income_tax_base_amount_per_year
+        expect(result_lyon).to be_within(1).of(11_872)
+        expect(result_bordeaux).to be_within(1).of(894)
       end
     end
   end
