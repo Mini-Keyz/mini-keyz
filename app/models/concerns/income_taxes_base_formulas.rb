@@ -25,8 +25,8 @@ module IncomeTaxesBaseFormulas
                                                      house_property_management_amount_per_year house_insurance_gli_amount_per_year house_insurance_pno_amount_per_year house_property_tax_amount_per_year credit_loan_cumulative_interests_paid_for_year_two credit_loan_insurance_amount_per_year].freeze
 
   # Main formula
-  def self.calc_income_tax_amount_per_year(args = {}, net_taxable_property_income_amount = 0)
-    global_net_taxable_income_amount = calc_global_net_taxable_amount(args, net_taxable_property_income_amount)
+  def self.calc_income_tax_amount_per_year(_args = {}, _net_taxable_property_income_amount = 0)
+    global_net_taxable_income_amount = calc_global_net_taxable_amount
 
     fiscal_nb_parts = calc_fiscal_nb_parts
 
@@ -38,8 +38,8 @@ module IncomeTaxesBaseFormulas
     (aggregated_tax_amount * fiscal_nb_parts).floor
   end
 
-  def self.calc_income_taxes_scale(args = {}, net_taxable_property_income_amount = 0)
-    global_net_taxable_income_amount = calc_global_net_taxable_amount(args, net_taxable_property_income_amount)
+  def self.calc_income_taxes_scale(_args = {}, _net_taxable_property_income_amount = 0)
+    global_net_taxable_income_amount = calc_global_net_taxable_amount
 
     fiscal_nb_parts = calc_fiscal_nb_parts
 
@@ -52,8 +52,8 @@ module IncomeTaxesBaseFormulas
     income_taxes_scale.find { |scale| family_quotient_amount <= scale[:family_quotient_amount][:end_scale] }
   end
 
-  def self.calc_global_net_taxable_amount(args = {}, net_taxable_property_income_amount = 0)
-    ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2]) * (1 - REVENUES_STANDARD_ALLOWANCE)) + net_taxable_property_income_amount
+  def calc_global_net_taxable_amount
+    ((fiscal_revenues_p1 + fiscal_revenues_p2) * (1 - REVENUES_STANDARD_ALLOWANCE)) + net_taxable_property_income_amount
   end
 
   def calc_fiscal_nb_parts

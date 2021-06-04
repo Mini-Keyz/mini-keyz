@@ -64,8 +64,8 @@ RSpec.describe IncomeTaxesBaseFormulas do
   describe '#calc_global_net_taxable_amount' do
     context 'when it has no property income' do
       it 'returns the net taxable amount' do
-        result_lyon = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_lyon)
-        result_bordeaux = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_bordeaux)
+        result_lyon = simulation_lyon.calc_global_net_taxable_amount
+        result_bordeaux = simulation_bordeaux.calc_global_net_taxable_amount
         expect(result_lyon).to be_within(0.01).of(90_000)
         expect(result_bordeaux).to be_within(0.01).of(54_000)
       end
@@ -73,8 +73,8 @@ RSpec.describe IncomeTaxesBaseFormulas do
 
     context 'when it has some property income' do
       it 'returns the net taxable amount' do
-        result_lyon = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_lyon, 20_000)
-        result_bordeaux = IncomeTaxesBaseFormulas.calc_global_net_taxable_amount(simulation_bordeaux, 2_000)
+        result_lyon = simulation_lyon.calc_global_net_taxable_amount(simulation_lyon, 20_000)
+        result_bordeaux = simulation_bordeaux.calc_global_net_taxable_amount(simulation_bordeaux, 2_000)
         expect(result_lyon).to be_within(0.01).of(110_000)
         expect(result_bordeaux).to be_within(0.01).of(56_000)
       end
