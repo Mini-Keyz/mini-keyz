@@ -191,26 +191,11 @@ class Simulation < ApplicationRecord
   end
 
   def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
-    calc_income_tax_incurred_by_taxable_property_income_amount_per_year({
-                                                                          fiscal_status: fiscal_status,
-                                                                          fiscal_regimen: fiscal_regimen,
-                                                                          fiscal_revenues_p1: fiscal_revenues_p1,
-                                                                          fiscal_revenues_p2: fiscal_revenues_p2,
-                                                                          house_rent_amount_per_year: house_rent_amount_per_year,
-                                                                          house_first_works_amount: house_first_works_amount,
-                                                                          credit_loan_cumulative_interests_paid_for_year_two: credit_loan_cumulative_interests_paid_for_year_two
-                                                                        })
+    calc_income_tax_incurred_by_taxable_property_income_amount_per_year(self)
   end
 
   def fiscal_income_tax_total_amount_per_year
-    calc_income_tax_total_amount_per_year({
-                                            fiscal_status: fiscal_status,
-                                            fiscal_regimen: fiscal_regimen,
-                                            fiscal_revenues_p1: fiscal_revenues_p1,
-                                            fiscal_revenues_p2: fiscal_revenues_p2,
-                                            house_rent_amount_per_year: house_rent_amount_per_year,
-                                            house_first_works_amount: house_first_works_amount
-                                          })
+    calc_income_tax_total_amount_per_year(self)
   end
 
   #-----------------------------------------------------------------------#
