@@ -183,7 +183,7 @@ class Simulation < ApplicationRecord
   end
 
   def fiscal_nb_parts
-    calc_fiscal_nb_parts(self)
+    calc_fiscal_nb_parts
   end
 
   def fiscal_income_tax_base_amount_per_year
