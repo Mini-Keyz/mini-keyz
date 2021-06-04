@@ -20,9 +20,11 @@ class Simulation < ApplicationRecord
   validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
   validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  # validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :fiscal_nb_dependent_children, presence: true,
                                            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :fiscal_nb_alternate_custody_children, presence: true,
+                                                   numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   include(CreditFormulas)
   include(IncomeTaxesFormulas)
@@ -185,8 +187,8 @@ class Simulation < ApplicationRecord
                                            fiscal_status: fiscal_status,
                                            fiscal_regimen: fiscal_regimen,
                                            fiscal_revenues_p1: fiscal_revenues_p1,
-                                           fiscal_revenues_p2: fiscal_revenues_p2,
-                                           fiscal_nb_parts: fiscal_nb_parts
+                                           fiscal_revenues_p2: fiscal_revenues_p2
+                                           #  fiscal_nb_parts: fiscal_nb_parts
                                          })
   end
 
@@ -196,7 +198,7 @@ class Simulation < ApplicationRecord
                                                                           fiscal_regimen: fiscal_regimen,
                                                                           fiscal_revenues_p1: fiscal_revenues_p1,
                                                                           fiscal_revenues_p2: fiscal_revenues_p2,
-                                                                          fiscal_nb_parts: fiscal_nb_parts,
+                                                                          # fiscal_nb_parts: fiscal_nb_parts,
                                                                           house_rent_amount_per_year: house_rent_amount_per_year,
                                                                           house_first_works_amount: house_first_works_amount,
                                                                           credit_loan_cumulative_interests_paid_for_year_two: credit_loan_cumulative_interests_paid_for_year_two
@@ -209,7 +211,7 @@ class Simulation < ApplicationRecord
                                             fiscal_regimen: fiscal_regimen,
                                             fiscal_revenues_p1: fiscal_revenues_p1,
                                             fiscal_revenues_p2: fiscal_revenues_p2,
-                                            fiscal_nb_parts: fiscal_nb_parts,
+                                            # fiscal_nb_parts: fiscal_nb_parts,
                                             house_rent_amount_per_year: house_rent_amount_per_year,
                                             house_first_works_amount: house_first_works_amount
                                           })
