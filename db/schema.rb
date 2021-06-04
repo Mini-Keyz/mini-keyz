@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_073445) do
+ActiveRecord::Schema.define(version: 2021_06_04_074215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_073445) do
     t.string "fiscal_regimen"
     t.integer "fiscal_revenues_p1"
     t.integer "fiscal_revenues_p2"
-    t.float "fiscal_nb_parts"
     t.bigint "user_id"
     t.float "house_property_management_cost_percentage"
     t.float "house_notarial_fees_percentage"

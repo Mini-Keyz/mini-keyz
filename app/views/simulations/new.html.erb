@@ -235,13 +235,6 @@
           </div>
         </div>
 
-        <!-- Nombre de parts fiscales du foyer -->
-        <!-- <div class="flex flex-col mt-4">
-          <%= f.label :fiscal_nb_parts, "Nombre de parts fiscales du foyer", class: "font-bold" %>
-          <p class="text-xs text-gray-500">Couple marié = 2 parts ; 1er enfant = 0.5 part ; 2ème enfant = 0.5 part ; 3ème et plus enfants = 1 part par enfant</p>
-          <%= f.range_field :fiscal_nb_parts, in: 1..8, step: 0.25, class: "mt-1 cursor-pointer" %>
-        </div> -->
-
         <!-- Nombre d'enfants à charge -->
         <div class="flex flex-col mt-4">
           <%= f.label :fiscal_nb_dependent_children, "Nombre d'enfants à charge", class: "font-bold" %>
@@ -277,6 +270,45 @@
             </div>
 
             <!-- <%= errors_for @simulation, :fiscal_nb_dependent_children %>   -->
+          </div>
+
+        </div>
+
+        <!-- Nombre d'enfants en garde alternée -->
+        <div class="flex flex-col mt-4">
+          <%= f.label :fiscal_nb_alternate_custody_children, "Nombre d'enfants en garde alternée", class: "font-bold" %>
+          <p class="text-xs text-gray-500">Les enfants du foyers en garde partagée</p>
+          <div class="flex items-center justify-start mt-1" id="radio-fiscal-nb-alternate-custody-children">
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 0, class: "hidden" %>
+              <%= f.label :fiscal_nb_alternate_custody_children, "0", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 1, class: "hidden" %>
+              <%= f.label :fiscal_nb_alternate_custody_children, "1", value: 1, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 2, class: "hidden"%>
+              <%= f.label :fiscal_nb_alternate_custody_children, "2", value: 2, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 3, class: "hidden"%>
+              <%= f.label :fiscal_nb_alternate_custody_children, "3", value: 3, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 4, class: "hidden"%>
+              <%= f.label :fiscal_nb_alternate_custody_children, "4", value: 4, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 5, class: "hidden"%>
+              <%= f.label :fiscal_nb_alternate_custody_children, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+            <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px;">
+              <%= f.radio_button :fiscal_nb_alternate_custody_children, 6, class: "hidden"%>
+              <%= f.label :fiscal_nb_alternate_custody_children, "6", value: 6, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+            </div>
+
+            <!-- <%= errors_for @simulation, :fiscal_nb_alternate_custody_children %>   -->
           </div>
 
         </div>

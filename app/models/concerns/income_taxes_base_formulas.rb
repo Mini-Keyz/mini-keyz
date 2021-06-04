@@ -11,6 +11,9 @@ module IncomeTaxesBaseFormulas
     ]
   }.freeze
 
+  FISCAL_NB_PARTS_FOR_MARRIED_COUPLE = 2
+  FISCAL_NB_PARTS_FOR_SINGLE_PERSON = 1
+
   FAMILY_QUOTIENT_CAPPING_AMOUNT = {
     # Per half fiscal parts for children
     year2021: 1570
@@ -25,19 +28,23 @@ module IncomeTaxesBaseFormulas
   def self.calc_income_tax_amount_per_year(args = {}, net_taxable_property_income_amount = 0)
     global_net_taxable_income_amount = calc_global_net_taxable_amount(args, net_taxable_property_income_amount)
 
-    family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount, args[:fiscal_nb_parts])
+    fiscal_nb_parts = calc_fiscal_nb_parts(args)
+
+    family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount, fiscal_nb_parts)
     current_year = Date.today.year
 
     aggregated_tax_amount = calc_aggregated_tax_amount(family_quotient_amount, current_year)
 
-    (aggregated_tax_amount * args[:fiscal_nb_parts]).floor
+    (aggregated_tax_amount * fiscal_nb_parts).floor
   end
 
   def self.calc_income_taxes_scale(args = {}, net_taxable_property_income_amount = 0)
     global_net_taxable_income_amount = calc_global_net_taxable_amount(args, net_taxable_property_income_amount)
 
+    fiscal_nb_parts = calc_fiscal_nb_parts(args)
+
     family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount,
-                                                         args[:fiscal_nb_parts])
+                                                         calc_fiscal_nb_parts(args))
     current_year = Date.today.year
 
     income_taxes_scale = INCOME_TAXES_SCALE["year#{current_year}".to_sym]
@@ -47,6 +54,31 @@ module IncomeTaxesBaseFormulas
 
   def self.calc_global_net_taxable_amount(args = {}, net_taxable_property_income_amount = 0)
     ((args[:fiscal_revenues_p1] + args[:fiscal_revenues_p2]) * (1 - REVENUES_STANDARD_ALLOWANCE)) + net_taxable_property_income_amount
+  end
+
+  def self.calc_fiscal_nb_parts(simulation_instance)
+    case simulation_instance.fiscal_marital_status
+    when 'Marié / Pacsé'
+      FISCAL_NB_PARTS_FOR_MARRIED_COUPLE + calc_fiscal_nb_parts_for_dependent_children(simulation_instance) + calc_fiscal_nb_parts_for_alternate_custody_children(simulation_instance)
+    when 'Célibataire'
+      FISCAL_NB_PARTS_FOR_SINGLE_PERSON + calc_fiscal_nb_parts_for_dependent_children(simulation_instance) + calc_fiscal_nb_parts_for_alternate_custody_children(simulation_instance)
+    end
+  end
+
+  def self.calc_fiscal_nb_parts_for_dependent_children(simulation_instance)
+    if simulation_instance[:fiscal_nb_dependent_children] <= 2
+      simulation_instance[:fiscal_nb_dependent_children] * 0.5
+    elsif simulation_instance[:fiscal_nb_dependent_children] >= 3
+      1 + (simulation_instance[:fiscal_nb_dependent_children] - 2)
+    end
+  end
+
+  def self.calc_fiscal_nb_parts_for_alternate_custody_children(simulation_instance)
+    if simulation_instance[:fiscal_nb_alternate_custody_children] <= 2
+      simulation_instance[:fiscal_nb_alternate_custody_children] * 0.25
+    elsif simulation_instance[:fiscal_nb_alternate_custody_children] >= 3
+      0.5 + (simulation_instance[:fiscal_nb_alternate_custody_children] - 2) * 0.5
+    end
   end
 
   def self.calc_family_quotient_amount(global_net_taxable_income_amount, fiscal_nb_parts)

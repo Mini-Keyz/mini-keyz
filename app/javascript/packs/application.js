@@ -52,6 +52,11 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
+  stylizeRadio({
+    parentInputFieldId: "radio-fiscal-nb-alternate-custody-children",
+    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
+    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
+  });
   initProfitabilityDropdowns();
   // initNumberFieldThousandSeparator(); It seems like it is breaking down our radio buttons value which are then not sent
   initFlashFadingOut();

@@ -24,4 +24,8 @@ module IncomeTaxesFormulas
       LmnpFormulas.calc_income_tax_amount_for_year_two(args)
     end
   end
+
+  def calc_fiscal_nb_parts(simulation_instance)
+    IncomeTaxesBaseFormulas.calc_fiscal_nb_parts(simulation_instance)
+  end
 end
