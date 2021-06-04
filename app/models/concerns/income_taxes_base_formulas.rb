@@ -85,6 +85,10 @@ module IncomeTaxesBaseFormulas
     global_net_taxable_income_amount / fiscal_nb_parts
   end
 
+  def self.calc_family_quotient_capped_amount(_e)
+    'ee'
+  end
+
   def self.calc_aggregated_tax_amount(family_quotient_amount, current_year)
     income_taxes_scale = INCOME_TAXES_SCALE["year#{current_year}".to_sym]
 
