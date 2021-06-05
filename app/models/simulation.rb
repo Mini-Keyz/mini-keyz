@@ -186,16 +186,24 @@ class Simulation < ApplicationRecord
     calc_fiscal_nb_parts
   end
 
-  def fiscal_income_tax_base_amount_per_year
-    calc_income_tax_base_amount_per_year(self)
+  def net_taxable_property_income_amount
+    calc_net_taxable_property_income_amount
   end
 
-  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
-    calc_income_tax_incurred_by_taxable_property_income_amount_per_year(self)
+  def fiscal_base_income_tax_scale
+    calc_fiscal_income_tax_scale_with_property_income_of(0)
+  end
+
+  def fiscal_income_tax_base_amount_per_year
+    calc_income_tax_amount_per_year_with_property_income_of(0)
   end
 
   def fiscal_income_tax_total_amount_per_year
-    calc_income_tax_total_amount_per_year(self)
+    calc_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)
+  end
+
+  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
+    calc_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount) - calc_income_tax_amount_per_year_with_property_income_of(0)
   end
 
   #-----------------------------------------------------------------------#
