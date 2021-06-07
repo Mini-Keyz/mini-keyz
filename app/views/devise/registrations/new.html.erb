@@ -14,13 +14,13 @@
           <%= render "devise/shared/error_messages", resource: resource %>
   
           <div class="field">
-            <%= f.label :email, "Email" %><br />
+            <%= f.label :email, "Email", class: "font-semibold" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 260px; height: 40px;", class: "px-2 border-2 rounded" %>
           </div>
   
           <div class="mt-6">
             <div class="field">
-              <%= f.label :password, "Mot de passe" %>
+              <%= f.label :password, "Mot de passe", class: "font-semibold" %>
               <% if @minimum_password_length %>
               <span class="text-xs text-gray-400 font-semibold">(<%= @minimum_password_length %> caractères minimum)</span>
               <% end %><br />
@@ -28,7 +28,7 @@
             </div>
     
             <div class="field mt-2">
-              <%= f.label :password_confirmation, "Confirmez votre mot de passe" %><br />
+              <%= f.label :password_confirmation, "Confirmez votre mot de passe", class: "font-semibold" %><br />
               <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 260px; height: 40px;", class: "px-2 border-2 rounded" %>
             </div>
           </div>
