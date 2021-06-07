@@ -80,6 +80,7 @@ module IncomeTaxesFormulas
   end
 
   def calc_fiscal_nb_parts_incurred_from_children
+    # Detail of calculation method in GitHub wiki: https://github.com/Mth0158/mini-keyz/wiki/French-tax-system
     total_nb_children = fiscal_nb_dependent_children + fiscal_nb_alternate_custody_children
 
     if total_nb_children <= 2
@@ -105,22 +106,6 @@ module IncomeTaxesFormulas
       end
     end
   end
-
-  # def calc_fiscal_nb_parts_for_dependent_children
-  #   if fiscal_nb_dependent_children <= 2
-  #     fiscal_nb_dependent_children * 0.5
-  #   elsif fiscal_nb_dependent_children >= 3
-  #     1 + (fiscal_nb_dependent_children - 2)
-  #   end
-  # end
-
-  # def calc_fiscal_nb_parts_for_alternate_custody_children
-  #   if fiscal_nb_alternate_custody_children <= 2
-  #     fiscal_nb_alternate_custody_children * 0.25
-  #   elsif fiscal_nb_alternate_custody_children >= 3
-  #     0.5 + (fiscal_nb_alternate_custody_children - 2) * 0.5
-  #   end
-  # end
 
   def calc_family_quotient_amount(global_net_taxable_income_amount, fiscal_nb_parts)
     global_net_taxable_income_amount / fiscal_nb_parts
