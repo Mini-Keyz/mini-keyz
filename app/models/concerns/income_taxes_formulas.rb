@@ -44,6 +44,35 @@ module IncomeTaxesFormulas
     (aggregated_tax_amount * fiscal_nb_parts).floor
   end
 
+  def calc_not_capped_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)
+    global_net_taxable_income_amount = calc_global_net_taxable_amount_with_property_income_of(net_taxable_property_income_amount)
+
+    fiscal_nb_parts = calc_fiscal_nb_parts
+
+    family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount, fiscal_nb_parts)
+    current_year = Date.today.year
+
+    aggregated_tax_amount = calc_aggregated_tax_amount(family_quotient_amount, current_year)
+
+    (aggregated_tax_amount * fiscal_nb_parts).floor
+  end
+
+  def calc_capped_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)
+    global_net_taxable_income_amount = calc_global_net_taxable_amount_with_property_income_of(net_taxable_property_income_amount)
+
+    fiscal_nb_parts = case fiscal_marital_status
+                      when 'Célibataire' then 1
+                      when 'Marié / Pacsé' then 2
+                      end
+
+    family_quotient_amount = calc_family_quotient_amount(global_net_taxable_income_amount, fiscal_nb_parts)
+    current_year = Date.today.year
+
+    aggregated_tax_amount = calc_aggregated_tax_amount(family_quotient_amount, current_year)
+
+    (aggregated_tax_amount * fiscal_nb_parts).floor
+  end
+
   def calc_net_taxable_property_income_amount
     case fiscal_status
     when 'Vide'

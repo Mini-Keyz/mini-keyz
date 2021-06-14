@@ -80,22 +80,54 @@ RSpec.describe IncomeTaxesFormulas do
                    })
   end
 
-  describe '#calc_income_tax_amount_per_year' do
+  let(:simulation_agen) do
+    Simulation.new({
+                     house_city: 'Agen',
+                     house_price_bought_amount: 150_000,
+                     house_first_works_amount: 15_500,
+                     house_total_charges_amount_per_year: 1_200,
+                     house_property_tax_amount_per_year: 500,
+                     house_rent_amount_per_month: 600,
+                     house_property_management_cost_percentage: 0,
+                     credit_loan_amount: 180_000,
+                     credit_loan_duration: 20,
+                     fiscal_status: 'Vide',
+                     fiscal_regimen: 'Réel',
+                     fiscal_revenues_p1: 61_111,
+                     fiscal_revenues_p2: 50_000,
+                     fiscal_nb_dependent_children: 3,
+                     fiscal_nb_alternate_custody_children: 0
+                   })
+  end
+
+  describe '#calc_not_capped_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)' do
     context 'when it has no property income' do
-      it 'returns the net taxable amount' do
-        result_lyon = simulation_lyon.calc_income_tax_amount_per_year_with_property_income_of(0)
-        result_bordeaux = simulation_bordeaux.calc_income_tax_amount_per_year_with_property_income_of(0)
-        expect(result_lyon).to be_within(1).of(9016)
-        expect(result_bordeaux).to be_within(1).of(1502)
+      it 'returns not capped by fiscal parts capping income tax per year with a given property income' do
+        result_agen = simulation_agen.calc_not_capped_income_tax_amount_per_year_with_property_income_of(0)
+        expect(result_agen).to be_within(1).of(6_562.6)
       end
     end
 
     context 'when it has some property income' do
-      it 'returns the net taxable amount' do
-        result_lyon = simulation_lyon.calc_income_tax_amount_per_year_with_property_income_of(20_000)
-        result_bordeaux = simulation_bordeaux.calc_income_tax_amount_per_year_with_property_income_of(2_000)
-        expect(result_lyon).to be_within(1).of(15_016)
-        expect(result_bordeaux).to be_within(1).of(1722)
+      it 'returns not capped by fiscal parts capping income tax per year with a given property income' do
+        result_agen = simulation_agen.calc_not_capped_income_tax_amount_per_year_with_property_income_of(20_000)
+        expect(result_agen).to be_within(1).of(12_021.8)
+      end
+    end
+  end
+
+  describe '#calc_capped_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)' do
+    context 'when it has no property income' do
+      it 'returns capped by fiscal parts capping income tax per year with a given property income' do
+        result_agen = simulation_agen.calc_not_capped_income_tax_amount_per_year_with_property_income_of(0)
+        expect(result_agen).to be_within(1).of(18_011)
+      end
+    end
+
+    context 'when it has some property income' do
+      it 'returns capped by fiscal parts capping income tax per year with a given property income' do
+        result_agen = simulation_agen.calc_not_capped_income_tax_amount_per_year_with_property_income_of(20_000)
+        expect(result_agen).to be_within(1).of(12_021.8)
       end
     end
   end
