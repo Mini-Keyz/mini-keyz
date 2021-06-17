@@ -20,7 +20,11 @@ class Simulation < ApplicationRecord
   validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }
   validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
   validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  # validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :fiscal_nb_dependent_children, presence: true,
+                                           numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :fiscal_nb_alternate_custody_children, presence: true,
+                                                   numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   include(CreditFormulas)
   include(IncomeTaxesFormulas)
@@ -37,20 +41,24 @@ class Simulation < ApplicationRecord
 
   def initialize(args)
     super
+
+    # House related
     self.house_notarial_fees_percentage = HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE unless house_notarial_fees_percentage
     unless house_tenant_charges_percentage
       self.house_tenant_charges_percentage = HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE
     end
+    unless house_insurance_pno_amount_per_year
+      self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
+    end
+    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
+
+    # Credit related
     unless credit_loan_interest_percentage_per_year
       self.credit_loan_interest_percentage_per_year = CREDIT_STANDARD_LOAN_INTEREST_PERCENTAGE_PER_YEAR
     end
     unless credit_loan_insurance_percentage_per_year
       self.credit_loan_insurance_percentage_per_year = CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR
     end
-    unless house_insurance_pno_amount_per_year
-      self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
-    end
-    self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
   end
 
   #-----------------------------------------------------------------------#
@@ -166,39 +174,36 @@ class Simulation < ApplicationRecord
   #-----------------------------------------------------------------------#
   # Fiscal related formulas
 
-  def fiscal_income_tax_base_amount_per_year
-    calc_income_tax_base_amount_per_year({
-                                           fiscal_status: fiscal_status,
-                                           fiscal_regimen: fiscal_regimen,
-                                           fiscal_revenues_p1: fiscal_revenues_p1,
-                                           fiscal_revenues_p2: fiscal_revenues_p2,
-                                           fiscal_nb_parts: fiscal_nb_parts
-                                         })
+  def fiscal_marital_status
+    if fiscal_revenues_p2.nil?
+      'Célibataire'
+    else
+      'Marié / Pacsé'
+    end
   end
 
-  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
-    calc_income_tax_incurred_by_taxable_property_income_amount_per_year({
-                                                                          fiscal_status: fiscal_status,
-                                                                          fiscal_regimen: fiscal_regimen,
-                                                                          fiscal_revenues_p1: fiscal_revenues_p1,
-                                                                          fiscal_revenues_p2: fiscal_revenues_p2,
-                                                                          fiscal_nb_parts: fiscal_nb_parts,
-                                                                          house_rent_amount_per_year: house_rent_amount_per_year,
-                                                                          house_first_works_amount: house_first_works_amount,
-                                                                          credit_loan_cumulative_interests_paid_for_year_two: credit_loan_cumulative_interests_paid_for_year_two
-                                                                        })
+  def fiscal_nb_parts
+    calc_fiscal_nb_parts
+  end
+
+  def net_taxable_property_income_amount
+    calc_net_taxable_property_income_amount
+  end
+
+  def fiscal_base_income_tax_scale
+    calc_fiscal_income_tax_scale_with_property_income_of(0)
+  end
+
+  def fiscal_income_tax_base_amount_per_year
+    calc_income_tax_amount_per_year_with_property_income_of(0)
   end
 
   def fiscal_income_tax_total_amount_per_year
-    calc_income_tax_total_amount_per_year({
-                                            fiscal_status: fiscal_status,
-                                            fiscal_regimen: fiscal_regimen,
-                                            fiscal_revenues_p1: fiscal_revenues_p1,
-                                            fiscal_revenues_p2: fiscal_revenues_p2,
-                                            fiscal_nb_parts: fiscal_nb_parts,
-                                            house_rent_amount_per_year: house_rent_amount_per_year,
-                                            house_first_works_amount: house_first_works_amount
-                                          })
+    calc_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)
+  end
+
+  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
+    calc_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount) - calc_income_tax_amount_per_year_with_property_income_of(0)
   end
 
   #-----------------------------------------------------------------------#
