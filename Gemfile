@@ -77,3 +77,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'devise', '~> 4.7'
 
 gem 'time_difference', '~> 0.5.0'
+
+# My super gem that I made and publish on rubygems.org
+gem 'french_tax_system', '~> 1.0'
