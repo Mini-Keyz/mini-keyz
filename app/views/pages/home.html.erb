@@ -1,5 +1,4 @@
 <div class="mx-auto px-8 md:px-16 2xl:px-32">
-<%= raise %>
   <!-- Hero -->
   <section class="flex mt-16 flex-wrap xl:mt-28 xl:flex-nowrap xl:grid xl:grid-cols-7 xl:gap-4 xl:items-center">
     <div class="flex flex-col items-start xl:col-start-1 xl:col-end-5">
@@ -16,20 +15,22 @@
 
 <!-- Why us -->
 <section class="flex flex-col items-center mt-16 bg-green-700">
-  <div class="flex items-center pt-16">
-    <i class="fas fa-check text-green-frog text-3xl"></i>
-    <h2 class="pl-3 font-bold text-white text-3xl">Pourquoi adopter Mini-Keyz</h2>
-  </div>
-
-  <div class="mx-auto pb-16 px-8 md:px-16 2xl:px-32">
-    <div class="flex justify-center flex-wrap">
-      <div>
-        <h3>Gratuit</h3>
-        <p>Possible to give tip though</p>
-      </div>
-      <div>
-        <h3>Fiable</h3>
-        <p>Mis à jour avec données 2021</p>
+  <div class="p-8 sm:p-16">
+    <div class="flex flex-col md:flex-row items-center pt-16">
+      <i class="fas fa-check text-green-frog text-3xl pb-4 md:pb-0"></i>
+      <h2 class="pl-3 font-bold text-white text-3xl">Pourquoi adopter Mini-Keyz</h2>
+    </div>
+  
+    <div class="mx-auto pb-16 px-8 md:px-16 2xl:px-32">
+      <div class="flex justify-center flex-wrap">
+        <div>
+          <h3>Gratuit</h3>
+          <p>Possible to give tip though</p>
+        </div>
+        <div>
+          <h3>Fiable</h3>
+          <p>Mis à jour avec données 2021</p>
+        </div>
       </div>
     </div>
   </div>
@@ -89,10 +90,10 @@
 </div>
 
 <!-- Reminder user can do a simulation -->
-<section class="flex flex-col items-center mt-16 bg-green-frog">
-  <div class="flex flex-col items-center py-24">
-    <h2 class="text-2xl sm:text-3xl font-semibold">Choisissez de gagner du temps et du contrôle</h2>
-    <h3 class="mt-4">Adoptez dès maintenant une solution efficace de mesure de la rentabilité de vos investissements locatifs.</h3>
+<section class="flex flex-col items-center mt-16 bg-green-700">
+  <div class="flex flex-col items-center py-24 px-8 sm:px-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-white">Choisissez de gagner du temps et du contrôle</h2>
+    <h3 class="mt-4 text-white">Adoptez dès maintenant une solution efficace de mesure de la rentabilité de vos investissements locatifs.</h3>
     <%= link_to "Réaliser une simulation", new_simulation_path, class: "font-bold bg-green-frog hover:bg-green-500 rounded-lg px-4 py-4 mt-8 border-2 border-black transition duration-150" %>
   </div>
 </section>
