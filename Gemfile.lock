@@ -283,11 +283,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   database_cleaner-active_record
   devise (~> 4.7)
-<<<<<<< HEAD
   french_tax_system (~> 1.0)
-=======
-  french_tax_system (~> 0.1.2)
->>>>>>> 7a7144632605b8ddb02da02350978f909a5a4a02
   guard-livereload (~> 2.5)
   jbuilder (~> 2.7)
   listen (~> 3.3)
