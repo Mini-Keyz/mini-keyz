@@ -13,6 +13,7 @@ import "stylesheets/application";
 
 // Import plugins
 import { initNavbarDropdown } from "../plugins/navbar_dropdown";
+import { initNavbarBackgroundScroll } from "../plugins/navbar_background_scroll";
 import { stylizeRadio } from "../plugins/form_radio";
 import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
 import { initNumberFieldThousandSeparator } from "../plugins/simulation_new_number_field_thousand_separator";
@@ -27,6 +28,7 @@ ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
   initNavbarDropdown();
+  initNavbarBackgroundScroll();
   stylizeRadio({
     parentInputFieldId: "radio-house-property-management-cost",
     classToApplyNotChecked: radioStyle.radio_blue.classToApplyNotChecked,
