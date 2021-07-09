@@ -229,7 +229,8 @@ class Simulation < ApplicationRecord
   end
 
   def net_after_taxes_profitability
-    6.6
+        revenues = house_rent_amount_per_year
+    expenses = house_tenant_charges_amount_per_year + house_property_tax_amount_per_year + house_insurance_pno_amount_per_year + house_insurance_gli_amount_per_year + house_property_management_amount_per_year
   end
 
   #-----------------------------------------------------------------------#
