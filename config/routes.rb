@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  get 'about', to: 'pages#about'
+  constraints subdomain: 'api' do
+    get 'about', to: 'pages#about'
+  end
   get 'contact', to: 'pages#contact'
 
   authenticated :user do
