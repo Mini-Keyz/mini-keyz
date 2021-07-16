@@ -1,6 +1,6 @@
-<nav class="sm:sticky md:sticky lg:sticky xl:sticky 2xl:sticky top-0">
-  <div class="flex justify-between items-center py-2 shadow-sm bg-white dark:bg-white">
-
+<nav class="sm:sticky top-0 bg-green-30 hover:bg-white transition duration-400" id="navbar">
+  <div class="flex justify-between items-center py-4 sm:px-2 md:px-4 lg:px-6">
+    
     <!-- LEFT SIDE / ICON + TEXT -->
     <div class="flex justify-between items-center ml-4">
       <%= link_to "/" do %>
@@ -22,7 +22,7 @@
     <% elsif request.path == "/users/sign_in" || request.path == "/users/password/new" || request.path == "/users/sign_up" %>
     <% else %>
       <div class="mr-4">
-        <%= link_to "Se connecter", new_user_session_path, class: "font-bold rounded-lg px-3 py-2 border border-black whitespace-nowrap" %>
+        <%= link_to "Se connecter", new_user_session_path, class: "font-bold rounded-lg px-3 py-2 border border-black whitespace-nowrap hover:bg-gray-200 transition duration-400" %>
       </div>
     <% end %>    
   </div>
@@ -31,10 +31,10 @@
   <div class="absolute right-0 mx-2 hidden" id="navbar-dropdown-items-list">
     <div class="flex flex-col bg-white border-2 rounded-bl rounded-br">
       <% if user_signed_in? %>
-        <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-150 hover:bg-green-500" %>
-        <%= link_to "Mes simulations", simulations_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-150 hover:bg-green-500" %>
-        <%= link_to "Mon compte", user_path(current_user), style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-150 hover:bg-green-500" %>
-        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 transition duration-150 hover:bg-green-500" %>
+        <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Mes simulations", simulations_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Mon compte", user_path(current_user), style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 transition duration-400 hover:bg-green-500" %>
       <% end %>
     </div>
   </div>
