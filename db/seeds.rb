@@ -66,7 +66,9 @@ simulation1 = Simulation.new({
                                fiscal_regimen: 'Forfait',
                                fiscal_revenues_p1: 50_000,
                                fiscal_revenues_p2: 45_000,
-                               fiscal_nb_parts: 2,
+                               #  fiscal_nb_parts: 2,
+                               fiscal_nb_dependent_children: 0,
+                               fiscal_nb_alternate_custody_children: 0,
                                user: testit1
                              })
 simulation1.save
@@ -90,7 +92,9 @@ simulation2 = Simulation.new({
                                fiscal_regimen: 'Réel',
                                fiscal_revenues_p1: 50_000,
                                fiscal_revenues_p2: 45_000,
-                               fiscal_nb_parts: 2,
+                               #  fiscal_nb_parts: 3,
+                               fiscal_nb_dependent_children: 2,
+                               fiscal_nb_alternate_custody_children: 0,
                                user: testit1
                              })
 simulation2.save
@@ -114,7 +118,9 @@ simulation3 = Simulation.new({
                                fiscal_regimen: 'Forfait',
                                fiscal_revenues_p1: 50_000,
                                fiscal_revenues_p2: 45_000,
-                               fiscal_nb_parts: 2,
+                               #  fiscal_nb_parts: 4,
+                               fiscal_nb_dependent_children: 3,
+                               fiscal_nb_alternate_custody_children: 0,
                                user: testit2
                              })
 simulation3.save
@@ -137,8 +143,9 @@ simulation4 = Simulation.new({
                                fiscal_status: 'LMNP',
                                fiscal_regimen: 'Forfait',
                                fiscal_revenues_p1: 50_000,
-                               fiscal_revenues_p2: 45_000,
-                               fiscal_nb_parts: 2,
+                               #  fiscal_nb_parts: 1.5,
+                               fiscal_nb_dependent_children: 1,
+                               fiscal_nb_alternate_custody_children: 0,
                                user: testit2
                              })
 simulation4.save

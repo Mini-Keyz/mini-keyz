@@ -1,32 +1,41 @@
-<nav>
-  <div class="flex justify-between items-center py-1 shadow-md bg-white dark:bg-white">
-
+<nav class="sm:sticky top-0 bg-green-30 hover:bg-white transition duration-400" id="navbar">
+  <div class="flex justify-between items-center py-4 sm:px-2 md:px-4 lg:px-6">
+    
     <!-- LEFT SIDE / ICON + TEXT -->
-    <div class="flex justify-between items-center px-2">
+    <div class="flex justify-between items-center ml-4">
       <%= link_to "/" do %>
-        <%= image_tag "icon-squared-transparent.png", style: "width: 40px;" %>
+        <div class="flex justify-between items-center px-2">
+          <%= image_tag "icon-squared-transparent.png", style: "width: 48px;" %>
+          <div class="px-3">
+            <p class="text-2xl font-bold text-gray-800">Mini-Keyz</p>
+            <p class="text-sm text-gray-500">La rentabilité immobilière en ligne</p>
+          </div>
+        </div>
       <% end %>
-      <div class="px-2">
-        <p class="text-2xl font-extrabold text-gray-800">Keyz</p>
-        <p class="text-xs text-gray-500">La rentabilité immobilière en ligne</p>
-      </div>
     </div>
 
     <!-- RIGHT SIDE / DROP DOWN MENU -->
-    <i class="fas fa-bars mx-4 cursor-pointer" style="font-size: 24px;" id="navbar-dropdown"></i>
-    
+    <% if user_signed_in? %>
+      <div class="px-2 mr-4">
+        <i class="fas fa-bars px-4 cursor-pointer" style="font-size: 24px;" id="navbar-dropdown"></i>
+      </div>
+    <% elsif request.path == "/users/sign_in" || request.path == "/users/password/new" || request.path == "/users/sign_up" %>
+    <% else %>
+      <div class="mr-4">
+        <%= link_to "Se connecter", new_user_session_path, class: "font-bold rounded-lg px-3 py-2 border border-black whitespace-nowrap hover:bg-gray-200 transition duration-400" %>
+      </div>
+    <% end %>    
+  </div>
+
+  <!-- Dropdown -->
+  <div class="absolute right-0 mx-2 hidden" id="navbar-dropdown-items-list">
+    <div class="flex flex-col bg-white border-2 rounded-bl rounded-br">
+      <% if user_signed_in? %>
+        <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Mes simulations", simulations_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Mon compte", user_path(current_user), style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 transition duration-400 hover:bg-green-500" %>
+      <% end %>
+    </div>
   </div>
 </nav>
-
-<div class="absolute right-0 bg-white mx-2 hidden" id="navbar-dropdown-items-list">
-  <div class="flex flex-col">
-    <% if user_signed_in? %>
-      <%= link_to "Faire une simulation", new_simulation_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
-      <%= link_to "Mes simulations", simulations_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
-      <%= link_to "Mon compte", user_path(current_user), style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
-      <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
-    <% else %>
-      <%= link_to "Se connecter", new_user_session_path, style: "width: 200px", class: "navbar-dropdown-item p-1 border-2" %>
-    <% end %>
-  </div>
-</div>

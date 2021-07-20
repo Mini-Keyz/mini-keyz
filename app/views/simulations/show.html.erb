@@ -3,7 +3,7 @@
   <!-- Back to index button for users -->
   <% if current_user %>
     <div class="flex justify-start mt-4 text-sm">
-      <%= link_to "Retour aux simulations", simulations_path, class: "bg-opacity-0 text-gray-600 border border-1 border-gray-600 px-2 py-1 rounded cursor-pointer" %>
+      <%= link_to "Retour aux simulations", simulations_path, class: "font-bold rounded-lg px-3 py-2 border border-black whitespace-nowrap" %>
     </div>
   <% end %>
 
@@ -90,6 +90,8 @@
       <p>fiscal_regimen = <%= @simulation.fiscal_regimen %></p>
       <p>fiscal_revenues_p1 = <%= @simulation.fiscal_revenues_p1 %></p>
       <p>fiscal_revenues_p2 = <%= @simulation.fiscal_revenues_p2 %></p>
+      <p>fiscal_nb_dependent_children = <%= @simulation.fiscal_nb_dependent_children %></p>
+      <p>fiscal_nb_alternate_custody_children = <%= @simulation.fiscal_nb_alternate_custody_children %></p>
       <p>fiscal_nb_parts = <%= @simulation.fiscal_nb_parts %></p>
     </div>
   </div>

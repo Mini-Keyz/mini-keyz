@@ -43,7 +43,6 @@ group :development, :test do
 
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-
 end
 
 group :development do
@@ -67,8 +66,8 @@ group :test do
   # Keeps our Ruby on Rails project's test database clean between test runs
   gem 'database_cleaner-active_record'
 
-  # Checks code coverage
-  gem 'simplecov', require: false
+  # Facilitates tests
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -77,6 +76,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Log in system
 gem 'devise', '~> 4.7'
 
-gem 'simple_form', '~> 5.1'
-
 gem 'time_difference', '~> 0.5.0'
+
+# My super gemmm that I made and publish on rubygems.org
+gem 'french_tax_system', '~> 1.0'
