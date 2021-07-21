@@ -4,10 +4,10 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome(user, message)
+  def welcome
     @greeting = 'Hi'
-    @user = user
-    @message = message
-    mail to: 'to@example.org'
+    @user = params[:user]
+    @message = 'message'
+    mail to: @user.email, subject: 'Bienvenue sur Mini-Keyz !'
   end
 end
