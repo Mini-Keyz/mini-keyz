@@ -6,10 +6,18 @@
 
       <!-- Title -->
       <h2 class="text-lg font-bold text-center mt-8">Mes informations</h2>
-      <div class="w-full flex justify-start mt-6">
+      <div class="w-full flex flex-col justify-start mt-6">
         <div>
           <p class="font-semibold">Adresse email</p>
           <%= @user.email %>
+        </div>
+        <div>
+          <p class="font-semibold">Prénom</p>
+          <%= @user.first_name %>
+        </div>
+        <div>
+          <p class="font-semibold">Nom</p>
+          <%= @user.last_name %>
         </div>
       </div>
 

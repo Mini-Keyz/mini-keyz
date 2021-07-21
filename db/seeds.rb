@@ -33,13 +33,17 @@ puts '[1/2] - Seeding the User DB...'
 
 testit1 = User.new({
                      email: 'testit1@ok.com',
-                     password: '123456'
+                     password: '123456',
+                     first_name: 'Testintin',
+                     last_name: 'EtMilou'
                    })
 testit1.save
 
 testit2 = User.new({
                      email: 'testit2@ok.com',
-                     password: '123456'
+                     password: '123456',
+                     first_name: 'TestHaddock',
+                     last_name: 'Mille Milliards de Mille Sabords'
                    })
 testit2.save
 
