@@ -1,5 +1,5 @@
 class SimulationsController < ApplicationController
-  before_action :set_simulation, only: %i[show update destroy]
+  before_action :set_simulation, only: %i[show update destroy send_simulation_mail]
 
   def index
     @simulations = current_user.simulations
@@ -36,6 +36,12 @@ class SimulationsController < ApplicationController
     @simulation.destroy
 
     redirect_to simulations_path
+  end
+
+  def send_simulation_mail
+    SimulationMailer.with(user: current_user, simulation: @simulation).send_it_to_me.deliver
+    flash[:notice] = 'Email envoyé !'
+    redirect_to simulation_path(@simulation)
   end
 
   private
