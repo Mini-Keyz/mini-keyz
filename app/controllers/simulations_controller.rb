@@ -39,7 +39,7 @@ class SimulationsController < ApplicationController
   end
 
   def send_simulation_mail
-    SimulationMailer.with(user: current_user, simulation: @simulation).send_it_to_me.deliver
+    SimulationMailer.with(user: current_user, simulation: @simulation).send_it_to_me.deliver_later
     flash[:notice] = 'Email envoyé !'
     redirect_to simulation_path(@simulation)
   end
