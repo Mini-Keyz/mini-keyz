@@ -78,6 +78,21 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  # Enable SMTP as the mailing delivery method
+  config.action_mailer.delivery_method = :smtp
+  host = 'mini-keyz.com'
+  config.action_mailer.default_url_options = { host: host }
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
   # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 end

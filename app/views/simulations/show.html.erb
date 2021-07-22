@@ -20,6 +20,8 @@
       <br>Vous pouvez les personnaliser plus bas.</p>
   </div>
 
+  <!-- Send mail button -->
+  <%= link_to "M'envoyer ma simulation par mail", :controller => "simulations", :action => "send_simulation_mail", class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
   
   <!-- Title -->
   <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought_amount %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works_amount > 0 %>, +<%= @simulation.house_first_works_amount %>€ de travaux<% end %></h1>

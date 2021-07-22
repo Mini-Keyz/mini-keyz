@@ -12,8 +12,18 @@
       <div class="mt-6">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
-  
+
           <div class="field">
+            <%= f.label :first_name, "Prénom", class: "font-semibold" %><br />
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", style: "width: 260px; height: 40px;", class: "px-2 border-2 rounded" %>
+          </div>
+
+          <div class="field mt-2">
+            <%= f.label :last_name, "Nom", class: "font-semibold" %><br />
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", style: "width: 260px; height: 40px;", class: "px-2 border-2 rounded" %>
+          </div>
+  
+          <div class="field mt-6">
             <%= f.label :email, "Email", class: "font-semibold" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 260px; height: 40px;", class: "px-2 border-2 rounded" %>
           </div>
