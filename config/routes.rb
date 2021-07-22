@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'contact', to: 'pages#contact'
   end
 
-  constraints subdomain: 'www' do
+  constraints subdomain: ['www', '', 'mini-keyz-staging'] do
     authenticated :user do
       resources :simulations, only: %i[index show new create update destroy]
       get '/simulations/:id/send_simulation_mail', to: 'simulations#send_simulation_mail', as: :send_simulation_mail
