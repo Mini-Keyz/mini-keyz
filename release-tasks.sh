@@ -18,8 +18,3 @@ if [ "$CLEAR_CACHE_DURING_RELEASE" == "true" ]; then
 fi
 
 echo "Done running release-tasks.sh"
-
-echo "Restarting dynos"
-heroku restart
-
-echo "Done restarting dynos"
