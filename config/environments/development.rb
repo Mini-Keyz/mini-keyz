@@ -83,14 +83,11 @@ Rails.application.configure do
   host = 'mini-keyz.com'
   config.action_mailer.default_url_options = { host: host }
 
-  # SMTP settings for gmail
+  # SMTP settings for mailcatcher
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD'],
-    authentication: 'plain',
-    enable_starttls_auto: true
+    address: '127.0.0.1',
+    port: 1025,
+    domain: '127.0.0.1'
   }
 
   # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
