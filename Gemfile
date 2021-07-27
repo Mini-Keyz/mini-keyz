@@ -60,6 +60,9 @@ group :development do
   # Livereload in the browser
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload', '~> 0.3.17'
+
+  # SMTP server
+  gem 'mailcatcher'
 end
 
 group :test do
@@ -69,8 +72,6 @@ group :test do
   # Facilitates tests
   gem 'shoulda-matchers', '~> 4.0'
 end
-
-gem 'mailcatcher'
 
 # Stores ENV variables
 gem 'figaro'
