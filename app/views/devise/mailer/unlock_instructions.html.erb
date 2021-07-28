@@ -1,7 +1,18 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Bonjour,</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
-
-<p>Click the link below to unlock your account:</p>
+<p>Votre compte a été bloqué à cause d'un trop grand nombre de tentatives de connexion échouées.</p>
+<p>Pour débloquer votre compte, cliquez sur le lien ci-dessous :</p>
 
 <p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+
+<p>Pour toute question, n'hésitez pas à contacter notre service client.</p>
+
+<p>A bientôt !</p>
+
+
+<p>Mini-Keyz</p>
+
+<%= link_to 'www.mini-keyz.com', root_url %><br>
+<%= mail_to 'mathieu.eustachy@mini-keyz.com', 'Nous contacter : mathieu.eustachy@mini-keyz.com' %>
+
+<p>Ce message vous est envoyé automatiquement. Merci de ne pas y répondre.</p>
