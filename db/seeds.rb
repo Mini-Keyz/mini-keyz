@@ -37,7 +37,8 @@ testit1 = User.new({
                      first_name: 'Testintin',
                      last_name: 'EtMilou'
                    })
-testit1.save
+testit1.skip_confirmation!
+testit1.save!
 
 testit2 = User.new({
                      email: 'testit2@ok.com',
@@ -45,7 +46,8 @@ testit2 = User.new({
                      first_name: 'TestHaddock',
                      last_name: 'Mille Milliards de Mille Sabords'
                    })
-testit2.save
+testit2.skip_confirmation!
+testit2.save!
 
 ## - # - ###########################################################################
 # Simulation

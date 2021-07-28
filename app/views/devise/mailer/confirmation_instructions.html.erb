@@ -1,5 +1,16 @@
-<p>Welcome <%= @email %>!</p>
+<p>Bonjour,</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Pour finaliser votre inscription, merci de valider votre adresse email en cliquant ci-dessous :</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Finaliser mon inscription', confirmation_url(@resource, confirmation_token: @token), style: "padding: 8px; background-color: #7cd7ac;" %></p>
+
+<p>Une fois votre inscription finalisée, votre compte sera automatiquement validé et vous pourrez alors sauvegarder vos simulations dans votre espace personnel. Pour toute question, n'hésitez pas à contacter notre service client.</p>
+
+<p>Nous vous remercions pour votre confiance.</p>
+ 
+<p>Mini-Keyz</p>
+
+<%= link_to 'www.mini-keyz.com', root_url %><br>
+<%= mail_to 'mathieu@mini-keyz.com', 'Nous contacter : mathieu@mini-keyz.com' %>
+
+<p>Ce message vous est envoyé automatiquement. Merci de ne pas y répondre.</p>
