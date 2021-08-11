@@ -17,22 +17,34 @@
       <h1 class="text-xl font-bold leading-tight">Mes simulations :</h1>
     </div>
   
-    <div class="mt-4">
-      <% @simulations.each do |simulation| %>
-      <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:bg-opacity-70">
-        <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
-          <p>
-            <span class="font-bold text-xl"><%= simulation.house_price_bought_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %></span> sur <%= simulation.house_city %><% if simulation.house_first_works_amount > 0 %>, +<%= simulation.house_first_works_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %> de travaux<% end %>
-          </p>
-          <p>
-            <span class="font-bold"><%= sprintf("%20.1f", simulation.net_profitability) %>%</span>
-            de rentabilité nette
-          </p>
-          <p>Il y a <%= simulation.created_for %></p>
+    <!-- Simulation list -->
+    <% if @simulations.count == 0 %>
+      <div class="mt-4">
+        <p class="text-gray-500 text-xs text-center py-6 ">
+          Vous n'avez actuellement pas de simulations enregistrées.<br>
+          <%= link_to "Réaliser une simulation", new_simulation_path, class: "underline font-bold" %>
+        </p>
+      </div>
+
+    <% else %>
+      <div class="mt-4">
+        <% @simulations.each do |simulation| %>
+          <div class="flex w-full bg-white border border-gray-300 rounded mt-2 hover:bg-opacity-70">
+            <%= link_to simulation_path(simulation), class: "w-full p-2" do %>
+              <p>
+                <span class="font-bold text-xl"><%= simulation.house_price_bought_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %></span> sur <%= simulation.house_city %><% if simulation.house_first_works_amount > 0 %>, +<%= simulation.house_first_works_amount.to_s(:currency, unit: '€', format: '%n %u', delimiter: ' ', precision: 0) %> de travaux<% end %>
+              </p>
+              <p>
+                <span class="font-bold"><%= sprintf("%20.1f", simulation.net_profitability) %>%</span>
+                de rentabilité nette
+              </p>
+              <p>Il y a <%= simulation.created_for %></p>
+            <% end %>
+          </div>
         <% end %>
       </div>
     <% end %>
-    </div>
+
   </div>
 
 </div>
