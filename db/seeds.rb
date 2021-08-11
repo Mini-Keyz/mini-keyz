@@ -49,6 +49,15 @@ testit2 = User.new({
 testit2.skip_confirmation!
 testit2.save!
 
+testit3 = User.new({
+                     email: 'testit3@ok.com',
+                     password: '123456',
+                     first_name: 'TestNoSimulation',
+                     last_name: 'NoSimulation'
+                   })
+testit3.skip_confirmation!
+testit3.save!
+
 ## - # - ###########################################################################
 # Simulation
 puts '[2/2] - Seeding the Simulation DB...'
