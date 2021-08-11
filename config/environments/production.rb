@@ -62,6 +62,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "mini_keyz_production"
 
+  # Force SSL so the user does not go by mistake on http only
+  config.force_ssl = true
+
   config.action_mailer.perform_caching = false
 
   # Enable SMTP as the mailing delivery method
