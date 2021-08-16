@@ -13,6 +13,10 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <%= favicon_link_tag 'favicon/favicon-green.png' %>
+
+    <!-- PWA -->
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= render 'shared/ios_pwa_links' %>
   </head>
 
   <body class="min-h-screen flex flex-col">
