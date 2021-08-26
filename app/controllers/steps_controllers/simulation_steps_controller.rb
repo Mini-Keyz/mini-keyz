@@ -18,7 +18,7 @@ module StepsControllers
         Rails.cache.write session.id, simulation_attrs
         redirect_to_next next_step
       else
-        render_wizard
+        render_wizard nil, status: :unprocessable_entity
       end
     end
 
