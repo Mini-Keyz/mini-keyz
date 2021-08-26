@@ -1,4 +1,5 @@
 class SimulationsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[show new create update]
   before_action :set_simulation, only: %i[show update destroy send_simulation_mail]
 
   def index
