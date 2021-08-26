@@ -91,7 +91,7 @@ Rails.application.configure do
   }
 
   # Allow requests from ngrok
-  config.hosts << /[a-z0-9]+\.ngrok\.io/
+  config.hosts.clear
 
   # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
