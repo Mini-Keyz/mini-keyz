@@ -1,0 +1,80 @@
+<div class="mx-auto px-6 sm:px-8 md:px-16 2xl:px-32 flex justify-center">
+
+  <div style="max-width: 480px;">
+
+    <!-- Advertising text -->
+    <div class="mt-8 sm:mt-16">
+      <h1 class="text-xl sm:text-2xl font-bold leading-tight">Cette annonce vue en ligne est-elle un bon investissement locatif ?</h1>
+      <h2 class="text-base leading-tight mt-4">Nous vous donnons la réponse en 60 secondes. Top chrono !</h2>
+    </div>
+
+    <%= turbo_frame_tag dom_id(@simulation) do %>
+      <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch do |f| %>
+
+        <% if f.object.errors.any? %>
+          <div class="error_messages">
+            <% f.object.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <!-- 3/ Emprunt bancaire -->
+        <div class="bg-red-100 bg-opacity-50 w-full px-4 sm:px-6 py-8">
+          <div class="flex items-center border-b-2 border-black">
+            <i class="fas fa-piggy-bank mx-1" style="font-size: 20px;"></i>
+            <h2 class="text-xl font-bold">Emprunt bancaire</h2>
+          </div>
+
+          <!-- Montant emprunté -->
+          <div class="flex flex-col mt-8">
+            <%= f.label :credit_loan_amount, "Montant emprunté", class: "font-bold" %>
+            <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
+            <%= f.number_field :credit_loan_amount, placeholder: "240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent number-field-thousand-separator" %>
+            <!-- <%= errors_for @simulation, :credit_amount %>   -->
+          </div>
+
+          <!-- Durée -->
+          <div class="flex flex-col mt-4">
+            <%= f.label :credit_loan_duration, "Durée", class: "font-bold" %>
+            <p class="text-xs text-gray-500">En années</p>
+            <div class="flex items-center justify-between mt-1" style="width: 200px; height: 40px;" id="radio-credit-loan-duration">
+              <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+                <%= f.radio_button :credit_loan_duration, 5, class: "hidden" %>
+                <%= f.label :credit_loan_duration, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+              </div>
+              <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+                <%= f.radio_button :credit_loan_duration, 10, class: "hidden"%>
+                <%= f.label :credit_loan_duration, "10", value: 10, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+              </div>
+              <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+                <%= f.radio_button :credit_loan_duration, 15, class: "hidden"%>
+                <%= f.label :credit_loan_duration, "15", value: 15, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+              </div>
+              <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+                <%= f.radio_button :credit_loan_duration, 20, class: "hidden"%>
+                <%= f.label :credit_loan_duration, "20", value: 20, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+              </div>
+              <div class="flex justify-center items-center bg-white rounded border-2 border-red-200" style="width: 36px; height: 40px;">
+                <%= f.radio_button :credit_loan_duration, 25, class: "hidden"%>
+                <%= f.label :credit_loan_duration, "25", value: 25, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+              </div>
+
+              <!-- <%= errors_for @simulation, :credit_loan_duration %>   -->
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- 5/ Calculer ma rentabilité -->
+        <%= link_to 'Retour', previous_wizard_path %>
+        <div class="flex justify-center mt-12">
+          <%= f.submit 'Suivant', style: "width: 240px; height: 52px;", class: "text-lg font-bold text-white rounded bg-green-700 p-2 whitespace-normal cursor-pointer transition duration-150 hover:bg-green-800" %>
+        </div>
+
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

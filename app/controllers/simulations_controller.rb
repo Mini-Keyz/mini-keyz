@@ -7,35 +7,47 @@ class SimulationsController < ApplicationController
 
   def show; end
 
-  def update
-    @simulation.attributes = simulation_params
-
-    if @simulation.save
-      redirect_to simulation_path(@simulation)
-    else
-      render :show
-    end
-  end
-
   def new
-    @simulation = Simulation.new
+    Rails.cache.fetch(session.id) { Hash.new }
+    redirect_to build_simulation_path(Simulation.form_steps.keys.first)
   end
+
+  def edit; end
 
   def create
     @simulation = Simulation.new(simulation_params)
-    @simulation.user = current_user if current_user
 
-    if @simulation.save
-      redirect_to simulation_path(@simulation)
-    else
-      render :new
+    respond_to do |format|
+      if @simulation.save
+        format.html { redirect_to @simulation, notice: "Simulation was successfully created." }
+        format.json { render :show, status: :created, location: @simulation }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @simulation.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  def update
+    respond_to do |format|
+      if @simulation.update(simulation_params)
+        format.html { redirect_to @simulation, notice: "Simulation was successfully updated." }
+        format.json { render :show, status: :ok, location: @simulation }
+      else
+        format.html { render :edit, status: :unprocessable_entity }       # Thanks Rails team!
+        format.json { render json: @simulation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
   def destroy
     @simulation.destroy
-
-    redirect_to simulations_path
+    respond_to do |format|
+      format.html { redirect_to simulations_url, notice: "Simulation was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   def send_simulation_mail
