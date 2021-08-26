@@ -82,6 +82,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Log in system
 gem 'devise', '~> 4.7'
 
+# Wizard form (multi-step)
+gem 'wicked'
+
 gem 'time_difference', '~> 0.5.0'
 
 # My super gemmm that I made and publish on rubygems.org
