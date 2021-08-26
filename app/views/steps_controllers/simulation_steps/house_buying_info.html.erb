@@ -1,35 +1,80 @@
-<%= turbo_frame_tag dom_id(@simulation) do %>
-  <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch do |f| %>
+<div class="mx-auto px-6 sm:px-8 md:px-16 2xl:px-32 flex justify-center">
 
-  <% if f.object.errors.any? %>
-    <div class="error_messages">
-      <% f.object.errors.full_messages.each do |error| %>
-        <p><%= error %></p>
-      <% end %>
+  <div style="max-width: 480px;">
+
+    <!-- Advertising text -->
+    <div class="mt-8 sm:mt-16">
+      <h1 class="text-xl sm:text-2xl font-bold leading-tight">Cette annonce vue en ligne est-elle un bon investissement locatif ?</h1>
+      <h2 class="text-base leading-tight mt-4">Nous vous donnons la réponse en 60 secondes. Top chrono !</h2>
     </div>
-  <% end %>
 
-<fieldset>
-  <legend>Address Info</legend>
+    <%= turbo_frame_tag dom_id(@simulation) do %>
+      <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch do |f| %>
 
-  <div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
+        <% if f.object.errors.any? %>
+          <div class="error_messages">
+            <% f.object.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <!-- 1/ Bien immobilier -->
+        <div class="bg-green-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-tl rounded-tr">
+          <div class="flex items-center border-b-2 border-black">
+            <i class="fas fa-home mx-1" style="font-size: 20px;"></i>
+            <h2 class="text-xl font-bold">Bien immobilier</h2>
+          </div>
+
+          <!-- Ville -->
+          <div class="flex flex-col mt-8">
+            <%= f.label :house_city, "Ville", class: "font-bold" %>
+            <%= f.text_field :house_city, placeholder: "Paris", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" %>
+            <!-- <%= errors_for @simulation, :house_city %>   -->
+          </div>
+
+          <!-- Prix d'achat -->
+          <div class="flex flex-col mt-4">
+            <%= f.label :house_price_bought_amount, "Prix d'achat", class: "font-bold" %>
+            <p class="text-xs text-gray-500">Prix du bien + Frais d’agence</p>
+            <%= f.number_field :house_price_bought_amount, placeholder: "200 000€", min: 0, pattern: "[0-9]*", inputmode: "numeric", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent number-field-thousand-separator" %>
+            <!-- <%= errors_for @simulation, :house_price_bought_amount %>   -->
+          </div>
+
+          <!-- Budget travaux -->
+          <div class="flex flex-col mt-4">
+            <%= f.label :house_first_works_amount, "Budget travaux", class: "font-bold" %>
+            <p class="text-xs text-gray-500">(optionnel)</p>
+            <%= f.number_field :house_first_works_amount, placeholder: "15 000€ TTC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent number-field-thousand-separator" %>
+            <!-- <%= errors_for @simulation, :house_first_works_amount %>   -->
+          </div>
+
+          <!-- Charges annuelles totales -->
+          <div class="flex flex-col mt-4">
+            <%= f.label :house_total_charges_amount_per_year, "Charges annuelles totales", class: "font-bold" %>
+            <p class="text-xs text-gray-500">En moyenne 80% sont récupérées sur le locataire</p>
+            <%= f.number_field :house_total_charges_amount_per_year, placeholder: "1 200€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent number-field-thousand-separator" %>
+            <!-- <%= errors_for @simulation, :house_total_charges_amount_per_year %>   -->
+          </div>
+
+          <!-- Taxe foncière -->
+          <div class="flex flex-col mt-4">
+            <%= f.label :house_property_tax_amount_per_year, "Taxe foncière", class: "font-bold" %>
+            <p class="text-xs text-gray-500">En moyenne 1 mois de loyer</p>
+            <%= f.number_field :house_property_tax_amount_per_year, placeholder: "800€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent number-field-thousand-separator" %>
+            <!-- <%= errors_for @simulation, :house_property_tax_amount_per_year %>   -->
+          </div>
+
+        </div>
+
+        <!-- 5/ Calculer ma rentabilité -->
+        <%= link_to 'Retour', root_path, data: { turbo_frame: :_top } %> <%# NOTE the _top target %>
+        <div class="flex justify-center mt-12">
+          <%= f.submit 'Suivant', style: "width: 240px; height: 52px;", class: "text-lg font-bold text-white rounded bg-green-700 p-2 whitespace-normal cursor-pointer transition duration-150 hover:bg-green-800" %>
+        </div>
+
+      <% end %>
+    <% end %>
+
   </div>
-
-  <div>
-    <%= f.label :current_family_last_name %>
-    <%= f.text_field :current_family_last_name %>
-  </div>
-
-  <br/>
-
-  <div>
-    <%= link_to 'Nevermind', root_path, data: { turbo_frame: :_top } %> <%# NOTE the _top target %>
-    <%= f.submit 'Next Step' %>
-  </div>
-</fieldset>
-
-
-  <% end %>
-<% end %>
+</div>
