@@ -63,3 +63,5 @@ document.addEventListener("turbolinks:load", () => {
   // initNumberFieldThousandSeparator(); It seems like it is breaking down our radio buttons value which are then not sent
   initFlashFadingOut();
 });
+
+import "@hotwired/turbo-rails"
