@@ -1,30 +1,55 @@
 class Simulation < ApplicationRecord
+
+  # 1) Names each specific step involved in building up this model incrementally
+  # 2) Orders them top-to-bottom, hinting at (but not enforcing) the standard ‘happy path’ direction for filling out steps
+  # 3) Defines exactly which attributes on the model are intended to be contained by and validated as part of any given step
+  enum form_steps: {
+    house_buying_info: [:house_city, :house_price_bought_amount, :house_first_works_amount, :house_total_charges_amount_per_year, :house_property_tax_amount_per_year],
+    house_renting_info: [:house_rent_amount_per_month, :house_property_management_cost_percentage],
+    credit_info: [:credit_loan_amount, :credit_loan_duration],
+    fiscal_info: [:fiscal_status, :fiscal_regimen, :fiscal_revenues_p1, :fiscal_revenues_p2, :fiscal_nb_dependent_children, :fiscal_nb_alternate_custody_children]
+  }
+  # Will tell us which step any given Simulation needs to validate for
+  attr_accessor :form_step
+
+  with_options if: -> { required_for_step?(:house_buying_info) } do
+    validates :house_city, presence: true
+    validates :house_price_bought_amount, presence: true,
+                                          numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :house_first_works_amount, allow_blank: true,
+                                         numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :house_total_charges_amount_per_year, presence: true,
+                                                    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :house_property_tax_amount_per_year, presence: true,
+                                                   numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  end
+
+  with_options if: -> { required_for_step?(:house_renting_info) } do
+    validates :house_rent_amount_per_month, presence: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :house_property_management_cost_percentage, presence: true,
+                  numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
+  end
+
+  with_options if: -> { required_for_step?(:credit_info) } do
+    validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  end
+
+  with_options if: -> { required_for_step?(:fiscal_info) } do
+    validates :fiscal_status, presence: true, inclusion: { in: proc { FISCAL_STATUS_AVAILABLE } }
+    validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }
+    validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
+    validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    # validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
+    validates :fiscal_nb_dependent_children, presence: true,
+                                             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+    validates :fiscal_nb_alternate_custody_children, presence: true,
+                                                     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  end
+
   belongs_to :user, optional: true
 
-  validates :house_city, presence: true
-  validates :house_price_bought_amount, presence: true,
-                                        numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_first_works_amount, allow_blank: true,
-                                       numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_total_charges_amount_per_year, presence: true,
-                                                  numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_property_tax_amount_per_year, presence: true,
-                                                 numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_rent_amount_per_month, presence: true,
-                                          numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :house_property_management_cost_percentage, presence: true,
-                                                        numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
-  validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :fiscal_status, presence: true, inclusion: { in: proc { FISCAL_STATUS_AVAILABLE } }
-  validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }
-  validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
-  validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  # validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :fiscal_nb_dependent_children, presence: true,
-                                           numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :fiscal_nb_alternate_custody_children, presence: true,
-                                                   numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   include(CreditFormulas)
   include(IncomeTaxesFormulas)
@@ -59,6 +84,18 @@ class Simulation < ApplicationRecord
     unless credit_loan_insurance_percentage_per_year
       self.credit_loan_insurance_percentage_per_year = CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR
     end
+  end
+
+  #-----------------------------------------------------------------------#
+  # Wizard helpers
+
+  def required_for_step?(step)
+    # All fields are required if no form step is present
+    return true if form_step.nil?
+  
+    # All fields from previous steps are required
+    ordered_keys = self.class.form_steps.keys.map(&:to_sym)
+    !!(ordered_keys.index(step) <= ordered_keys.index(form_step))
   end
 
   #-----------------------------------------------------------------------#
