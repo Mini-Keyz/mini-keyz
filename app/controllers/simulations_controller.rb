@@ -18,7 +18,8 @@ class SimulationsController < ApplicationController
   end
 
   def new
-    @simulation = Simulation.new
+    Rails.cache.fetch(session.id) { Hash.new }
+    redirect_to build_simulation_path(Simulation.form_steps.keys.first)
   end
 
   def create

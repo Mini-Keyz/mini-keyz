@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     end
 
     resources :simulations, only: %i[show new create]
+    resources :build_simulation, only: [:update, :show], controller: 'steps_controllers/simulation_steps'
   end
 end
