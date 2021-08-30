@@ -12,11 +12,7 @@
       <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch do |f| %>
 
         <% if f.object.errors.any? %>
-          <div class="error_messages">
-            <% f.object.errors.full_messages.each do |error| %>
-              <p><%= error %></p>
-            <% end %>
-          </div>
+          <p>Vous devez corriger les erreurs pour poursuivre</p>
         <% end %>
 
         <!-- 2/ Mise en location -->
@@ -31,7 +27,7 @@
             <%= f.label :house_rent_amount_per_month, "Loyer mensuel", class: "font-bold" %>
             <p class="text-xs text-gray-500">Hors charges</p>
             <%= f.number_field :house_rent_amount_per_month, placeholder: "800€ HC", style: "width: 200px; height: 40px;", class: "rounded border-2 border-blue-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent number-field-thousand-separator" %>
-            <!-- <%= errors_for @simulation, :house_rent_amount_per_month %>   -->
+            <%= errors_for @simulation, :house_rent_amount_per_month %>  
           </div>
 
           <!-- Gestion en agence ? -->
@@ -47,18 +43,18 @@
                 <%= f.radio_button :house_property_management_cost_percentage, 0, class: "hidden"%>
                 <%= f.label :house_property_management_cost_percentage, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
               </div>
-
-              <!-- <%= errors_for @simulation, :house_property_management_cost_percentage %>   -->
+              <%= errors_for @simulation, :house_property_management_cost_percentage %>  
             </div>
 
           </div>
 
         </div>
 
-        <!-- 5/ Calculer ma rentabilité -->
-        <%= link_to 'Retour', previous_wizard_path %>
-        <div class="flex justify-center mt-12">
-          <%= f.submit 'Suivant', style: "width: 240px; height: 52px;", class: "text-lg font-bold text-white rounded bg-green-700 p-2 whitespace-normal cursor-pointer transition duration-150 hover:bg-green-800" %>
+        <!-- Actions -->
+        <div class="flex justify-center gap-x-4 sm:gap-x-8 mt-6 sm:mt-12">
+          <%= link_to 'Retour', previous_wizard_path, class: "w-32 sm:w-40 h-14 text-lg text-gray-400 align-middle rounded p-2 border border-gray-300 whitespace-nowrap flex justify-center items-center", role: "button" %> <%# NOTE the _top target %>
+          <div class="flex item-center"></div>
+          <%= f.submit 'Suivant', class: "w-32 sm:w-40 h-14 text-lg font-bold text-white rounded bg-green-700 p-2 whitespace-normal cursor-pointer transition duration-150 hover:bg-green-800" %>
         </div>
 
       <% end %>
