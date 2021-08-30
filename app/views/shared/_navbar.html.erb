@@ -1,4 +1,8 @@
-<nav data-controller="dropdown" class="sm:sticky top-0 bg-green-30 hover:bg-white transition duration-400" id="navbar">
+<nav 
+  data-controller="dropdown" 
+  class="sm:sticky top-0 bg-green-30 hover:bg-white transition duration-400" 
+  id="navbar"
+>
   <div class="flex justify-between items-center py-4 sm:px-2 md:px-4 lg:px-6">
     
     <!-- LEFT SIDE / ICON + TEXT -->
@@ -35,7 +39,11 @@
   </div>
 
   <!-- Dropdown -->
-  <div data-dropdown-target="dropdownMenu" class="absolute right-0 mx-2 hidden" id="navbar-dropdown-items-list">
+  <div 
+    data-dropdown-target="dropdownMenu" 
+    class="absolute right-0 mx-2 hidden" 
+    id="navbar-dropdown-items-list"
+  >
     <div class="flex flex-col bg-white border-2 rounded-bl rounded-br">
       <% if user_signed_in? %>
         <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
