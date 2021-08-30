@@ -12,7 +12,6 @@ import "channels";
 import "stylesheets/application";
 
 // Import plugins
-import { initNavbarDropdown } from "../plugins/navbar_dropdown";
 import { initNavbarBackgroundScroll } from "../plugins/navbar_background_scroll";
 import { stylizeRadio } from "../plugins/form_radio";
 import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
@@ -27,7 +26,6 @@ Turbolinks.start();
 ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-  initNavbarDropdown();
   initNavbarBackgroundScroll();
   stylizeRadio({
     parentInputFieldId: "radio-house-property-management-cost",
