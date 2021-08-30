@@ -47,8 +47,8 @@
                 <%= f.radio_button :fiscal_status, "DeNormandie", class: "hidden"%>
                 <%= f.label :fiscal_status, "DeNormandie", value: "DeNormandie", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
               </div>
-              <%= errors_for @simulation, :fiscal_status %>  
             </div>
+            <%= errors_for @simulation, :fiscal_status %>  
 
           </div>
 
@@ -65,8 +65,8 @@
                 <%= f.radio_button :fiscal_regimen, "Forfait", class: "hidden"%>
                 <%= f.label :fiscal_regimen, "Forfait / Micro-BIC", value: "Forfait", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
               </div>
-              <%= errors_for @simulation, :fiscal_regimen %>  
             </div>
+            <%= errors_for @simulation, :fiscal_regimen %>  
 
           </div>
 
@@ -77,7 +77,6 @@
               <div class="flex flex-col">
                 <p class="text-xs text-gray-500">Vos revenus</p>
                 <%= f.number_field :fiscal_revenues_p1, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent number-field-thousand-separator" %>
-                <%= errors_for @simulation, :fiscal_revenues_p1 %>  
               </div>
               <div>
                 <p class="text-2xl text-gray-500 px-2 pt-4">+</p>
@@ -85,9 +84,10 @@
               <div class="flex flex-col">
                 <p class="text-xs text-gray-500">Si couple, conjoint</p>
                 <%= f.number_field :fiscal_revenues_p2, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent number-field-thousand-separator" %>
-                <%= errors_for @simulation, :fiscal_revenues_p2 %>  
               </div>
             </div>
+            <%= errors_for @simulation, :fiscal_revenues_p1 %>  
+            <%= errors_for @simulation, :fiscal_revenues_p2 %>  
           </div>
 
           <!-- Nombre d'enfants à charge -->
@@ -123,8 +123,8 @@
                 <%= f.radio_button :fiscal_nb_dependent_children, 6, class: "hidden"%>
                 <%= f.label :fiscal_nb_dependent_children, "6", value: 6, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
               </div>
-              <%= errors_for @simulation, :fiscal_nb_dependent_children %>  
             </div>
+            <%= errors_for @simulation, :fiscal_nb_dependent_children %>  
 
           </div>
 
@@ -161,8 +161,8 @@
                 <%= f.radio_button :fiscal_nb_alternate_custody_children, 6, class: "hidden"%>
                 <%= f.label :fiscal_nb_alternate_custody_children, "6", value: 6, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
               </div>
-              <%= errors_for @simulation, :fiscal_nb_alternate_custody_children %>  
             </div>
+            <%= errors_for @simulation, :fiscal_nb_alternate_custody_children %>  
 
           </div>
 

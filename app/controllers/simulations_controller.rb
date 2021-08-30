@@ -41,8 +41,6 @@ class SimulationsController < ApplicationController
     end
   end
 
-
-
   def destroy
     @simulation.destroy
     respond_to do |format|
