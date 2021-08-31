@@ -3,6 +3,10 @@
 @import "tailwindcss/utilities";
 
 @layer components {
+  .container-app {
+    @apply mx-auto px-8 md:px-16 2xl:px-72;
+  }
+
   .btn-new-sim {
     @apply font-bold text-center bg-green-frog hover:bg-green-500 rounded-lg px-4 py-4 mt-8 border-2 border-black transition duration-150;
   }
