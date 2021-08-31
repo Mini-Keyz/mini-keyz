@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get '/simulations/:id/send_simulation_mail', to: 'simulations#send_simulation_mail', as: :send_simulation_mail
       resources :users, only: [:show]
     end
-
+ 
     resources :simulations, only: %i[show new create]
     resources :build_simulation, only: [:update, :show], controller: 'steps_controllers/simulation_steps'
   end

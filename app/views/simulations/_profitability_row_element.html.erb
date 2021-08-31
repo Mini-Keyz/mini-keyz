@@ -19,64 +19,77 @@
     }
   } %>
 
-<!-- Plain rentability row -->
-<div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability-type="<%= type %>">
-
-  <div class="flex justify-start items-center border">
-    <p>
-      <%= sprintf("%20.1f", simulation.send("#{type}_profitability")) %>%
-    </p>
-  </div>
-  <div class="flex justify-start items-center col-span-2 border">
-    <%= profitability[type.to_sym][:name] %>
-  </div>
-  <div class="absolute right-px top-1/2 transform -translate-y-1/2">
-    <i class="fas fa-caret-down mx-1"></i>
-  </div>
-</div>
-
-<!-- Expanded rentability row -->
-<div>
-  <p class="text-xs my-2"><%= profitability[type.to_sym][:definition] %></p>
-
-  <div class="flex items-center my-4">
-    <p class="text-xs font-bold flex-shrink-0 mr-4">Formule :</p>
-    <div class="flex flex-col items-center mr-4">
-
-      <p class="text-xs">
-        <% profitability[type.to_sym][:formula_quotient].map.with_index do |formula_element, i| %>
-          <% if i.even? %>
-          <span class="relative inline-block border-b border-dotted border-gray-400 group">
-            <%= formula_element %>
-            <span class='absolute w-max z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
-              <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)).to_s(:currency, unit: "€", format:"%n %u", delimiter: " ", precision: 0) %>
-            </span>
-          </span>
-          <% else %>
-            <%= formula_element %>
-          <% end %>
-        <% end %>
+<div
+  data-controller="dropdown"
+>
+  <!-- Plain rentability row -->
+  <div
+    data-action="click->dropdown#toggle"
+    data-dropdown-target="dropdownButton"
+    data-profitability-type="<%= type %>"
+    class="grid grid-cols-3 cursor-pointer relative" 
+    style="min-height: 36px;" 
+  >
+  
+    <div class="flex justify-start items-center border">
+      <p>
+        <%= sprintf("%20.1f", simulation.send("#{type}_profitability")) %>%
       </p>
-
-      <div class="border-t-2 w-full my-1"></div>
-
-      <p class="text-xs">
-        <% profitability[type.to_sym][:formula_divisor].map.with_index do |formula_element, i| %>
-          <% if i.even? %>
-          <span class="relative inline-block border-b border-dotted border-gray-400 group">
-            <%= formula_element %>
-            <span class='absolute w-max z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
-              <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)).to_s(:currency, unit: "€", format:"%n %u", delimiter: " ", precision: 0) %>
-            </span>
-          </span>
-          <% else %>
-            <%= formula_element %>
-          <% end %>
-        <% end %>
-      </p>
-
     </div>
-
-    <p class="text-xs flex-shrink-0">* 100</p>
+    <div class="flex justify-start items-center col-span-2 border">
+      <%= profitability[type.to_sym][:name] %>
+    </div>
+    <div class="absolute right-px top-1/2 transform -translate-y-1/2">
+      <i class="fas fa-caret-down mx-1"></i>
+    </div>
+  </div>
+  
+  <!-- Expanded rentability row -->
+  <div
+    data-dropdown-target="dropdownMenu"
+    class="hidden"
+  >
+    <p class="text-xs my-2"><%= profitability[type.to_sym][:definition] %></p>
+  
+    <div class="flex items-center my-4">
+      <p class="text-xs font-bold flex-shrink-0 mr-4">Formule :</p>
+      <div class="flex flex-col items-center mr-4">
+  
+        <p class="text-xs">
+          <% profitability[type.to_sym][:formula_quotient].map.with_index do |formula_element, i| %>
+            <% if i.even? %>
+            <span class="relative inline-block border-b border-dotted border-gray-400 group">
+              <%= formula_element %>
+              <span class='absolute w-max z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
+                <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)).to_s(:currency, unit: "€", format:"%n %u", delimiter: " ", precision: 0) %>
+              </span>
+            </span>
+            <% else %>
+              <%= formula_element %>
+            <% end %>
+          <% end %>
+        </p>
+  
+        <div class="border-t-2 w-full my-1"></div>
+  
+        <p class="text-xs">
+          <% profitability[type.to_sym][:formula_divisor].map.with_index do |formula_element, i| %>
+            <% if i.even? %>
+            <span class="relative inline-block border-b border-dotted border-gray-400 group">
+              <%= formula_element %>
+              <span class='absolute w-max z-10 bottom-full left-1/2 transform -translate-x-1/2 bg-gray-600 text-white text-center px-5 rounded-md invisible group-hover:visible'>
+                <%= simulation.send(convert_formula_element_to_corresponding_simulation_variable(formula_element)).to_s(:currency, unit: "€", format:"%n %u", delimiter: " ", precision: 0) %>
+              </span>
+            </span>
+            <% else %>
+              <%= formula_element %>
+            <% end %>
+          <% end %>
+        </p>
+  
+      </div>
+  
+      <p class="text-xs flex-shrink-0">* 100</p>
+    </div>
   </div>
 </div>

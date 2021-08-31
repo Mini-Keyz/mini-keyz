@@ -1,5 +1,12 @@
-<nav class="sm:sticky top-0 bg-green-30 hover:bg-white transition duration-400" id="navbar">
-  <div class="flex justify-between items-center py-4 sm:px-2 md:px-4 lg:px-6">
+<nav 
+  data-controller="navbar dropdown"
+  class="sm:sticky top-0 bg-green-30 hover:bg-white transition duration-400 z-50" 
+>
+  <div 
+    data-action="scroll@window->navbar#scrollDown"
+    data-navbar-target="navbarElement"
+    class="flex justify-between items-center py-4 sm:px-2 md:px-4 lg:px-6"
+  >
     
     <!-- LEFT SIDE / ICON + TEXT -->
     <div class="flex justify-between items-center ml-4">
@@ -17,7 +24,13 @@
     <!-- RIGHT SIDE / DROP DOWN MENU -->
     <% if user_signed_in? %>
       <div class="px-2 mr-4">
-        <i class="fas fa-bars px-4 cursor-pointer" style="font-size: 24px;" id="navbar-dropdown"></i>
+        <i 
+          data-action="click->dropdown#toggle click@window->dropdown#hide"
+          data-dropdown-target="dropdownButton"
+          class="fas fa-bars px-4 cursor-pointer" 
+          style="font-size: 24px;"
+        >
+        </i>
       </div>
     <% elsif request.path == "/users/sign_in" || request.path == "/users/password/new" || request.path == "/users/sign_up" %>
     <% else %>
@@ -29,13 +42,16 @@
   </div>
 
   <!-- Dropdown -->
-  <div class="absolute right-0 mx-2 hidden" id="navbar-dropdown-items-list">
+  <div 
+    data-dropdown-target="dropdownMenu" 
+    class="absolute right-0 mx-2 hidden" 
+  >
     <div class="flex flex-col bg-white border-2 rounded-bl rounded-br">
       <% if user_signed_in? %>
-        <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to "Mes simulations", simulations_path, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to "Mon compte", user_path(current_user), style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, style: "width: 240px", class: "navbar-dropdown-item font-semibold p-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Mes simulations", simulations_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Mon compte", user_path(current_user), style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, style: "width: 240px", class: "font-semibold p-2 transition duration-400 hover:bg-green-500" %>
       <% end %>
     </div>
   </div>
