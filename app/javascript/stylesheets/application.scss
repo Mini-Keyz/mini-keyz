@@ -1,3 +1,15 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer components {
+  .btn-new-sim {
+    @apply font-bold text-center bg-green-frog hover:bg-green-500 rounded-lg px-4 py-4 mt-8 border-2 border-black transition duration-150;
+  }
+}
+
+@layer utilities {
+  .test {
+    background-color: red;
+  }
+}
