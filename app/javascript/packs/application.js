@@ -13,7 +13,6 @@ import "stylesheets/application";
 
 // Import plugins
 import { stylizeRadio } from "../plugins/form_radio";
-import { initProfitabilityDropdowns } from "../plugins/simulation_show_profitability_dropdowns";
 import { initNumberFieldThousandSeparator } from "../plugins/simulation_new_number_field_thousand_separator";
 import { initFlashFadingOut } from "../plugins/flash_fading_out";
 
@@ -55,7 +54,6 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
-  initProfitabilityDropdowns();
   // initNumberFieldThousandSeparator(); It seems like it is breaking down our radio buttons value which are then not sent
   initFlashFadingOut();
 });
