@@ -20,7 +20,13 @@
   } %>
 
 <!-- Plain rentability row -->
-<div class="grid grid-cols-3 cursor-pointer relative" style="min-height: 36px;" data-profitability-type="<%= type %>">
+<div
+  data-action="click->dropdown#toggle click@window->dropdown#hide"
+  data-dropdown-target="dropdownButton"
+  class="grid grid-cols-3 cursor-pointer relative" 
+  style="min-height: 36px;" 
+  data-profitability-type="<%= type %>"
+>
 
   <div class="flex justify-start items-center border">
     <p>
@@ -36,7 +42,9 @@
 </div>
 
 <!-- Expanded rentability row -->
-<div>
+<div
+  data-dropdown-target="dropdownMenu" 
+>
   <p class="text-xs my-2"><%= profitability[type.to_sym][:definition] %></p>
 
   <div class="flex items-center my-4">

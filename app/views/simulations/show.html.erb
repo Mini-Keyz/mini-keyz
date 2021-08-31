@@ -31,15 +31,14 @@
   <div class="mt-8">
     <h2 class="font-bold">Rentabilités :</h2>
     
-    <div id="profitabilities-rows">
+    <div
+      data-controller="dropdown"
+    >
       <%= render 'profitability_row_element', simulation: @simulation, type: "gross" %>
       <%= render 'profitability_row_element', simulation: @simulation, type: "net" %>
       <%= render 'profitability_row_element', simulation: @simulation, type: "net_after_taxes" %>
     </div>
   </div>
-
-  <p>income tax</p>
-  <%=  %>
 
 
   <!-- Dans les faits -->
