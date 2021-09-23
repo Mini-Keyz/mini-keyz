@@ -1,24 +1,23 @@
-# README
+# Mini-keyz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Mini-kez](https://mini-keyz.com/) is a real estate platform that helps French real estate investors to make better decisions with their investments. First release expected on fall 2021. 
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+### Create and initialize development database
+TODO
 
-* System dependencies
+### Enable development caching
+Running a new simulation when not logged in uses caching. In development mode, you need to enable caching in order to make it work:
+```
+$ rails dev:cache
+Development mode is now being cached.
+```
 
-* Configuration
+### Run the test suite
+TODO 
 
-* Database creation
 
-* Database initialization
+## Deployment
+TODO 
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
