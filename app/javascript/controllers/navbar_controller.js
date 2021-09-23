@@ -6,7 +6,6 @@ export default class extends Controller {
   }
 
   scrollDown() {
-    console.log("scroll");
     if (window.scrollY > 0) {
       this.navbarElementTarget.classList.remove("bg-green-30");
       this.navbarElementTarget.classList.add("shadow-sm", "bg-white");
