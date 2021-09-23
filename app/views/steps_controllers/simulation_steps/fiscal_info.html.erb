@@ -79,14 +79,14 @@
               <div class="flex justify-between items-center flex-wrap gap-2">
                 <div class="flex flex-col">
                   <p class="text-xs text-gray-500">Vos revenus</p>
-                  <%= f.number_field :fiscal_revenues_p1, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent number-field-thousand-separator" %>
+                  <%= f.number_field :fiscal_revenues_p1, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "input-yellow" %>
                 </div>
                 <div>
                   <p class="text-2xl text-gray-500 px-2 pt-4">+</p>
                 </div>
                 <div class="flex flex-col">
                   <p class="text-xs text-gray-500">Si couple, conjoint</p>
-                  <%= f.number_field :fiscal_revenues_p2, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent number-field-thousand-separator" %>
+                  <%= f.number_field :fiscal_revenues_p2, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "input-yellow" %>
                 </div>
               </div>
               <%= errors_for @simulation, :fiscal_revenues_p1 %>  
