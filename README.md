@@ -11,6 +11,10 @@ Things you may want to cover:
 
 * Configuration
 
+Running a new simulation when not logged in uses caching. In development mode, you need to enable caching in order to make it work:
+`$ rails dev:cache`  
+`Development mode is now being cached.`
+
 * Database creation
 
 * Database initialization
@@ -22,3 +26,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
