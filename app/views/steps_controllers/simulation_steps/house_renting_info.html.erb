@@ -43,10 +43,12 @@
               <div class="flex items-center justify-between mt-1" style="width: 200px; height: 40px;" id="radio-house-property-management-cost">
                 <div
                   data-action="click->form-radio-buttons#toggle"
+                  data-form-radio-buttons-target="radioParent"
                   class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
                   style="width: 92px; height: 40px;"
+                  id="radio-btn-blue"
                 >
-                  <%= f.radio_button :house_property_management_cost_percentage, 0.08, class: "hidden" %>
+                  <%= f.radio_button :house_property_management_cost_percentage, 0.08, class: "hidden", data: {'form-radio-buttons-target': 'radioValue'} %>
                   <%= f.label :house_property_management_cost_percentage, "Oui", value: 0.08, class:"w-full h-full font-bold text-center py-1 cursor-pointer", data: {'form-radio-buttons-target': 'radioBtn'} %>
                 </div>
 
