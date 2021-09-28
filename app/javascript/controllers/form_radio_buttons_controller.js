@@ -94,7 +94,6 @@ export default class extends Controller {
 
     // Change radio button style depending on styling
     this.style();
-    console.log(this.radioParentTarget.classList);
   }
 
   style() {
