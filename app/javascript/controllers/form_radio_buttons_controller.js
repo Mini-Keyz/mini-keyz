@@ -77,41 +77,45 @@ const yellow = {
 
 export default class extends Controller {
   static get targets() {
-    return ["radioBtn", "radioValue", "radioParent"];
+    return ["radioWrapper"];
   }
 
   initialize() {
-    console.log(this.radioValueTarget.checked);
     this.style();
   }
 
   toggle(event) {
-    console.log(this.radioValueTarget.checked);
+    console.log(event.target);
+    const labelClicked = event.target;
+    const inputClicked = labelClicked.previousElementSibling;
+    console.log(inputClicked.checked);
+
     // Check or uncheck on click
     event.preventDefault();
-    this.radioValueTarget.checked = !this.radioValueTarget.checked;
-    console.log(this.radioValueTarget.checked);
+    inputClicked.checked = !inputClicked.checked;
+    console.log(inputClicked.checked);
 
     // Change radio button style depending on styling
     this.style();
   }
 
   style() {
-    const btnColor = this.radioParentTarget.id.split("-")[2];
-    if (this.radioValueTarget.checked) {
-      this.radioParentTarget.classList.remove(
-        ...eval(btnColor).classToApplyNotChecked
-      );
-      this.radioParentTarget.classList.add(
-        ...eval(btnColor).classToApplyChecked
-      );
-    } else {
-      this.radioParentTarget.classList.remove(
-        ...eval(btnColor).classToApplyChecked
-      );
-      this.radioParentTarget.classList.add(
-        ...eval(btnColor).classToApplyNotChecked
-      );
-    }
+    // Get each button parent div which has their input and label as children
+    const radioParentsArray = Array.from(this.radioWrapperTarget.children);
+
+    // Get the buttons color
+    const btnColor = this.radioWrapperTarget.dataset.color;
+
+    radioParentsArray.forEach((parent) => {
+      if (parent.children[0].checked) {
+        console.log("I am checked");
+        parent.classList.remove(...eval(btnColor).classToApplyNotChecked);
+        parent.classList.add(...eval(btnColor).classToApplyChecked);
+      } else {
+        console.log("I am not checked");
+        parent.classList.remove(...eval(btnColor).classToApplyChecked);
+        parent.classList.add(...eval(btnColor).classToApplyNotChecked);
+      }
+    });
   }
 }
