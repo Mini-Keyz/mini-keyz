@@ -12,6 +12,7 @@ class Simulation < ApplicationRecord
   # Will tell us which step any given Simulation needs to validate for
   attr_accessor :form_step
 
+  # First step of the wizard form
   with_options if: -> { required_for_step?(:house_buying_info) } do
     validates :house_city, presence: true
     validates :house_price_bought_amount, presence: true,
@@ -24,6 +25,7 @@ class Simulation < ApplicationRecord
                                                    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   end
 
+  # Second step of the wizard form
   with_options if: -> { required_for_step?(:house_renting_info) } do
     validates :house_rent_amount_per_month, presence: true,
     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -31,17 +33,18 @@ class Simulation < ApplicationRecord
                   numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
   end
 
+  # Third step of the wizard form
   with_options if: -> { required_for_step?(:credit_info) } do
     validates :credit_loan_amount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
     validates :credit_loan_duration, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   end
 
+  # Fourth step of the wizard form
   with_options if: -> { required_for_step?(:fiscal_info) } do
     validates :fiscal_status, presence: true, inclusion: { in: proc { FISCAL_STATUS_AVAILABLE } }
     validates :fiscal_regimen, presence: true, inclusion: { in: proc { FISCAL_REGIMEN_AVAILABLE } }
     validates :fiscal_revenues_p1, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
     validates :fiscal_revenues_p2, allow_blank: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-    # validates :fiscal_nb_parts, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :fiscal_nb_dependent_children, presence: true,
                                              numericality: { only_integer: true, greater_than_or_equal_to: 0 }
     validates :fiscal_nb_alternate_custody_children, presence: true,
