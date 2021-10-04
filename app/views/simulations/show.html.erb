@@ -95,7 +95,7 @@
     </div>
     <p class="font-bold">FRENCH TAX SYSTEM</p>
     <div>
-      <p>Sim / with prop income / 5 years</p><%= FrenchTaxSystem.calc_taxes_amount_per_year(@simulation.attributes.symbolize_keys, "with_property_income", 5) %>
+      <p>Sim / with prop income / 5 years</p><%= FrenchTaxSystem.calc_taxes_amount_per_year(@simulation.enriched, "with_property_income", 5) %>
     </div>
   </div>
 

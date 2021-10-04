@@ -104,10 +104,15 @@ class Simulation < ApplicationRecord
   #-----------------------------------------------------------------------#
   # Enriched simulation to feed FrenchTaxSystem gem
 
-  def enriched_simulation_for_french_tax_system
-    result = self.attributes.symbolize_keys
+  def enriched
+    result = attributes.symbolize_keys
     result[:house_rent_amount_per_year] = house_rent_amount_per_year
     result[:house_landlord_charges_amount_per_year] = house_landlord_charges_amount_per_year
+    result[:house_property_management_amount_per_year] = house_property_management_amount_per_year
+    result[:house_insurance_gli_amount_per_year] = house_insurance_gli_amount_per_year
+    result[:credit_loan_cumulative_interests_paid_for_year_two] = credit_loan_cumulative_interests_paid_for_year_two
+    result[:credit_loan_insurance_amount_per_year] = credit_loan_insurance_amount_per_year
+    result[:fiscal_marital_status] = fiscal_marital_status
     result
   end
 
