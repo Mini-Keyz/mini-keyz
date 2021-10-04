@@ -93,6 +93,10 @@
       <p>fiscal_nb_alternate_custody_children = <%= @simulation.fiscal_nb_alternate_custody_children %></p>
       <p>fiscal_nb_parts = <%= @simulation.fiscal_nb_parts %></p>
     </div>
+    <p class="font-bold">FRENCH TAX SYSTEM</p>
+    <div>
+      <p>Sim / with prop income / 5 years</p><%= FrenchTaxSystem.calc_taxes_amount_per_year(@simulation.attributes.symbolize_keys, "with_property_income", 5) %>
+    </div>
   </div>
 
   <!-- Modify a param -->
