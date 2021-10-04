@@ -55,7 +55,6 @@ class Simulation < ApplicationRecord
   belongs_to :user, optional: true
 
   include(CreditFormulas)
-  include(IncomeTaxesFormulas)
 
   HOUSE_STANDARD_NOTARIAL_FEES_PERCENTAGE = 0.08
   HOUSE_STANDARD_TENANT_CHARGES_PERCENTAGE = 0.8
@@ -238,27 +237,11 @@ class Simulation < ApplicationRecord
   end
 
   def fiscal_nb_parts
-    calc_fiscal_nb_parts
+    FrenchTaxSystem.calc_fiscal_nb_parts(enriched)
   end
 
-  def net_taxable_property_income_amount
-    calc_net_taxable_property_income_amount
-  end
-
-  def fiscal_base_income_tax_scale
-    calc_fiscal_income_tax_scale_with_property_income_of(0)
-  end
-
-  def fiscal_income_tax_base_amount_per_year
-    calc_income_tax_amount_per_year_with_property_income_of(0)
-  end
-
-  def fiscal_income_tax_total_amount_per_year
-    calc_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount)
-  end
-
-  def fiscal_income_tax_incurred_by_taxable_property_income_amount_per_year
-    calc_income_tax_amount_per_year_with_property_income_of(net_taxable_property_income_amount) - calc_income_tax_amount_per_year_with_property_income_of(0)
+  def fiscal_nb_parts_incurred_from_children
+    FrenchTaxSystem.calc_fiscal_nb_parts_incurred_from_children(enriched)
   end
 
   #-----------------------------------------------------------------------#

@@ -485,42 +485,6 @@ RSpec.describe Simulation, type: :model do
         expect(result_strasbourg).to eq('Célibataire')
       end
     end
-
-    describe '#fiscal_nb_dependent_children' do
-      it 'returns the number of children which are solely in the tax household' do
-        result_lyon = simulation_lyon.fiscal_nb_dependent_children
-        result_bordeaux = simulation_bordeaux.fiscal_nb_dependent_children
-        expect(result_lyon).to eq(2)
-        expect(result_bordeaux).to eq(3)
-      end
-    end
-
-    describe '#fiscal_nb_alternate_custody_children' do
-      it 'returns the number of children of the tax household which are in alternate custody' do
-        result_lyon = simulation_lyon.fiscal_nb_alternate_custody_children
-        result_bordeaux = simulation_bordeaux.fiscal_nb_alternate_custody_children
-        expect(result_lyon).to eq(1)
-        expect(result_bordeaux).to eq(0)
-      end
-    end
-
-    describe '#fiscal_nb_parts' do
-      it 'returns the number of fiscal parts' do
-        result_lyon = simulation_lyon.fiscal_nb_parts
-        result_bordeaux = simulation_bordeaux.fiscal_nb_parts
-        expect(result_lyon).to eq(3.25)
-        expect(result_bordeaux).to eq(4)
-      end
-    end
-
-    describe '#fiscal_income_tax_base_amount_per_year' do
-      it 'returns the income tax that would be payed without the real estate investment' do
-        result_lyon = simulation_lyon.fiscal_income_tax_base_amount_per_year
-        result_bordeaux = simulation_bordeaux.fiscal_income_tax_base_amount_per_year
-        expect(result_lyon).to be_within(1).of(11_872)
-        expect(result_bordeaux).to be_within(1).of(894)
-      end
-    end
   end
 
   #-----------------------------------------------------------------------#
