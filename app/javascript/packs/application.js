@@ -24,11 +24,6 @@ ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
   stylizeRadio({
-    parentInputFieldId: "radio-credit-loan-duration",
-    classToApplyNotChecked: radioStyle.radio_red.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_red.classToApplyChecked,
-  });
-  stylizeRadio({
     parentInputFieldId: "radio-fiscal-status",
     classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
