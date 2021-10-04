@@ -14,7 +14,7 @@ development:
   database: mini_keyz_development
   host: localhost
   username: froggy
-  password: 123456
+  password: 0000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
