@@ -12,42 +12,13 @@ import "channels";
 import "stylesheets/application";
 
 // Import plugins
-import { stylizeRadio } from "../plugins/form_radio";
 import { initFlashFadingOut } from "../plugins/flash_fading_out";
-
-// Import plugins variables
-import * as radioStyle from "../plugins_variables/radio_style";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-  stylizeRadio({
-    parentInputFieldId: "radio-credit-loan-duration",
-    classToApplyNotChecked: radioStyle.radio_red.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_red.classToApplyChecked,
-  });
-  stylizeRadio({
-    parentInputFieldId: "radio-fiscal-status",
-    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
-  });
-  stylizeRadio({
-    parentInputFieldId: "radio-fiscal-regimen",
-    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
-  });
-  stylizeRadio({
-    parentInputFieldId: "radio-fiscal-nb-dependent-children",
-    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
-  });
-  stylizeRadio({
-    parentInputFieldId: "radio-fiscal-nb-alternate-custody-children",
-    classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
-  });
   initFlashFadingOut();
 });
 

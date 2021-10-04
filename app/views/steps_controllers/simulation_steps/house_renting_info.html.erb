@@ -1,6 +1,6 @@
 <div class="container-app flex justify-center">
 
-  <div style="max-width: 385px;">
+  <div style="width: 320px;">
 
     <div class="mt-8">
 
@@ -52,7 +52,7 @@
                   class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
                   style="width: 92px; height: 40px;"
                 >
-                  <%= f.radio_button :house_property_management_cost_percentage, 0.08, class: "hidden" %>
+                  <%= f.radio_button :house_property_management_cost_percentage, 0.08, checked: (@simulation.house_property_management_cost_percentage == 0.08), class: "hidden" %>
                   <%= f.label :house_property_management_cost_percentage, "Oui", value: 0.08, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
 
@@ -61,7 +61,7 @@
                   class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
                   style="width: 92px; height: 40px;"
                 >
-                  <%= f.radio_button :house_property_management_cost_percentage, 0, class: "hidden"%>
+                  <%= f.radio_button :house_property_management_cost_percentage, 0, checked: (@simulation.house_property_management_cost_percentage == 0), class: "hidden"%>
                   <%= f.label :house_property_management_cost_percentage, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
                 <%= errors_for @simulation, :house_property_management_cost_percentage %>  

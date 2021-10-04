@@ -17,11 +17,7 @@ const blue = {
     "bg-blue-200",
     "rounded",
     "border-2",
-    "border-blue-200",
-    "outline-none",
-    "ring-1",
-    "ring-blue-400",
-    "border-transparent",
+    "border-blue-400",
   ],
 };
 
@@ -42,11 +38,7 @@ const red = {
     "bg-red-200",
     "rounded",
     "border-2",
-    "border-red-200",
-    "outline-none",
-    "ring-1",
-    "ring-red-400",
-    "border-transparent",
+    "border-red-400",
   ],
 };
 
@@ -67,11 +59,7 @@ const yellow = {
     "bg-yellow-200",
     "rounded",
     "border-2",
-    "border-yellow-200",
-    "outline-none",
-    "ring-1",
-    "ring-yellow-400",
-    "border-transparent",
+    "border-yellow-400",
   ],
 };
 
@@ -80,7 +68,7 @@ export default class extends Controller {
     return ["radioWrapper"];
   }
 
-  initialize() {
+  connect() {
     this.style();
   }
 
