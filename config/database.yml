@@ -4,17 +4,16 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-default: &default
-  # adapter: sqlite3 #old
+default: &default # adapter: sqlite3 #old
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  # database: db/development.sqlite3 #old
   database: mini_keyz_development
-  username: postgres
+  host: localhost
+  username: froggy
   password: 123456
 
 # Warning: The database defined as "test" will be erased and
