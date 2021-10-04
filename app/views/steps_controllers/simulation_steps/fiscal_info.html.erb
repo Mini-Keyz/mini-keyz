@@ -26,27 +26,59 @@
             </div>
 
             <!-- Statut fiscal -->
-            <div class="flex flex-col mt-8">
+            <div
+              data-controller="form-radio-buttons"
+              class="flex flex-col mt-8"
+            >
               <%= f.label :fiscal_status, "Statut fiscal", class: "font-bold" %>
               <p class="text-xs text-gray-500">Actuellement 5 disponibles</p>
-              <div class="flex items-center justify-between flex-wrap gap-2 mt-1" id="radio-fiscal-status">
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+              <div
+                data-form-radio-buttons-target="radioWrapper"
+                data-color="yellow"
+                class="flex items-center justify-between flex-wrap gap-2 mt-1" 
+                id="radio-fiscal-status"
+              >
+                <div
+                  data-action="click->form-radio-buttons#toggle"  
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_status, "Vide", class: "hidden" %>
                   <%= f.label :fiscal_status, "Vide", value: "Vide", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_status, "LMNP", class: "hidden"%>
                   <%= f.label :fiscal_status, "LMNP", value: "LMNP", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_status, "LMP", class: "hidden"%>
                   <%= f.label :fiscal_status, "LMP", value: "LMP", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_status, "Pinel", class: "hidden"%>
                   <%= f.label :fiscal_status, "Pinel", value: "Pinel", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_status, "DeNormandie", class: "hidden"%>
                   <%= f.label :fiscal_status, "DeNormandie", value: "DeNormandie", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
@@ -56,15 +88,32 @@
             </div>
 
             <!-- Régime fiscal -->
-            <div class="flex flex-col mt-4">
+            <div
+              data-controller="form-radio-buttons"
+              class="flex flex-col mt-4"
+            >
               <%= f.label :fiscal_regimen, "Régime fiscal", class: "font-bold" %>
               <p class="text-xs text-gray-500">Le mode de déduction choisit pour vos charges</p>
-              <div class="flex items-center justify-between flex-wrap gap-2 mt-1" id="radio-fiscal-regimen">
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+              <div
+                data-form-radio-buttons-target="radioWrapper"
+                data-color="yellow"
+                class="flex items-center justify-between flex-wrap gap-2 mt-1" 
+                id="radio-fiscal-regimen"
+              >
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_regimen, "Réel", class: "hidden" %>
                   <%= f.label :fiscal_regimen, "Réel / BIC", value: "Réel", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" style="height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
+                  style="height: 40px;"
+                >
                   <%= f.radio_button :fiscal_regimen, "Forfait", class: "hidden"%>
                   <%= f.label :fiscal_regimen, "Forfait / Micro-BIC", value: "Forfait", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
@@ -94,35 +143,77 @@
             </div>
 
             <!-- Nombre d'enfants à charge -->
-            <div class="flex flex-col mt-4">
+            <div
+              data-controller="form-radio-buttons"
+              class="flex flex-col mt-4"
+            >
               <%= f.label :fiscal_nb_dependent_children, "Nombre d'enfants à charge", class: "font-bold" %>
               <p class="text-xs text-gray-500">Vos enfants mineurs ou majeurs (sous certaines conditions) rattachés à votre foyer fiscal</p>
-              <div class="flex items-center justify-start mt-1" id="radio-fiscal-nb-dependent-children">
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <div
+                data-form-radio-buttons-target="radioWrapper"
+                data-color="yellow"
+                class="flex items-center justify-start mt-1"
+                id="radio-fiscal-nb-dependent-children"
+              >
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 0, class: "hidden" %>
                   <%= f.label :fiscal_nb_dependent_children, "0", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 1, class: "hidden" %>
                   <%= f.label :fiscal_nb_dependent_children, "1", value: 1, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 2, class: "hidden"%>
                   <%= f.label :fiscal_nb_dependent_children, "2", value: 2, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 3, class: "hidden"%>
                   <%= f.label :fiscal_nb_dependent_children, "3", value: 3, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 4, class: "hidden"%>
                   <%= f.label :fiscal_nb_dependent_children, "4", value: 4, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 5, class: "hidden"%>
                   <%= f.label :fiscal_nb_dependent_children, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px;"
+                >
                   <%= f.radio_button :fiscal_nb_dependent_children, 6, class: "hidden"%>
                   <%= f.label :fiscal_nb_dependent_children, "6", value: 6, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
@@ -132,35 +223,77 @@
             </div>
 
             <!-- Nombre d'enfants en garde alternée -->
-            <div class="flex flex-col mt-4">
+            <div
+              data-controller="form-radio-buttons"
+              class="flex flex-col mt-4"
+            >
               <%= f.label :fiscal_nb_alternate_custody_children, "Nombre d'enfants en garde alternée", class: "font-bold" %>
               <p class="text-xs text-gray-500">Les enfants du foyers en garde partagée</p>
-              <div class="flex items-center justify-start mt-1" id="radio-fiscal-nb-alternate-custody-children">
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+              <div
+                data-form-radio-buttons-target="radioWrapper"
+                data-color="yellow"
+                class="flex items-center justify-start mt-1" 
+                id="radio-fiscal-nb-alternate-custody-children"
+              >
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 0, class: "hidden" %>
                   <%= f.label :fiscal_nb_alternate_custody_children, "0", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 1, class: "hidden" %>
                   <%= f.label :fiscal_nb_alternate_custody_children, "1", value: 1, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 2, class: "hidden"%>
                   <%= f.label :fiscal_nb_alternate_custody_children, "2", value: 2, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 3, class: "hidden"%>
                   <%= f.label :fiscal_nb_alternate_custody_children, "3", value: 3, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 4, class: "hidden"%>
                   <%= f.label :fiscal_nb_alternate_custody_children, "4", value: 4, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px; margin-right: 5px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px; margin-right: 5px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 5, class: "hidden"%>
                   <%= f.label :fiscal_nb_alternate_custody_children, "5", value: 5, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <div class="flex justify-center items-center bg-white rounded border-2 border-yellow-200" style="width: 36px; height: 40px;">
+
+                <div
+                  data-action="click->form-radio-buttons#toggle"
+                  class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
+                  style="width: 36px; height: 40px;"
+                >
                   <%= f.radio_button :fiscal_nb_alternate_custody_children, 6, class: "hidden"%>
                   <%= f.label :fiscal_nb_alternate_custody_children, "6", value: 6, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
