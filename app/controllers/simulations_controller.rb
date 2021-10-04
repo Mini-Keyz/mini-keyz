@@ -9,7 +9,7 @@ class SimulationsController < ApplicationController
   def show; end
 
   def new
-    Rails.cache.fetch(session.id) { Hash.new }
+    Rails.cache.fetch(session.id) { {} }
     redirect_to build_simulation_path(Simulation.form_steps.keys.first)
   end
 
@@ -20,7 +20,7 @@ class SimulationsController < ApplicationController
 
     respond_to do |format|
       if @simulation.save
-        format.html { redirect_to @simulation, notice: "Simulation was successfully created." }
+        format.html { redirect_to @simulation, notice: 'Simulation was successfully created.' }
         format.json { render :show, status: :created, location: @simulation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -32,7 +32,7 @@ class SimulationsController < ApplicationController
   def update
     respond_to do |format|
       if @simulation.update(simulation_params)
-        format.html { redirect_to @simulation, notice: "Simulation was successfully updated." }
+        format.html { redirect_to @simulation, notice: 'Simulation was successfully updated.' }
         format.json { render :show, status: :ok, location: @simulation }
       else
         format.html { render :edit, status: :unprocessable_entity }       # Thanks Rails team!
@@ -44,7 +44,7 @@ class SimulationsController < ApplicationController
   def destroy
     @simulation.destroy
     respond_to do |format|
-      format.html { redirect_to simulations_url, notice: "Simulation was successfully destroyed." }
+      format.html { redirect_to simulations_url, notice: 'Simulation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -79,7 +79,6 @@ class SimulationsController < ApplicationController
         :fiscal_regimen,
         :fiscal_revenues_p1,
         :fiscal_revenues_p2,
-        # :fiscal_nb_parts,
         :fiscal_nb_dependent_children,
         :fiscal_nb_alternate_custody_children
       )

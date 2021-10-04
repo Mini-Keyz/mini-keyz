@@ -31,11 +31,11 @@
               class="flex flex-col mt-8"
             >
               <%= f.label :fiscal_status, "Statut fiscal", class: "font-bold" %>
-              <p class="text-xs text-gray-500">Actuellement 5 disponibles</p>
+              <p class="text-xs text-gray-500">Actuellement 2 disponibles</p>
               <div
                 data-form-radio-buttons-target="radioWrapper"
                 data-color="yellow"
-                class="flex items-center justify-between flex-wrap gap-2 mt-1" 
+                class="flex items-center flex-wrap gap-2 mt-1" 
                 id="radio-fiscal-status"
               >
                 <div
@@ -58,7 +58,7 @@
 
                 <div
                   data-action="click->form-radio-buttons#toggle"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
                   style="height: 40px;"
                 >
                   <%= f.radio_button :fiscal_status, "LMP", class: "hidden"%>
@@ -67,7 +67,7 @@
 
                 <div
                   data-action="click->form-radio-buttons#toggle"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
                   style="height: 40px;"
                 >
                   <%= f.radio_button :fiscal_status, "Pinel", class: "hidden"%>
@@ -76,7 +76,7 @@
 
                 <div
                   data-action="click->form-radio-buttons#toggle"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
+                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
                   style="height: 40px;"
                 >
                   <%= f.radio_button :fiscal_status, "DeNormandie", class: "hidden"%>
@@ -125,17 +125,17 @@
             <!-- Revenus annuels nets du foyer -->
             <div class="flex flex-col mt-4">
               <%= f.label :fiscal_revenues_p1, "Revenus annuels nets du foyer", class: "font-bold" %>
-              <div class="flex justify-between items-center flex-wrap gap-2">
+              <div class="flex justify-between items-center flex-wrap gap-1">
                 <div class="flex flex-col">
                   <p class="text-xs text-gray-500">Vos revenus</p>
-                  <%= f.number_field :fiscal_revenues_p1, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "input-yellow" %>
+                  <%= f.number_field :fiscal_revenues_p1, placeholder: "60 000€ nets/an", style: "width: 112px; height: 40px;", class: "input-yellow" %>
                 </div>
                 <div>
                   <p class="text-2xl text-gray-500 px-2 pt-4">+</p>
                 </div>
                 <div class="flex flex-col">
                   <p class="text-xs text-gray-500">Si couple, conjoint</p>
-                  <%= f.number_field :fiscal_revenues_p2, placeholder: "60 000€ nets/an", style: "width: 124px; height: 40px;", class: "input-yellow" %>
+                  <%= f.number_field :fiscal_revenues_p2, placeholder: "60 000€ nets/an", style: "width: 112px; height: 40px;", class: "input-yellow" %>
                 </div>
               </div>
               <%= errors_for @simulation, :fiscal_revenues_p1 %>  
