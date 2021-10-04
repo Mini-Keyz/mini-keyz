@@ -29,7 +29,7 @@
             <div class="flex flex-col mt-8">
               <%= f.label :credit_loan_amount, "Montant emprunté", class: "font-bold" %>
               <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
-              <%= f.number_field :credit_loan_amount, placeholder: "240 000€", style: "width: 200px; height: 40px;", class: "rounded border-2 border-red-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent number-field-thousand-separator" %>
+              <%= f.number_field :credit_loan_amount, placeholder: "240 000€", style: "width: 200px; height: 40px;", class: "input-red" %>
               <%= errors_for @simulation, :credit_amount %>  
             </div>
 
@@ -67,9 +67,9 @@
 
           <!-- Actions -->
           <div class="flex justify-center gap-x-4 sm:gap-x-8 mt-6 sm:mt-12">
-            <%= link_to 'Retour', previous_wizard_path, class: "w-32 sm:w-40 h-14 text-lg text-gray-400 align-middle rounded p-2 border border-gray-300 whitespace-nowrap flex justify-center items-center", role: "button" %> <%# NOTE the _top target %>
+            <%= link_to 'Retour', previous_wizard_path, class: "btn-back", role: "button" %> <%# NOTE the _top target %>
             <div class="flex item-center"></div>
-            <%= f.submit 'Suivant', class: "w-32 sm:w-40 h-14 text-lg font-bold text-white rounded bg-green-700 p-2 whitespace-normal cursor-pointer transition duration-150 hover:bg-green-800" %>
+            <%= f.submit 'Suivant', class: "btn-next" %>
           </div>
 
         <% end %>

@@ -11,8 +11,28 @@
     @apply font-bold text-center bg-green-frog hover:bg-green-500 rounded-lg px-4 py-4 mt-8 border-2 border-black transition duration-150;
   }
 
+  .btn-next {
+    @apply w-32 sm:w-40 h-14 text-lg font-bold text-white rounded bg-green-700 p-2 whitespace-normal cursor-pointer transition duration-150 hover:bg-green-800;
+  }
+
+  .btn-back {
+    @apply w-32 sm:w-40 h-14 text-lg text-gray-400 align-middle rounded p-2 border border-gray-300 whitespace-nowrap flex justify-center items-center;
+  }
+
   .input-green {
     @apply rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent;
+  }
+
+  .input-blue {
+    @apply rounded border-2 border-blue-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+  }
+
+  .input-red {
+    @apply rounded border-2 border-red-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent;
+  }
+
+  .input-yellow {
+    @apply rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent;
   }
 }
 

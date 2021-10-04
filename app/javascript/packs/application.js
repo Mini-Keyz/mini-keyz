@@ -13,7 +13,6 @@ import "stylesheets/application";
 
 // Import plugins
 import { stylizeRadio } from "../plugins/form_radio";
-import { initNumberFieldThousandSeparator } from "../plugins/simulation_new_number_field_thousand_separator";
 import { initFlashFadingOut } from "../plugins/flash_fading_out";
 
 // Import plugins variables
@@ -24,11 +23,6 @@ Turbolinks.start();
 ActiveStorage.start();
 
 document.addEventListener("turbolinks:load", () => {
-  stylizeRadio({
-    parentInputFieldId: "radio-house-property-management-cost",
-    classToApplyNotChecked: radioStyle.radio_blue.classToApplyNotChecked,
-    classToApplyChecked: radioStyle.radio_blue.classToApplyChecked,
-  });
   stylizeRadio({
     parentInputFieldId: "radio-credit-loan-duration",
     classToApplyNotChecked: radioStyle.radio_red.classToApplyNotChecked,
@@ -54,7 +48,6 @@ document.addEventListener("turbolinks:load", () => {
     classToApplyNotChecked: radioStyle.radio_yellow.classToApplyNotChecked,
     classToApplyChecked: radioStyle.radio_yellow.classToApplyChecked,
   });
-  // initNumberFieldThousandSeparator(); It seems like it is breaking down our radio buttons value which are then not sent
   initFlashFadingOut();
 });
 
