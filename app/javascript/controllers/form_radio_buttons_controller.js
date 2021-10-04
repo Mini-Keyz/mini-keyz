@@ -80,7 +80,7 @@ export default class extends Controller {
     return ["radioWrapper"];
   }
 
-  initialize() {
+  connect() {
     this.style();
   }
 
