@@ -34,6 +34,7 @@ module StepsControllers
     def finish_wizard_path
       simulation_attrs = Rails.cache.fetch(session.id)
       @simulation = Simulation.new simulation_attrs
+      @simulation.user = current_user if current_user
       @simulation.save!
       Rails.cache.delete session.id
       simulation_path(@simulation)
