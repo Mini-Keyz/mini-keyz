@@ -1,16 +1,26 @@
 <!-- Notice -->
 <% if notice %>
-  <div class="text-semi-bold sticky bottom-12 flex justify-end mr-4 opacity-100" role="notice">
-    <%= notice %>
+  <div 
+    class="sticky bottom-12 right-10 flex justify-end items-center mr-4 border-black border-2 bg-white"
+    style="width: 160px;"
+    role="notice"
+  >
+    <div class="h-full bg-green-500" style="width: 4px;"></div>
+    <i class="far fa-check-circle text-green-500"></i>
+    <div class="flex flex-col items-center">
+      <p class="text-lg">Succès</p>
+      <p class="text-sm"><%= notice %></p>
+    </div>
     <button type="button" class="close" data-dismiss="notice" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true" class="text-xs">FERMER</span>
     </button>
   </div>
 <% end %>
 
 <!-- Alert -->
 <% if alert %>
-  <div class="text-semi-bold sticky bottom-12 flex justify-end mr-4 opacity-100" role="alert">
+  <div class="sticky bottom-12 flex justify-end mr-4" role="alert">
+    <i class="far fa-times-circle"></i>
     <%= alert %>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
