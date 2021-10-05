@@ -1,10 +1,10 @@
 module StepsControllers
   class SimulationStepsController < ApplicationController
     skip_before_action :authenticate_user!, only: %i[show update]
-    
+
     include Wicked::Wizard
 
-    steps *Simulation.form_steps.keys
+    steps(*Simulation.form_steps.keys)
 
     def show
       simulation_attrs = Rails.cache.read session.id
