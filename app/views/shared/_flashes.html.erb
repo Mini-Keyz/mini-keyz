@@ -1,20 +1,18 @@
 <!-- Notice -->
 <% if notice %>
-  <div 
-    class="fixed bottom-8 right-4 flex justify-between items-center mr-4 shadow-md border border-gray-100 rounded-lg bg-white"
-    style="min-height: 60px; width: 240px;"
-    role="notice"
-  >
+  <div class="fixed bottom-8 right-4 flex justify-between items-center mr-4 shadow-md border border-gray-100 rounded-lg bg-white" style="min-height: 60px; width: 240px;" role="notice">
+    
     <div class="flex items-center">
       <div class="h-full bg-lime-500 rounded-l-lg" style="min-height: 60px; width: 4px;"></div>
       <i class="far fa-check-circle text-lime-500 text-2xl p-3"></i>
     </div>
 
-    <p class="text-gray-500 leading-5"><%= notice %></p>
+    <p class="text-sm text-gray-500 leading-5"><%= notice %></p>
 
-    <button type="button" class="close" data-dismiss="notice" aria-label="Close">
+    <button type="button" class="close h-full" data-dismiss="notice" aria-label="Close">
       <span aria-hidden="true" class="text-xs text-gray-300 p-3">FERMER</span>
     </button>
+
   </div>
 <% end %>
 
