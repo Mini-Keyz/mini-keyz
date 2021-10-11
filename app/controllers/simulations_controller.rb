@@ -32,7 +32,7 @@ class SimulationsController < ApplicationController
   def update
     respond_to do |format|
       if @simulation.update(simulation_params)
-        format.html { redirect_to @simulation, notice: 'Simulation was successfully updated.' }
+        format.html { redirect_to @simulation, notice: 'Simulation mise à jour' }
         format.json { render :show, status: :ok, location: @simulation }
       else
         format.html { render :edit, status: :unprocessable_entity }       # Thanks Rails team!
