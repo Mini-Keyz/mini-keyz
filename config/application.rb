@@ -11,6 +11,7 @@ module MiniKeyz
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.i18n.default_locale = :fr
+    config.i18n.available_locales = %i[en fr]
 
     # Config subdomain
     config.action_dispatch.tld_length = Integer(ENV['TLD_LENGTH'] || 1)
