@@ -32,7 +32,7 @@ class SimulationsController < ApplicationController
   def update
     respond_to do |format|
       if @simulation.update(simulation_params)
-        format.html { redirect_to @simulation, notice: 'Simulation was successfully updated.' }
+        format.html { redirect_to @simulation, notice: 'Simulation mise à jour' }
         format.json { render :show, status: :ok, location: @simulation }
       else
         format.html { render :edit, status: :unprocessable_entity }       # Thanks Rails team!
@@ -51,8 +51,7 @@ class SimulationsController < ApplicationController
 
   def send_simulation_mail
     SimulationMailer.with(user: current_user, simulation: @simulation).send_it_to_me.deliver_later
-    flash[:notice] = 'Email envoyé !'
-    redirect_to simulation_path(@simulation)
+    redirect_to @simulation, notice: 'Email envoyé !'
   end
 
   private

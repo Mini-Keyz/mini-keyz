@@ -11,16 +11,11 @@ import "channels";
 // Import dependencies
 import "stylesheets/application";
 
-// Import plugins
-import { initFlashFadingOut } from "../plugins/flash_fading_out";
-
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
-document.addEventListener("turbolinks:load", () => {
-  initFlashFadingOut();
-});
+document.addEventListener("turbolinks:load", () => {});
 
 import "@hotwired/turbo-rails";
 

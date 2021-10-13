@@ -1,30 +1,55 @@
 <!-- Notice -->
 <% if notice %>
-  <div class="sticky bottom-12 flex justify-end mr-4 opacity-100" role="notice" id="flash">
-    <div style="min-width: 200px; height: 52px;" class="flex justify-center items-center px-6 font-semibold bg-blue-100 rounded-lg border-2 border-blue-400">
-      <div class="text-semibold">
-        <%= notice %>
-      </div>
+  <div
+    data-controller="flash"
+    data-flash-target="flashElement"
+    class="fixed bottom-8 right-4 flex justify-between items-center mr-4 shadow-md border border-gray-100 rounded-lg bg-white"
+    style="min-height: 60px; width: 240px;"
+    role="notice">
+    
+    <div class="flex items-center">
+      <div class="h-full bg-lime-500 rounded-l-lg" style="min-height: 60px; width: 4px;"></div>
+      <i class="far fa-check-circle text-lime-500 text-2xl p-3"></i>
     </div>
-  </div>
-<% end %>
 
-<!-- Success -->
-<% if success %>
-  <div class="text-semi-bold" role="success">
-    <%= success %>
-    <button type="button" class="close" data-dismiss="success" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+    <p class="text-sm text-gray-500 leading-5"><%= notice %></p>
+
+    <button
+      data-action="click->flash#close"
+      type="button"
+      class="close h-full"
+      data-dismiss="notice"
+      aria-label="Close">
+      <span aria-hidden="true" class="text-xs text-gray-300 p-3">FERMER</span>
     </button>
+
   </div>
 <% end %>
 
 <!-- Alert -->
 <% if alert %>
-  <div class="text-semi-bold" role="alert">
-    <%= alert %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+  <div
+    data-controller="flash"
+    data-flash-target="flashElement"
+    class="fixed bottom-8 right-4 flex justify-between items-center mr-4 shadow-md border border-gray-100 rounded-lg bg-white"
+    style="min-height: 60px; width: 240px;"
+    role="alert">
+    
+    <div class="flex items-center">
+      <div class="h-full bg-red-500 rounded-l-lg" style="min-height: 60px; width: 4px;"></div>
+      <i class="far fa-times-circle text-red-500 text-2xl p-3"></i>
+    </div>
+
+    <p class="text-sm text-gray-500 leading-5"><%= alert %></p>
+
+    <button
+      data-action="click->flash#close"
+      type="button"
+      class="close h-full"
+      data-dismiss="alert"
+      aria-label="Close">
+      <span aria-hidden="true" class="text-xs text-gray-300 p-3">FERMER</span>
     </button>
+
   </div>
 <% end %>

@@ -76,6 +76,9 @@ end
 # Stores ENV variables
 gem 'figaro'
 
+# I18n translations
+gem 'rails-i18n'
+
 # Wizard form
 gem 'wicked'
 
@@ -88,6 +91,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Log in system
 gem 'devise', '~> 4.7'
 
+# Time difference
 gem 'time_difference', '~> 0.5.0'
 
 # My super gemmm that I made and publish on rubygems.org

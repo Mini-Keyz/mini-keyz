@@ -1,118 +1,120 @@
-<div class="container-app">
+<div class="container-app w-screen">
 
-  <!-- Back to index button for users -->
-  <% if current_user %>
-    <div class="flex justify-start mt-4 text-sm">
-      <%= link_to "Retour aux simulations", simulations_path, class: "font-bold rounded-lg px-3 py-2 border border-black whitespace-nowrap" %>
-    </div>
-  <% end %>
+  <div class="w-full">
 
-  <!-- Save button for not user -->
-  <% unless current_user %>
-    <div class="flex justify-end mr-4 mt-4 text-sm">
-      <%= link_to "Sauvegarder", new_user_session_path, class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
-    </div>
-  <% end %>
-
-  <!-- Introduction text --> 
-  <div class="mt-8 p-2 bg-green-100 flex items-center">
-    <p class="text-sm">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux.
-      <br>Vous pouvez les personnaliser plus bas.</p>
-  </div>
-
-  <!-- Send mail button -->
-  <%= link_to "M'envoyer ma simulation par mail", :controller => "simulations", :action => "send_simulation_mail", class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
+    <!-- Back to index button for users -->
+    <% if current_user %>
+      <div class="flex justify-start mt-4 text-sm">
+        <%= link_to "Retour aux simulations", simulations_path, class: "font-bold rounded-lg px-3 py-2 border border-black whitespace-nowrap" %>
+      </div>
+    <% end %>
   
-  <!-- Title -->
-  <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought_amount %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works_amount > 0 %>, +<%= @simulation.house_first_works_amount %>€ de travaux<% end %></h1>
-  <h2>Réalisée le <%= @simulation.created_at %></h2>
+    <!-- Save button for not user -->
+    <% unless current_user %>
+      <div class="flex justify-end mr-4 mt-4 text-sm">
+        <%= link_to "Sauvegarder", new_user_session_path, class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
+      </div>
+    <% end %>
   
-  <!-- Profitabilities -->
-  <div class="mt-8">
-    <h2 class="font-bold">Rentabilités :</h2>
+    <!-- Introduction text --> 
+    <div class="mt-8 p-2 bg-green-100 flex items-center">
+      <p class="text-sm">Plusieurs coûts (taux de crédit, assurances, etc) sont calculés automatiquement sur la base d’indicateurs nationaux.
+        <br>Vous pouvez les personnaliser plus bas.</p>
+    </div>
+  
+    <!-- Send mail button -->
+    <%= link_to "M'envoyer ma simulation par mail", :controller => "simulations", :action => "send_simulation_mail", class: "bg-gray-800 text-white px-2 py-1 rounded cursor-pointer" %>
     
-    <div>
-      <%= render 'profitability_row_element', simulation: @simulation, type: "gross" %>
-      <%= render 'profitability_row_element', simulation: @simulation, type: "net" %>
-      <%= render 'profitability_row_element', simulation: @simulation, type: "net_after_taxes" %>
-    </div>
-  </div>
-
-
-  <!-- Dans les faits -->
-  <div class="mt-8">
-    <h2 class="font-bold">Dans les faits :</h2>
-
-    <p class="font-bold">Bien immobilier</p>
-    <div class="flex flex-col mb-4">
-      <p>City = <%= @simulation.house_city %></p>
-      <p>house_price_bought_amount = <%= @simulation.house_price_bought_amount %></p>
-      <p>house_first_works_amount = <%= @simulation.house_first_works_amount %></p>
-      <p>house_total_charges_amount_per_year = <%= @simulation.house_total_charges_amount_per_year %></p>
-      <p>house_tenant_charges_amount_per_year = <%= @simulation.house_tenant_charges_amount_per_year %></p>
-      <p>house_property_tax_amount_per_year = <%= @simulation.house_property_tax_amount_per_year %></p>
-      <p>house_property_management_cost_percentage = <%= @simulation.house_property_management_cost_percentage %></p>
-      <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
-      <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>
-      <p>house_insurance_gli_amount_per_month = <%= @simulation.house_insurance_gli_amount_per_month %></p>
-    </div> 
-
-    <p class="font-bold">Mise en location</p>
-    <div class="flex flex-col mb-4">
-      <p>house_rent_amount_per_month = <%= @simulation.house_rent_amount_per_month %></p>
-      <p>house_property_management_cost_percentage = <%= number_with_precision @simulation.house_property_management_cost_percentage, precision: 3 %></p>
-    </div>
+    <!-- Title -->
+    <h1 class="mt-8">Ma simulation pour un bien de <%= @simulation.house_price_bought_amount %>€ sur <%= @simulation.house_city %><% if @simulation.house_first_works_amount > 0 %>, +<%= @simulation.house_first_works_amount %>€ de travaux<% end %></h1>
+    <h2>Réalisée le <%= @simulation.created_at %></h2>
     
-    <p class="font-bold">Crédit bancaire</p>
-    <div class="flex flex-col mb-4">
-      <p>credit_loan_amount = <%= @simulation.credit_loan_amount %></p>
-      <p>credit_loan_duration = <%= @simulation.credit_loan_duration %></p>
-      <p>credit_loan_payment_per_month (PMT) = <%= @simulation.credit_loan_payment_amount_per_month %></p>
+    <!-- Profitabilities -->
+    <div class="mt-8">
+      <h2 class="font-bold">Rentabilités :</h2>
+      
+      <div>
+        <%= render 'profitability_row_element', simulation: @simulation, type: "gross" %>
+        <%= render 'profitability_row_element', simulation: @simulation, type: "net" %>
+        <%= render 'profitability_row_element', simulation: @simulation, type: "net_after_taxes" %>
+      </div>
     </div>
   
-    <p class="font-bold">Test for month = 12</p>
-    <div class="flex flex-col mb-4">
-      <p>IPMT 12 = <%= @simulation.credit_loan_interest_cost_for_month(12) %> OK</p>
-      <p>PPMT 12 = <%= @simulation.credit_loan_principal_repayment_for_month(12) %> OK</p>
-      <p>CUMPRINC_since_beginning 12 = <%= @simulation.credit_loan_cumulative_principal_paid_since_beginning_for_month(12) %> OK</p>
-      <p>Credit_loan amount - CUMPRINC 12 = <%= @simulation.credit_loan_remaining_principal_to_pay_for_month(12) %> OK</p>
-      <p>CUMIPMT_since_beginning 12 = <%= @simulation.credit_loan_cumulative_interests_paid_since_beginning_for_month(12) %></p>
+    <!-- Dans les faits -->
+    <div class="mt-8">
+      <h2 class="font-bold">Dans les faits :</h2>
+  
+      <p class="font-bold">Bien immobilier</p>
+      <div class="flex flex-col mb-4">
+        <p>City = <%= @simulation.house_city %></p>
+        <p>house_price_bought_amount = <%= @simulation.house_price_bought_amount %></p>
+        <p>house_first_works_amount = <%= @simulation.house_first_works_amount %></p>
+        <p>house_total_charges_amount_per_year = <%= @simulation.house_total_charges_amount_per_year %></p>
+        <p>house_tenant_charges_amount_per_year = <%= @simulation.house_tenant_charges_amount_per_year %></p>
+        <p>house_property_tax_amount_per_year = <%= @simulation.house_property_tax_amount_per_year %></p>
+        <p>house_property_management_cost_percentage = <%= @simulation.house_property_management_cost_percentage %></p>
+        <p>house_insurance_pno_amount_per_year = <%= @simulation.house_insurance_pno_amount_per_year %></p>
+        <p>house_insurance_gli_percentage = <%= @simulation.house_insurance_gli_percentage %></p>
+        <p>house_insurance_gli_amount_per_month = <%= @simulation.house_insurance_gli_amount_per_month %></p>
+      </div> 
+  
+      <p class="font-bold">Mise en location</p>
+      <div class="flex flex-col mb-4">
+        <p>house_rent_amount_per_month = <%= @simulation.house_rent_amount_per_month %></p>
+        <p>house_property_management_cost_percentage = <%= number_with_precision @simulation.house_property_management_cost_percentage, precision: 3 %></p>
+      </div>
+      
+      <p class="font-bold">Crédit bancaire</p>
+      <div class="flex flex-col mb-4">
+        <p>credit_loan_amount = <%= @simulation.credit_loan_amount %></p>
+        <p>credit_loan_duration = <%= @simulation.credit_loan_duration %></p>
+        <p>credit_loan_payment_per_month (PMT) = <%= @simulation.credit_loan_payment_amount_per_month %></p>
+      </div>
+    
+      <p class="font-bold">Test for month = 12</p>
+      <div class="flex flex-col mb-4">
+        <p>IPMT 12 = <%= @simulation.credit_loan_interest_cost_for_month(12) %> OK</p>
+        <p>PPMT 12 = <%= @simulation.credit_loan_principal_repayment_for_month(12) %> OK</p>
+        <p>CUMPRINC_since_beginning 12 = <%= @simulation.credit_loan_cumulative_principal_paid_since_beginning_for_month(12) %> OK</p>
+        <p>Credit_loan amount - CUMPRINC 12 = <%= @simulation.credit_loan_remaining_principal_to_pay_for_month(12) %> OK</p>
+        <p>CUMIPMT_since_beginning 12 = <%= @simulation.credit_loan_cumulative_interests_paid_since_beginning_for_month(12) %></p>
+      </div>
+      <p class="font-bold">Total credit costs</p>
+      <div class="flex flex-col mb-4">
+        <p>Total interest cost = <%= @simulation.credit_loan_interest_total_amount %></p>
+        <p>Total insurance cost  = <%= @simulation.credit_loan_insurance_total_amount %></p>
+      </div>
+      <p class="font-bold">Imposition</p>
+      <div class="flex flex-col mb-4">
+        <p>fiscal_status = <%= @simulation.fiscal_status %></p>
+        <p>fiscal_regimen = <%= @simulation.fiscal_regimen %></p>
+        <p>fiscal_revenues_p1 = <%= @simulation.fiscal_revenues_p1 %></p>
+        <p>fiscal_revenues_p2 = <%= @simulation.fiscal_revenues_p2 %></p>
+        <p>fiscal_nb_dependent_children = <%= @simulation.fiscal_nb_dependent_children %></p>
+        <p>fiscal_nb_alternate_custody_children = <%= @simulation.fiscal_nb_alternate_custody_children %></p>
+        <p>fiscal_nb_parts = <%= @simulation.fiscal_nb_parts %></p>
+      </div>
+      <p class="font-bold">FRENCH TAX SYSTEM</p>
+      <div>
+        <p>Sim / with prop income / 5 years</p><%= FrenchTaxSystem.calc_taxes_amount_per_year(@simulation.enriched, "with_property_income", 5) %>
+      </div>
     </div>
-    <p class="font-bold">Total credit costs</p>
-    <div class="flex flex-col mb-4">
-      <p>Total interest cost = <%= @simulation.credit_loan_interest_total_amount %></p>
-      <p>Total insurance cost  = <%= @simulation.credit_loan_insurance_total_amount %></p>
-    </div>
-    <p class="font-bold">Imposition</p>
-    <div class="flex flex-col mb-4">
-      <p>fiscal_status = <%= @simulation.fiscal_status %></p>
-      <p>fiscal_regimen = <%= @simulation.fiscal_regimen %></p>
-      <p>fiscal_revenues_p1 = <%= @simulation.fiscal_revenues_p1 %></p>
-      <p>fiscal_revenues_p2 = <%= @simulation.fiscal_revenues_p2 %></p>
-      <p>fiscal_nb_dependent_children = <%= @simulation.fiscal_nb_dependent_children %></p>
-      <p>fiscal_nb_alternate_custody_children = <%= @simulation.fiscal_nb_alternate_custody_children %></p>
-      <p>fiscal_nb_parts = <%= @simulation.fiscal_nb_parts %></p>
-    </div>
-    <p class="font-bold">FRENCH TAX SYSTEM</p>
-    <div>
-      <p>Sim / with prop income / 5 years</p><%= FrenchTaxSystem.calc_taxes_amount_per_year(@simulation.enriched, "with_property_income", 5) %>
-    </div>
+  
+    <!-- Modify a param -->
+    <p>Modifier mes données de simulation :</p>
+    <%= form_for @simulation, remote: true do |f| %>
+      <%= f.label :house_city, "Ville" %>
+      <%= f.text_field :house_city %>
+  
+      <%= f.label :house_price_bought_amount, "Prix d'achat" %>
+      <%= f.text_field :house_price_bought_amount %>
+  
+      <%= f.label :house_notarial_fees_percentage, "Frais de notaire" %>
+      <%= f.number_field :house_notarial_fees_percentage, step: :any %>
+  
+  
+      <%= f.submit "Affiner ma simulation", disable_with: 'Affiner ma simulationing...' %>
+    <% end %>
   </div>
-
-  <!-- Modify a param -->
-  <p>Modifier mes données de simulation :</p>
-  <%= form_for @simulation, remote: true do |f| %>
-    <%= f.label :house_city, "Ville" %>
-    <%= f.text_field :house_city %>
-
-    <%= f.label :house_price_bought_amount, "Prix d'achat" %>
-    <%= f.text_field :house_price_bought_amount %>
-
-    <%= f.label :house_notarial_fees_percentage, "Frais de notaire" %>
-    <%= f.number_field :house_notarial_fees_percentage, step: :any %>
-
-
-    <%= f.submit "Affiner ma simulation", disable_with: 'Affiner ma simulationing...' %>
-  <% end %>
 
 </div>

@@ -11,6 +11,7 @@ module.exports = {
         "green-frog": "#7cd7ac",
         "green-30": "#dfffef",
         "gray-30": "FAFAFA",
+        "lime-500": "#84CC16",
       },
     },
   },
