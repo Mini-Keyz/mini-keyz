@@ -53,7 +53,7 @@ testit3 = User.new({
                      email: 'testit3@ok.com',
                      password: '123456',
                      first_name: 'TestNoSimulation',
-                     last_name: 'NoSimulation'
+                     last_name: 'NoSimulation2'
                    })
 testit3.skip_confirmation!
 testit3.save!
