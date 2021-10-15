@@ -40,7 +40,7 @@
             <!-- Ville -->
             <div class="flex flex-col mt-8">
               <%= f.label :house_city, "Ville", class: "font-bold" %>
-              <%= f.text_field :house_city, placeholder: "Paris", data: {"input-target": "inputField" },style: "width: 200px; height: 40px;", class: "input-green" %>
+              <%= f.text_field :house_city, placeholder: "Paris", data: {"input-target": "inputField" }, style: "width: 200px; height: 40px;", class: "input-green" %>
               <%= errors_for @simulation, :house_city %>  
             </div>
   
@@ -48,7 +48,7 @@
             <div class="flex flex-col mt-4">
               <%= f.label :house_price_bought_amount, "Prix d'achat", class: "font-bold" %>
               <p class="text-xs text-gray-500">Prix du bien + Frais d’agence</p>
-              <%= f.number_field :house_price_bought_amount, placeholder: "200 000€", min: 0, pattern: "[0-9]*", inputmode: "numeric", style: "width: 200px; height: 40px;", class: "input-green" %>
+              <%= f.number_field :house_price_bought_amount, placeholder: "200 000€", data: {"input-target": "inputField" }, min: 0, pattern: "[0-9]*", inputmode: "numeric", style: "width: 200px; height: 40px;", class: "input-green" %>
               <%= errors_for @simulation, :house_price_bought_amount %>  
             </div>
   
@@ -56,7 +56,7 @@
             <div class="flex flex-col mt-4">
               <%= f.label :house_first_works_amount, "Budget travaux", class: "font-bold" %>
               <p class="text-xs text-gray-500">(optionnel)</p>
-              <%= f.number_field :house_first_works_amount, placeholder: "15 000€ TTC", style: "width: 200px; height: 40px;", class: "input-green" %>
+              <%= f.number_field :house_first_works_amount, placeholder: "15 000€ TTC", data: {"input-target": "inputField" }, style: "width: 200px; height: 40px;", class: "input-green" %>
               <%= errors_for @simulation, :house_first_works_amount %>  
             </div>
   
@@ -64,7 +64,7 @@
             <div class="flex flex-col mt-4">
               <%= f.label :house_total_charges_amount_per_year, "Charges annuelles totales", class: "font-bold" %>
               <p class="text-xs text-gray-500">En moyenne 80% sont récupérées sur le locataire</p>
-              <%= f.number_field :house_total_charges_amount_per_year, placeholder: "1 200€", style: "width: 200px; height: 40px;", class: "input-green" %>
+              <%= f.number_field :house_total_charges_amount_per_year, placeholder: "1 200€", data: {"input-target": "inputField" }, style: "width: 200px; height: 40px;", class: "input-green" %>
               <%= errors_for @simulation, :house_total_charges_amount_per_year %>  
             </div>
   
@@ -72,7 +72,7 @@
             <div class="flex flex-col mt-4">
               <%= f.label :house_property_tax_amount_per_year, "Taxe foncière", class: "font-bold" %>
               <p class="text-xs text-gray-500">En moyenne 1 mois de loyer</p>
-              <%= f.number_field :house_property_tax_amount_per_year, placeholder: "800€", style: "width: 200px; height: 40px;", class: "input-green" %>
+              <%= f.number_field :house_property_tax_amount_per_year, placeholder: "800€", data: {"input-target": "inputField" }, style: "width: 200px; height: 40px;", class: "input-green" %>
               <%= errors_for @simulation, :house_property_tax_amount_per_year %>  
             </div>
   

@@ -10,9 +10,24 @@ export default class extends Controller {
     const formColor = this.formWrapperTarget.dataset.formColor;
 
     // Change input style if error
+    const formFields = Array.from(this.formWrapperTarget.children);
+    formFields.forEach((formField) => {
+      const inputWrapper = Array.from(formField.children);
+      const hasError = inputWrapper.find((element) => {
+        element.classList.contains("error_explanation");
+      });
+      const isTypingField = inputWrapper.filter((element) => {
+        element.tagName == "INPUT";
+      });
+      console.log(isTypingField);
+      if (hasError) {
+      }
+    });
+
+    // Change input style if error
     if (this.hasErrorMessageTarget) {
-      this.inputFieldTarget.classList.remove(`input-${formColor}`);
-      this.inputFieldTarget.classList.add("input-error");
+      this.inputFieldTargets.classList.remove(`input-${formColor}`);
+      this.inputFieldTargets.classList.add("input-error");
     }
   }
 }
