@@ -20,17 +20,14 @@ export default class extends Controller {
       console.log(inputWrapper);
 
       const hasError = inputWrapper.find((element) => {
-        console.log(element);
-        console.log(element.classList);
-        element.classList.contains("error_explanation");
+        console.log(element.classList.contains("error_explanation"));
+        return element.classList.contains("error_explanation");
       });
       console.log(hasError);
 
       const inputFields = inputWrapper.filter((element) => {
-        element.tagName === "INPUT";
-        console.log(element);
-        console.log(element.tagName);
         console.log(element.tagName === "INPUT");
+        return element.tagName === "INPUT";
       });
       console.log(inputFields);
 
