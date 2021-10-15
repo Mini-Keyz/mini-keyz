@@ -73,15 +73,12 @@ export default class extends Controller {
   }
 
   toggle(event) {
-    console.log(event.target);
     const labelClicked = event.target;
     const inputClicked = labelClicked.previousElementSibling;
-    console.log(inputClicked.checked);
 
     // Check or uncheck on click
     event.preventDefault();
     inputClicked.checked = !inputClicked.checked;
-    console.log(inputClicked.checked);
 
     // Change radio button style depending on styling
     this.style();

@@ -1,6 +1,10 @@
 <div class="container-app flex justify-center">
 
-  <div style="width: 320px;">
+  <div
+    data-controller="input"
+    data-input-target="settings"
+    data-form-color="green"
+    style="width: 320px;">
 
     <div class="mt-8">
 
@@ -13,8 +17,15 @@
         <!-- Form -->
         <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch, class: "mt-6" do |f| %>
   
+          <!-- Error message -->
           <% if f.object.errors.any? %>
-            <p class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" id="input-error">Vous devez corriger les erreurs pour poursuivre</p>
+            <p
+              data-input-target="errorMessage"
+              class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" 
+              id="input-error"
+            >
+              Vous devez corriger les erreurs pour poursuivre
+            </p>
           <% end %>
   
           <!-- 1/ Bien immobilier -->
@@ -27,7 +38,7 @@
             <!-- Ville -->
             <div class="flex flex-col mt-8">
               <%= f.label :house_city, "Ville", class: "font-bold" %>
-              <%= f.text_field :house_city, placeholder: "Paris", style: "width: 200px; height: 40px;", class: "input-green" %>
+              <%= f.text_field :house_city, placeholder: "Paris", data: {"input-target": "inputField" },style: "width: 200px; height: 40px;", class: "input-green" %>
               <%= errors_for @simulation, :house_city %>  
             </div>
   
