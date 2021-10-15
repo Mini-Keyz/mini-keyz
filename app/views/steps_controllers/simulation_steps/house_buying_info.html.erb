@@ -2,8 +2,6 @@
 
   <div
     data-controller="input"
-    data-input-target="settings"
-    data-form-color="green"
     style="width: 320px;">
 
     <div class="mt-8">
@@ -29,7 +27,11 @@
           <% end %>
   
           <!-- 1/ Bien immobilier -->
-          <div class="bg-green-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-tl rounded-tr">
+          <div
+            data-input-target="formWrapper"
+            data-form-color="green"
+            class="bg-green-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-tl rounded-tr"
+          >
             <div class="flex items-center border-b-2 border-black">
               <i class="fas fa-home mx-1" style="font-size: 20px;"></i>
               <h2 class="text-xl font-bold">Bien immobilier</h2>

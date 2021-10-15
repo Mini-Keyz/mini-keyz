@@ -2,12 +2,12 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   static get targets() {
-    return ["settings", "errorMessage", "inputField"];
+    return ["formWrapper", "errorMessage", "inputField"];
   }
 
   connect() {
     // Get form color
-    const formColor = this.settingsTarget.dataset.formColor;
+    const formColor = this.formWrapperTarget.dataset.formColor;
 
     // Change input style if error
     if (this.hasErrorMessageTarget) {
