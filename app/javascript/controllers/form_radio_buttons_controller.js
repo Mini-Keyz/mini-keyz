@@ -93,11 +93,9 @@ export default class extends Controller {
 
     radioParentsArray.forEach((parent) => {
       if (parent.children[0].checked) {
-        console.log("I am checked");
         parent.classList.remove(...eval(btnColor).classToApplyNotChecked);
         parent.classList.add(...eval(btnColor).classToApplyChecked);
       } else {
-        console.log("I am not checked");
         parent.classList.remove(...eval(btnColor).classToApplyChecked);
         parent.classList.add(...eval(btnColor).classToApplyNotChecked);
       }
