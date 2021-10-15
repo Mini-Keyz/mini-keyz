@@ -2,10 +2,14 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   static get targets() {
-    return ["formWrapper", "errorMessage", "inputField"];
+    return ["formWrapper", "errorMessage"];
   }
 
   connect() {
+    this.styleErrors();
+  }
+
+  styleErrors() {
     // Get form color
     const formColor = this.formWrapperTarget.dataset.formColor;
 
@@ -13,21 +17,30 @@ export default class extends Controller {
     const formFields = Array.from(this.formWrapperTarget.children);
     formFields.forEach((formField) => {
       const inputWrapper = Array.from(formField.children);
+      console.log(inputWrapper);
+
       const hasError = inputWrapper.find((element) => {
+        console.log(element);
+        console.log(element.classList);
         element.classList.contains("error_explanation");
       });
-      const isTypingField = inputWrapper.filter((element) => {
-        element.tagName == "INPUT";
+      console.log(hasError);
+
+      const inputFields = inputWrapper.filter((element) => {
+        element.tagName === "INPUT";
+        console.log(element);
+        console.log(element.tagName);
+        console.log(element.tagName === "INPUT");
       });
-      console.log(isTypingField);
-      if (hasError) {
+      console.log(inputFields);
+
+      const isInputTypingField = inputFields.length === 1;
+      console.log(isInputTypingField);
+
+      if (hasError && isInputTypingField) {
+        inputFields.classList.remove(`input-${formColor}`);
+        inputFields.classList.add("input-error");
       }
     });
-
-    // Change input style if error
-    if (this.hasErrorMessageTarget) {
-      this.inputFieldTargets.classList.remove(`input-${formColor}`);
-      this.inputFieldTargets.classList.add("input-error");
-    }
   }
 }
