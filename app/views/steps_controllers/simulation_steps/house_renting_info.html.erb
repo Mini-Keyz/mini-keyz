@@ -1,6 +1,9 @@
 <div class="container-app flex justify-center">
 
-  <div style="width: 320px;">
+  <div
+    data-controller="input"
+    style="width: 320px;"
+  >
 
     <div class="mt-8">
 
@@ -14,12 +17,23 @@
         <!-- Form -->
         <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch, class: "mt-6" do |f| %>
 
+          <!-- Error message -->
           <% if f.object.errors.any? %>
-            <p>Vous devez corriger les erreurs pour poursuivre</p>
+            <p
+              data-input-target="errorMessage"
+              class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" 
+            >
+              Vous devez corriger les erreurs pour poursuivre
+            </p>
           <% end %>
 
           <!-- 2/ Mise en location -->
-          <div class="bg-blue-100 bg-opacity-50 w-full px-4 sm:px-6 py-8">
+          <div
+            data-input-target="formWrapper"
+            data-form-color="blue"
+            class="bg-blue-100 bg-opacity-50 w-full px-4 sm:px-6 py-8"
+          >
+            <!-- Title -->
             <div class="flex items-center border-b-2 border-black">
               <i class="fas fa-key mx-1" style="font-size: 16px;"></i>
               <h2 class="text-xl font-bold">Mise en location</h2>
@@ -64,8 +78,8 @@
                   <%= f.radio_button :house_property_management_cost_percentage, 0, checked: (@simulation.house_property_management_cost_percentage == 0), class: "hidden"%>
                   <%= f.label :house_property_management_cost_percentage, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
-                <%= errors_for @simulation, :house_property_management_cost_percentage %>  
               </div>
+              <%= errors_for @simulation, :house_property_management_cost_percentage %>  
 
             </div>
 

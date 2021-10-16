@@ -1,6 +1,9 @@
 <div class="container-app flex justify-center">
 
-  <div style="width: 320px;">
+  <div
+    data-controller="input"
+    style="width: 320px;"
+  >
 
     <div class="mt-8">
 
@@ -14,12 +17,24 @@
         <!-- Form -->
         <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch, class: "mt-6" do |f| %>
 
+          <!-- Error message -->
           <% if f.object.errors.any? %>
-            <p>Vous devez corriger les erreurs pour poursuivre</p>
+            <p
+              data-input-target="errorMessage"
+              class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" 
+            >
+              Vous devez corriger les erreurs pour poursuivre
+            </p>
           <% end %>
 
           <!-- 3/ Emprunt bancaire -->
-          <div class="bg-red-100 bg-opacity-50 w-full px-4 sm:px-6 py-8">
+          <div
+            data-input-target="formWrapper"
+            data-form-color="red"
+            class="bg-red-100 bg-opacity-50 w-full px-4 sm:px-6 py-8"
+          >
+
+            <!-- Title -->
             <div class="flex items-center border-b-2 border-black">
               <i class="fas fa-piggy-bank mx-1" style="font-size: 20px;"></i>
               <h2 class="text-xl font-bold">Emprunt bancaire</h2>
