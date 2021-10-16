@@ -9,6 +9,12 @@ export default class extends Controller {
     this.styleErrors();
   }
 
+  hasError(inputWrapper) {
+    return inputWrapper.find((element) => {
+      return element.classList.contains("error_explanation");
+    });
+  }
+
   styleErrors() {
     // Get form color
     const formColor = this.formWrapperTarget.dataset.formColor;
@@ -18,9 +24,8 @@ export default class extends Controller {
     formFields.forEach((formField) => {
       const inputWrapper = Array.from(formField.children);
 
-      const hasError = inputWrapper.find((element) => {
-        return element.classList.contains("error_explanation");
-      });
+      const hasError = this.hasError(inputWrapper);
+      console.log(hasError);
 
       const inputParentField = inputWrapper.filter((element) => {
         // Has to loop again because of form_for generating <div class="form_with_errors">...</div> around our label and input fields

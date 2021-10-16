@@ -70,7 +70,6 @@ export default class extends Controller {
 
   connect() {
     this.style();
-    this.hasError();
   }
 
   toggle(event) {
