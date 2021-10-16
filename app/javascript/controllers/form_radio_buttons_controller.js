@@ -65,16 +65,19 @@ const yellow = {
 
 export default class extends Controller {
   static get targets() {
-    return ["radioWrapper"];
+    return ["formFieldWrapper", "radioWrapper"];
   }
 
   connect() {
     this.style();
+    this.hasError();
   }
 
   toggle(event) {
     const labelClicked = event.target;
+    console.log(labelClicked);
     const inputClicked = labelClicked.previousElementSibling;
+    console.log(inputClicked);
 
     // Check or uncheck on click
     event.preventDefault();
@@ -82,6 +85,16 @@ export default class extends Controller {
 
     // Change radio button style depending on styling
     this.style();
+  }
+
+  hasError() {
+    const formField = Array.from(this.formFieldWrapperTarget);
+    console.log(formField);
+    // const inputWrapper = Array.from(formField.children);
+
+    // const hasError = inputWrapper.find((element) => {
+    //   return element.classList.contains("error_explanation");
+    // });
   }
 
   style() {
