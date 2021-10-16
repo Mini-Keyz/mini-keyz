@@ -50,12 +50,14 @@
             <!-- Gestion en agence ? -->
             <div 
               data-controller="form-radio-buttons"
+              data-input-type="radio-field"
               data-form-radio-buttons-target="formFieldWrapper"
               class="flex flex-col mt-4"
             >
               <%= f.label :house_property_management_cost_percentage, "Gestion en agence ?", class: "font-bold" %>
               <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
-              <div 
+              <div
+                data-input-type="radio-btns-wrapper"
                 data-form-radio-buttons-target="radioWrapper"
                 data-color="blue"
                 class="flex items-center justify-between mt-1" 

@@ -69,7 +69,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.style();
+    this.styleRadio();
   }
 
   toggle(event) {
@@ -83,7 +83,7 @@ export default class extends Controller {
     inputClicked.checked = !inputClicked.checked;
 
     // Change radio button style depending on styling
-    this.style();
+    this.styleRadio();
   }
 
   hasError() {
@@ -96,7 +96,7 @@ export default class extends Controller {
     // });
   }
 
-  style() {
+  styleRadio() {
     // Get each button parent div which has their input and label as children
     const radioParentsArray = Array.from(this.radioWrapperTarget.children);
 

@@ -43,6 +43,7 @@
             <!-- Statut fiscal -->
             <div
               data-controller="form-radio-buttons"
+              data-input-type="radio-field"
               class="flex flex-col mt-8"
             >
               <%= f.label :fiscal_status, "Statut fiscal", class: "font-bold" %>
@@ -105,6 +106,7 @@
             <!-- Régime fiscal -->
             <div
               data-controller="form-radio-buttons"
+              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :fiscal_regimen, "Régime fiscal", class: "font-bold" %>
@@ -160,6 +162,7 @@
             <!-- Nombre d'enfants à charge -->
             <div
               data-controller="form-radio-buttons"
+              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :fiscal_nb_dependent_children, "Nombre d'enfants à charge", class: "font-bold" %>
@@ -240,6 +243,7 @@
             <!-- Nombre d'enfants en garde alternée -->
             <div
               data-controller="form-radio-buttons"
+              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :fiscal_nb_alternate_custody_children, "Nombre d'enfants en garde alternée", class: "font-bold" %>
