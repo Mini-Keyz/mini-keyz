@@ -1,7 +1,7 @@
 <div class="container-app flex justify-center">
 
   <div
-    data-controller="input"
+    data-controller="form"
     style="width: 320px;"
   >
 
@@ -19,7 +19,7 @@
           <!-- Error message -->
           <% if f.object.errors.any? %>
             <p
-              data-input-target="errorMessage"
+              data-form-target="errorMessage"
               class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" 
             >
               Vous devez corriger les erreurs pour poursuivre
@@ -28,7 +28,7 @@
   
           <!-- 1/ Bien immobilier -->
           <div
-            data-input-target="formWrapper"
+            data-form-target="formWrapper"
             data-form-color="green"
             class="bg-green-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-tl rounded-tr"
           >
