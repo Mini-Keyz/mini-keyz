@@ -40,6 +40,10 @@ export default class extends Controller {
     });
   }
 
+  hasErrorForm() {
+    return this.hasErrorMessageTarget;
+  }
+
   getFormColor() {
     return this.formWrapperTarget.dataset.formColor;
   }
@@ -77,6 +81,46 @@ export default class extends Controller {
     });
   }
 
+  toggleRadio(event) {
+    const labelClicked = event.target;
+    console.log(labelClicked);
+
+    if (this.hasErrorForm()) {
+      // CHANGE HASFORMERROR to only take into consideration when THIS field has an error!!!
+      console.log("hasErrorForm");
+      const labelDivWithErrors = labelClicked.parentNode;
+      console.log(labelDivWithErrors);
+
+      const radioBtn = Array.from(labelDivWithErrors.parentNode.children);
+      console.log(radioBtn);
+
+      const inputDivWithErrors = radioBtn[0];
+      console.log(inputDivWithErrors);
+
+      const inputClicked = Array.from(inputDivWithErrors.children)[0];
+      console.log(inputClicked);
+
+      // Check or uncheck on click
+      event.preventDefault();
+      inputClicked.checked = !inputClicked.checked;
+
+      // Change radio button style depending on styling
+      this.styleRadio();
+
+      return;
+    }
+
+    const inputClicked = labelClicked.previousElementSibling;
+    console.log(inputClicked);
+
+    // Check or uncheck on click
+    event.preventDefault();
+    inputClicked.checked = !inputClicked.checked;
+
+    // Change radio button style depending on styling
+    this.styleRadio();
+  }
+
   styleRadio() {
     // Get form color
     const formColor = this.getFormColor();
@@ -88,7 +132,10 @@ export default class extends Controller {
       if (this.isRadioField(formField)) {
         const radioFieldArray = Array.from(formField.children);
         console.log(radioFieldArray);
+        // THERE we should do it a bit differently if hasError() returns true
 
+        // THIS works when this field has no errors
+        // maybe, we could do a fction that return NO
         radioFieldArray.forEach((radioFieldHTMLElement) => {
           if (this.isRadioBtnsWrapper(radioFieldHTMLElement)) {
             console.log(radioFieldHTMLElement);
@@ -100,15 +147,21 @@ export default class extends Controller {
             console.log(formColor);
             console.log(eval(formColor));
 
-            radioBtnsArray.forEach((parent) => {
-              if (parent.children[0].checked) {
-                parent.classList.remove(
+            radioBtnsArray.forEach((radioBtn) => {
+              console.log(radioBtn.children);
+              console.log(radioBtn.children[0]);
+              if (radioBtn.children[0].checked) {
+                radioBtn.classList.remove(
                   ...eval(formColor).classToApplyNotChecked
                 );
-                parent.classList.add(...eval(formColor).classToApplyChecked);
+                radioBtn.classList.add(...eval(formColor).classToApplyChecked);
               } else {
-                parent.classList.remove(...eval(formColor).classToApplyChecked);
-                parent.classList.add(...eval(formColor).classToApplyNotChecked);
+                radioBtn.classList.remove(
+                  ...eval(formColor).classToApplyChecked
+                );
+                radioBtn.classList.add(
+                  ...eval(formColor).classToApplyNotChecked
+                );
               }
             });
           }

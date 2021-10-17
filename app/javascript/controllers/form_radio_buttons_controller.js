@@ -86,16 +86,6 @@ export default class extends Controller {
     this.styleRadio();
   }
 
-  hasError() {
-    const formField = Array.from(this.formFieldWrapperTarget);
-    console.log(formField);
-    // const inputWrapper = Array.from(formField.children);
-
-    // const hasError = inputWrapper.find((element) => {
-    //   return element.classList.contains("error_explanation");
-    // });
-  }
-
   styleRadio() {
     // Get each button parent div which has their input and label as children
     const radioParentsArray = Array.from(this.radioWrapperTarget.children);
