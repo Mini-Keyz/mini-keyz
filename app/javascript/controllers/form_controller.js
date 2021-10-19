@@ -134,8 +134,11 @@ export default class extends Controller {
         console.log(radioFieldArray);
         // THERE we should do it a bit differently if hasError() returns true
 
+        // If there is an error, Rails generates a another level of DOM with <div class="field_with_errors">...</div>
+        const hasErrorField = this.hasError(radioFieldArray);
+        console.log(hasErrorField);
+
         // THIS works when this field has no errors
-        // maybe, we could do a fction that return NO
         radioFieldArray.forEach((radioFieldHTMLElement) => {
           if (this.isRadioBtnsWrapper(radioFieldHTMLElement)) {
             console.log(radioFieldHTMLElement);
