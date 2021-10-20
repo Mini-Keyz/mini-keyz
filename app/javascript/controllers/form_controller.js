@@ -99,10 +99,12 @@ export default class extends Controller {
 
       const inputClicked = Array.from(inputDivWithErrors.children)[0];
       console.log(inputClicked);
-
+      console.log(inputClicked.checked);
       // Check or uncheck on click
-      event.preventDefault();
+      // event.preventDefault();
       inputClicked.checked = !inputClicked.checked;
+      console.log(inputClicked);
+      console.log(inputClicked.checked);
 
       // Change radio button style depending on styling
       this.styleRadio();
@@ -153,6 +155,17 @@ export default class extends Controller {
             radioBtnsArray.forEach((radioBtn) => {
               console.log(radioBtn.children);
               console.log(radioBtn.children[0]);
+
+              let inputElement;
+              if (hasErrorField) {
+                const inputDivWithErrors = radioBtn.children[0];
+                inputElement = Array.from(inputDivWithErrors.children)[0];
+              } else {
+                inputElement = radioBtn.children[0];
+              }
+
+              console.log(inputElement);
+
               if (radioBtn.children[0].checked) {
                 radioBtn.classList.remove(
                   ...eval(formColor).classToApplyNotChecked
