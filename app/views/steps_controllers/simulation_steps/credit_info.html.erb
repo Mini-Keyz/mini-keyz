@@ -46,7 +46,7 @@
               <%= f.label :credit_loan_amount, "Montant emprunté", class: "font-bold" %>
               <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
               <%= f.number_field :credit_loan_amount, placeholder: "240 000€", style: "width: 200px; height: 40px;", class: "input-red" %>
-              <%= errors_for @simulation, :credit_amount %>
+              <%= errors_for @simulation, :credit_loan_amount %>
             </div>
 
             <!-- Durée -->

@@ -53,6 +53,7 @@ class Simulation < ApplicationRecord
   end
 
   belongs_to :user, optional: true
+  before_create :initialize_optional_variables
 
   include(CreditFormulas)
 
@@ -78,7 +79,6 @@ class Simulation < ApplicationRecord
       self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
     end
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
-    self.house_first_works_amount = 0 unless house_first_works_amount
 
     # Credit related
     unless credit_loan_interest_percentage_per_year
@@ -87,6 +87,10 @@ class Simulation < ApplicationRecord
     unless credit_loan_insurance_percentage_per_year
       self.credit_loan_insurance_percentage_per_year = CREDIT_STANDARD_LOAN_INSURANCE_PERCENTAGE_PER_YEAR
     end
+  end
+
+  def initialize_optional_variables
+    self.house_first_works_amount = 0 unless house_first_works_amount
   end
 
   #-----------------------------------------------------------------------#
