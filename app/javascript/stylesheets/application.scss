@@ -3,10 +3,12 @@
 @import "tailwindcss/utilities";
 
 @layer components {
+  // Containers
   .container-app {
     @apply mx-auto px-8 md:px-16 2xl:px-72;
   }
 
+  // Buttons
   .btn-new-sim {
     @apply font-bold text-center bg-green-frog hover:bg-green-500 rounded-lg px-4 py-4 mt-8 border-2 border-black transition duration-150;
   }
@@ -19,6 +21,7 @@
     @apply w-32 sm:w-40 h-14 text-lg text-gray-400 align-middle rounded p-2 border border-gray-300 whitespace-nowrap flex justify-center items-center;
   }
 
+  // Inputs
   .input-green {
     @apply rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent;
   }
@@ -33,6 +36,14 @@
 
   .input-yellow {
     @apply rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent;
+  }
+
+  .input-error {
+    @apply rounded border-2 border-red-400 px-2 mt-1 bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent;
+  }
+
+  .error_explanation {
+    @apply text-sm text-red-500;
   }
 }
 

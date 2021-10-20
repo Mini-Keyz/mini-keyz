@@ -78,6 +78,7 @@ class Simulation < ApplicationRecord
       self.house_insurance_pno_amount_per_year = HOUSE_STANDARD_INSURANCE_PNO_AMOUNT_PER_YEAR
     end
     self.house_insurance_gli_percentage = HOUSE_STANDARD_INSURANCE_GLI_PERCENTAGE unless house_insurance_gli_percentage
+    self.house_first_works_amount = 0 unless house_first_works_amount
 
     # Credit related
     unless credit_loan_interest_percentage_per_year

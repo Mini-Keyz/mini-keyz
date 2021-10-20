@@ -69,38 +69,45 @@ export default class extends Controller {
   }
 
   connect() {
-    this.style();
+    this.styleRadio();
   }
 
-  toggle(event) {
-    console.log(event.target);
+  getFormColor() {
+    const formSettings = document.getElementById("form-settings");
+    return formSettings.dataset.formColor;
+  }
+
+  hasError(formFieldArray) {
+    return formFieldArray.find((element) => {
+      return element.classList.contains("error_explanation");
+    });
+  }
+
+  toggleRadio(event) {
     const labelClicked = event.target;
+    console.log(labelClicked);
+
     const inputClicked = labelClicked.previousElementSibling;
-    console.log(inputClicked.checked);
+    console.log(inputClicked);
 
     // Check or uncheck on click
     event.preventDefault();
     inputClicked.checked = !inputClicked.checked;
-    console.log(inputClicked.checked);
 
     // Change radio button style depending on styling
-    this.style();
+    this.styleRadio();
   }
 
-  style() {
+  styleRadio() {
     // Get each button parent div which has their input and label as children
     const radioParentsArray = Array.from(this.radioWrapperTarget.children);
-
-    // Get the buttons color
-    const btnColor = this.radioWrapperTarget.dataset.color;
+    const btnColor = this.getFormColor();
 
     radioParentsArray.forEach((parent) => {
       if (parent.children[0].checked) {
-        console.log("I am checked");
         parent.classList.remove(...eval(btnColor).classToApplyNotChecked);
         parent.classList.add(...eval(btnColor).classToApplyChecked);
       } else {
-        console.log("I am not checked");
         parent.classList.remove(...eval(btnColor).classToApplyChecked);
         parent.classList.add(...eval(btnColor).classToApplyNotChecked);
       }

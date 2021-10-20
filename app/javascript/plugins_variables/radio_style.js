@@ -1,4 +1,4 @@
-const radio_blue = {
+const blue = {
   classToApplyNotChecked: [
     "flex",
     "justify-center",
@@ -15,15 +15,11 @@ const radio_blue = {
     "bg-blue-200",
     "rounded",
     "border-2",
-    "border-blue-200",
-    "outline-none",
-    "ring-1",
-    "ring-blue-400",
-    "border-transparent",
+    "border-blue-400",
   ],
 };
 
-const radio_red = {
+const red = {
   classToApplyNotChecked: [
     "flex",
     "justify-center",
@@ -40,15 +36,11 @@ const radio_red = {
     "bg-red-200",
     "rounded",
     "border-2",
-    "border-red-200",
-    "outline-none",
-    "ring-1",
-    "ring-red-400",
-    "border-transparent",
+    "border-red-400",
   ],
 };
 
-const radio_yellow = {
+const yellow = {
   classToApplyNotChecked: [
     "flex",
     "justify-center",
@@ -65,12 +57,8 @@ const radio_yellow = {
     "bg-yellow-200",
     "rounded",
     "border-2",
-    "border-yellow-200",
-    "outline-none",
-    "ring-1",
-    "ring-yellow-400",
-    "border-transparent",
+    "border-yellow-400",
   ],
 };
 
-export { radio_blue, radio_red, radio_yellow };
+export { blue, red, yellow };
