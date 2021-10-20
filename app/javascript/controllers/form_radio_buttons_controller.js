@@ -65,16 +65,28 @@ const yellow = {
 
 export default class extends Controller {
   static get targets() {
-    return ["formFieldWrapper", "radioWrapper"];
+    return ["radioWrapper"];
   }
 
   connect() {
     this.styleRadio();
   }
 
-  toggle(event) {
+  getFormColor() {
+    const formSettings = document.getElementById("form-settings");
+    return formSettings.dataset.formColor;
+  }
+
+  hasError(formFieldArray) {
+    return formFieldArray.find((element) => {
+      return element.classList.contains("error_explanation");
+    });
+  }
+
+  toggleRadio(event) {
     const labelClicked = event.target;
     console.log(labelClicked);
+
     const inputClicked = labelClicked.previousElementSibling;
     console.log(inputClicked);
 
@@ -89,9 +101,7 @@ export default class extends Controller {
   styleRadio() {
     // Get each button parent div which has their input and label as children
     const radioParentsArray = Array.from(this.radioWrapperTarget.children);
-
-    // Get the buttons color
-    const btnColor = this.radioWrapperTarget.dataset.color;
+    const btnColor = this.getFormColor();
 
     radioParentsArray.forEach((parent) => {
       if (parent.children[0].checked) {

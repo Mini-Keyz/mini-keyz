@@ -2,7 +2,9 @@
 
   <div
     data-controller="form"
+    data-form-color="red"
     style="width: 320px;"
+    id="form-settings"
   >
 
     <div class="mt-8">
@@ -30,7 +32,6 @@
           <!-- 3/ Emprunt bancaire -->
           <div
             data-form-target="formWrapper"
-            data-form-color="red"
             class="bg-red-100 bg-opacity-50 w-full px-4 sm:px-6 py-8"
           >
 
@@ -45,26 +46,24 @@
               <%= f.label :credit_loan_amount, "Montant emprunté", class: "font-bold" %>
               <p class="text-xs text-gray-500">Seulement l’argent emprunté auprès de votre banque</p>
               <%= f.number_field :credit_loan_amount, placeholder: "240 000€", style: "width: 200px; height: 40px;", class: "input-red" %>
-              <%= errors_for @simulation, :credit_amount %>  
+              <%= errors_for @simulation, :credit_amount %>
             </div>
 
             <!-- Durée -->
             <div 
               data-controller="form-radio-buttons"
-              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :credit_loan_duration, "Durée", class: "font-bold" %>
               <p class="text-xs text-gray-500">En années</p>
               <div
                 data-form-radio-buttons-target="radioWrapper"
-                data-color="red"
                 class="flex items-center justify-between mt-1" 
                 style="width: 200px; height: 40px;" 
                 id="radio-credit-loan-duration"
               >
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-red-200" 
                   style="width: 36px; height: 40px;"
                 >
@@ -73,7 +72,7 @@
                 </div>
                 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-red-200" 
                   style="width: 36px; height: 40px;"
                 >
@@ -82,7 +81,7 @@
                 </div>
                 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-red-200" 
                   style="width: 36px; height: 40px;"
                 >
@@ -91,7 +90,7 @@
                 </div>
                 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-red-200" 
                   style="width: 36px; height: 40px;"
                 >
@@ -100,7 +99,7 @@
                 </div>
                 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-red-200" 
                   style="width: 36px; height: 40px;"
                 >

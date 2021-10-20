@@ -2,7 +2,9 @@
 
   <div
     data-controller="form"
+    data-form-color="blue"
     style="width: 320px;"
+    id="form-settings"
   >
 
     <div class="mt-8">
@@ -30,7 +32,6 @@
           <!-- 2/ Mise en location -->
           <div
             data-form-target="formWrapper"
-            data-form-color="blue"
             class="bg-blue-100 bg-opacity-50 w-full px-4 sm:px-6 py-8"
           >
             <!-- Title -->
@@ -50,22 +51,18 @@
             <!-- Gestion en agence ? -->
             <div 
               data-controller="form-radio-buttons"
-              data-input-type="radio-field"
-              data-form-radio-buttons-target="formFieldWrapper"
               class="flex flex-col mt-4"
             >
               <%= f.label :house_property_management_cost_percentage, "Gestion en agence ?", class: "font-bold" %>
               <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
               <div
-                data-input-type="radio-btns-wrapper"
                 data-form-radio-buttons-target="radioWrapper"
-                data-color="blue"
                 class="flex items-center justify-between mt-1" 
                 style="width: 200px; height: 40px;" 
                 id="radio-house-property-management-cost"
               >
                 <div
-                  data-action="click->form#toggleRadio"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
                   style="width: 92px; height: 40px;"
                 >
@@ -74,11 +71,11 @@
                 </div>
 
                 <div
-                  data-action="click->form#toggleRadio"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
                   style="width: 92px; height: 40px;"
                 >
-                  <%= f.radio_button :house_property_management_cost_percentage, 0, checked: (@simulation.house_property_management_cost_percentage == 0), class: "hidden"%>
+                  <%= f.radio_button :house_property_management_cost_percentage, 0, checked: (@simulation.house_property_management_cost_percentage == 0), class: "hidden" %>
                   <%= f.label :house_property_management_cost_percentage, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
                 </div>
               </div>

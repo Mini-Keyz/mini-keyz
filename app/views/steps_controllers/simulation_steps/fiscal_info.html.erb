@@ -2,7 +2,9 @@
 
   <div
     data-controller="form"
+    data-form-color="yellow"
     style="width: 320px;"
+    id="form-settings"
   >
 
     <div class="mt-8">
@@ -30,7 +32,6 @@
           <!-- 4/ Imposition -->
           <div
             data-form-target="formWrapper"
-            data-form-color="yellow"
             class="bg-yellow-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-bl rounded-br"
           >
 
@@ -43,19 +44,17 @@
             <!-- Statut fiscal -->
             <div
               data-controller="form-radio-buttons"
-              data-input-type="radio-field"
               class="flex flex-col mt-8"
             >
               <%= f.label :fiscal_status, "Statut fiscal", class: "font-bold" %>
               <p class="text-xs text-gray-500">Actuellement 2 disponibles</p>
               <div
                 data-form-radio-buttons-target="radioWrapper"
-                data-color="yellow"
                 class="flex items-center flex-wrap gap-2 mt-1" 
                 id="radio-fiscal-status"
               >
                 <div
-                  data-action="click->form-radio-buttons#toggle"  
+                  data-action="click->form-radio-buttons#toggleRadio"  
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
                   style="height: 40px;"
                 >
@@ -64,7 +63,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
                   style="height: 40px;"
                 >
@@ -73,7 +72,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
                   style="height: 40px;"
                 >
@@ -82,7 +81,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
                   style="height: 40px;"
                 >
@@ -91,7 +90,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
                   style="height: 40px;"
                 >
@@ -106,19 +105,17 @@
             <!-- Régime fiscal -->
             <div
               data-controller="form-radio-buttons"
-              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :fiscal_regimen, "Régime fiscal", class: "font-bold" %>
               <p class="text-xs text-gray-500">Le mode de déduction choisit pour vos charges</p>
               <div
                 data-form-radio-buttons-target="radioWrapper"
-                data-color="yellow"
                 class="flex items-center justify-between flex-wrap gap-2 mt-1" 
                 id="radio-fiscal-regimen"
               >
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
                   style="height: 40px;"
                 >
@@ -127,7 +124,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
                   style="height: 40px;"
                 >
@@ -162,19 +159,17 @@
             <!-- Nombre d'enfants à charge -->
             <div
               data-controller="form-radio-buttons"
-              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :fiscal_nb_dependent_children, "Nombre d'enfants à charge", class: "font-bold" %>
               <p class="text-xs text-gray-500">Vos enfants mineurs ou majeurs (sous certaines conditions) rattachés à votre foyer fiscal</p>
               <div
                 data-form-radio-buttons-target="radioWrapper"
-                data-color="yellow"
                 class="flex items-center justify-start mt-1"
                 id="radio-fiscal-nb-dependent-children"
               >
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -183,7 +178,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -192,7 +187,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -201,7 +196,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -210,7 +205,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -219,7 +214,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -228,7 +223,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px;"
                 >
@@ -243,19 +238,17 @@
             <!-- Nombre d'enfants en garde alternée -->
             <div
               data-controller="form-radio-buttons"
-              data-input-type="radio-field"
               class="flex flex-col mt-4"
             >
               <%= f.label :fiscal_nb_alternate_custody_children, "Nombre d'enfants en garde alternée", class: "font-bold" %>
               <p class="text-xs text-gray-500">Les enfants du foyers en garde partagée</p>
               <div
                 data-form-radio-buttons-target="radioWrapper"
-                data-color="yellow"
                 class="flex items-center justify-start mt-1" 
                 id="radio-fiscal-nb-alternate-custody-children"
               >
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -264,7 +257,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -273,7 +266,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -282,7 +275,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -291,7 +284,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
@@ -300,7 +293,7 @@
                 </div>
 
                 <div
-                  data-action="click->form-radio-buttons#toggle"
+                  data-action="click->form-radio-buttons#toggleRadio"
                   class="flex justify-center items-center bg-white rounded border-2 border-yellow-200"
                   style="width: 36px; height: 40px; margin-right: 5px;"
                 >
