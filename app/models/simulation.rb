@@ -53,6 +53,8 @@ class Simulation < ApplicationRecord
   end
 
   belongs_to :user, optional: true
+  accepts_nested_attributes_for :user
+
   before_create :initialize_optional_variables
 
   include(CreditFormulas)
