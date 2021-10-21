@@ -31,7 +31,9 @@
     <%= render 'shared/flashes' %>
 
     <!-- Cookies -->
-    <%= render 'shared/cookies_popup' %>
+    <% if cookies[:cookies_acceptance].nil? %>
+      <%= render 'shared/cookies_popup' %>
+    <% end %>
 
     <!-- Footer -->
     <div class="mt-auto">

@@ -2,7 +2,8 @@
   <div
     data-controller="cookies"
     data-cookies-target="cookiesElement"
-    class="h-[500px] fixed bottom-4 flex flex-col justify-between items-center shadow-md border border-gray-100 rounded-lg bg-white"
+    class="fixed bottom-4 flex flex-col justify-between items-center p-2 shadow-md border border-gray-100 rounded-lg bg-white"
+    style="height: 200px;"
   >
     <div class="w-full flex justify-end">
       <button
@@ -17,13 +18,13 @@
     </div>
   
     <div>
-      <p class="text-xs">Nous utilisons les cookies pour vous offrir la meilleure expérience possible sur notre application.</p>
+      <p class="text-sm">Nous utilisons les cookies pour vous offrir la meilleure expérience possible sur notre application.</p>
       <br>
-      <p class="text-xs">Pour plus d'informations vous pouvez consulter <%= link_to 'notre politique de cookies', cookies_policy_path %></p>
+      <p class="text-sm">Pour plus d'informations vous pouvez consulter <%= link_to 'notre politique de cookies', cookies_policy_path, class: "font-semibold text-blue-400" %></p>
     </div>
   
-    <div>
-      <%= link_to 'Accepter', accept_cookies_path, remote: true, data: {'action': 'click->cookies#close'}, class: "" %>
+    <div class="flex justify-between">
+      <%= link_to 'Accepter', accept_cookies_path, remote: true, data: {'action': 'click->cookies#close'}, class: "bg-green-500 rounded p-6" %>
       <%= link_to 'Refuser', refuse_cookies_path, remote: true, data: {'action': 'click->cookies#close'} %>
     </div>
   </div>
