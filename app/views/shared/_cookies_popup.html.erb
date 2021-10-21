@@ -1,0 +1,34 @@
+<div class="w-full flex justify-center">
+  <div
+    data-controller="cookies"
+    data-cookies-target="cookiesElement"
+    class="fixed bottom-0 sm:bottom-4 sm:left-4 flex flex-col justify-between items-center p-2 shadow-md border border-gray-100 rounded-lg bg-white"
+    style="max-width: 600px;"
+  >
+    <div class="w-full flex justify-end">
+      <button
+        data-action="click->cookies#close"
+        type="button"
+        class="close h-full"
+        data-dismiss="notice"
+        aria-label="Close"
+      >
+        <span aria-hidden="true" class="text-xs p-2">&#10005;</span>
+      </button>
+    </div>
+  
+    <div class="px-4 flex items-start">
+      <%= image_tag "cookies.png", class: "mr-4 pt-2", style: "width: 48px;", placeholder: "cookies" %>
+      <div>
+        <p class="text-sm break-normal">Nous utilisons les cookies pour vous offrir la meilleure expérience possible sur notre application.</p>
+        <br>
+        <p class="text-sm">Pour plus d'informations, vous pouvez consulter <%= link_to 'notre politique de cookies', cookies_policy_path, class: "font-semibold text-green-500 cursor-pointer" %></p>
+      </div>
+    </div>
+  
+    <div class="w-full flex justify-evenly px-4 mt-6">
+      <%= link_to 'Accepter', accept_cookies_path, remote: true, data: {'action': 'click->cookies#close'}, class: "bg-green-500 rounded-md font-semibold py-1 px-16" %>
+      <%= link_to 'Refuser', refuse_cookies_path, remote: true, data: {'action': 'click->cookies#close'}, class: "bg-green-50 rounded-md font-semibold py-1 px-16"  %>
+    </div>
+  </div>
+</div>
