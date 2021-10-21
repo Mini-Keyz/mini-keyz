@@ -1,0 +1,31 @@
+<div class="w-full flex justify-center">
+  <div
+    data-controller="cookies"
+    data-cookies-target="cookiesElement"
+    class="fixed bottom-4 flex flex-col justify-between items-center shadow-md border border-gray-100 rounded-lg bg-white"
+    style="min-height: 60px; width: 320px;"
+  >
+    <div class="w-full flex justify-end">
+      <button
+        data-action="click->cookies#close"
+        type="button"
+        class="close h-full"
+        data-dismiss="notice"
+        aria-label="Close"
+      >
+        <span aria-hidden="true" class="text-xs p-3">&#10005;</span>
+      </button>
+    </div>
+  
+    <div>
+      <p class="text-xs">Nous utilisons les cookies pour vous offrir la meilleure expérience possible sur notre application.</p>
+      <br>
+      <p class="text-xs">Pour plus d'informations vous pouvez consulter <%= link_to 'notre politique de cookies', cookies_policy_path %></p>
+    </div>
+  
+    <div>
+      <%= link_to 'Accepter', accept_cookies_path, remote: true, data: {'action': 'click->cookies#close'}, class: "" %>
+      <%= link_to 'Refuser', refuse_cookies_path, remote: true, data: {'action': 'click->cookies#close'} %>
+    </div>
+  </div>
+</div>
