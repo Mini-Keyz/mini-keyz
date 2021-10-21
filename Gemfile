@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
@@ -96,3 +96,6 @@ gem 'time_difference', '~> 0.5.0'
 
 # My super gemmm that I made and publish on rubygems.org
 gem 'french_tax_system', '~> 1.0.1'
+
+# Needed for Ruby v3
+gem 'rexml'
