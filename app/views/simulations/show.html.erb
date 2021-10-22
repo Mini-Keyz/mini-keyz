@@ -18,7 +18,7 @@
     </div>
 
     <!-- Faire un form si user / si pas user -->
-    <!-- passer le mail en params[] -->
+    <!-- passer le mail en params[] yes -->
     <%= form_with model: @simulation, url: :send_simulation_mail, method: :get, remote: false do |f| %>
       <%= f.fields_for :user, @simulation.user do |ff|  %>
         <%= ff.label :email %>
