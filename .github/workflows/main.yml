@@ -41,7 +41,7 @@ jobs:
       # Sets up our ruby env
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.3 # Not needed with a .ruby-version file
+          ruby-version: 3.0.0 # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
       # Installs the dependent libraries for Postgres
