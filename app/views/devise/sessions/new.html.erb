@@ -62,7 +62,9 @@
       <% end %>
   
       <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-        <%= link_to "Vous n'avez pas reçu les instructions de confirmation ?", new_confirmation_path(resource_name) %><br />
+        <div class="flex flex-col items-center mt-6">
+          <%= link_to "Vous n'avez pas reçu les instructions de confirmation ?", new_confirmation_path(resource_name), class: "text-xs text-gray-400 text-center font-semibold transition duration-150 hover:underline" %>
+        </div>
       <% end %>
   
       <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
