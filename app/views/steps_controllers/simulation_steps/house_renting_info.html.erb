@@ -6,18 +6,28 @@
   title_name: "Mise en location",
   fields: [
     {
-      input: :house_city,
-      label: "Ville",
-      information: nil,
-      type: "text_field",
-      placeholder: "Paris",
+      input: :house_rent_amount_per_month,
+      label: "Loyer mensuel",
+      information: "Hors charges",
+      type: "number_field",
+      placeholder: "800€ HC",
     },
     {
-      input: :house_price_bought_amount,
-      label: "Prix d'achat",
-      information: "Prix du bien + Frais d’agence",
-      type: "number_field",
-      placeholder: "200 000€",
+      input: :house_property_management_cost_percentage,
+      label: "Gestion en agence ?",
+      information: "En moyenne 8% des loyers HC",
+      type: "radio_button",
+      radio_btns_width: "88px",
+      radio_btns: [
+        {
+          value: 0.08,
+          label: "Oui"
+        },
+        {
+          value: 0,
+          label: "Non"
+        }
+      ]
     }
   ]
 %>
