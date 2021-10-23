@@ -1,3 +1,27 @@
+<%= render "simulation_step_form", 
+  form_color: "blue",
+  form_step_position: nil,
+  progress_bar_percentage: 25,
+  title_icon_class: "fas fa-key",
+  title_name: "Mise en location",
+  fields: [
+    {
+      input: :house_city,
+      label: "Ville",
+      information: nil,
+      type: "text_field",
+      placeholder: "Paris",
+    },
+    {
+      input: :house_price_bought_amount,
+      label: "Prix d'achat",
+      information: "Prix du bien + Frais d’agence",
+      type: "number_field",
+      placeholder: "200 000€",
+    }
+  ]
+%>
+
 <div class="container-app flex justify-center">
 
   <div

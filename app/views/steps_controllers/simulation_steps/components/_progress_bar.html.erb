@@ -1,14 +1,14 @@
 <% if progress_bar_percentage == 0 %>
 
-<div class="w-full h-4 bg-gray-100 rounded-lg">
-  <p class="pl-1 text-xs">0%</p>
-</div>
+  <div class="w-full h-4 bg-gray-100 rounded-lg">
+    <p class="pl-1 text-xs">0%</p>
+  </div>
 
 <% else %>
 
-<div class="w-full h-4 bg-gray-100 rounded-lg flex">
-  <div class="w-3/4 h-full bg-green-500 rounded-lg"></div>
-  <p class="pl-1 text-xs"><%= progress_bar_percentage %>%</p>
-</div>
+  <div class="w-full h-4 bg-gray-100 rounded-lg flex">
+    <div class="w-<%= (progress_bar_percentage / 100.to_f).rationalize %> h-full bg-green-500 rounded-lg"></div>
+    <p class="pl-1 text-xs"><%= progress_bar_percentage %>%</p>
+  </div>
 
 <% end %>
