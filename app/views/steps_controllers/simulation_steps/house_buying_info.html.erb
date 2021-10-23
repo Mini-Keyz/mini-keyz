@@ -1,99 +1,44 @@
-<div class="container-app flex justify-center">
-
-  <div
-    data-controller="form"
-    data-form-color="green"
-    style="width: 320px;"
-    id="form-settings"
-  >
-
-    <div class="mt-8">
-
-      <%= turbo_frame_tag dom_id(@simulation) do %>
-        <!-- Progress bar -->
-        <div class="w-full h-4 bg-gray-100 rounded-lg">
-          <p class="pl-1 text-xs">0%</p>
-        </div>
-
-        <!-- Form -->
-        <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch, class: "mt-6" do |f| %>
-  
-          <!-- Error message -->
-          <% if f.object.errors.any? %>
-            <p
-              data-form-target="errorMessage"
-              class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" 
-            >
-              Vous devez corriger les erreurs pour poursuivre
-            </p>
-          <% end %>
-  
-          <!-- 1/ Bien immobilier -->
-          <div
-            data-form-target="formWrapper"
-            class="bg-green-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-tl rounded-tr"
-          >
-
-            <!-- Title -->
-            <div class="flex items-center border-b-2 border-black">
-              <i class="fas fa-home mx-1" style="font-size: 20px;"></i>
-              <h2 class="text-xl font-bold">Bien immobilier</h2>
-            </div>
-  
-            <!-- Ville -->
-            <div class="flex flex-col mt-8">
-              <%= f.label :house_city, "Ville", class: "font-bold" %>
-              <%= f.text_field :house_city, placeholder: "Paris", style: "width: 200px; height: 40px;", class: "input-green" %>
-              <%= errors_for @simulation, :house_city %>  
-            </div>
-  
-            <!-- Prix d'achat -->
-            <div class="flex flex-col mt-4">
-              <%= f.label :house_price_bought_amount, "Prix d'achat", class: "font-bold" %>
-              <p class="text-xs text-gray-500">Prix du bien + Frais d’agence</p>
-              <%= f.number_field :house_price_bought_amount, placeholder: "200 000€", min: 0, pattern: "[0-9]*", inputmode: "numeric", style: "width: 200px; height: 40px;", class: "input-green" %>
-              <%= errors_for @simulation, :house_price_bought_amount %>  
-            </div>
-  
-            <!-- Budget travaux -->
-            <div class="flex flex-col mt-4">
-              <%= f.label :house_first_works_amount, "Budget travaux", class: "font-bold" %>
-              <p class="text-xs text-gray-500">(optionnel)</p>
-              <%= f.number_field :house_first_works_amount, placeholder: "15 000€ TTC", style: "width: 200px; height: 40px;", class: "input-green" %>
-              <%= errors_for @simulation, :house_first_works_amount %>  
-            </div>
-  
-            <!-- Charges annuelles totales -->
-            <div class="flex flex-col mt-4">
-              <%= f.label :house_total_charges_amount_per_year, "Charges annuelles totales", class: "font-bold" %>
-              <p class="text-xs text-gray-500">En moyenne 80% sont récupérées sur le locataire</p>
-              <%= f.number_field :house_total_charges_amount_per_year, placeholder: "1 200€", style: "width: 200px; height: 40px;", class: "input-green" %>
-              <%= errors_for @simulation, :house_total_charges_amount_per_year %>  
-            </div>
-  
-            <!-- Taxe foncière -->
-            <div class="flex flex-col mt-4">
-              <%= f.label :house_property_tax_amount_per_year, "Taxe foncière", class: "font-bold" %>
-              <p class="text-xs text-gray-500">En moyenne 1 mois de loyer</p>
-              <%= f.number_field :house_property_tax_amount_per_year, placeholder: "800€", style: "width: 200px; height: 40px;", class: "input-green" %>
-              <%= errors_for @simulation, :house_property_tax_amount_per_year %>  
-            </div>
-  
-          </div>
-  
-          <!-- Actions -->
-          <div class="flex justify-center gap-x-4 sm:gap-x-8 mt-6 sm:mt-12">
-            <%= link_to 'Retour', root_path, data: { turbo_frame: :_top }, class: "btn-back", role: "button" %> <%# NOTE the _top target %>
-            <div class="flex item-center"></div>
-            <%= f.submit 'Suivant', class: "btn-next" %>
-          </div>
-  
-        <% end %>
-
-      <% end %>
-
-    </div>
-
-  </div>
-
-</div>
+<%= render "simulation_step_form", 
+  form_color: "green",
+  form_step_position: "first",
+  progress_bar_percentage: 0,
+  title_icon_class: "fas fa-home",
+  title_name: "Bien immobilier",
+  fields: [
+    {
+      input: :house_city,
+      label: "Ville",
+      information: nil,
+      type: "text_field",
+      placeholder: "Paris",
+    },
+    {
+      input: :house_price_bought_amount,
+      label: "Prix d'achat",
+      information: "Prix du bien + Frais d’agence",
+      type: "number_field",
+      placeholder: "200 000€",
+    },
+    {
+      input: :house_first_works_amount,
+      label: "Budget travaux",
+      information: "(optionnel)",
+      type: "number_field",
+      placeholder: "15 000€ TTC",
+    },
+    {
+      input: :house_total_charges_amount_per_year,
+      label: "Charges annuelles totales",
+      information: "En moyenne 80% sont récupérées sur le locataire",
+      type: "number_field",
+      placeholder: "1 200€",
+    },
+    {
+      input: :house_property_tax_amount_per_year,
+      label: "Taxe foncière",
+      information: "En moyenne 1 mois de loyer",
+      type: "number_field",
+      placeholder: "800€",
+    }
+  ]
+%>

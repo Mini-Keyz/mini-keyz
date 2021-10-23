@@ -1,0 +1,72 @@
+<%= form_color %>
+
+<div class="container-app flex justify-center">
+
+  <div
+    data-controller="form"
+    data-form-color=<%= form_color %>
+    style="width: 320px;"
+    id="form-settings"
+  >
+
+    <div class="mt-8">
+
+      <%= turbo_frame_tag dom_id(@simulation) do %>
+
+        <!-- Progress bar -->
+        <%= render "steps_controllers/simulation_steps/components/progress_bar", progress_bar_percentage: progress_bar_percentage %>
+
+        <!-- Form -->
+        <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch, class: "mt-6" do |f| %>
+  
+          <!-- Error message -->
+          <% if f.object.errors.any? %>
+            <%= render "steps_controllers/simulation_steps/components/error_message" %>
+          <% end %>
+  
+          <!-- Form Wrapper -->
+          <div
+            data-form-target="formWrapper"
+            class="bg-<%= form_color %>-100 bg-opacity-50 w-full px-4 sm:px-6 py-8 rounded-tl rounded-tr"
+          >
+
+            <!-- Title -->
+            <div class="flex items-center border-b-2 border-black">
+              <i class="<%= title_icon_class %> mx-1" style="font-size: 16px" ></i>
+              <h2 class="text-xl font-bold"><%= title_name %></h2>
+            </div>
+
+            <!-- Form fields -->
+            <% fields.each_with_index do |field, index| %>
+              <%= 
+                case field[:type]
+                when "text_field"
+                  render "steps_controllers/simulation_steps/components/text_field", 
+                    f: f, field: field, form_color: form_color, index: index
+                when "number_field"
+                  render "steps_controllers/simulation_steps/components/number_field", 
+                    f: f, field: field, form_color: form_color, index: index
+                when "radio_button"
+                  render "steps_controllers/simulation_steps/components/radio_button", 
+                    f: f, field: field, form_color: form_color, index: index
+                when "double_number_field"
+                  render "steps_controllers/simulation_steps/components/double_number_field", 
+                    f: f, field: field, form_color: form_color, index: index
+                end
+              %>
+            <% end %>
+  
+          </div>
+  
+          <!-- Actions -->
+          <%= render "steps_controllers/simulation_steps/components/actions", f: f, form_step_position: form_step_position %>
+  
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>

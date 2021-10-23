@@ -1,0 +1,15 @@
+<% settings = if form_step_position == "first"
+    [root_path, "Suivant"]
+  elsif form_step_position == "last" 
+    [previous_wizard_path, "Terminer"]
+  else 
+    [previous_wizard_path, "Suivant"]
+  end
+%>
+
+
+<div class="flex justify-center gap-x-4 sm:gap-x-8 mt-6 sm:mt-12">
+  <%= link_to 'Retour', settings[0], data: { turbo_frame: :_top }, class: "btn-back", role: "button" %> <%# NOTE the _top target %>
+  <div class="flex item-center"></div>
+  <%= f.submit "#{settings[1]}", class: "btn-next" %>
+</div>
