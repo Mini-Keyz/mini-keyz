@@ -1,5 +1,5 @@
 class SimulationsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[show new create update]
+  skip_before_action :authenticate_user!, only: %i[show new create update send_simulation_mail]
   before_action :set_simulation, only: %i[show update destroy send_simulation_mail]
 
   def index
@@ -50,7 +50,15 @@ class SimulationsController < ApplicationController
   end
 
   def send_simulation_mail
-    SimulationMailer.with(user: current_user, simulation: @simulation).send_it_to_me.deliver_later
+    unknown_user = {}
+
+    if params[:unknown_user]
+      unknown_user = params[:unknown_user]
+      unknown_user.permit!
+    end
+
+    SimulationMailer.with(user: current_user, unknown_user: unknown_user,
+                          simulation: @simulation).send_it_to_me.deliver_later
     redirect_to @simulation, notice: 'Email envoyé !'
   end
 

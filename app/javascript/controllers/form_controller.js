@@ -58,8 +58,6 @@ export default class extends Controller {
         return element.tagName === "INPUT";
       });
 
-      console.log(inputField);
-
       if (inputField.length === 0) return;
 
       // Radio input fields have several input elements

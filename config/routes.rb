@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/refuse_cookies', to: 'pages#refuse_cookies', as: 'refuse_cookies'
   get '/cookies_policy', to: 'pages#cookies_policy', as: 'cookies_policy'
 
+  get '/simulations/:id/send_simulation_mail', to: 'simulations#send_simulation_mail', as: :send_simulation_mail
+
   constraints subdomain: 'api' do
     get 'about', to: 'pages#about'
     get 'contact', to: 'pages#contact'
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
   constraints subdomain: ['www', '', 'mini-keyz-staging'] do
     authenticated :user do
       resources :simulations
-      get '/simulations/:id/send_simulation_mail', to: 'simulations#send_simulation_mail', as: :send_simulation_mail
       resources :users, only: [:show]
     end
 
