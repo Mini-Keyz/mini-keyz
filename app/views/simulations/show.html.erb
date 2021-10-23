@@ -1,7 +1,7 @@
 <div class="container-app w-screen">
 
   <div class="w-full">
-
+<% console %>
     <!-- Back to index button for users -->
     <% if current_user %>
       <%= link_to simulations_path, class: "text-gray-600 py-1 whitespace-nowrap" do %>
@@ -12,20 +12,19 @@
       <% end %>
     <% end %>
   
-    <!-- Send mail button -->
+    <!-- Send simulation by mail -->
     <div class="flex justify-center mt-8">
-      <%= link_to "M'envoyer ma simulation par mail", send_simulation_mail_path, class: "bg-green-500 text-white font-semibold px-4 py-1 rounded cursor-pointer" %>
-    </div>
-
-    <!-- Faire un form si user / si pas user -->
-    <!-- passer le mail en params[] yes -->
-    <%= form_with model: @simulation, url: :send_simulation_mail, method: :get, remote: false do |f| %>
-      <%= f.fields_for :user, @simulation.user do |ff|  %>
-        <%= ff.label :email %>
-        <%= ff.email_field :email %>
+      <% if current_user.nil? %>
+        <%= form_for :unknown_user, url: :send_simulation_mail, method: :get, remote: false do |f| %>
+          <div class="flex items-center">
+            <%= f.email_field :email, placeholder: "Email", class: "border border-1 rounded-l m-0", style: "height: 28px;" %>
+            <%= f.submit "Envoyer", class: "bg-green-500 text-white font-semibold px-4 m-0 rounded-r cursor-pointer align-middle", style: "height: 28px;" %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to "M'envoyer ma simulation par mail", send_simulation_mail_path, class: "bg-green-500 text-white font-semibold px-4 py-1 rounded cursor-pointer" %>
       <% end %>
-      <%= f.submit "Submit" %>
-    <% end %>
+    </div>
     
     <!-- Introduction text --> 
     <div class="mt-8 p-2 bg-green-100 flex items-center rounded">
