@@ -1,1 +1,18 @@
-<p>Test</p>
+<div class="flex flex-col <% if index == 0 %>mt-8<% else %>mt-4<% end %>">
+  <%= f.label field[:first_input], field[:first_input_label], class: "font-bold" %>
+  <div class="flex justify-between items-center flex-wrap gap-1">
+    <div class="flex flex-col">
+      <p class="text-xs text-gray-500"><%= field[:number_fields].first[:information] %></p>
+      <%= f.number_field field[:first_input], placeholder: field[:number_fields].first[:placeholder], style: "width: #{field[:number_fields_width]}; height: 40px;", class: "input-#{form_color}" %>
+    </div>
+    <div>
+      <p class="text-2xl text-gray-500 px-2 pt-4"><%= field[:separator] %></p>
+    </div>
+    <div class="flex flex-col">
+      <p class="text-xs text-gray-500"><%= field[:number_fields].second[:information] %></p>
+      <%= f.number_field field[:second_input], placeholder: field[:number_fields].second[:placeholder], style: "width: #{field[:number_fields_width]}; height: 40px;", class: "input-#{form_color}" %>
+    </div>
+  </div>
+  <%= errors_for @simulation, field[:first_input] %>  
+  <%= errors_for @simulation, field[:second_input] %>  
+</div>
