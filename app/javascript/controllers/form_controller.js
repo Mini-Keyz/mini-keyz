@@ -1,26 +1,4 @@
 import { Controller } from "stimulus";
-// import { blue, red, yellow } from "../plugins_variables/radio_style";
-
-const blue = {
-  classToApplyNotChecked: [
-    "flex",
-    "justify-center",
-    "items-center",
-    "bg-white",
-    "rounded",
-    "border-2",
-    "border-blue-200",
-  ],
-  classToApplyChecked: [
-    "flex",
-    "justify-center",
-    "items-center",
-    "bg-blue-200",
-    "rounded",
-    "border-2",
-    "border-blue-400",
-  ],
-};
 
 export default class extends Controller {
   static get targets() {

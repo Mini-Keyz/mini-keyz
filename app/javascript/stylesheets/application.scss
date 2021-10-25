@@ -23,19 +23,19 @@
 
   // Inputs
   .input-green {
-    @apply rounded border-2 border-green-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent;
+    @apply rounded border-2 border-green-200 px-2 mt-1 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent;
   }
 
   .input-blue {
-    @apply rounded border-2 border-blue-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
+    @apply rounded border-2 border-blue-200 px-2 mt-1 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
   }
 
   .input-red {
-    @apply rounded border-2 border-red-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent;
+    @apply rounded border-2 border-red-200 px-2 mt-1 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent;
   }
 
   .input-yellow {
-    @apply rounded border-2 border-yellow-200 px-2 mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent;
+    @apply rounded border-2 border-yellow-200 px-2 mt-1 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent;
   }
 
   .input-error {
@@ -45,4 +45,25 @@
   .error_explanation {
     @apply text-sm text-red-500;
   }
+}
+
+@layer utilities {
+
+  // Waiting for a better integration of Rails and Webpacker with PostCSS 8 to upgrade to Tailwind JIT
+  .w-36px {
+    width: 36px;
+  }
+  
+  .w-88px {
+    width: 88px;
+  }
+
+  .w-112px {
+    width: 112px;
+  }
+
+  .w-200px {
+    width: 200px;
+  }
+
 }

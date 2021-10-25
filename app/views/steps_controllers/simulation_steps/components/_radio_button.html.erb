@@ -1,0 +1,41 @@
+<% radio_wrapper_width_and_justify = if field[:radio_wrapper_width]
+    "w-#{field[:radio_wrapper_width]} justify-between"
+  else 
+    "gap-2"
+  end
+%>
+
+<% radio_btns_width_or_padding = if field[:radio_btns_width]
+    "w-#{field[:radio_btns_width]}"
+  else 
+    "px-2"
+  end
+%>
+
+<div
+  data-controller="form-radio-buttons"
+  class="flex flex-col <% if index == 0 %>mt-8<% else %>mt-4<% end %>"
+>
+  <%= f.label field[:input], field[:label], class: "font-bold" %>
+  <p class="text-xs text-gray-500"><%= field[:information] %></p>
+  <div
+    data-form-radio-buttons-target="radioWrapper"
+    class="flex items-center mt-1 <%= radio_wrapper_width_and_justify %>" 
+    style="height: 40px;"
+  >
+  
+    <% field[:radio_btns].each_with_index do |radio_btn, index| %>
+      <div
+      data-action="click->form-radio-buttons#toggleRadio"
+      class="flex justify-center items-center <%= radio_btns_width_or_padding %> bg-white rounded border-2 border-<%= form_color %>-200" 
+      style="height: 40px;"
+      >
+        <%= f.radio_button field[:input], radio_btn[:value], checked: (@simulation.send(field[:input].to_s) == radio_btn[:value]), class: "hidden" %>
+        <%= f.label field[:input], radio_btn[:label], value: radio_btn[:value], class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
+      </div>
+    <% end %>
+
+  </div>
+  <%= errors_for @simulation, field[:input] %>  
+
+</div>

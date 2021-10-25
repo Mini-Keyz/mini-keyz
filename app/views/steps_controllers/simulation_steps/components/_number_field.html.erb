@@ -1,0 +1,8 @@
+<div class="flex flex-col <% if index == 0 %>mt-8<% else %>mt-4<% end %>">
+  <%= f.label field[:input], field[:label], class: "font-bold" %>
+  <% if field[:information] %>
+    <p class="text-xs text-gray-500"><%= field[:information] %></p>
+  <% end %>
+  <%= f.number_field field[:input], placeholder: field[:placeholder], min: 0, inputmode: "numeric", style: "width: 200px; height: 40px;", class: "input-#{form_color}" %>
+  <%= errors_for @simulation, field[:input] %>  
+</div>
