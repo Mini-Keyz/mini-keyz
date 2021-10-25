@@ -1,3 +1,50 @@
+<%= render "simulation_step_form", 
+  form_color: "yellow",
+  form_step_position: "last",
+  progress_bar_percentage: 75,
+  title_icon_class: "fas fa-gavel",
+  title_name: "Imposition",
+  fields: [
+    {
+      input: :fiscal_status,
+      label: "Statut fiscal",
+      information: "Actuellement 2 disponibles",
+      type: "radio_button",
+      radio_wrapper_width: nil,
+      radio_btns_width: nil,
+      radio_btns: [
+        {
+          value: "Vide",
+          label: "Vide"
+        },
+        {
+          value: "LMNP",
+          label: "LMNP"
+        },
+      ]
+    },
+    {
+      input: :fiscal_regimen,
+      label: "Régime fiscal",
+      information: "Le mode de déduction choisit pour vos charges",
+      type: "radio_button",
+      radio_wrapper_width: nil,
+      radio_btns_width: nil,
+      radio_btns: [
+        {
+          value: "Réel",
+          label: "Réel / BIC"
+        },
+        {
+          value: "Forfait",
+          label: "Forfait / Micro-BIC"
+        },
+      ]
+    }
+  ]
+%>
+
+
 <div class="container-app flex justify-center">
 
   <div
@@ -41,100 +88,6 @@
               <h2 class="text-xl font-bold">Imposition</h2>
             </div>
 
-            <!-- Statut fiscal -->
-            <div
-              data-controller="form-radio-buttons"
-              class="flex flex-col mt-8"
-            >
-              <%= f.label :fiscal_status, "Statut fiscal", class: "font-bold" %>
-              <p class="text-xs text-gray-500">Actuellement 2 disponibles</p>
-              <div
-                data-form-radio-buttons-target="radioWrapper"
-                class="flex items-center flex-wrap gap-2 mt-1" 
-                id="radio-fiscal-status"
-              >
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"  
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_status, "Vide", class: "hidden" %>
-                  <%= f.label :fiscal_status, "Vide", value: "Vide", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_status, "LMNP", class: "hidden"%>
-                  <%= f.label :fiscal_status, "LMNP", value: "LMNP", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_status, "LMP", class: "hidden"%>
-                  <%= f.label :fiscal_status, "LMP", value: "LMP", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_status, "Pinel", class: "hidden"%>
-                  <%= f.label :fiscal_status, "Pinel", value: "Pinel", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer hidden"
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_status, "DeNormandie", class: "hidden"%>
-                  <%= f.label :fiscal_status, "DeNormandie", value: "DeNormandie", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-              </div>
-              <%= errors_for @simulation, :fiscal_status %>  
-
-            </div>
-
-            <!-- Régime fiscal -->
-            <div
-              data-controller="form-radio-buttons"
-              class="flex flex-col mt-4"
-            >
-              <%= f.label :fiscal_regimen, "Régime fiscal", class: "font-bold" %>
-              <p class="text-xs text-gray-500">Le mode de déduction choisit pour vos charges</p>
-              <div
-                data-form-radio-buttons-target="radioWrapper"
-                class="flex items-center justify-between flex-wrap gap-2 mt-1" 
-                id="radio-fiscal-regimen"
-              >
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer"
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_regimen, "Réel", class: "hidden" %>
-                  <%= f.label :fiscal_regimen, "Réel / BIC", value: "Réel", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center px-2 bg-white rounded border-2 border-yellow-200 cursor-pointer" 
-                  style="height: 40px;"
-                >
-                  <%= f.radio_button :fiscal_regimen, "Forfait", class: "hidden"%>
-                  <%= f.label :fiscal_regimen, "Forfait / Micro-BIC", value: "Forfait", class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-              </div>
-              <%= errors_for @simulation, :fiscal_regimen %>  
-
-            </div>
 
             <!-- Revenus annuels nets du foyer -->
             <div class="flex flex-col mt-4">
