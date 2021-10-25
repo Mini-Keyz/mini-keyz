@@ -46,3 +46,20 @@
     @apply text-sm text-red-500;
   }
 }
+
+@layer utilities {
+
+  // Waiting for a better integration of Rails and Webpacker with PostCSS 8 to upgrade to Tailwind JIT
+  .w-36px {
+    width: 36px;
+  }
+  
+  .w-88px {
+    width: 88px;
+  }
+
+  .w-200px {
+    width: 200px;
+  }
+
+}

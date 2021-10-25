@@ -14,9 +14,10 @@
     },
     {
       input: :house_property_management_cost_percentage,
-      label: "Gestion en agence ?",
+      label: "Gestion en agence",
       information: "En moyenne 8% des loyers HC",
       type: "radio_button",
+      radio_wrapper_width: "200px",
       radio_btns_width: "88px",
       radio_btns: [
         {
@@ -31,107 +32,3 @@
     }
   ]
 %>
-
-<div class="container-app flex justify-center">
-
-  <div
-    data-controller="form"
-    data-form-color="blue"
-    style="width: 320px;"
-    id="form-settings"
-  >
-
-    <div class="mt-8">
-
-      <%= turbo_frame_tag dom_id(@simulation) do %>
-        <!-- Progress bar -->
-        <div class="w-full h-4 bg-gray-100 rounded-lg flex">
-          <div class="w-1/4 h-full bg-green-500 rounded-lg"></div>
-          <p class="pl-1 text-xs">25%</p>
-        </div>
-
-        <!-- Form -->
-        <%= form_with model: @simulation, url: wizard_path, data: { turbo_frame: :_top }, method: :patch, class: "mt-6" do |f| %>
-
-          <!-- Error message -->
-          <% if f.object.errors.any? %>
-            <p
-              data-form-target="errorMessage"
-              class="text-sm text-red-500 text-center bg-red-100 py-2 mb-4" 
-            >
-              Vous devez corriger les erreurs pour poursuivre
-            </p>
-          <% end %>
-
-          <!-- 2/ Mise en location -->
-          <div
-            data-form-target="formWrapper"
-            class="bg-blue-100 bg-opacity-50 w-full px-4 sm:px-6 py-8"
-          >
-            <!-- Title -->
-            <div class="flex items-center border-b-2 border-black">
-              <i class="fas fa-key mx-1" style="font-size: 16px;"></i>
-              <h2 class="text-xl font-bold">Mise en location</h2>
-            </div>
-
-            <!-- Loyer mensuel -->
-            <div class="flex flex-col mt-8">
-              <%= f.label :house_rent_amount_per_month, "Loyer mensuel", class: "font-bold" %>
-              <p class="text-xs text-gray-500">Hors charges</p>
-              <%= f.number_field :house_rent_amount_per_month, placeholder: "800€ HC", style: "width: 200px; height: 40px;", class: "input-blue" %>
-              <%= errors_for @simulation, :house_rent_amount_per_month %>  
-            </div>
-
-            <!-- Gestion en agence ? -->
-            <div 
-              data-controller="form-radio-buttons"
-              class="flex flex-col mt-4"
-            >
-              <%= f.label :house_property_management_cost_percentage, "Gestion en agence ?", class: "font-bold" %>
-              <p class="text-xs text-gray-500">En moyenne 8% des loyers HC</p>
-              <div
-                data-form-radio-buttons-target="radioWrapper"
-                class="flex items-center justify-between mt-1" 
-                style="width: 200px; height: 40px;" 
-                id="radio-house-property-management-cost"
-              >
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
-                  style="width: 92px; height: 40px;"
-                >
-                  <%= f.radio_button :house_property_management_cost_percentage, 0.08, checked: (@simulation.house_property_management_cost_percentage == 0.08), class: "hidden" %>
-                  <%= f.label :house_property_management_cost_percentage, "Oui", value: 0.08, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-
-                <div
-                  data-action="click->form-radio-buttons#toggleRadio"
-                  class="flex justify-center items-center bg-white rounded border-2 border-blue-200" 
-                  style="width: 92px; height: 40px;"
-                >
-                  <%= f.radio_button :house_property_management_cost_percentage, 0, checked: (@simulation.house_property_management_cost_percentage == 0), class: "hidden" %>
-                  <%= f.label :house_property_management_cost_percentage, "Non", value: 0, class:"w-full h-full font-bold text-center py-1 cursor-pointer" %>
-                </div>
-              </div>
-              <%= errors_for @simulation, :house_property_management_cost_percentage %>  
-
-            </div>
-
-          </div>
-
-          <!-- Actions -->
-          <div class="flex justify-center gap-x-4 sm:gap-x-8 mt-6 sm:mt-12">
-            <%= link_to 'Retour', previous_wizard_path, class: "btn-back", role: "button" %> <%# NOTE the _top target %>
-            <div class="flex item-center"></div>
-            <%= f.submit 'Suivant', class: "btn-next" %>
-          </div>
-
-        <% end %>
-
-      <% end %>
-
-    </div>
-
-  </div>
-
-</div>
