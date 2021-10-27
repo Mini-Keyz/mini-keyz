@@ -13,6 +13,9 @@ module MiniKeyz
     config.i18n.default_locale = :fr
     config.i18n.available_locales = %i[en fr]
 
+    # Rails will look in our nested dictionnaries folder
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
     # Config subdomain
     config.action_dispatch.tld_length = Integer(ENV['TLD_LENGTH'] || 1)
     # Configuration for the application, engines, and railties goes here.
