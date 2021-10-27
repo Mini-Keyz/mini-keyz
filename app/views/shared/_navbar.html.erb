@@ -48,10 +48,10 @@
   >
     <div class="flex flex-col bg-white border-2 rounded-bl rounded-br">
       <% if user_signed_in? %>
-        <%= link_to "Réaliser une simulation", new_simulation_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to "Mes simulations", simulations_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to "Mon compte", user_path(current_user), style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, style: "width: 240px", class: "font-semibold p-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to t('shared._navbar.new_simulation'), new_simulation_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to t('shared._navbar.simulations_index'), simulations_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to t('shared._navbar.my_account'), user_path(current_user), style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to t('shared._navbar.sign_out'), destroy_user_session_path, method: :delete, style: "width: 240px", class: "font-semibold p-2 transition duration-400 hover:bg-green-500" %>
       <% end %>
     </div>
   </div>

@@ -2,6 +2,10 @@ en:
   shared:
     _navbar:
       title: "Mini-Keyz"
-      subtitle: "Online real estate profitability"
+      subtitle: "The real estate profitability calculator reference"
       sign_in: "Log in"
       sign_up: "Sign up"
+      new_simulation: "Make a new simulation"
+      simulations_index: "My simulations"
+      user_account: "My account"
+      sign_out: "Log out"
