@@ -9,19 +9,20 @@
     <div
       data-action="click->dropdown#toggle click@window->dropdown#hide"
       data-dropdown-target="dropdownButton"
-      class="w-full relative flex items-end py-2 cursor-pointer sm:w-auto"
+      class="w-full flex items-end py-2 cursor-pointer sm:w-auto"
     >
       <p class="font-bold pr-1 text-xs text-gray-400"><%= t('language_name') %></p>
-      <i class="fas fa-chevron-down text-xs text-gray-400"></i>
-
-      <!-- Dropdown, well, actually... dropup -->
-      <div 
-        data-dropdown-target="dropdownMenu" 
-        class="hidden absolute right-1/2 bottom-full" 
-      >
-        <p>Fr</p>
-        <p>Es</p>
-      </div>
+      <i class="fas fa-chevron-down relative text-xs text-gray-400">
+        <!-- Dropdown, well, actually... dropup -->
+        <div 
+          data-dropdown-target="dropdownMenu" 
+          class="hidden absolute left-0 bottom-full bg-white rounded p-2 border-2 border-gray-200 font-sans" 
+        >
+          <% available_languages.each do |language| %>
+            <p class="text-xs text-black font-normal py-1" style="min-width: 60px;"><%= language %></p>
+          <% end %>
+        </div>
+      </i>
 
     </div>
   </div>
