@@ -16,10 +16,10 @@
         <!-- Dropdown, well, actually... dropup -->
         <div 
           data-dropdown-target="dropdownMenu" 
-          class="hidden absolute left-0 bottom-full bg-white rounded p-2 border-2 border-gray-200 font-sans" 
+          class="hidden absolute left-0 bottom-full flex flex-col bg-white rounded p-2 border-2 border-gray-200 font-sans" 
         >
           <% available_languages.each do |language| %>
-            <p class="text-xs text-black font-normal py-1" style="min-width: 60px;"><%= language %></p>
+            <%= link_to language[:name], change_locale_path(locale: language[:locale].to_sym), class: "text-xs text-black font-semibold py-1", style: "min-width: 60px;" %>
           <% end %>
         </div>
       </i>

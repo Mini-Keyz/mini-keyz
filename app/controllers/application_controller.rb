@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name])
   end
 
-  # Handles the user locale by either extracting it or getting the default locale in application.rb
+  # Handles the user locale by either getting it from cookies, extracting it or getting the default locale in application.rb
   def set_locale
-    I18n.locale = extract_locale || I18n.default_locale
+    I18n.locale = cookies[:preferred_language] || extract_locale || I18n.default_locale
   end
 
   # Extracts the locale from the params or the HTTP headers, and returns it
