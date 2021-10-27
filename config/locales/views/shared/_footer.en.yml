@@ -1,4 +1,6 @@
 en:
   shared:
     _footer:
-      copyright_disclaimer: "© 2021 All rights reserved by Mini-Keyz. No part of this site may be reproduced without our written permission." 
+      copyright_disclaimer: "© 2021 All rights reserved by Mini-Keyz. No part of this site may be reproduced without our written permission."
+      about_link: "About us"
+      contact_link: "Contact us"
