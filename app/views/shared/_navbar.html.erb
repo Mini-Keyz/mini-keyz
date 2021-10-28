@@ -50,7 +50,7 @@
       <% if user_signed_in? %>
         <%= link_to t('new_simulation'), new_simulation_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
         <%= link_to t('simulations_index'), simulations_path, style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
-        <%= link_to t('my_account'), user_path(current_user), style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
+        <%= link_to t('user_account'), user_path(current_user), style: "width: 240px", class: "font-semibold p-2 border-b-2 transition duration-400 hover:bg-green-500" %>
         <%= link_to t('sign_out'), destroy_user_session_path, method: :delete, style: "width: 240px", class: "font-semibold p-2 transition duration-400 hover:bg-green-500" %>
       <% end %>
     </div>

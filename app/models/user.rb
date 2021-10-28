@@ -5,4 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
   has_many :simulations, dependent: :destroy
+
+  extend FriendlyId
+  friendly_id :slug_fullname, use: :slugged
+
+  def slug_fullname
+    "#{first_name}-#{last_name}-#{SecureRandom.hex(2)}"
+  end
 end

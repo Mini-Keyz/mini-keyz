@@ -102,6 +102,8 @@ GEM
       thor (>= 0.14.0, < 2)
     formatador (0.2.5)
     french_tax_system (1.0.1)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.16.2)
@@ -332,6 +334,7 @@ DEPENDENCIES
   devise (~> 4.7)
   figaro
   french_tax_system (~> 1.0.1)
+  friendly_id (~> 5.4.0)
   guard-livereload (~> 2.5)
   jbuilder (~> 2.7)
   listen (~> 3.3)

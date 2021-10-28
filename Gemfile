@@ -99,3 +99,6 @@ gem 'french_tax_system', '~> 1.0.1'
 
 # Needed for Ruby v3
 gem 'rexml'
+
+# Create slug URL
+gem 'friendly_id', '~> 5.4.0'
