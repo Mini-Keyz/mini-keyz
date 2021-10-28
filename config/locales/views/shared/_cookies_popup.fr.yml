@@ -1,0 +1,8 @@
+fr:
+  shared:
+    _cookies_popup:
+      disclaimer: "Nous utilisons les cookies pour vous offrir la meilleure expérience possible sur notre application."
+      informations_on_policy: "Pour plus d'informations, vous pouvez consulter"
+      policy: "notre politique de cookies"
+      agree: "Accepter"
+      refuse: "Refuser"

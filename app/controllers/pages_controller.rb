@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home about contact accept_cookies refuse_cookies cookies_policy]
+  skip_before_action :authenticate_user!,
+                     only: %i[home about contact accept_cookies refuse_cookies cookies_policy change_locale]
+
   def about; end
 
   def contact; end
@@ -15,4 +17,18 @@ class PagesController < ApplicationController
   end
 
   def cookies_policy; end
+
+  def change_locale
+    locale = params[:locale]
+
+    # Set preferred language for next sessions
+    set_preferred_language(locale)
+
+    # Redirect to current page
+    redirect_back(locale: locale, fallback_location: root_path)
+  end
+
+  def set_preferred_language(locale)
+    cookies[:preferred_language] = locale
+  end
 end
