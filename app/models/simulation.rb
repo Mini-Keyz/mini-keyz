@@ -69,6 +69,13 @@ class Simulation < ApplicationRecord
   FISCAL_STATUS_AVAILABLE = %w[Vide LMNP LMP Pinel DeNormandie].freeze
   FISCAL_REGIMEN_AVAILABLE = %w[Réel Forfait].freeze
 
+  extend FriendlyId
+  friendly_id :slug_hex, use: :slugged
+
+  def slug_hex
+    SecureRandom.hex(10).to_s
+  end
+
   def initialize(args)
     super
 

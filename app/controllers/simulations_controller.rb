@@ -65,7 +65,7 @@ class SimulationsController < ApplicationController
   private
 
   def set_simulation
-    @simulation = Simulation.find(params[:id])
+    @simulation = Simulation.friendly.find(params[:id])
   end
 
   def simulation_params
