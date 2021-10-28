@@ -25,7 +25,7 @@ class PagesController < ApplicationController
     set_preferred_language(locale)
 
     # Redirect to current page
-    redirect_back(fallback_location: root_path)
+    redirect_back(locale: locale, fallback_location: root_path)
   end
 
   def set_preferred_language(locale)

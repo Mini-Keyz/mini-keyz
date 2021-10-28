@@ -1,2 +1,9 @@
 en:
   language_name: "English"
+  close: "Close"
+  sign_in: "Log in"
+  sign_up: "Sign up"
+  new_simulation: "Forecast a new project"
+  simulations_index: "My projects"
+  user_account: "My account"
+  sign_out: "Log out"

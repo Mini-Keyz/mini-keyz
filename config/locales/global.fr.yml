@@ -1,2 +1,9 @@
 fr:
   language_name: "Français"
+  close: "Fermer"
+  sign_in: "Se connecter"
+  sign_up: "S'inscrire"
+  new_simulation: "Réaliser une nouvelle simulation"
+  simulations_index: "Mes simulations"
+  user_account: "Mon compte"
+  sign_out: "Déconnexion"
