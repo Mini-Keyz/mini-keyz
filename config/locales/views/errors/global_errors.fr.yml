@@ -1,0 +1,15 @@
+fr:
+  errors:
+    not_found:
+      title: "Page non trouvée !"
+      subtitle: "Désolé, mais nous ne trouvons pas la page que vous souhaitez rejoindre"
+    unprocessable_entity:
+      title: "Entité non traitable !"
+      subtitle: "Les modifications que vous avez apportées ne peuvent pas être sauvegardées"
+    internal_server_error:
+      title: "Erreur interne !"
+      subtitle: "Nous rencontrons des difficultés, nous vous prions de rééssayer plus tard"
+    _shared:
+      link_back:
+        p1: "Vous pouvez"
+        p2: "revenir sur notre page d'accueil"

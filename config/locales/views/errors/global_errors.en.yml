@@ -1,0 +1,15 @@
+en:
+  errors:
+    not_found:
+      title: "Page not found!"
+      subtitle: "Sorry, but the page you were looking for could not be found."
+    unprocessable_entity:
+      title: "Unprocessable entity"
+      subtitle: "The changes you are trying to make were rejected"
+    internal_server_error:
+      title: "Internal server error!"
+      subtitle: "Things are a bit unstable here. I suggets come back later."
+    _shared:
+      link_back:
+        p1: "You can"
+        p2: "return to our front page"
