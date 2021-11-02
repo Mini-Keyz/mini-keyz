@@ -1,0 +1,9 @@
+<div class="container-app mt-12">
+  
+  <div>
+    <h1 class="text-2xl font-semibold"><%= t("errors.#{error_type}.title") %></h1>
+    <h2 class="mt-1"><%= t("errors.#{error_type}.subtitle") %></h2>
+  </div>
+  
+  <p class="text-sm mt-4"><%= t("errors._shared.link_back.p1") %> <%= link_to t("errors._shared.link_back.p2"), root_path, class: "text-green-500 font-semibold" %></p>
+</div>
