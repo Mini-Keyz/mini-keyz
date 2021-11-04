@@ -27,7 +27,7 @@
     <% field[:radio_btns].each_with_index do |radio_btn, index| %>
       <div
       data-action="click->form-radio-buttons#toggleRadio"
-      class="flex justify-center items-center <%= radio_btns_width_or_padding %> bg-white rounded border-2 border-<%= form_color %>-200" 
+      class="flex justify-center items-center <%= radio_btns_width_or_padding %> bg-white rounded border-2 border-<%= form_color %>-300" 
       style="height: 40px;"
       >
         <%= f.radio_button field[:input], radio_btn[:value], checked: (@simulation.send(field[:input].to_s) == radio_btn[:value]), class: "hidden" %>
